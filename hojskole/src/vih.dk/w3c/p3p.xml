@@ -1,0 +1,27 @@
+<POLICIES xmlns="http://www.w3.org/2002/01/P3Pv1">
+<POLICY name="privacy" discuri="http://www.vih.dk/om/persondata.php" opturi="http://www.vih.dk/om/persondata.php" xml:lang="da">
+  <ENTITY>
+    <DATA-GROUP>
+      <DATA ref="#business.name">Vejle Idrætshøjskole</DATA>
+      <DATA ref="#business.contact-info.online.email">lars@vih.dk</DATA>
+      <DATA ref="#business.contact-info.online.uri">http://www.vih.dk/</DATA>
+      <DATA ref="#business.contact-info.telecom.telephone.number">+4575820811</DATA>
+      <DATA ref="#business.contact-info.postal.street">Ørnebjergvej 28</DATA>
+      <DATA ref="#business.contact-info.postal.city">Vejle</DATA>
+      <DATA ref="#business.contact-info.postal.stateprov">Jylland</DATA>
+      <DATA ref="#business.contact-info.postal.postalcode">7100</DATA>
+      <DATA ref="#business.contact-info.postal.country">Denmark</DATA>
+    </DATA-GROUP>
+  </ENTITY>
+  <ACCESS><all/></ACCESS>
+  <DISPUTES-GROUP>
+    <DISPUTES resolution-type="service" service="http://www.vih.dk/om/persondata.php" short-description="Disputes">
+      <REMEDIES><correct/></REMEDIES>
+    </DISPUTES>
+  </DISPUTES-GROUP>
+  <STATEMENT>
+    <CONSEQUENCE></CONSEQUENCE>
+    <NON-IDENTIFIABLE/>
+  </STATEMENT>
+</POLICY>
+</POLICIES>

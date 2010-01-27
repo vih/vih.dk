@@ -1,0 +1,5 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-F
+RewriteRule ^([0-9A-Za-z]+)$ http://vih.dk/elevforeningen/login/login.php?handle=$1 [NC]

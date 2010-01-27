@@ -1,0 +1,342 @@
+/**
+ * Gr�n = #004D20
+ * Bl� = #007DB5
+ *
+ * @author Lars Olesen <lars@legestue.net>
+ */
+
+
+html {
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font: 85%/1.6em "Trebuchet MS", arial, sans-serif;
+}
+
+h1 {
+    font-size:2em;
+    text-transform:uppercase;
+    color: #90A3B1;
+    margin-bottom: 1.5em;
+
+}
+h2 {
+    font-size:1.5em;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+h3 {
+    font-size:1.25em;
+}
+h4 {
+    font-size:1em;
+}
+p{
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+table {
+    font-size: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 0.3em;
+}
+
+caption {
+    font-weight: bold;
+    background: #ddd;
+    padding: 0.4em;
+}
+
+th, td {
+    text-align: left;
+    vertical-align: top;
+}
+
+fieldset {
+    padding: 0.5em;
+}
+
+input, select, textarea {
+    font-size:1em;
+}
+
+label {
+    /* display: block; */
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+li {
+    list-style: square;
+}
+
+#content-main img {
+    float: right;
+    margin: 1em 0 1em 1em;
+}
+
+#container {
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+#branding {
+    width: 100%;
+    background: #90A3B1;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    padding-left: 4em;
+}
+
+#branding h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    margin: 0 0 0.5em 0;
+
+}
+
+#branding h1 a { color: white; text-decoration: none; }
+
+#branding #branding-logo {
+    display: none;
+}
+
+#navigation-main {
+    padding: 0.6em;;
+    background: black;
+
+}
+
+#navigation-main ul {
+    margin: 0 4em;
+    padding: 0;
+
+}
+
+#navigation-main ul li {
+    display: inline;
+    margin-right: 1em;
+}
+
+#navigation-main a {
+    color: white;
+    text-decoration: none;
+}
+
+#navigation-main a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+#content {
+    padding: 3em 4em;
+    overflow: hidden;
+}
+
+#content-main {
+}
+
+#content-sub {
+    padding: 1em;
+}
+
+.sidebar #content-main {
+    float: left;
+    width: 60%;
+    padding: 1em;
+    padding-bottom: 1000em;
+    margin-bottom: -998em;
+}
+
+.sidebar #content-sub {
+    float: right;
+    width: 30%;
+    border-left: 1px solid #eee;
+    padding: 1em;
+    padding-bottom: 1000em;
+    margin-bottom: -998em;
+}
+
+.sidebar #content-sub h2 {
+    padding: 0.1em 0.3em;
+    background: #eee;
+    border-bottom: 1px solid #ccc;
+}
+
+#content-sub p {
+    padding: 0.1em 0.3em;
+}
+
+
+
+#siteinfo {
+    width: 100%;
+    clear: both;
+    color: white;
+    background: #90A3B1;
+    padding-top: 4em;
+    padding-bottom: 2em;
+    padding-left: 4em;
+    text-transform: uppercase;
+}
+
+
+
+/* news */
+
+.vevent span {
+    display: block;
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: #fff 1px 1px 1px;
+    color: #BDBDBD;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    float: left;
+    width: 35px;
+    padding-top: 5px;
+    border: 1px solid #ccc;
+    clear: both;
+
+}
+.vevent span .day {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -2px;
+    text-indent: -3px;
+    text-shadow: #bbb 2px 2px 0;
+    color: #ddd;
+    padding-bottom: 5px;
+    margin: 0;
+    border: none;
+}
+
+.vevent a  {
+    text-decoration:none;
+}
+
+.vevent h2.summary { /* h2 bruges ved nyhederne */
+    margin-bottom: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.vevent .description {
+    margin-top: 0;
+    padding: 0;
+}
+
+#content-sub .vevent span {
+    margin-top: 0.3em;
+}
+
+#content-sub .vevent h2 {
+    border: none;
+    background: transparent;
+    font-size: 0.9em;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#content-sub .vevent .description {
+    font-size: 0.9em;
+}
+
+
+.spot {
+    background: #00518c;
+    color: white;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.spot h3 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.spot p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.5em;
+}
+
+.spot a {
+    color: white;
+    text-decoration: none;
+}
+
+.spot a:hover {
+    text-decoration: underline;
+    background: transparent;
+}
+
+
+#content-sub img {
+    display: block;
+    margin: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 0.5em;
+}
+
+#content-main img {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+form table td, form table th {
+    padding: 0.3em;
+}
+form table {
+    width: 98%;
+}
+
+.facilitet {
+    clear: both;
+}
+
+#partners {
+    clear:both;
+    border: 2px solid #ccc;
+    padding: 1em;
+    margin-top: 2em;
+}
+
+#partners h2 {
+    display: inline;
+}
+
+#partners ul {
+    display: inline;
+}
+
+
+#partners img {
+    float: none;
+    margin: 0;
+    padding: 0;
+}
+
+#partners li {
+    display: inline;
+    height: 50px;
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>VIH_Kursuscenter</name>
+ <uri>http://localhost/</uri>
+ <summary>VIH</summary>
+ <description>VIH</description>
+ <lead>
+  <name>Lars Olesen</name>
+  <user>lsolesen</user>
+  <email>lars@legestue.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-11-25</date>
+ <time>12:09:39</time>
+ <version>
+  <release>1.0.4</release>
+  <api>1.0.4</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL License</license>
+ <notes>
+* Text changes
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <dir name="VIH">
+    <dir name="Frontend">
+     <dir name="kursuscenter">
+      <file baseinstalldir="/" name="main-tpl.php" role="php" />
+     </dir> <!-- /VIH/Frontend/kursuscenter -->
+     <file baseinstalldir="/" name="Kursuscenter.php" role="php" />
+    </dir> <!-- /VIH/Frontend -->
+   </dir> <!-- /VIH -->
+   <dir name="web">
+    <dir name="images">
+     <file baseinstalldir="/" name="borsen.jpg" role="www" />
+     <file baseinstalldir="/" name="dobbeltvaerelse.jpg" role="www" />
+     <file baseinstalldir="/" name="enkeltvaerelse.jpg" role="www" />
+     <file baseinstalldir="/" name="forhallen.jpg" role="www" />
+     <file baseinstalldir="/" name="globen1.jpg" role="www" />
+     <file baseinstalldir="/" name="globenkursuscenter.jpg" role="www" />
+     <file baseinstalldir="/" name="globen_sh.jpg" role="www" />
+     <file baseinstalldir="/" name="hall.jpg" role="www" />
+     <file baseinstalldir="/" name="lenegammelgaard.jpg" role="www" />
+     <file baseinstalldir="/" name="modelokale.jpg" role="www" />
+     <file baseinstalldir="/" name="naturkompagniet.jpg" role="www" />
+     <file baseinstalldir="/" name="spisesal.jpg" role="www" />
+     <file baseinstalldir="/" name="tack.jpg" role="www" />
+    </dir> <!-- /web/images -->
+    <file baseinstalldir="/" name="faciliteter.php" role="www" />
+    <file baseinstalldir="/" name="googlec070a3a2af355237.html" role="www" />
+    <file baseinstalldir="/" name="include_kursuscenter.php" role="www" />
+    <file baseinstalldir="/" name="index.php" role="www" />
+    <file baseinstalldir="/" name="kontakt.php" role="www" />
+    <file baseinstalldir="/" name="layout.css" role="www" />
+    <file baseinstalldir="/" name="nyhedsbrev.php" role="www" />
+    <file baseinstalldir="/" name="om.php" role="www" />
+    <file baseinstalldir="/" name="produkter.php" role="www" />
+   </dir> <!-- /web -->
+   <file baseinstalldir="/" name="build.xml" role="data" />
+   <file baseinstalldir="/" name="kursuscenter.php" role="php" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.4</min>
+   </pearinstaller>
+   <package>
+    <name>antispambot</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.1.0</min>
+   </package>
+   <package>
+    <name>Template</name>
+    <channel>public.intraface.dk</channel>
+    <min>0.2.0</min>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease>
+  <filelist>
+   <install as="kursuscenter.vih.dk/index.php" name="web/index.php" />
+   <install as="kursuscenter.vih.dk/images/borsen.jpg" name="web/images/borsen.jpg" />
+   <install as="kursuscenter.vih.dk/images/dobbeltvaerelse.jpg" name="web/images/dobbeltvaerelse.jpg" />
+   <install as="kursuscenter.vih.dk/images/enkeltvaerelse.jpg" name="web/images/enkeltvaerelse.jpg" />
+   <install as="kursuscenter.vih.dk/images/forhallen.jpg" name="web/images/forhallen.jpg" />
+   <install as="kursuscenter.vih.dk/images/globen_sh.jpg" name="web/images/globen_sh.jpg" />
+   <install as="kursuscenter.vih.dk/images/globen1.jpg" name="web/images/globen1.jpg" />
+   <install as="kursuscenter.vih.dk/images/globenkursuscenter.jpg" name="web/images/globenkursuscenter.jpg" />
+   <install as="kursuscenter.vih.dk/images/hall.jpg" name="web/images/hall.jpg" />
+   <install as="kursuscenter.vih.dk/images/lenegammelgaard.jpg" name="web/images/lenegammelgaard.jpg" />
+   <install as="kursuscenter.vih.dk/images/modelokale.jpg" name="web/images/modelokale.jpg" />
+   <install as="kursuscenter.vih.dk/images/naturkompagniet.jpg" name="web/images/naturkompagniet.jpg" />
+   <install as="kursuscenter.vih.dk/images/spisesal.jpg" name="web/images/spisesal.jpg" />
+   <install as="kursuscenter.vih.dk/images/tack.jpg" name="web/images/tack.jpg" />
+   <install as="kursuscenter.vih.dk/faciliteter.php" name="web/faciliteter.php" />
+   <install as="kursuscenter.vih.dk/include_kursuscenter.php" name="web/include_kursuscenter.php" />
+   <install as="kursuscenter.vih.dk/kontakt.php" name="web/kontakt.php" />
+   <install as="kursuscenter.vih.dk/layout.css" name="web/layout.css" />
+   <install as="kursuscenter.vih.dk/nyhedsbrev.php" name="web/nyhedsbrev.php" />
+   <install as="kursuscenter.vih.dk/om.php" name="web/om.php" />
+   <install as="kursuscenter.vih.dk/produkter.php" name="web/produkter.php" />
+  </filelist>
+ </phprelease>
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.4</release>
+    <api>1.0.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-11-25</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL License</license>
+   <notes>
+* Text changes
+   </notes>
+  </release>
+ </changelog>
+</package>

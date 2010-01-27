@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<project name="VIH_Kursuscenter" basedir="." default="build">
+    <taskdef classname="phing.tasks.ext.FtpDeployTask" name="ftpdeploy" />
+
+    <property name="package-name" value="${phing.project.name}" />
+    <property name="version" value="2.3.2" />
+    <property name="stability" value="stable" />
+    <property name="source.dir" value="." />
+    <property name="tests.dir" value="./tests/unit" />
+    <property name="build.dir" value="../build" />
+    <property name="reports.phpcs.dir" value="../build/logs" />
+    <property name="reports.phpunit.dir" value="../../../build/logs" />
+    <property name="reports.coverage.dir" value="../../../build/logs/coverage" />
+    <property name="api.dir" value="../build/api" />
+
+    <property name="package-filename" value="${package-name}-${version}.tgz" />
+
+    <target name="build">
+        <exec dir="${source.dir}" command="php makepackage.php make" />
+    	<exec dir="${source.dir}" command="pear package" />
+    </target>
+
+</project>
+

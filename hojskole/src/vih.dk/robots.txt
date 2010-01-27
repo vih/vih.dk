@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: /gfx/
+Disallow: /css/
+Disallow: /errorpages/
+Disallow: /scripts/
+Disallow: /kortekurser/tilmelding/index.php*
+Disallow: /kortekurser/tilmelding/start.php*
+Disallow: /langekurser/index.php?*
+Disallow: /langekurser/kursus.php?*
+Disallow: /langekurser/tilmelding/index.php*
+Disallow: /langekurser/tilmelding/start.php*
+Disallow: /langekurser/fag/fag.php*
+Disallow: /langekurser/fag/vis_faggruppe.php?*
+Disallow: *PHPSESSID*
+Disallow: *index.php*
+
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: psbot
+Disallow: /
