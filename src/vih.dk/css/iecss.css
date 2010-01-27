@@ -1,0 +1,87 @@
+/* IE CSS Document */
+body {font-size:x-small;f\ont-size:small}/*ie5 and 5.5. that are one size out*/
+body table{font-size:x-small;f\ont-size:small}
+
+* html .sidepicture #content-main {
+	width:604px;
+	w\idth:299px;
+}
+.frontpage #content-main {
+	margin-top:-15px;
+}
+.frontpage #content-main h1 {
+	margin:15px 0 .4em -222px;
+}
+#col3 .col3inner{
+	line-height:1.45;
+}
+
+
+/* remember to use absolute paths for the alpha image loader images as they are relative to the html file and not the css file as per usual */
+* html #header {
+	background:none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/iso-top.png',sizingMethod='image');
+}
+* html #inner {
+    background:none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/iso-mid.png',sizingMethod='scale');
+}
+* html .frontpage #content-main h1 { /* hack for ie less than 7 not to render*/
+    background:none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/overskrift2.png',sizingMethod='image');
+}
+* html #base {
+    background:none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/iso-base.png',sizingMethod='image');
+}
+* html #prop {
+    background:none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/images/fodboldstovle.png',sizingMethod='image');
+}
+* html #prop2 {
+    background:none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/float_fodboldstoevle2.png',sizingMethod='image');
+}
+* html #baseimage1 {
+    background:none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/float_fodbold.png',sizingMethod='image');
+}
+#baseimage1 {
+		bottom: -280px;
+}
+* html #baseimage2 {
+    background:none;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/float_fitnesssko.png',sizingMethod='image');
+}
+#baseimage2 {
+		bottom: -280px;
+}
+* html .top {
+	background: none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/tel-base.png',sizingMethod='image');
+}
+
+* html #footer-inner{width:100%}
+
+#flashwrap{
+	margin:60px auto 0;
+}
+* html .blc,
+* html .brc {bottom:-1px;}
+* html .blc2,
+* html .brc2 {bottom:-2px}
+.newcol3 .dtend{padding-left:3px!important;}
+
+* html span.ie-replace{
+	width:304px;
+	height:445px;
+	display:block;
+	background: none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gfx/images2/materialebest.png',sizingMethod='image');
+}
+* html span.ie-replace img{visibility:hidden}
+
+label.by{position:relative;top:-4px;}
+
+.midform .element{float:left;}
+.newform li{float:left;clear:left;width:100%;}

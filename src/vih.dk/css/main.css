@@ -1,0 +1,1180 @@
+/* reset*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+img {
+	border:0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+ul li {
+	list-style:none;
+}
+caption, th {
+	text-align:left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before, q:after {
+	content:'';
+}
+abbr, acronym {
+	border:0;
+	font-variant:normal;
+}
+sup {
+	vertical-align:text-top
+}
+sub {
+	vertical-align: text-bottom
+}
+input, textarea, select {
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+}
+legend {
+	color:#000
+}
+body {
+	text-align:center;
+	font:13px/1.5 Verdana, Arial, Helvetica, sans-serif;
+}
+.fag h2 {
+	margin-top: 0.5em
+}
+pre, code, kbd, samp, tt {
+	font-family:monospace;
+	line-height:100%;
+}
+/* specific for tags */
+table {
+	clear: both;
+	border-collapse: separate;
+	width: 100%;
+	margin: 1em 0 0 -2px;
+	padding: 0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+table.skema {
+	width:575px;
+	table-layout:fixed;
+	margin:1em 0 0 12px;
+}
+table caption {
+	margin: 1em 8px 0.4em 2px;
+	padding: 0;
+	background: transparent;
+	text-align: left;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #000;
+	font-size:12px;
+}
+td, th {
+	padding: 0.2em
+}
+table.skema td, table.skema th {
+	border: 1px solid white;
+	text-align: center;
+	background: #f7b11d;
+	font-size:11px;
+	padding:1px 0.2em;
+	line-height:1.6;
+}
+table th {
+	font-weight: bold;
+}
+table.skema th{color:#6C0713;text-transform:uppercase}
+table tr.standard td {
+	background: white
+}
+table tr.aar td {
+	background: #D4982A;
+	font-weight: bold;
+	color:#000;
+}
+table tr.food td {
+	background: #b77229;
+	font-weight: bold;
+	color: white;
+}
+/* clearing technique */
+.clearfix:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.clearfix {
+	display:inline-block;
+}
+/* mac hide \*/
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+/* End hide */
+p, h1 {
+	margin:0 0 .5em 0
+}
+.centre {
+	text-align:center;
+	margin:1em 0
+}
+body {
+ 	height: 100%;
+	background-color: #5f7283;
+	background-image: url(../gfx/background/soccerfield2.jpg);
+	text-align:center;
+}
+body.faciliteter, body.bodymind {
+	background-image:url(../gfx/background/gulv.jpg);
+}
+body.photogallery, body.haandbold {
+	background-image:url(../gfx/background/hallen.jpg);
+}
+
+body.fag, body.badminton, body.volleyball {
+	background-image:url(../gfx/background/net3.jpg);
+}
+body.langekurser, body.fitness, body.spinning-pump-boksning {
+	background-image:url(../gfx/background/ribber2.jpg);
+}
+body.underviser, body.adventure {
+	background-image:url(../gfx/background/klatre.jpg);
+}
+body.kortekurser, body.teambuilder {
+	background-image:url(../gfx/background/ropes.jpg);
+}
+body.organisation, body.fitnessinstruktoer {
+	background-image:url(../gfx/background/haandvaegte.jpg);
+}
+body.bestilling {
+	background-image:url(../gfx/background/pool.jpg);
+}
+body.aerobic {
+	background-image: none;
+}
+body.musiklinje {
+	background-image:url(../gfx/background/bgNoder.jpg);
+}
+body.politilinje {
+	background-image:url(../gfx/background/bgpoliti.jpg);
+}
+body.skitur {
+	background-image:url(../gfx/background/bgski.jpg);
+}
+
+#outer {
+	width:1098px;
+	margin:auto;
+	text-align:left;
+	padding:100px 0 0 0;
+	position:relative;
+}
+#header {
+	width:1098px;
+	background:url(../gfx/images2/iso-top.png) no-repeat left top;
+	height:59px;
+}
+#hd {
+	padding: 15px;
+	background: url(../gfx/images2/logo.gif) no-repeat 864px 0;
+	height: 59px;
+	position:relative;
+	top:25px
+}
+#hd h1 {
+	position:absolute;
+	top:0;
+	right:50px;
+	width:182px;
+	height:83px;
+}
+#hd h1 a {
+	color: gray;
+	text-decoration: none;
+	width:182px;
+	height:83px;
+	display:block;
+}
+#hd h1 a span{position:absolute;top:-999em}
+#content-main h1 {
+	font-weight: bold;
+	font-size: 1.3em;
+}
+#inner {
+	width:1098px;
+	background:url(../gfx/images2/iso-mid.png) repeat-y left top;
+	padding:70px 0 0 0;
+}
+#main {
+	width:1064px;
+	background:url(../gfx/images2/iso-slice.gif) repeat-y left top;
+}
+#col1, #content-main, #col3 {
+	float:left;
+	display:inline;
+	margin-left:14px;
+	width:150px;
+	color:#fff;
+	padding:15px 0 15px 0;
+	position:relative;
+}
+#col1 {
+	width:227px;
+	background:url(../gfx/images2/iso-tlc.gif) no-repeat 0 0;
+	padding-top:25px;
+	margin-left:16px;
+}
+#content-main {
+	width:604px;
+	margin-left:9px;
+	color:#000;
+}
+.sidepicture #content-main {
+	padding-left:304px;
+	width:299px;
+}
+/* use a wrapper for this side picture to maintain the height relative to the side columns */
+.sidepicture .sidepic {
+	background: url(../gfx/images2/sidepic3.jpg) no-repeat 251px 0%;
+	position:relative;
+	z-index:2;
+}
+.widepicture #content-main {
+	padding:300px 0 0 0;/* padding equals the height of the image (plus a little bottom margin) */
+	background: url(../gfx/images/hojskole.jpg) no-repeat 2px 0;
+}
+#content-main ul, #content-main ol {
+	margin: 0.5em 1em
+}
+#content-main ul li {
+	list-style: square
+}
+/* grey background fade behind content on front page */
+.content2{
+	width:279px;
+	background: url(../gfx/images2/bgContent.jpg) repeat-x 0 0;
+	padding:0 10px;
+}
+.content2 p{line-height:1.3}
+.bgfade{
+	position:absolute;
+	width:305px;
+	height:206px;
+	left:251px;
+	top:0;
+	background:url(../gfx/images2/bgContent.jpg) repeat-x 0 0;
+	z-index:1;
+}
+.frontpage #content-main h1 {
+	background: url(../gfx/images2/overskrift2.png) no-repeat 0 25px;
+	margin:-15px 0 .7em -222px;
+	height: 75px;
+	width: 500px;
+	position:relative;
+	z-index:2;
+}
+.frontpage #content-main h1 span {
+	display: none
+}
+p.last {
+	margin-bottom:0px!important
+}
+#col3 {
+	float:right;
+	margin:0 22px 0 0;
+	padding-top:10px;
+	width:166px;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:11px;
+	position:relative;
+}
+#col3 h2.sideline,#col3 h2.sideline em {
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: uppercase;
+	width:67px;
+	height:20px;
+	overflow:hidden;
+	display:block;
+	position:relative;
+	z-index:99;
+}
+#col3 h2.sideline em{
+	position:absolute;
+	left:0;
+	top:0;
+	background: url(../gfx/images2/sidelinjen.gif) no-repeat 0 0;
+}
+#col3 h2{
+	color:#fff;
+	text-transform:uppercase;
+	font-weight:bold;
+	line-height:16px;
+	font-size:12px;
+	margin:0 0 2px;
+	padding:15px 30px 0 0;
+}
+
+#col3 h3{
+	color:#fff;
+	text-transform:uppercase;
+	font-weight:bold;
+	line-height:16px;
+	font-size:12px;
+	margin:0 0 2px;
+	padding:15px 30px 0 0;
+}
+#col3 p.brochure{
+	position:absolute;
+	top:0;
+	left:-13px;
+	z-index:1;
+}
+#col3 p {z-index:99;position:relative}
+#col3 p.download{
+	padding:110px 0 5px;
+}
+p.download a{
+	color:#fff;
+	text-decoration:none;
+	font-weight:bold;
+}
+#col3 .col3inner{
+	position:relative;
+	z-index:99;
+	width:100%;
+	line-height:1.5;
+}
+.col3inner h3{
+	font-weight:bold;
+	margin:12px 0 0;
+}
+#col3 .col3inner .last{margin:0}
+
+
+#col3 .vevent p.dtend {
+	text-transform: uppercase;
+	font-size: 0.7em;
+	margin:1em 0 0 0;
+}
+#col3 .vevent span {
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-indent: -3px;
+	color: #ddd;
+	padding-bottom: 5px;
+	margin: 0;
+	border: none;
+}
+#col3 .vevent h2 {
+	border: none;
+	background: transparent;
+	font-size: 0.9em;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 0;
+	text-transform: none;
+}
+.newcol3 .vevent h2{margin-bottom:10px!important}
+#col3 .vevent .description {
+	margin: 0 0 10em 0;
+	padding: 0;
+	display: none;
+}
+#col3 a {
+	color: white;
+	text-decoration:none;
+}
+#col3 a:hover {
+	color: white;
+	text-decoration: underline;
+}
+#footer {
+	width:1057px;
+	position:relative;
+	z-index:99;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:12px;
+}
+#footer p {
+	padding:0 15px
+}
+#footer p.last {
+	margin:0
+}
+#base {
+	width:1098px;
+	height:91px;
+	background:url(../gfx/images2/iso-base.png) no-repeat left top;
+	position:relative;
+	z-index:1;
+	clear:both;
+	float:left;
+	margin-top:-11px
+}
+#footer-inner {/* needed for opera*/
+	position:relative;
+	top:15px;
+	min-height:0;
+}
+.content {
+	width:100%;
+	background:url(../gfx/images2/iso-brc2.jpg) no-repeat 0 100%;
+	position:relative;
+}
+ul#navigation-sites {
+	width:200px;
+	float:left;
+	margin:0 0 0 32px;
+	display:inline;
+	line-height:1.2;
+}
+ul#navigation-sites li {
+	list-style: square
+}
+#navigation-sites li#efterskolen {
+	color: #213408
+}
+#navigation-sites li#kursuscenteret {
+	color: #90A3B1
+}
+#navigation-sites li#elevforeningen {
+	color: orange
+}
+#navigation-sites li a {
+	color: #898989;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size:10px;
+	letter-spacing: 0.2em;
+}
+#navigation-sites li a:hover {
+	color:#898989;
+	text-decoration: underline;
+}
+#address {
+	width: 150px;
+	float: right;
+	color: #000;
+	margin-right:10px;
+	display:inline;
+	color:#898989;
+	font-size:12px;
+	line-height:1.2;
+}
+#address a{
+	color:#898989;
+	text-decoration:none;
+}
+#breadcrumb a {
+	color: #898989;
+	text-decoration:none;
+}
+#breadcrumb a em{font-style:italic}
+#breadcrumb {
+	width: 550px;
+	float:left;
+	color: #bbb;
+	margin:0 0 0 10px;
+}
+#navigation {
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	padding-top: 24px;
+	padding-bottom:20px;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:12px;
+}
+#navigation * {
+	padding: 7px 15px 7px 24px;
+}
+#navigation * * {
+	padding: 0 0;
+}
+#navigation a {
+	color: white;
+	text-decoration: none;
+	background: transparent;
+}
+#navigation a:hover {
+	color: #6c0713;
+	text-decoration:none;
+}
+#navigation li#current a {
+	color: #6c0713;
+	text-decoration: none;
+}
+/* big graphic at top of screen */
+.frontpage #prop, .fodbold #prop, .fodboldakademi #prop {
+	width: 634px;
+	height: 394px;
+	position: absolute;
+	top: -100px;
+	left: 50px;
+	background:url(../gfx/images2/float_fodboldstoevle2.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.adventure #prop, .adventurerejse #prop {
+	width: 566px;
+	height: 471px;
+	position: absolute;
+	top: -125px;
+	left: 125px;
+	background:url(../gfx/new_props/float_vandrestoevle.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.haandbold #prop {
+	width: 355px;
+	height: 371px;
+	position: absolute;
+	top: -100px;
+	left: -20px;
+	background:url(../gfx/new_props/float_haandbold.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.outdoorenergy #prop {
+	width: 300px;
+	height: 300px;
+	position: absolute;
+	top: -10px;
+	left: -20px;
+	background:url(../gfx/props/lobesko.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.fodboldakademi #prop2 {
+	width: 442px;
+	height: 470px;
+	position: absolute;
+	bottom: -350px;
+	right: -350px;
+	background:url(../gfx/new_props/float_lyseroedfodbold.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.bodymind #prop2 {
+	width: 300px;
+	height: 314px;
+	position: absolute;
+	bottom: -275px;
+	right: 250px;
+	background:url(../gfx/new_props/float_bodymind.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.teambuilder #prop2 {
+	width: 566px;
+	height: 471px;
+	position: absolute;
+	bottom: -400px;
+	right: 0px;
+	background:url(../gfx/new_props/float_vandrestoevle.png) no-repeat 0 0;
+	z-index: 100;
+}	
+
+/* big graphic at bottom of screen*/
+.frontpage #prop2,  .fodbold #prop2 {
+	width: 567px;
+	height: 425px;
+	position: absolute;
+	bottom: -350px;
+	left: 400px;
+	background:url(../gfx/images2/float_fodbold.png) no-repeat 0 0 ;
+	z-index: 100;
+}
+
+/* running show */
+.faciliteter #prop2, .fitness #prop2, .aerobic #prop2{
+	width: 567px;
+	height: 425px;
+	position: absolute;
+	bottom: -300px;
+	left: 300px;
+	background:url(../gfx/new_props/float_fitnesssko.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.fitnessinstruktoer #prop2, .spinning-pump-boksning #prop2{
+	width: 567px;
+	height: 331px;
+	position: absolute;
+	bottom: -300px;
+	left: 300px;
+	background:url(../gfx/new_props/float_fitnesssko3.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+
+/* big graphic at top of screen */
+.badminton #prop{
+	width: 256px;
+	height: 262px;
+	position: absolute;
+	top: 0px;
+	left: 50px;
+	background:url(../gfx/new_props/float_fjerbold.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+.volleyball #prop, .beachvolley #prop{
+	width: 200px;
+	height: 169px;
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	background:url(../gfx/props/volleyball.png) no-repeat 0 0;
+	z-index: 100;
+}
+
+
+/* some table styles for page 2 */
+#kursusoversigt {
+	margin:0 0 1em 0;
+	text-align:left;
+	border-collapse:collapse;
+	border-bottom:none;
+	width:100%;
+}
+#kursusoversigt td, #kursusoversigt th {
+	border:1px solid #fff;
+	border-right:none;
+	text-align:center;
+}
+#kursusoversigt td.first {
+	text-align:left;
+	border-left:none;
+}
+#kursusoversigt td a {
+	text-decoration:none
+}
+#kursusoversigt td a:hover {
+	text-decoration:underline
+}
+table#kursusoversigt caption {
+	margin: 1em 0 0;
+	padding: 5px 5px 10px;
+	background:#fff;
+	text-align: left;
+	font-weight: bold;
+	text-transform: none;
+	color:#000;
+	letter-spacing: 0.2em;
+	font-variant: small-caps;
+}
+/* some table styles for page 3 kontakt */
+/* basically uses same styles as page 2 but referenced through body ID*/
+/* I left them separate so they can be easily removed in not wanted.*/
+.kontakt .skema {
+	margin:0 0 1em 0;
+	text-align:left;
+	border-collapse:collapse;
+	border-bottom:5px solid #ccc;
+}
+.kontakt .skema td, .kontakt .skema th {
+	border:1px solid #fff;
+	border-right:none;
+	text-align:left;
+}
+.kontakt .skema tr.aar td, .kontakt .skema th {
+	border-left:none;
+	text-align:left
+}
+.kontakt .skema td a {
+	text-decoration:none
+}
+.kontakt .skema td a:hover {
+	text-decoration:underline
+}
+.kontakt .skema caption {
+	margin: 1em 0 0;
+	padding: 5px 5px 10px;
+	background:#ccc;
+	text-align: left;
+	font-weight: bold;
+	text-transform: none;
+	color:#000;
+	letter-spacing: 0.2em;
+	font-variant: small-caps;
+}
+.langekurser .skema {
+	margin:0 0 1em 0;
+	text-align:left;
+	border-collapse:collapse;
+	border-bottom:5px solid #ccc;
+}
+.faciliteter .sidepic  {
+	background: url(../gfx/images2/facilbg.gif) no-repeat 255px 0;
+}
+.faciliteter #content-main {
+	text-align: center;
+}
+.fag .sidepic,.bestilling .sidepic  {
+	background:url(../gfx/images2/faqbg.gif) no-repeat 254px 0;
+}
+.fag #content-main h1{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:14px;
+	padding:7px 12px 1px;
+	margin:0;
+	text-transform:uppercase;
+}
+
+.fag #content-main h2{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	padding:7px 12px 1px;
+	margin:0;
+	text-transform:uppercase;
+}
+
+.fag #content-main p,.fag #content-main p a {
+	color:#000000;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:12px;
+	line-height:15px;
+	text-align:left;
+}
+.fag #content-main p {margin:0 0 15px;padding:0 12px;}
+#flashwrap{
+	position:relative;
+	width: 420px;
+	margin:30px auto 0;
+}
+#content-main #flash-player {
+	text-align: center;
+	padding: 0;
+	width: 400px;
+	border:10px solid #fff;
+	margin:0 auto;
+}
+object, embed{display:block;}
+.tlc,.trc,.blc,.brc{
+	position:absolute;
+	width:25px;
+	height:25px;
+	background:url(../gfx/images2/flash-tlc.png) no-repeat 0 0;
+	z-index:100;
+}
+.tlc{
+	left:0;
+	top:0;
+}
+.trc{
+	background:url(../gfx/images2/flash-trc.png) no-repeat 0 0;
+	right:0;
+	top:0;
+}
+.blc{
+	background:url(../gfx/images2/flash-blc.png) no-repeat 0 0;
+	left:0;
+	bottom:0;
+}
+.brc{
+	background:url(../gfx/images2/flash-brc.png) no-repeat 0 0;
+	right:0;
+	bottom:0;
+}
+#flashwrap2,#flashwrap3,#flashwrap4,.flashwrap4,.flashwrap5{
+	position:relative;
+	width: 140px;
+	margin:30px 0 0 10px;
+}
+#flashwrap4,.flashwrap4,.flashwrap5{
+	width:152px;
+	margin:20px 0 30px 0;
+}
+.flashwrap5{width:158px}
+#flash-player2,#flash-player3,#flash-player4,.flashplayer4,.flashplayer5 {
+	text-align: center;
+	padding: 0;
+	width: 132px;
+	border:4px solid #fff;
+	margin:0 auto;
+}
+#flash-player4,.flashplayer4 {width:144px;}
+.flashplayer5{width:150px;}
+.tlc2,.trc2,.blc2,.brc2{
+	position:absolute;
+	width:12px;
+	height:12px;
+	background:url(../gfx/images2/flash-tlc2.png) no-repeat 0 0;
+	z-index:100;
+}
+.tlc2{
+	left:0;
+	top:0;
+}
+.trc2{
+	background:url(../gfx/images2/flash-trc2.png) no-repeat 0 0;
+	right:0;
+	top:0;
+}
+.blc2{
+	background:url(../gfx/images2/flash-blc2.png) no-repeat 0 0;
+	left:0;
+	bottom:0;
+}
+.brc2{
+	background:url(../gfx/images2/flash-brc2.png) no-repeat 0 0;
+	right:0;
+	bottom:0;
+}
+
+
+
+#content-main h2 {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#content-main h3 {
+	font-weight: bold;
+	font-size: 1em;
+}
+#content-main h4 {
+	font-weight: bold;
+	font-size: 1em;
+}
+#content-main .vevent {
+	clear: both;
+}
+#content-main .vevent span {
+	display: block;
+	font-size: 10px;
+	line-height: 1em;
+	text-align: center;
+	text-transform: uppercase;
+	color: #BDBDBD;
+	margin-right: 1em;
+	float: left;
+	width: 35px;
+	padding-top: 5px;
+	border: 1px solid #ccc;
+	margin-bottom: 1em;
+}
+#content-main .vevent span .day {
+	display: block;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: -2px;
+	text-indent: -3px;
+	color: #ddd;
+	padding-bottom: 5px;
+	margin: 0;
+	border: none;
+}
+#content-main .vevent a {
+	text-decoration:none;
+}
+#content-main .vevent a:hover {
+	text-decoration: underline;
+}
+#content-main .vevent h2.summary { /* h2 bruges ved nyhederne */
+	margin-bottom: 0;
+	padding: 0;
+	font-size: 1em;
+}
+#content-main .vevent .description {
+	margin-top: 0;
+	padding: 0;
+}
+#content-main fieldset {
+	/*border: 1px solid #ccc;*/
+	padding: 1em;
+	margin-bottom: 1em;
+}
+#content-main strong {
+	font-weight: bold;
+}
+#col3 ul {
+	padding-left: 15px;
+}
+#col3 li {
+	list-style: square;
+	padding-bottom: 0.5em;
+}
+
+/* new top section 17.8.2008 */
+.top {
+	width:469px;
+	height:85px;
+	background: url(../gfx/images2/tel-base.png) no-repeat 0 0;
+	margin:-100px 0 0 623px;
+	float:left;
+	display:inline;
+	font-size:1em;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	line-height:1.4;
+	position:relative;
+}
+.top p span {
+	display:block;
+	font-weight: normal;
+	margin-top:-3px;
+}
+.top p {
+	margin:0;
+	padding:10px 22px 20px 42px;
+}
+
+/* col3 on fag page */
+#fag{
+	width:166px;
+	padding:1px 0 0;
+}
+#fag h2,.newcol3 h2{
+	color:#fff;
+	font-size:12px;
+	font-weight:bold;
+	line-height:16px;
+	padding:15px 10px 0 2px;
+	margin:0;
+	text-transform:uppercase;
+}
+.info3 h2{
+	margin:0 30px 15px 0;
+}
+.info3{margin:0 19px 0 0!important;}
+.newcol3 h2{padding-left:0;}
+#fag ul{
+	margin:0;
+	width:166px;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#fag li,#fag li a{
+	font-size:11px;
+	line-height:16px;
+	color:#FFF;	
+	list-style:none;
+}
+#fag li{padding:0 10px 0 2px;}
+#fag li a:hover{
+	text-decoration:none;
+	color:#5e0815;
+}
+
+/* split bestilling center into 2 columns */
+.lcol{
+	float:left;
+	width:304px;
+	margin:-10px 0 0 8px;
+	display:inline;
+}
+.rcol{
+	float:right;
+	width:270px;
+	margin:0 15px 0 0;
+	display:inline;
+}
+#content-main .rcol h1{
+	font-size:14px;
+	padding:6px 0 2px;
+	margin:0;
+}
+#content-main  .rcol p{
+	padding:0 10px 0 0;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	font-size:12px;
+	line-height:15px;
+	margin:0 0 15px;
+}
+#content-main  .rcol p a{
+	color:#000;
+	text-decoration:none;
+}
+#content-main .rcol pa hover{
+	color:#000;
+	text-decoration:underline;
+}
+/* form in right column on bestilling page */
+.rcol .midform input{
+	border:1px solid #666;
+	color:#000;	
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+	width:150px;
+	padding:1px 3px;
+	margin:0 0 4px;
+}
+.rcol .midform label{
+	width:70px;
+	padding:0 4px 0 0;
+	float:left;
+	clear:both;
+}
+.rcol input.inp1 {width:34px;}
+.rcol input.inp2 {width:77px;}
+.rcol label.by{float:none;clear:none;}
+
+.rcol input.send,.rcol input.knap {
+	width:auto;
+	overflow:visible;
+	background:#ca0202;
+	text-transform:uppercase;
+	color:#fff;
+	margin-left:70px;
+	padding:1px 10px;	
+	border:1px solid #666;
+}
+.rcol input.knap {margin-left:0}
+.rcol .baseform input{
+	margin:5px auto 5px;
+	display:block;
+	font-size:10px;
+	padding:2px 0 2px;
+	width:228px
+}
+.rcol form{padding:10px 0 10px}
+.rcol p em,.reqnote em{font-style:italic;}
+.baseform textarea{width:230px;border:1px solid #666;}
+.newform ol{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.newform .topform input{width:auto;}
+#content-main .newform fieldset{
+	padding:10px 3px 10px 5px;
+}
+.newform legend{line-height:1.1;padding:2px 5px}
+
+.hidethis{position:absolute;left:-999em}
+
+#main .info p{
+	font-size:12px;
+	line-height:15px;
+	padding:0 10px;
+}
+#main .info h1{
+	font-size:12px;
+	font-weight:bold;
+	margin:10px 0 0;
+	padding:0 10px;
+}
+/* fitness page */
+.fit{
+	width:290px;
+	margin-left:9px
+}
+
+.widepicture .fit{
+	width:98%;
+	margin-left:9px;
+	margin-right: 9px;
+}
+
+
+#vih #outer #inner #main form#fag {
+	width: 100%;
+}
+
+form#fag h2.periode {
+	color: black;
+}
+/* pakker list */
+ul#pakker{
+	margin:0 0 0 25px;
+	overflow:hidden;
+	clear:both;
+}
+* html ul#pakker{height:1%}
+ul#pakker li{
+	margin:0 15px 5px;
+	list-style:none;
+	float:left;
+	width:100px;
+	display:inline;
+}
+
+.frontpage ul#pakker li{
+	margin:0 10px 5px 0;
+	list-style:none;
+	float:left;
+	width:100px;
+	display:inline;
+}
+
+
+ul#pakker span{
+	display:block;
+	width:100px;/* if you are using an html image of varying size then omit this width and height*/
+	height:100px;
+	background: black;
+	margin:0 0 0 0px;
+}
+
+.frontpage ul#pakker span {
+	display:block;
+	width:100px;/* if you are using an html image of varying size then omit this width and height*/
+	height:50px;
+	background: black;
+	margin:0 0 0 0px;
+}
+
+
+ul#pakker a#boldspil span {
+	background:black url(../gfx/pakker/boldspil.jpg) bottom;	
+}
+
+ul#pakker a#outdoor span {
+	background:black url(../gfx/pakker/outdoor.jpg) bottom;	
+}
+
+ul#pakker a#fitness span {
+	background:black url(../gfx/pakker/fitness.jpg) bottom;	
+}
+
+
+ul#pakker a#politi span {
+	background:black url(../gfx/pakker/politi.jpg);	
+}
+
+
+ul#pakker strong{
+	float:left;
+	clear:both;
+	background:#000;
+	color:#fff;
+	padding:0;
+ 	font-weight:normal;
+	margin:0 0 10px;
+	width:100px;
+	text-align:center;
+/*	libe-height:1.0;*/
+}
+
+ul#pakker li a{color:#fff;text-decoration:none;}
+ul#pakker li a:hover{visibility:visible}
+ul#pakker a:hover strong{text-decoration:underline}
+
+/* kontakt page */
+.side-padding{
+	width:290px;
+	margin-left:9px
+}
+#form-underviser textarea {width:200px}
+
+form table {
+	font-size: 1em;
+}

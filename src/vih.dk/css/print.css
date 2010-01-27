@@ -1,0 +1,33 @@
+/*Print CSS Document for front page */
+html,body {
+	color:#000;
+	background:#fff;
+	width:auto;
+	padding:10px;	
+	text-align:left;
+	font-size: 12pt;
+}
+#hd h1 a {
+}
+#col1,#col3{
+	display:none;
+}
+ul#navigation-sites{
+	display:none;
+}
+#address {
+	margin:1em 0;
+}
+#breadcrumb {display:none}
+#prop,#base {display:none}
+a:link, a:visited {
+	color: #520;
+	background: transparent;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a:link:after,a:visited:after {
+	content: " (" attr(href) ") ";
+	font-size: 90%;
+}	
+
