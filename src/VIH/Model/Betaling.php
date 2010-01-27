@@ -217,7 +217,6 @@ class VIH_Model_Betaling
             }
 
         }
-
         $db = new DB_Sql;
         $db->query("UPDATE betaling SET status = ".$status.", date_updated = NOW() WHERE id = ".$this->id);
 
@@ -268,9 +267,11 @@ class VIH_Model_Betaling
 
     function getList($show = '')
     {
+        /*
         $gateway = new VIH_Model_BetalingGateway(new DB_Sql);
         return $gateway->getList($show);
-        /*
+        */
+
         $db = new DB_Sql;
         $betalinger = array();
         $sql = '';
@@ -291,7 +292,7 @@ class VIH_Model_Betaling
         // denne er sat ind, når vi vil have alle betalingerne.
         // der er vist ikke noget i vejen for at gøre det på den måde?
         if (!empty($this->belong_to_key) AND !empty($this->belong_to_id)) {
-            $howmany_sql = "belong_to = ".$this->belong_to_key." AND belong_to_id = " . $this->belong_to_id." AND";
+           $howmany_sql = "belong_to = ".$this->belong_to_key." AND belong_to_id = " . $this->belong_to_id." AND";
         }
 
         $db->query("SELECT *  FROM betaling WHERE ".$howmany_sql ." status > 0 AND status < 4 AND active = 1 ".$sql." ORDER BY date_created");
@@ -306,6 +307,6 @@ class VIH_Model_Betaling
         }
 
         return $betalinger;
-    	*/
+
     }
 }

@@ -10,6 +10,7 @@ class VIH_Model_BetalingGateway
 
     function getList($show = '')
     {
+        die('not working yet');
         $betalinger = array();
         $sql = '';
         $this->value['total_not_approved'] = 0;
