@@ -4,7 +4,11 @@ class VIH_Controller_Info_Index extends k_Controller
     public $map = array('organisation'   => 'VIH_Controller_Info_Organisation',
                         'vaerdigrundlag' => 'VIH_Controller_Info_Vaerdigrundlag',
                         'om'             => 'VIH_Controller_Info_Om',
-                        'historie'       => 'VIH_Controller_Info_Historie');
+                        'historie'       => 'VIH_Controller_Info_Historie',
+                        'vejledning'     => 'VIH_Controller_Info_Vejledning',
+                        'uden-ungdomsuddannelse' => 'VIH_Controller_Info_UdenUngdomsUddannelse',
+
+    );
 
     function GET()
     {
@@ -42,6 +46,11 @@ class VIH_Controller_Info_Index extends k_Controller
                     <p>Du er dyb, har det sjovt og er svedig, nysgerrig og udfordret. Du er kort og godt 100% livsglad.</p>
                 </blockquote>
 
+                <ul>
+                	<li><a href="'.$this->url('vaerdigrundlag').'">Værdigrundlag</a></li>
+                	<li><a href="'.$this->url('vejledning').'">Vejledning</a></li>
+                    <li><a href="'.$this->url('uden-ungdomsuddannelse').'">Indsats for elever uden ungdomsuddannelse</a></li>
+                </ul>
             ';
     }
 

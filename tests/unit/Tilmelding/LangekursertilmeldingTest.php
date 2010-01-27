@@ -19,6 +19,16 @@ class FakeTilmeldingFag
 class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
 {
     protected $backupGlobals = false;
+    /*
+    function tearDown()
+    {
+        $db = MDB2::factory(DB_DSN);
+        $db->query('TRUNCATE langtkursus_tilmelding_ny');
+        $db->query('TRUNCATE langtkursus_rate');
+        $db->query('TRUNCATE langtkursus_tilmelding_rate');
+        $db->query('TRUNCATE betaling');
+    }
+    */
 
     function testSessionIdStaysTheSameOnTwoOnlineTilmelding()
     {

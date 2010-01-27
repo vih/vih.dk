@@ -628,7 +628,6 @@ class VIH_Model_LangtKursus_Tilmelding
         if ($this->get('pris_total') > 0
                 AND count($this->getRater()) > 0) {
             if (!$this->betaling_loaded) {
-
                 $this->loadBetaling();
             }
         }
