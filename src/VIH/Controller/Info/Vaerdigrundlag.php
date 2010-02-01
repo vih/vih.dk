@@ -21,6 +21,7 @@ class VIH_Controller_Info_Vaerdigrundlag extends k_Controller
         <h2>Værdigrundlag</h2>
         <p>Vejle Idrætshøjskoles skolevirksomhed bygger på troen på det værdige menneske af krop og ånd, som det udtrykkes i et personligt liv og som kan realiseres ved at hjælpe eleverne med at udvikle deres formelle og reelle kompetencer gennem livsoplysning og demokratisk dannelse. Derfor vægter Vejle Idrætshøjskole den humanistiske dannelse højt, for herigennem at udvikle elevernes forståelse og respekt for menneskers kvaliteter på trods af forskelligheder.</p>
         <p>Vejle Idrætshøjskoles idrætssyn bygger på ideen om at idrætten har sin egen værdi og derigennem kan bidrage til den humanistiske dannelse.</p>
+        <p><a href="'.$this->url('/gfx/pdf/vedtaegter.pdf').'">Se vedtægterne (pdf)</a></p>
         ';
     }
 
