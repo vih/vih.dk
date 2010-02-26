@@ -25,8 +25,10 @@ class VIH_Model_Subject extends Doctrine_Record
     {
         //$this->actAs('SoftDelete');
 
+        $
+
         $this->hasMany(
-            'VIH_Model_Course_SubjectGroup as SubjectGroups', 
+            'VIH_Model_Course_SubjectGroup as SubjectGroups',
             array(
                 'refClass' => 'VIH_Model_Course_SubjectGroup_Subject',
                 'local'    => 'subject_id',
@@ -53,12 +55,12 @@ class VIH_Model_Subject extends Doctrine_Record
                                                                 'disabled' => false,
                                                                 'options' =>  array())));
     }
-    
+
     function getId()
     {
         return $this->id;
     }
-    
+
     function getName()
     {
         return $this->navn;

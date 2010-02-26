@@ -7,7 +7,7 @@ class VIH_Root extends k_Dispatcher
                         'langekurser'  => 'VIH_Controller_LangtKursus_Index',
                         'kortekurser'  => 'VIH_Controller_KortKursus_Index',
                         'nyheder'      => 'VIH_Controller_News_Index',
-                        'fotogalleri'  => 'VIH_Controller_Fotogalleri_Index',
+                        'fotogalleri'  => 'VIH_Controller_PicasaWeb',
                         'underviser'   => 'VIH_Controller_Ansat_Index',
                         'fag'          => 'VIH_Controller_Fag_Index',
                         'nyhedsbrev'   => 'VIH_Controller_Newsletter_Index',
@@ -17,7 +17,6 @@ class VIH_Root extends k_Dispatcher
                         'kontakt'      => 'VIH_Controller_Kontakt_Index',
                         'om'           => 'VIH_Controller_Om_Index',
                         'rss'          => 'VIH_Controller_RSS_Index',
-                        'fotogalleri'  => 'VIH_Controller_Fotogalleri_Index',
                         'file'         => 'Ilib_Filehandler_Controller_Viewer');
     private $dbquery;
 

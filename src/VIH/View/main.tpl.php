@@ -21,6 +21,10 @@ header('P3P: policyref="' . $this->url('/w3c/p3p.xml') . '", CP="NID DSP ALL COR
         <![endif]-->
         <link href="<?php e($this->url('/css/print.css')); ?>" rel="stylesheet" media="print" type="text/css">
 
+        <?php foreach ($this->document->styles as $style) : ?>
+        <link href="<?php e($style); ?>" rel="stylesheet" media="screen" type="text/css">
+        <?php endforeach; ?>
+
         <?php foreach ($this->document->scripts as $script) : ?>
         <script type="text/javascript" src="<?php e($script); ?>"></script>
         <?php endforeach; ?>
