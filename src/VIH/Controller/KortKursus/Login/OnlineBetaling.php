@@ -9,6 +9,7 @@
 class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
 {
     private $form;
+    protected $extra_text;
 
     function GET()
     {
@@ -16,9 +17,8 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
         $tilmelding->loadBetaling();
 
         // der skal lige laves noget i Tilmelding.php, så vi har styr over hvor meget der mangler at blive betalt med de afventendede betalinger
-        $extra_text = '';
         if (count($tilmelding->betaling->getList('not_approved')) > 0) {
-            $extra_text = '<p id="notice"><strong>Advarsel</strong>: Vær opmærksom på, at du har afventende betalinger på '.$tilmelding->get('betalt_not_approved').' kroner. Du skal altså kun bruge formularen, hvis du er helt sikker på, at du skal betale beløbene nedenunder.</p>';
+            $this->extra_text = '<p id="notice"><strong>Advarsel</strong>: Vær opmærksom på, at du har afventende betalinger på '.$tilmelding->get('betalt_not_approved').' kroner. Du skal altså kun bruge formularen, hvis du er helt sikker på, at du skal betale beløbene nedenunder.</p>';
         }
 
         $error = "";
@@ -28,7 +28,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
         $data = array(
             'tilmelding' => $tilmelding,
             'course_type' => 'korte',
-            'extra_text' => $extra_text
+            'extra_text' => $this->extra_text
         );
 
         return $this->render('VIH/View/Kundelogin/onlinebetaling-tpl.php', $data);
@@ -85,18 +85,18 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
                 } else {
                     // An error occured with the authorize
 
-                    $error = '<p class="warning">Der opstod en fejl under transaktionen. '.$onlinebetaling->statuskoder[$eval['qpstat']].'. Du kan prøve igen.</p>';
+                    $this->extra_text = '<p class="warning">Der opstod en fejl under transaktionen. '.$onlinebetaling->statuskoder[$eval['qpstat']].'. Du kan prøve igen.</p>';
                     /*
                     echo "<pre>";
                     var_dump($eval);
                     echo "</pre>";
-                    */
+					*/
                 }
             } else {
-                trigger_error('Kommunikationsfejl med PBS eller QuickPay', E_USER_ERROR);
+                $this->extra_text = 'Kommunikationsfejl med PBS eller QuickPay';
             }
         }
-        //throw new k_http_Redirect($this->url());
+        return $this->GET();
     }
 
     function getForm()

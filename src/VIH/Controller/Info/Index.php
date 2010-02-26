@@ -50,6 +50,7 @@ class VIH_Controller_Info_Index extends k_Controller
                 	<li><a href="'.$this->url('vaerdigrundlag').'">Værdigrundlag</a></li>
                 	<li><a href="'.$this->url('vejledning').'">Vejledning</a></li>
                     <li><a href="'.$this->url('uden-ungdomsuddannelse').'">Indsats for elever uden ungdomsuddannelse</a></li>
+                    <li><a href="'.$this->url('/gfx/pdf/aarsplan2010.pdf').'">Årsplan (pdf)</a></li>
                 </ul>
             ';
     }
