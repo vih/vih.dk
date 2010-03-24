@@ -9,6 +9,6 @@
     <li><a class="sommerhojskole" href="<?php e(url('sommerhojskole')); ?>">Sommerhøjskole</a></li>
 </ul>
 
-<p style="clear: both;" class="manchet"><?php e($text); ?></p>
+<p style="clear: both;" class="manchet"><?php echo $text; ?></p>
 
 <?php echo $table; ?>
