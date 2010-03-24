@@ -24,9 +24,6 @@ class VIH_Model_Subject extends Doctrine_Record
     public function setUp()
     {
         //$this->actAs('SoftDelete');
-
-        $
-
         $this->hasMany(
             'VIH_Model_Course_SubjectGroup as SubjectGroups',
             array(
