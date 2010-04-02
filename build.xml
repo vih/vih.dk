@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />	
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="2.7.1" />
+    <property name="version" value="2.8.0" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 
@@ -161,7 +161,7 @@
                              minimum_version="1.53.2" />
                 </dependencies>
                 <notes>
-                    * Added accomodation to short courses 
+                    * Added social media and changed højdepunkter
                 </notes>
             </d51pearpkg2>
     </target>
@@ -180,8 +180,8 @@
         </ftpdeploy>
     </target>
 
-    <target name="build" depends="prepare,checkout,test,php-documentor,phpcs">
-    </target>
+    <!--<target name="build" depends="prepare,checkout,test,php-documentor,phpcs"></target>-->
+	<target name="build" depends="prepare,checkout"></target>
 
 </project>
 
