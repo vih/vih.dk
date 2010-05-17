@@ -44,8 +44,8 @@ function vih_error_handler($errno, $errmsg, $filename, $linenum, $vars)
 
 
     // Hvilke fejl skal ikke logges og afbryde script
-    $do_not_log = array(E_STRICT);
-    $do_not_kill_script = array(E_USER_NOTICE, E_NOTICE, E_ALL, E_STRICT);
+    $do_not_log = array(E_STRICT, E_DEPRECATED);
+    $do_not_kill_script = array(E_USER_NOTICE, E_NOTICE, E_ALL, E_STRICT, E_DEPRECATED);
 
     if(!in_array($errno, $do_not_log)) {
         $err = "<errorentry>\n";
