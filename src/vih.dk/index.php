@@ -1,15 +1,12 @@
 <?php
 require_once 'config.local.php';
-
-set_include_path(PATH_INCLUDE);
+require_once 'VIH/errorhandler.php';
+set_error_handler('vih_error_handler');
 
 require_once 'VIH.php';
 require_once 'Ilib/ClassLoader.php';
 require_once 'Doctrine/lib/Doctrine.php';
 spl_autoload_register(array('Doctrine', 'autoload'));
-
-require_once 'VIH/errorhandler.php';
-set_error_handler('vih_error_handler');
 
 $application = new VIH_Root();
 
