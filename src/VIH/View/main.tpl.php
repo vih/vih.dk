@@ -36,10 +36,13 @@ header('P3P: policyref="' . $this->url('/w3c/p3p.xml') . '", CP="NID DSP ALL COR
 
     <body id="<?php e($this->document->body_id); ?>" class="<?php e($this->document->body_class . ' ' . $this->document->theme); ?>">
         <div id="outer">
+        <ul class="flags">
+            <li class="dan"><a title="Danish" href="<?php e(url('/')); ?>">Dansk<em></em></a></li>
+            <li class="eng"><a title="English" href="<?php e(url('/language')); ?>">English<em></em></a></li>
+        </ul>
+
             <div class="top">
-            <?php
-                echo $this->getHighlight();
-            ?>
+            <?php echo $this->getHighlight(); ?>
             </div>
 
             <?php echo $content; ?>

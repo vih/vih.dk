@@ -108,6 +108,38 @@ table tr.food td {
 	font-weight: bold;
 	color: white;
 }
+
+ul.flags{
+    position:absolute;
+    top:10px;
+    left:50px;
+    width:100px;
+    z-index: 1000;
+}
+ul.flags li,ul.flags li a,ul.flags li em{
+    float:left;
+    width:32px;
+    height:32px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    text-decoration:none;
+}
+ul.flags li{margin:0 8px 0 0;display:inline;}
+ul.flags li a:hover{text-decoration:none;visibility:visible}
+ul.flags li.dan em{
+    position:absolute;
+    left:0;
+    top:0;
+    background:url(../gfx/images/danish-flag.png) no-repeat 0 0;
+}
+ul.flags li.eng em{
+    position:absolute;
+    left:0;
+    top:0;
+    background:url(../gfx/images/english-flag.png) no-repeat 0 0;
+}
+
 /* clearing technique */
 .clearfix:after {
 	content:".";
@@ -128,11 +160,11 @@ table tr.food td {
 }
 /* End hide */
 p, h1 {
-	margin:0 0 .5em 0
+	margin:0 0 .5em 0;
 }
 .centre {
 	text-align:center;
-	margin:1em 0
+	margin:1em 0;
 }
 body {
  	height: 100%;
@@ -514,7 +546,7 @@ ul#navigation-sites li {
 	background: transparent;
 }
 #navigation a:hover {
-	color: #6c0713;
+	color: #005511;
 	text-decoration:none;
 }
 #navigation li#current a {
