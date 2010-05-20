@@ -1,0 +1,10 @@
+php cleanup_db.php --ft ansat_x_fag --t langtkursus_fag --fk fag_id --k id
+
+php cleanup_db.php --ft keyword_x_object --t keyword --fk keyword_id --k id
+
+php cleanup_db.php --ft kortkursus_betaling --t kortkursus_tilmelding --fk tilmelding_id --k id
+
+php cleanup_db.php --ft langtkursus_tilmelding --t langtkursus --fk kursus_id --k id
+
+php cleanup_db.php --ft langtkursus_tilmelding_protokol_item --t langtkursus_tilmelding --fk tilmelding_id --k id
+
