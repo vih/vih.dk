@@ -3,7 +3,7 @@
  * Dekorator til Quickpay klassen.
  *
  * Skrevet så vi undgår at skulle sætte en masse af de faste variable på de
- * enkelte sider. Skal returnere et array i pay.
+ * enkelte sider. Skal returnere et array.
  *
  * @author Lars Olesen <lars@legestue.net>
  */
