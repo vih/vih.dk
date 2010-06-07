@@ -44,16 +44,20 @@ class FakeKortKursus
 
 class KortKursusTest extends PHPUnit_Framework_TestCase
 {
-    private $db;
+    protected $db;
     protected $backupGlobals = false;
 
     function setUp()
     {
         $this->db = MDB2::singleton(DB_DSN);
+        if (PEAR::isError($this->db)) {
+            throw new Exception($this->db->getUserInfo());
+        }
     }
 
     function tearDown()
     {
+        $this->db = MDB2::singleton(DB_DSN);
         $this->db->query('TRUNCATE kortkursus_tilmelding');
         $this->db->query('TRUNCATE kortkursus_deltager_ny');
     }

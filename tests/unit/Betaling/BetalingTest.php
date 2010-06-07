@@ -3,6 +3,7 @@ require_once dirname(__FILE__) . '/../config.test.php';
 
 class BetalingTest extends PHPUnit_Framework_TestCase
 {
+    protected $backupGlobals = false;
     private $betaling;
 
     function setUp()

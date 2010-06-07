@@ -4,6 +4,7 @@ require_once dirname(__FILE__) . '/../config.test.php';
 class FagGruppeTest extends PHPUnit_Framework_TestCase
 {
     private $gruppe;
+    protected $backupGlobals = false;
 
     function setUp()
     {
