@@ -1,9 +1,9 @@
 <?php
 class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Controller
 {
-    public $form;
+    protected $form;
 
-    function getForm()
+    protected function getForm()
     {
         if ($this->form) {
             return $this->form;
@@ -13,7 +13,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Controller
 
         $list = array();
         if (!empty($this->GET['kursus_id'])) {
-            $kursus_id = intval($this->GET['kursus_id']);   
+            $kursus_id = intval($this->GET['kursus_id']);
         } else {
             $kursus_id = 0;
         }
@@ -115,12 +115,11 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Controller
         return $this->form;
     }
 
-
     function GET()
     {
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->name);
 
-        if (!$tilmelding->start()) {// denne kommando starter tilmeldingen
+        if (!$tilmelding->start($this->context->getLangtKursusId())) {// denne kommando starter tilmeldingen
             throw new Exception('Tilmeldingen kan ikke startes');
         }
 
@@ -145,7 +144,6 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Controller
         }
 
         return '<h1>Ansøgning om optagelse</h1><p>Der var fejl i formulaeren.</p>' . $this->getForm()->toHTML();
-
     }
 
     function forward($name)
@@ -167,7 +165,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Controller
             return $next->handleRequest();
         }
     }
-    
+
     function getSubjects()
     {
         return $this->context->getSubjects();

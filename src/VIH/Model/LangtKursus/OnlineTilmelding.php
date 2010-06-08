@@ -62,7 +62,7 @@ class VIH_Model_LangtKursus_OnlineTilmelding extends VIH_Model_LangtKursus_Tilme
         return true;
     }
 
-    public function start()
+    public function start($kursus_id)
     {
         Doctrine_Manager::connection(DB_DSN);
         $tilmelding = Doctrine::getTable('VIH_Model_Course_Registration')->findOneBySessionId($this->session_id);
@@ -70,17 +70,18 @@ class VIH_Model_LangtKursus_OnlineTilmelding extends VIH_Model_LangtKursus_Tilme
             $tilmelding = new VIH_Model_Course_Registration;
         }
         $tilmelding->session_id = $this->session_id;
-        $tilmelding->ip = $this->getIpAddress();         
+        $tilmelding->ip = $this->getIpAddress();
+        $tilmelding->kursus_id = $kursus_id;
         $tilmelding->save();
         return true;
     }
-    
-    private function getIpAddress() 
+
+    private function getIpAddress()
     {
         if (!empty($_SERVER['REMOTE_ADDR'])) {
             return $_SERVER['REMOTE_ADDR'];
         } else {
             return 'n/a';
-        } 
+        }
     }
 }
