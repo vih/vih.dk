@@ -35,9 +35,9 @@ class VIH_Controller_LangtKursus_Index extends k_Controller
 
         $content = array('content' => '
             <h1>Lange kurser</h1>
-            <p class="clear">Gør dig klar til at tage livtag med resten af livet. Gør det for udfordringens skyld. En dag på Vejle Idrætshøjskole er nemlig aldrig en typisk dag &mdash; både når du vælger <a href="fag/">fag</a> og trives i hverdagen. Hvis du har nogle spørgsmål om de lange kurser kan du fx bruge vores <a href="'.$this->url('elevchat').'">elevchat</a>, <a href="'.url('/kontakt/').'">ringe til skolen</a> eller kontakte <a href="'.url('/underviser/').'">lærerne</a>.</p>
+            <p class="clear">Gør dig klar til at tage livtag med resten af livet. Gør det for udfordringens skyld. En dag på Vejle Idrætshøjskole er nemlig aldrig en typisk dag &mdash; både når du vælger <a href="fag/">fag</a> og trives i hverdagen. Hvis du har nogle spørgsmål om de lange kurser kan du fx bruge vores <a href="'.$this->url('elevchat').'">elevchat</a>, <a href="'.$this->url('/kontakt').'">ringe til skolen</a> eller kontakte <a href="'.$this->url('/underviser').'">lærerne</a>.</p>
             '.  $this->render('VIH/View/LangtKursus/kurser-tpl.php', $data) . '
-            <p><a href="'.$this->url('/bestilling/').'">Jeg vil hellere have en brochure at kigge i &rarr;</a></p>',
+            <p><a href="'.$this->url('/bestilling').'">Jeg vil hellere have en brochure at kigge i &rarr;</a></p>',
             'content_sub' => $this->getSubContent());
 
         return $this->render('VIH/View/sidebar-wrapper.tpl.php', $content);
