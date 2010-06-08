@@ -1,8 +1,5 @@
 <?php
 require_once 'config.local.php';
-
-set_include_path(PATH_INCLUDE);
-
 require_once 'VIH.php';
 require_once 'Ilib/ClassLoader.php';
 require_once 'Doctrine/lib/Doctrine.php';
