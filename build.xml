@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />	
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="2.8.0" />
+    <property name="version" value="2.9.0" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 

@@ -23,8 +23,10 @@ class VIH_Root extends k_Dispatcher
     function __construct()
     {
         parent::__construct();
-        $GLOBALS['_global_function_callback_url'] = array($this, 'url');
-        $GLOBALS['_global_function_callback_e'] = array($this, 'outputString');
+
+        //$GLOBALS['_global_function_callback_url'] = array($this, 'url');
+        //$GLOBALS['_global_function_callback_e'] = array($this, 'outputString');
+
         $this->document->template = 'VIH/View/main.tpl.php';
         $this->document->feeds = array();
         $this->document->trail = array();
@@ -118,12 +120,12 @@ class VIH_Root extends k_Dispatcher
     function getHighlight()
     {
         $keywords = array('topbar');
-        if(!is_array($keywords)) {
+        if (!is_array($keywords)) {
             throw new Exception('parameter should be an array with keywords');
         }
 
         $keyword_ids = array();
-        foreach($keywords as $keyword) {
+        foreach ($keywords as $keyword) {
             $keyword_object = new Ilib_Keyword(new VIH_News);
             // @todo: This is not really good, but the only way to identify keyword on name!
             $keyword_ids[] = $keyword_object->save(array('keyword' => $keyword));
@@ -135,7 +137,7 @@ class VIH_Root extends k_Dispatcher
 
         $news = array();
 
-        while($db->nextRecord()) {
+        while ($db->nextRecord()) {
             $news[] = new VIH_News($db->f('id'));
         }
 
@@ -152,7 +154,6 @@ class VIH_Root extends k_Dispatcher
         return '<h2>Sidelinjen</h2><p>This will be some side content later on</p>';
     }
 
-
     function getDBQuery()
     {
         if ($this->dbquery) {
@@ -161,5 +162,4 @@ class VIH_Root extends k_Dispatcher
         $dbquery = new Ilib_DBQuery("nyhed", "nyhed.active = 1");
         return ($this->dbquery = $dbquery);
     }
-
 }

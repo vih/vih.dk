@@ -36,28 +36,28 @@ header('P3P: policyref="' . $this->url('/w3c/p3p.xml') . '", CP="NID DSP ALL COR
 
     <body id="<?php e($this->document->body_id); ?>" class="<?php e($this->document->body_class . ' ' . $this->document->theme); ?>">
         <div id="outer">
-        <ul class="flags">
-            <li class="dan"><a title="Danish" href="<?php e(url('/')); ?>">Dansk<em></em></a></li>
-            <li class="eng"><a title="English" href="<?php e(url('/language')); ?>">English<em></em></a></li>
-        </ul>
+            <ul class="flags">
+                <li class="dan"><a title="Danish" href="<?php e(url('/')); ?>">Dansk<em></em></a></li>
+                <li class="eng"><a title="English" href="<?php e(url('/language')); ?>">English<em></em></a></li>
+            </ul>
 
             <div class="top">
-            <?php echo $this->getHighlight(); ?>
+                <?php echo $this->getHighlight(); ?>
             </div>
 
             <?php echo $content; ?>
         </div>
 
-    <?php if ($this->document->protocol != 'https'): ?>
-    <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-        var pageTracker = _gat._getTracker("UA-4137620-1");
-        pageTracker._initData();
-        pageTracker._trackPageview();
-    </script>
-    <?php endif; ?>
+        <?php if ($this->document->protocol != 'https'): ?>
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+            var pageTracker = _gat._getTracker("UA-4137620-1");
+            pageTracker._initData();
+            pageTracker._trackPageview();
+        </script>
+        <?php endif; ?>
     </body>
 </html>

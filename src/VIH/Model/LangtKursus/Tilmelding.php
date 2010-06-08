@@ -224,7 +224,7 @@ class VIH_Model_LangtKursus_Tilmelding
         $this->value['pris_materiale'] = $db->f('pris_materiale');
         $this->value['pris_noegledepositum'] = $db->f('pris_noegledepositum');
         $this->value['pris_rejsedepositum'] = $db->f('pris_rejsedepositum');
-        $this->value['pris_rejserest'] = $db->f('pris_rejserest');
+        $this->value['pris_rejserest'] = (float)$db->f('pris_rejserest');
         $this->value['pris_rejselinje'] = $db->f('pris_rejselinje');
         $this->value['pris_total'] =
             $this->get('pris_tilmeldingsgebyr')
@@ -442,7 +442,7 @@ class VIH_Model_LangtKursus_Tilmelding
         $priser['pris_materiale'] = $this->kursus->get('pris_materiale');
         $priser['pris_noegledepositum'] = $this->kursus->get('pris_noegledepositum');
         $priser['pris_rejsedepositum'] = $this->kursus->get('pris_rejsedepositum');
-        $priser['pris_rejserest'] = $this->kursus->get('pris_rejserest');
+        $priser['pris_rejserest'] = (float)$this->kursus->get('pris_rejserest');
         $priser['pris_rejselinje'] = $this->kursus->get('pris_rejselinje');
 
         return $this->savePriser($priser);

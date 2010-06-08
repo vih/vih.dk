@@ -38,10 +38,10 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
     {
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->context->name);
         if ($this->getForm()->validate()) {
-            # først skal vi oprette en betaling - som kan fungere som id hos qp
-            # betalingen skal kobles til den aktuelle tilmelding
-            # når vi så har haft den omkring pbs skal betalingen opdateres med status for betalingen
-            # status sættes til 000, hvis den er godkendt hos pbs.
+            // først skal vi oprette en betaling - som kan fungere som id hos qp
+            // betalingen skal kobles til den aktuelle tilmelding
+            // når vi så har haft den omkring pbs skal betalingen opdateres med status for betalingen
+            // status sættes til 000, hvis den er godkendt hos pbs.
 
             $eval = false;
 
@@ -49,8 +49,8 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
 
             $betaling_amount = $this->POST['amount']/100;
             $betaling_id = $betaling->save(array('type' => 'quickpay', 'amount' => $betaling_amount));
-            if($betaling_id == 0) {
-                trigger_error("Kunne ikke oprette betaling", E_USER_ERROR);
+            if ($betaling_id == 0) {
+                throw new Exception("Kunne ikke oprette betaling");
             }
 
             $onlinebetaling = new VIH_Onlinebetaling('authorize');

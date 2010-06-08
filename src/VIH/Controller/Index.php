@@ -32,7 +32,11 @@ class VIH_Controller_Index extends k_Controller
 
         $this->document->theme = 'frontpage';
 
-        $data = array('content' => $this->render('VIH/View/frontpage.tpl.php'), 'content_sub' => $this->getSubContent());
+        $packages = array('politi', 'fitness', 'outdoor', 'boldspil');
+
+        $data = array(
+            'content' => $this->render('VIH/View/frontpage.tpl.php', array('packages' => $packages)),
+            'content_sub' => $this->getSubContent());
 
         return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
 
