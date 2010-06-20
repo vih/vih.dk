@@ -1,7 +1,24 @@
 <?php
 require_once 'config.local.php';
-require_once 'VIH/errorhandler.php';
-set_error_handler('vih_error_handler');
+require_once 'VIH/ExceptionHandler.php';
+require_once 'VIH/Logger.php';
+
+// @todo when moving to konstrukt2 this can be replaced
+function vih_exceptions_error_handler($severity, $message, $filename, $lineno) {
+  if (error_reporting() == 0) {
+    return;
+  }
+  if (error_reporting() & $severity) {
+    throw new ErrorException($message, 0, $severity, $filename, $lineno);
+  }
+}
+set_error_handler('vih_exceptions_error_handler', error_reporting());
+
+$handler = new VIH_ExceptionHandler();
+$handler->attach(new VIH_Logger($GLOBALS['error_log_file']));
+
+// Set ExceptionHandler::handle() as the default
+set_exception_handler(array($handler, 'handle'));
 
 require_once 'VIH.php';
 require_once 'Ilib/ClassLoader.php';
@@ -58,5 +75,5 @@ $application->registry->registerConstructor('intraface:kernel', create_function(
 try {
     $application->dispatch();
 } catch (Exception $e) {
-    vih_error_handler($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), $e->getTrace());
+    vih_print_error_msg($e->getMessage());
 }

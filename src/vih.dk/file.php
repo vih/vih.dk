@@ -1,19 +1,14 @@
 <?php
 /**
- * Denne fil bruges til at tilgå filerne.
+ * Denne fil bruges til at tilgï¿½ filerne.
  *
- * hvordan får vi puttet den her under unittests?
+ * hvordan fï¿½r vi puttet den her under unittests?
  *
  * @author Sune Jensen <sj@sunet.dk>
  * @author Lars Olesen <lars@legestue.net>
  */
 
 require_once 'config.local.php';
-
-set_include_path(PATH_INCLUDE);
-
-require_once 'VIH/errorhandler.php';
-set_error_handler('vih_error_handler');
 require_once 'Ilib/ClassLoader.php';
 
 // file should stop if no querystring

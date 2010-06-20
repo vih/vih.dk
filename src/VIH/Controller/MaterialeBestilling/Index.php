@@ -75,13 +75,13 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Controller
 
             $bestilling = new VIH_Model_MaterialeBestilling;
             if (!$bestilling->save($this->POST->getArrayCopy())) {
-                trigger_error('Det gik ikke ret godt. Vores webmaster skammer sig sikkert.', E_USER_ERROR);
+                throw new Exception('Det gik ikke ret godt. Vores webmaster skammer sig sikkert.');
             }
             if(defined('EMAIL_STATUS') && EMAIL_STATUS == 'online') {
                 if (Validate::email($this->POST['email']) AND trim($this->POST['email']) != '') {
                     $error = '';
                     if(!defined('VIH_KONTAKTANSVARLIG_EMAIL') || VIH_KONTAKTANSVARLIG_EMAIL == '') {
-                        trigger_error('Konstanten VIH_KONTAKTANSVARLIG_EMAIL er ikke sat eller udfyldt', E_USER_WARNING);
+                        throw new Exception('Konstanten VIH_KONTAKTANSVARLIG_EMAIL er ikke sat eller udfyldt');
                     } elseif(trim($this->POST['besked']) != '') {
                         $body = "Besked sendt i forbindelse med bestilling af materiale:\n\n".$this->POST['besked']."\n\n Sendt af ".$this->POST['navn']."\n\nSend gerne videre til fagansvarlig lærer.";
                         $mailer = new VIH_Email;
@@ -98,7 +98,7 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Controller
                             $mailer->addAddress('kontor@vih.dk', 'Vejle Idrætshøjskole');
                         }
                         if(!$mailer->send()) {
-                            trigger_error("Der er opstået en fejl i email-senderen i forbindelse bestilling af materiale. E-mail til VIH_KONTAKTANSVARLIG er ikke sendt. Det drejer sig om en forespørgsel fra ".$this->POST['navn'], "E_USER_WARNING");
+                            throw new Exception("Der er opstået en fejl i email-senderen i forbindelse bestilling af materiale. E-mail til VIH_KONTAKTANSVARLIG er ikke sendt. Det drejer sig om en forespørgsel fra ".$this->POST['navn']);
                         }
                     }
                     if (trim($this->POST['email']) != '') {
@@ -110,7 +110,7 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Controller
                         $mailer->setBody($body);
 
                         if(!$mailer->send()) {
-                            trigger_error("Der er opstået en fejl i email-senderen i forbindelse bestilling af materiale. Der er ikke sendt en bekræftelse til ".$this->POST['navn'], E_USER_WARNING);
+                            throw new Exception("Der er opstået en fejl i email-senderen i forbindelse bestilling af materiale. Der er ikke sendt en bekræftelse til ".$this->POST['navn']);
                             $error = "<p>Det var ikke muligt at sende dig en bekræftelse på din bestilling, men bare rolig vi har modtaget den, og sender hurtigst muligt materialet. Imens hænger vi webmasteren op i flagstangen, indtil han siger undskyld.";
                         }
                     }

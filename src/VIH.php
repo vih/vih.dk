@@ -8,10 +8,9 @@
 
 require_once 'VIH/functions.php';
 require_once 'VIH/configuration.php';
-require_once 'VIH/errorhandler.php';
 require_once 'k.php';
 
-set_error_handler('vih_error_handler');
+//set_error_handler('vih_error_handler');
 
 if (!function_exists('email')) {
   /**
