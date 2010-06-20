@@ -67,23 +67,23 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Controller
             // confirm skal gemme en oplysning om, at kunden har konfirmeret betingelserne
             if ($this->POST['confirm']) {
                 if (!$tilmelding->confirm()) {
-                    trigger_error('Kunne ikke bekræfte ordre ' . $tilmelding->get('id'), E_USER_ERROR);
+                    throw new Exception('Kunne ikke bekræfte ordre ' . $tilmelding->get('id'));
                 }
                 if ($tilmelding->get('email')) {
                     $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get('id'));
                     if (!$tilmelding->sendEmail()) {
                         if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekræftelse på onlinetilmelding kunne ikke sendes'))) {
-                            trigger_error('Historikken kunne ikke gemmes', E_USER_ERROR);
+                            throw new Exception('Historikken kunne ikke gemmes');
                         }
                     } else {
                         if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekræftelse på onlinetilmelding'))) {
-                            trigger_error('Historikken kunne ikke gemmes', E_USER_ERROR);
+                            throw new Exception('Historikken kunne ikke gemmes');
                         }
                     }
                 }
                 throw new k_http_Redirect($this->context->url('kvittering'));
             } else {
-                trigger_error('Ordren skal godkendes', E_USER_ERROR);
+                throw new Exception('Ordren skal godkendes');
             }
         }
         throw new k_http_Redirect($this->url());

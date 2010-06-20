@@ -78,7 +78,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Controller
 
                     $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                     if (!$historik->save(array('betaling_id' => $betaling->get('id'), 'type' => 'dankort', 'comment' => 'Onlinebetaling # ' . $betaling->get('transactionnumber')))) {
-                        trigger_error('Der var en fejl med at gemme historikken.', E_USER_ERROR);
+                        throw new Exception('Der var en fejl med at gemme historikken.');
                     }
 
                     throw new k_http_Redirect($this->context->url());

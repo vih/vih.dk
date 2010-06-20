@@ -59,13 +59,13 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
             } elseif (is_numeric($submitted_amount)) {
                 $total_amount = $submitted_amount;
             } else {
-                trigger_error('De postede beløbsværdier er ikke gyldige', E_USER_ERROR);
+                throw new Exception('De postede beløbsværdier er ikke gyldige');
             }
 
             $betaling_amount = $total_amount / 100;
             $betaling_id = $betaling->save(array('type' => 'quickpay', 'amount' => $betaling_amount));
             if($betaling_id == 0) {
-                trigger_error("Kunne ikke oprette betaling", E_USER_ERROR);
+                throw new Exception("Kunne ikke oprette betaling");
             }
 
             $onlinebetaling = new VIH_Onlinebetaling('authorize');
@@ -98,7 +98,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
 
                     $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                     if (!$historik->save(array('betaling_id' => $betaling->get('id'), 'type' => 'dankort', 'comment' => 'Onlinebetaling # ' . $betaling->get('transactionnumber')))) {
-                        trigger_error('Der var en fejl med at gemme historikken.', E_USER_ERROR);
+                        throw new Exception('Der var en fejl med at gemme historikken.');
                     }
 
                     throw new k_http_Redirect($this->context->url());
