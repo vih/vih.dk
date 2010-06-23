@@ -1,19 +1,19 @@
 <?php
 /**
- * Formålet med denne fil er at afbryde en igangværende tilmelding.
+ * Formï¿½let med denne fil er at afbryde en igangvï¿½rende tilmelding.
  * Efter afbrydelsen sendes brugeren blot videre til forsiden.
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-class VIH_Controller_LangtKursus_Tilmelding_Afbryd extends k_Controller
+class VIH_Controller_LangtKursus_Tilmelding_Afbryd extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
         if (!$tilmelding->cancel()) {
-            trigger_error('Der opstod en fejl, da tilmeldingen skulle afbrydes.', E_USER_ERROR);
+            throw new Exception('Der opstod en fejl, da tilmeldingen skulle afbrydes.');
         }
 
-        throw new k_http_Redirect('/langekurser');
+        return new k_SeeOther('/langekurser');
     }
 }
