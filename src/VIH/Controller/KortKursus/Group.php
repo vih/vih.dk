@@ -14,7 +14,7 @@ if (!defined('KORTEKURSER_STATUS_UDSOLGT')) {
     define('KORTEKURSER_STATUS_UDSOLGT', 0);
 }
 
-class VIH_Controller_KortKursus_Index extends k_Component
+class VIH_Controller_KortKursus_Group extends k_Component
 {
     private $main;
     private $content;
@@ -37,7 +37,7 @@ class VIH_Controller_KortKursus_Index extends k_Component
 
     function renderHtml()
     {
-        return $this->getContent();
+        return $this->getContent($this->name());
     }
 
     function getContent($name = '')
@@ -130,7 +130,7 @@ class VIH_Controller_KortKursus_Index extends k_Component
 
         $data = array_merge(array('table' => $table), $content_data);
 
-        $tpl = $this->template->create('KortKursus/index');
+        $tpl = $this->template->create('KortKursus/group');
         $content = array('content' => $tpl->render($this, $data), 'content_sub' => $this->getSubContent());
 
         $tpl = $this->template->create('sidebar-wrapper');
@@ -155,17 +155,19 @@ class VIH_Controller_KortKursus_Index extends k_Component
 
     function map($name)
     {
+        /*
         if ($name == 'golf') {
-            return 'VIH_Controller_KortKursus_Group';
+            return $this->getContent($name);
         } elseif ($name == 'camp') {
-            return 'VIH_Controller_KortKursus_Group';
+            return $this->getContent($name);
         } elseif ($name == 'cykel') {
-            return 'VIH_Controller_KortKursus_Group';
+            return $this->getContent($name);
         } elseif ($name == 'familiekursus') {
-            return 'VIH_Controller_KortKursus_Group';
+            return $this->getContent($name);
         } elseif ($name == 'sommerhojskole') {
-            return 'VIH_Controller_KortKursus_Group';
-        } elseif ($name == 'login') {
+            return $this->getContent($name);
+        */
+        if ($name == 'login') {
             return 'VIH_Controller_KortKursus_Login_Index';
         } elseif ($name == 'praktiskeoplysninger') {
             return 'VIH_Controller_KortKursus_Praktiskeoplysninger';

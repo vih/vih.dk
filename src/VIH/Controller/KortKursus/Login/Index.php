@@ -1,15 +1,8 @@
 <?php
-class VIH_Controller_KortKursus_Login_Index extends k_Controller
+class VIH_Controller_KortKursus_Login_Index extends k_Component
 {
-    function GET()
+    function map($name)
     {
-        return 'login';
+        return 'VIH_Controller_KortKursus_Login_Tilmelding';
     }
-
-    function forward($name)
-    {
-        $next = new VIH_Controller_KortKursus_Login_Tilmelding($this, $name);
-        return $next->handleRequest();
-    }
-
 }

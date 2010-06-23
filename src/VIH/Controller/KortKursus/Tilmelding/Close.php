@@ -1,10 +1,9 @@
 <?php
-
-class VIH_Controller_KortKursus_Tilmelding_Close extends k_Controller
+class VIH_Controller_KortKursus_Tilmelding_Close extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        throw new k_http_Redirect($this->url('/'));
+        return new k_SeeOther($this->url('/'));
     }
 
 }

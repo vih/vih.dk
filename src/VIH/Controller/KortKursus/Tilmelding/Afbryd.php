@@ -1,16 +1,14 @@
 <?php
-
-class VIH_Controller_KortKursus_Tilmelding_Afbryd extends k_Controller
+class VIH_Controller_KortKursus_Tilmelding_Afbryd extends k_Component
 {
-    function GET()
+    function renderHtml()
     {
-        $tilmelding = new VIH_Model_KortKursus_OnlineTilmelding($this->context->name);
+        $tilmelding = new VIH_Model_KortKursus_OnlineTilmelding($this->context->name());
         if (!$tilmelding->cancel()) {
-            trigger_error('Der opstod en fejl, da tilmeldingen skulle afbrydes.', E_USER_ERROR);
+            throw new Exception('Der opstod en fejl, da tilmeldingen skulle afbrydes.');
         }
 
-        throw new k_http_Redirect($this->url('/'));
+        return new k_SeeOther($this->url('/'));
     }
-
 }
 

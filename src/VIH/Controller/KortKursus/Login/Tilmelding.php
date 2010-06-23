@@ -1,9 +1,16 @@
 <?php
-class VIH_Controller_KortKursus_Login_Tilmelding extends k_Controller
+class VIH_Controller_KortKursus_Login_Tilmelding extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->name());
         if (!is_object($tilmelding) OR !$tilmelding->get('id')) {
             throw new Exception('Der findes ikke nogen tilmelding');
         }
@@ -25,20 +32,24 @@ class VIH_Controller_KortKursus_Login_Tilmelding extends k_Controller
 
         $betal_data= array('tilmelding' => $tilmelding);
 
-        $oversigt_data = array('tilmelding' => $tilmelding,
-                               'oplysninger' => $this->render('VIH/View/KortKursus/Tilmelding/oplysninger-tpl.php', $opl_data),
-                               'deltagere' => $this->render('VIH/View/KortKursus/Tilmelding/deltagere-tpl.php', $delt_data),
-                               'betalinger' => $this->render('VIH/View/KortKursus/Tilmelding/prisoversigt-tpl.php', $betal_data));
+        $opl_tpl = $this->template->create('KortKursus/Tilmelding/oplysninger');
+        $delt_tpl = $this->template->create('KortKursus/Tilmelding/deltagere');
+        $bet_tpl = $this->template->create('KortKursus/Tilmelding/prisoversigt');
 
-        $this->document->title = 'Tilmelding #' . $tilmelding->get('id');
-        return $this->render('VIH/View/Kundelogin/kortekurser-tpl.php', $oversigt_data);
+        $oversigt_data = array('tilmelding' => $tilmelding,
+                               'oplysninger' => $opl_tpl->render($this, $opl_data),
+                               'deltagere' => $delt->render($this, $delt_data),
+                               'betalinger' => $bet_tpl->render($this, $betal_data));
+
+        $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));
+        $tpl = $this->template->create('Kundelogin/kortekurser');
+        return $tpl->render($this, $oversigt_data);
     }
 
-    function forward($name)
+    function map($name)
     {
         if ($name == 'onlinebetaling') {
-            $next = new VIH_Controller_KortKursus_Login_OnlineBetaling($this, $name);
-            return $next->handleRequest();
+            return 'VIH_Controller_KortKursus_Login_OnlineBetaling';
         }
     }
 }
