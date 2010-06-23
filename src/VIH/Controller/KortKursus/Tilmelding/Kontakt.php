@@ -262,7 +262,9 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
                             break;
                     } // switch
 
-                    $deltager_object = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $this->POST['id'][$i]);
+                    $input = $this->body();
+
+                    $deltager_object = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $input['id'][$i]);
 
                     if (!$deltager_object->save($var)) {
                         throw new Exception('Oplysningerne om en af deltagerne kunne ikke gemmes');
@@ -284,7 +286,6 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
         } else {
             return '<h1>Indtast oplysninger</h1><p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angående tilmeldingen, og det er også kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>' . $this->getForm()->toHTML();
         }
-
     }
 
     function getRedirectUrl()
