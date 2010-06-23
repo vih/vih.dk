@@ -1,38 +1,40 @@
 <?php
 require_once 'config.local.php';
-require_once 'VIH.php';
+require_once 'VIH/ExceptionHandler.php';
+require_once 'VIH/Logger.php';
+require_once 'VIH/functions.php';
+require_once 'konstrukt/konstrukt.inc.php';
+require_once 'bucket.inc.php';
 require_once 'Ilib/ClassLoader.php';
 require_once 'Doctrine/lib/Doctrine.php';
 spl_autoload_register(array('Doctrine', 'autoload'));
-require_once 'VIH/errorhandler.php';
-set_error_handler('vih_error_handler');
 
-$application = new VIH_Controller_Login_Root();
+class VIH_NotFoundComponent extends k_Component
+{
+    protected $template;
 
-$application->registry->registerConstructor('doctrine', create_function(
-  '$className, $args, $registry',
-  '$conn = Doctrine_Manager::connection(DB_DSN);
-   Doctrine_Manager::getInstance()->setAttribute("model_loading", "conservative");
-   return $conn;
-  '
-));
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
-$application->registry->registerConstructor('database:mdb2', create_function(
-  '$className, $args, $registry',
-  '$options= array("debug" => 2);
-   $db = MDB2::factory(DB_DSN, $options);
-   if (PEAR::isError($db)) {
-        throw new Exception($db->getMessage());
-   }
-   $db->setOption("portability", MDB2_PORTABILITY_NONE);
-   $db->setFetchMode(MDB2_FETCHMODE_ASSOC);
-   $db->exec("SET time_zone=\"-01:00\"");
-   return $db;
-'
-));
+    function dispatch()
+    {
+        $tpl = $this->template->create('404');
+        $response = new k_HttpResponse(404, $tpl->render($this));
+        return $response;
+    }
+}
 
-try {
-    $application->dispatch();
-} catch (Exception $e) {
-    vih_error_handler($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine(), $e->getTrace());
+$factory = new VIH_Factory();
+$container = new bucket_Container($factory);
+
+if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
+    $components = new k_InjectorAdapter($container, new VIH_Document);
+    $components->setImplementation('k_DefaultPageNotFoundComponent', 'VIH_NotFoundComponent');
+    k()
+    ->setComponentCreator($components)
+    ->setLanguageLoader(new MyLanguageLoader())->setTranslatorLoader(new SimpleTranslatorLoader())
+    ->run('VIH_Controller_Login_Root')
+    ->out();
 }
