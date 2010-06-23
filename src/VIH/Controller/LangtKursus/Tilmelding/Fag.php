@@ -67,12 +67,13 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
         */
 
         if ($this->body('subject')) {
+            $input = $this->body();
             foreach ($this->body('subject') as $key => $value) {
                 $registrationsubject = new VIH_Model_Course_Registration_Subject;
-                $registrationsubject->period_id = $this->POST['subjectperiod'][$key];
+                $registrationsubject->period_id = $input['subjectperiod'][$key];
                 $registrationsubject->registration_id = $this->getRegistration()->getId();
                 $registrationsubject->subject_id = $value;
-                $registrationsubject->subjectgroup_id = $this->POST['subjectgroup'][$key];
+                $registrationsubject->subjectgroup_id = $input['subjectgroup'][$key];
                 $registrationsubject->save();
             }
         }
