@@ -1,6 +1,6 @@
 <?php
 /**
- * Denne skabelon skal være mærket op som microformatet hcalender, vevent
+ * Denne skabelon skal vï¿½re mï¿½rket op som microformatet hcalender, vevent
  *
  * @author Lars Olesen <lars@legestue.net>
  */
@@ -8,9 +8,9 @@
 <div class="vevent">
     <h1 class="summary"><?php e($kursus->get('kursusnavn')); ?></h1>
     <?php if ($kursus->get('pladser_ledige') <= 0): ?>
-          <p class="notice">Der er ikke flere ledige pladser på dette kursus.</p>
+          <p class="notice">Der er ikke flere ledige pladser pÃ¥ dette kursus.</p>
     <?php elseif ($kursus->get('pladser_begyndere_ledige') <= 0 AND $kursus->get('gruppe_id') == 1): // golf ?>
-          <p class="notice">Der er ikke flere ledige begynderpladser på dette kursus.</p>
+          <p class="notice">Der er ikke flere ledige begynderpladser pÃ¥ dette kursus.</p>
       <?php endif; ?>
 
     <div class="description">
@@ -30,7 +30,7 @@
         </p>
         <p>
             <strong>Pris</strong> <?php echo $kursus->get('pris'); ?> kroner
-            <?php if ($kursus->get('pris_boern') > 0) { echo ' for voksne og for børn ' . $kursus->get('pris_boern') . ' kroner'; } ?>
+            <?php if ($kursus->get('pris_boern') > 0) { echo ' for voksne og for bÃ¸rn ' . $kursus->get('pris_boern') . ' kroner'; } ?>
         </p>
         <div class="location">
             <strong>Indkvartering</strong>

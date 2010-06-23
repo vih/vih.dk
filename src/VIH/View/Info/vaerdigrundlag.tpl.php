@@ -1,9 +1,9 @@
-<h1>Form�l og v�rdigrundlag</h1>
-<h2>� 1</h2>
-<p>Vejle Idr�tsh�jskole, der er oprettet i 1942 under navnet Den Jyske Idr�tsskole, er en uafh�ngig og selvejende institution med hjemsted i Vejle Kommune.</p>
-<h2>Form�l</h2>
-<p>Vejle Idr�tsh�jskoles form�l er inden for rammerne af de g�ldende regler om frie kostskoler at drive en h�jskole med s�rligt henblik p� at virke inden for idr�tten.</p>
-<h2>V�rdigrundlag</h2>
-<p>Vejle Idr�tsh�jskoles skolevirksomhed bygger p� troen p� det v�rdige menneske af krop og �nd, som det udtrykkes i et personligt liv og som kan realiseres ved at hj�lpe eleverne med at udvikle deres formelle og reelle kompetencer gennem livsoplysning og demokratisk dannelse. Derfor v�gter Vejle Idr�tsh�jskole den humanistiske dannelse h�jt, for herigennem at udvikle elevernes forst�else og respekt for menneskers kvaliteter p� trods af forskelligheder.</p>
-<p>Vejle Idr�tsh�jskoles idr�tssyn bygger p� ideen om at idr�tten har sin egen v�rdi og derigennem kan bidrage til den humanistiske dannelse.</p>
-<p><a href="<?php e(url('/gfx/pdf/vedtaegter.pdf')); ?>">Se vedt�gterne (pdf)</a></p>
+<h1>Formål og værdigrundlag</h1>
+<h2>§ 1</h2>
+<p>Vejle Idrætshøjskole, der er oprettet i 1942 under navnet Den Jyske Idrætsskole, er en uafhængig og selvejende institution med hjemsted i Vejle Kommune.</p>
+<h2>Formål</h2>
+<p>Vejle Idrætshøjskoles formål er inden for rammerne af de gældende regler om frie kostskoler at drive en højskole med særligt henblik på at virke inden for idrætten.</p>
+<h2>Værdigrundlag</h2>
+<p>Vejle Idrætshøjskoles skolevirksomhed bygger på troen på det værdige menneske af krop og ånd, som det udtrykkes i et personligt liv og som kan realiseres ved at hjælpe eleverne med at udvikle deres formelle og reelle kompetencer gennem livsoplysning og demokratisk dannelse. Derfor vægter Vejle Idrætshøjskole den humanistiske dannelse højt, for herigennem at udvikle elevernes forståelse og respekt for menneskers kvaliteter på trods af forskelligheder.</p>
+<p>Vejle Idrætshøjskoles idrætssyn bygger på ideen om at idrætten har sin egen værdi og derigennem kan bidrage til den humanistiske dannelse.</p>
+<p><a href="<?php e(url('/gfx/pdf/vedtaegter.pdf')); ?>">Se vedtægterne (pdf)</a></p>

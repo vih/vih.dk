@@ -1,4 +1,4 @@
-<table id="table-okonomi" summary="Ugepriser på Vejle Idrætshøjskole, økonomi">
+<table id="table-okonomi" summary="Ugepriser pÃ¥ Vejle IdrÃ¦tshÃ¸jskole, Ã¸konomi">
     <caption>Elevbetaling</caption>
     <thead>
         <tr>
@@ -6,13 +6,12 @@
             <th scope="col" id="ugepristh">Ugepris</th>
             <th scope="col" id="gebyrth">Materialegebyr</th>
             <th scope="col" id="rejseth">Rejsedepositum</th>
-            <th scope="col" id="noegleth">Nøgledepositum</th>
+            <th scope="col" id="noegleth">NÃ¸gledepositum</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <td colspan="5">Ret til ændringer forbeholdes. Alle skal på en rejse af kortere varighed. Der opkræves et ekstra beløb til rejser. Ugeprisen for rejselinjen gælder kun i den tid, rejselinjen er på højskolen. Hvad betalingen er for selve rejsen, afhænger af       valutakurserne, men du kan altid ringe til skolen og få oplyst den forventede pris på næste års rejselinje.
-            </td>
+            <td colspan="5">Ret til Ã¦ndringer forbeholdes. Alle skal pÃ¥ en rejse af kortere varighed. Der opkrÃ¦ves et ekstra belÃ¸b til rejser.</td>
         </tr>
     </tfoot>
     <tbody>

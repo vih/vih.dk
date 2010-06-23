@@ -36,7 +36,7 @@ endforeach; ?>
 <?php else: ?>
 
 <p class="courses-empty">
-    Der er i øjeblikket ikke nogen kurser på denne søgning. Du kan <a href="<?php e(url('/nyhedsbrev/')); ?>">tilmelde dig vores nyhedsbrev</a>, hvis du vil have besked om, hvornår vi opdaterer listen igen.
+    Der er i Ã¸jeblikket ikke nogen kurser pÃ¥ denne sÃ¸gning. Du kan <a href="<?php e(url('/nyhedsbrev/')); ?>">tilmelde dig vores nyhedsbrev</a>, hvis du vil have besked om, hvornÃ¥r vi opdaterer listen igen.
 </p>
 
 <?php endif; ?>
