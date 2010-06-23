@@ -1,6 +1,6 @@
 <?php
 /**
- * Skrevet med tanke på php 5 og en ordentlig database
+ * Skrevet med tanke pï¿½ php 5 og en ordentlig database
  *
  */
 class VIH_News
@@ -16,7 +16,7 @@ class VIH_News
      * @var array
      */
     public $prioritet = array(
-        1 => 'høj',
+        1 => 'hï¿½j',
         2 => 'mellem',
         3 => 'lav'
     );
@@ -34,7 +34,7 @@ class VIH_News
         2 => 'Lange kurser',
         28 => 'Fodbold',
         31 => 'Aerobic',
-        29 => 'Håndbold',
+        29 => 'Hï¿½ndbold',
         30 => 'Badminton',
         27 => 'Volleyball',
         9 => 'Kursuscenter',
@@ -116,6 +116,14 @@ class VIH_News
         $this->value['kategori'] = $this->kategori[$this->value['kategori_id']];
 
         return 1;
+    }
+
+    function isPublished()
+    {
+        if ($this->get('date_publish') > date('Y-m-d H:i:s') AND $this->get('published')) {
+            return true;
+        }
+        return false;
     }
 
     function get($key = '')
