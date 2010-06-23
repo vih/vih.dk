@@ -39,8 +39,8 @@ class VIH_Controller_Fag_Pakker_Index extends k_Component
     {
         $forklaring = '<p><strong>Herunder har du et skemaeksempel. Du kan selvf�lgelig v�lge mellem alle fagene ude i siden.</strong></p>';
 
-        $skema = new VIH_Controller_LangtKursus_Skema($this);
-        return $forklaring . $skema->execute();
+        $skema = $this->createComponent('VIH_Controller_LangtKursus_Skema', '');
+        return $forklaring . $skema->renderHtml();
     }
 
     function getWidePictureHTML($identifier)
