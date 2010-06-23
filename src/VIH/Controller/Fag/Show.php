@@ -47,7 +47,7 @@ class VIH_Controller_Fag_Show extends k_Component
             ' . $this->getUdvidetBeskrivelse($fag) .'</div>',
                       'content_sub' =>
                             $this->getVideo() . '
-            <h2>Spï¿½rgsmï¿½l?</h2>
+            <h2>Spørgsmål?</h2>
             ' . $this->getUndervisereHTML($fag->getUndervisere()) . $this->getSubContent($fag->get('identifier')));
 
         $tpl = $this->template->create('sidebar-wrapper');
@@ -161,8 +161,8 @@ class VIH_Controller_Fag_Show extends k_Component
             return '';
         }
         $data = array('kurser' => $fag->getKurser(),
-                      'caption' => $fag->get('navn') . ' er pï¿½ fï¿½lgende kurser',
-                      'summary' => 'Oversigt over hvilke lange kurser, du kan fï¿½ ' . $fag->get('navn') . ' pï¿½.');
+                      'caption' => $fag->get('navn') . ' er på følgende kurser',
+                      'summary' => 'Oversigt over hvilke lange kurser, du kan få ' . $fag->get('navn') . ' på.');
         $tpl = $this->template->create('LangtKursus/kurser');
         return $tpl->render($this, $data);
     }

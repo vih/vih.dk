@@ -5,10 +5,10 @@
 class VIH_Controller_Fag_Pakker_Outdoor extends k_Component
 {
     public $i18n = array(
-        'Idrï¿½t A' => 'Outdoor Energy',
-        'Idrï¿½t B' => 'Adventure',
+        'Idræt A' => 'Outdoor Energy',
+        'Idræt B' => 'Adventure',
         'Linje' => 'Mental challenge',
-        'Diskussion' => 'Det gï¿½lder livet'
+        'Diskussion' => 'Det gælder livet'
     );
     protected $template;
 
@@ -19,9 +19,9 @@ class VIH_Controller_Fag_Pakker_Outdoor extends k_Component
 
     function GET()
     {
-        $this->document->setTitle('Outdoor fagpakke pï¿½ Vejle Idrï¿½tshï¿½jskole: en blanding af adventure, friluftsliv og outdoor');
-        $this->document->description = 'Du kan vï¿½lge outdoor som en fagpakke pï¿½ Vejle Idrï¿½tshï¿½jskole. For dig der er til adventure, friluftsliv og outdoor og hï¿½jskole.';
-        $this->document->keywords = 'outdoor, adventure, friluftsliv, hï¿½jskole, idrï¿½tshï¿½jskole';
+        $this->document->setTitle('Outdoor fagpakke på Vejle Idrætshøjskole: en blanding af adventure, friluftsliv og outdoor');
+        $this->document->description = 'Du kan vælge outdoor som en fagpakke på Vejle Idrætshøjskole. For dig der er til adventure, friluftsliv og outdoor og højskole.';
+        $this->document->keywords = 'outdoor, adventure, friluftsliv, højskole, idrætshøjskole';
 
         $this->document->theme = 'adventure';
 
@@ -29,7 +29,7 @@ class VIH_Controller_Fag_Pakker_Outdoor extends k_Component
 
         $data = array(
             'pakke' => 'Outdoor',
-            'beskrivelse' => 'Med udgangspunkt i omrï¿½dets fremragende natur udbyder vi flere fag indenfor outdoor, med mulighed bl.a. for fysisk trï¿½ning, tekniske fï¿½rdigheder, oplevelser, teamtrï¿½ning m.m. Har du mod pï¿½ udfordringer indenfor Outdoor, tilbyder vi fire fag, lï¿½s yderlig under linje og specialer. Fagene er Outdoor Energy, Adventure, Mental Challenge og Teambuilder.');
+            'beskrivelse' => 'Med udgangspunkt i områdets fremragende natur udbyder vi flere fag indenfor outdoor, med mulighed bl.a. for fysisk træning, tekniske færdigheder, oplevelser, teamtræning m.m. Har du mod på udfordringer indenfor Outdoor, tilbyder vi fire fag, læs yderlig under linje og specialer. Fagene er Outdoor Energy, Adventure, Mental Challenge og Teambuilder.');
 
         $tpl = $this->template->create('Fag/pakke');
         return $tpl->render($this, $data);

@@ -39,7 +39,7 @@ class VIH_Controller_Facilitet_Show extends k_Component
 
     function getFaciliteterList()
     {
-        $data = array('faciliteter' => VIH_Model_Facilitet::getList('hï¿½jskole'));
+        $data = array('faciliteter' => VIH_Model_Facilitet::getList('højskole'));
         $tpl = $this->template->create('Facilitet/faciliteter');
         return $tpl->render($this, $data);
     }

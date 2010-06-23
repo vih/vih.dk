@@ -91,7 +91,7 @@ class VIH_Controller_Ansat_Kontakt extends k_Component
             if (!$mail->Send()) {
                 $msg = '<p class="alert"><strong>Beskeden blev ikke sendt.</strong></p>';
             } else {
-                $msg = '<p class="notice"><strong>Beskeden blev sendt - jeg svarer pï¿½ den sï¿½ snart jeg ser den.</strong></p>';
+                $msg = '<p class="notice"><strong>Beskeden blev sendt - jeg svarer på den så snart jeg ser den.</strong></p>';
             }
             $data = array('content' => '
                 <h1 class="fn">'.$underviser->get('navn').'</h1>' .

@@ -17,7 +17,7 @@ class VIH_Controller_Login_Root extends k_Component
     {
         $navigation = array(
             $this->url('/') => 'Oversigt',
-            $this->url('/help') => 'Hjï¿½lp',
+            $this->url('/help') => 'Hjælp',
             $this->url('/logout') => 'Logout'
         );
         $tpl = $this->template->create('Kundelogin/main');
