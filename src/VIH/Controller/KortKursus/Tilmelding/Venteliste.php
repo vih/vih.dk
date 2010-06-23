@@ -36,8 +36,8 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
         //$form->addRule("postby", "Du skal udfylde By", "required");
         $form->addRule("arbejdstelefon", "Du skal udfylde telefon", "required");
 
-        if (!empty($this->GET['antal']) AND is_numeric($this->GET['antal'])) {
-            $form->setDefaults(array('antal'=>$this->GET['antal']));
+        if (is_numeric($this->query('antal'))) {
+            $form->setDefaults(array('antal'=>$this->query('antal')));
         }
 
         return ($this->form = $form);
