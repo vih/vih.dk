@@ -37,7 +37,7 @@ class VIH_Controller_Fag_Pakker_Index extends k_Component
 
     function getSkema()
     {
-        $forklaring = '<p><strong>Herunder har du et skemaeksempel. Du kan selvf�lgelig v�lge mellem alle fagene ude i siden.</strong></p>';
+        $forklaring = '<p><strong>Herunder har du et skemaeksempel. Du kan selvfï¿½lgelig vï¿½lge mellem alle fagene ude i siden.</strong></p>';
 
         $skema = $this->createComponent('VIH_Controller_LangtKursus_Skema', '');
         return $forklaring . $skema->renderHtml();

@@ -18,7 +18,7 @@ class VIH_Controller_Info_Vaerdigrundlag extends k_Component
         $this->document->meta = $meta;
         $this->document->body_class = 'widepicture';
 
-        $tpl = $this->template->create('Info/vaerdigrundlag');
+        $tpl = $this->template->create('Info/værdigrundlag');
         return $tpl->render($this);
     }
 }

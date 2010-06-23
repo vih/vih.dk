@@ -50,7 +50,7 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
             $deltager->delete();
         }
 
-        $this->document->setTitle('Bekr�ft tilmeldingen');
+        $this->document->setTitle('Bekræft tilmeldingen');
 
         $deltager_data = array('deltagere' => $tilmelding->getDeltagere(),
                                'indkvartering' => $tilmelding->kursus->get('indkvartering'),
@@ -63,9 +63,9 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
         $tpl = $this->template->create('KortKursus/Tilmelding/oplysninger');
         $del_tpl = $this->template->create('KortKursus/Tilmelding/deltagere');
 
-        $tilmelding_data = array('headline' => 'Bekr�ft reservationen',
+        $tilmelding_data = array('headline' => 'Bekræft reservationen',
                                  'explanation' => '
-            <p>Nu er du der n�sten. F�rst skal du dog lige tjekke om oplysningerne er korrekte og godkende vores <a href="'.$this->url('../betingelser').'">betingelser</a>.</p>
+            <p>Nu er du der næsten. Først skal du dog lige tjekke om oplysningerne er korrekte og godkende vores <a href="'.$this->url('../betingelser').'">betingelser</a>.</p>
         ' . $tpl->render($this, $oplysninger_data) . $del_tpl->render($this, $deltager_data),
                                  'content' => $this->getForm()->toHTML());
 
@@ -83,7 +83,7 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
             // confirm skal gemme en oplysning om, at kunden har konfirmeret betingelserne
             if ($this->body('confirm')) {
                 if (!$tilmelding->confirm()) {
-                    throw new Exception('Kunne ikke bekr�fte ordre ' . $tilmelding->get('id'));
+                    throw new Exception('Kunne ikke bekræfte ordre ' . $tilmelding->get('id'));
                 }
                 if ($tilmelding->get('email')) {
                     $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get('id'));

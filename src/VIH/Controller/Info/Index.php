@@ -2,7 +2,7 @@
 class VIH_Controller_Info_Index extends k_Component
 {
     public $map = array('organisation'   => 'VIH_Controller_Info_Organisation',
-                        'vaerdigrundlag' => 'VIH_Controller_Info_Vaerdigrundlag',
+                        'værdigrundlag' => 'VIH_Controller_Info_Værdigrundlag',
                         'om'             => 'VIH_Controller_Info_Om',
                         'historie'       => 'VIH_Controller_Info_Historie',
                         'vejledning'     => 'VIH_Controller_Info_Vejledning',
@@ -25,8 +25,8 @@ class VIH_Controller_Info_Index extends k_Component
     function renderHtml()
     {
         $title = 'Filosofi og information';
-        $meta['description'] = 'Vejle Idr�tsh�jskole er en idr�tsh�jskole. H�jskolelivet d�kker over mange ting, det er umuligt at beskrive. Vi har alligevel fors�gt: L�s noget om det her.';
-        $meta['keywords'] = 'Vejle, Idr�tsh�jskole, jyske, idr�tsskole, h�jskolekurser, h�jskolekursus, h�jskoleliv, weekend, lovtekster, love, statistik, fortolkning';
+        $meta['description'] = 'Vejle Idrætshøjskole er en idrætshøjskole. Højskolelivet dækker over mange ting, det er umuligt at beskrive. Vi har alligevel forsøgt: Læs noget om det her.';
+        $meta['keywords'] = 'Vejle, Idrætshøjskole, jyske, idrætsskole, højskolekurser, højskolekursus, højskoleliv, weekend, lovtekster, love, statistik, fortolkning';
 
         $this->document->setTitle($title);
         $this->document->addCrumb($this->name(), $this->url());
@@ -39,10 +39,10 @@ class VIH_Controller_Info_Index extends k_Component
             <h1>Vi tror p�...</h1>
 
             <blockquote>
-                <p>...at sociale kompetencer er alt afg�rende for voksenlivets karrierer. Et godt liv handler om at kunne engagere og involvere sig i andre mennesker - i arbejdsrelationer s�vel som private.</p>
+                <p>...at sociale kompetencer er alt afgørende for voksenlivets karrierer. Et godt liv handler om at kunne engagere og involvere sig i andre mennesker - i arbejdsrelationer såvel som private.</p>
             </blockquote>
             <blockquote>
-                <p>P� Vejle Idr�tsh�jskole har vi sporten som ramme. En sund krop - fysisk og psykisk - er en fundamentet for et godt og langt liv. Det er igennem sporten, du bliver udfordret, stimuleret og presset, for det er, n�r du rykkes ud af de trygge rammer, at der for alvor �bnes for en personlig udvikling. Livsgl�de handler om at alle muskler bliver aktiveret, ikke mindst hum�rmusklen.</p>
+                <p>På Vejle Idrætshøjskole har vi sporten som ramme. En sund krop - fysisk og psykisk - er en fundamentet for et godt og langt liv. Det er igennem sporten, du bliver udfordret, stimuleret og presset, for det er, når du rykkes ud af de trygge rammer, at der for alvor åbnes for en personlig udvikling. Livsglæde handler om at alle muskler bliver aktiveret, ikke mindst humørmusklen.</p>
             </blockquote>',
             'content_sub' => $this->getSubContent());
 
@@ -61,10 +61,10 @@ class VIH_Controller_Info_Index extends k_Component
                 </blockquote>
 
                 <ul>
-                	<li><a href="'.$this->url('vaerdigrundlag').'">V�rdigrundlag</a></li>
+                	<li><a href="'.$this->url('værdigrundlag').'">Værdigrundlag</a></li>
                 	<li><a href="'.$this->url('vejledning').'">Vejledning</a></li>
                     <li><a href="'.$this->url('uden-ungdomsuddannelse').'">Indsats for elever uden ungdomsuddannelse</a></li>
-                    <li><a href="'.$this->url('/gfx/pdf/aarsplan2010.pdf').'">�rsplan (pdf)</a></li>
+                    <li><a href="'.$this->url('/gfx/pdf/årsplan2010.pdf').'">Årsplan (pdf)</a></li>
                 </ul>
             ';
     }

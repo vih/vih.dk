@@ -48,7 +48,7 @@ class VIH_Controller_Facilitet_Index extends k_Component
     function getSubContent()
     {
         return '<h2>Bestil en rundvisning</h2>
-            <p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian p� 2929 6387.</p>';
+            <p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian på 2929 6387.</p>';
     }
 
     function getVideo()

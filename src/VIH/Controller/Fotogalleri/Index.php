@@ -49,7 +49,7 @@ class VIH_Controller_Fotogalleri_Index extends k_Component
             $data = array('content' => $tpl->render($this, $list), 'content_sub' => $this->getSubContent());
         }
 
-        $this->document->setTitle('Årets højdepunkter');
+        $this->document->setTitle('Ã…rets hÃ¸jdepunkter');
         $this->document->theme = 'photogallery';
 
         $tpl = $this->template->create('sidebar-wrapper');
@@ -58,12 +58,12 @@ class VIH_Controller_Fotogalleri_Index extends k_Component
 
     function getSubContent()
     {
-        return '<h2>ï¿½rets højdepunkter</h2>' . $this->getNews();
+        return '<h2>Ã…rets hÃ¸jdepunkter</h2>' . $this->getNews();
     }
 
     function getNews()
     {
-        $data = array('nyheder' => VIH_News::getList('', 3, 'Hï¿½j'));
+        $data = array('nyheder' => VIH_News::getList('', 3, 'HÃ¸j'));
         $tpl = $this->template->create('News/sidebar-featured');
         return $tpl->render($this, $data) . '<p><a href="'.$this->url('/nyheder').'">Flere nyheder</a></p>';
     }

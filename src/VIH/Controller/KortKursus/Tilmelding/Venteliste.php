@@ -15,7 +15,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
             return $this->form;
         }
         $form = new HTML_QuickForm('venteliste', 'POST', $this->url());
-        $form->addElement('header', 'null', 'Hvor mange personer vil du s�tte p� venteliste?');
+        $form->addElement('header', 'null', 'Hvor mange personer vil du sætte på venteliste?');
         $form->addElement('select', 'antal', 'Antal deltagere', array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10));
         $form->addElement('header', null, 'Din personlige oplysninger');
         $form->addElement('text', 'navn', 'Navn');
@@ -64,7 +64,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
             throw new Exception("Ugyldigt kursus");
         }
 
-        $data = array('content' => '<h1>Vil du p� venteliste?</h1><p class="notice">Der er ikke nok ledige pladser p� '.$kursus->get('kursusnavn').'. Vi kan tilbyde dig at komme p� venteliste, hvis du udfylder nedenst�ende kontaktinformationer.</p>' . $this->getForm()->toHTML());
+        $data = array('content' => '<h1>Vil du på venteliste?</h1><p class="notice">Der er ikke nok ledige pladser på '.$kursus->get('kursusnavn').'. Vi kan tilbyde dig at komme på venteliste, hvis du udfylder nedenstående kontaktinformationer.</p>' . $this->getForm()->toHTML());
 
         $tpl = $this->template->create('wrapper');
         return $tpl->render($this, $data);
@@ -93,7 +93,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
                     }
 
                     $error = "";
-                    $body = "K�re ".$this->body('navn')."\n\nDu er nu skrevet p� venteliste til kurset: ".$venteliste->get("kursusnavn").". Du er pt. nummer ".$number." p� ventelisten. Vi kontakter dig, hvis der bliver ledig plads til dig. �nsker du ikke l�ngere at st� p� ventelisten, m� du meget gerne kontakte os p� telefon 75820811 eller besvare denne e-mail.\n\nMed venlig hilsen\nVejle Idr�tsh�jskole";
+                    $body = "Køre ".$this->body('navn')."\n\nDu er nu skrevet på venteliste til kurset: ".$venteliste->get("kursusnavn").". Du er pt. nummer ".$number." på ventelisten. Vi kontakter dig, hvis der bliver ledig plads til dig. Ønsker du ikke længere at stå på ventelisten, må du meget gerne kontakte os på telefon 75820811 eller besvare denne e-mail.\n\nMed venlig hilsen\nVejle Idrætshøjskole";
 
                     $mailer = new VIH_Email;
                     $mailer->setSubject("Opskrivning p� venteliste");

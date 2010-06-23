@@ -7,13 +7,13 @@ class VIH_Controller_Kontakt_Elevchat extends k_Component
     function renderHtml()
     {
         $title = 'Elevchat';
-        $meta['description'] = 'Her kan du stille sp�rgsm�l til elever.';
+        $meta['description'] = 'Her kan du stille spørgsmål til elever.';
         $meta['keywords'] = 'elevchat, feedback, debat, dialog';
 
         $elevchattere = VIH_Model_Ansat::getList('elevchatter');
 
         if (count($elevchattere) == 0) {
-            return '<h1>Elevchat</h1><p>Vi har i �jeblikket ikke nogen elevchattere. Du kan skrive til en af <a href="'.$this->url('/underviser').'">l�rerne</a> eller til <a href="'.$this->url('/kontakt').'">kontoret</a>.</p>';
+            return '<h1>Elevchat</h1><p>Vi har i øjeblikket ikke nogen elevchattere. Du kan skrive til en af <a href="'.$this->url('/underviser').'">lærerne</a> eller til <a href="'.$this->url('/kontakt').'">kontoret</a>.</p>';
         }
 
         $file = new VIH_FileHandler($elevchattere[0]->get('pic_id'));
@@ -48,9 +48,9 @@ class VIH_Controller_Kontakt_Elevchat extends k_Component
             $mail->addAddress($this->elevchatter['email'], $this->elevchatter['navn']);
             $mail->addAddress('lars@vih.dk', 'Lars Olesen');
             if (!$mail->Send()) {
-                $msg = '<h1>Elevchat</h1><p class="alert">E-mailen blev ikke sendt. Det plejer ikke at ske, pr�v igen eller ring evt. til os p� 75820811. I mellemtiden kan du fx lede efter svaret under <a href="'.url('/langekurser/faq').'">ofte stillede sp�rgsm�l</a>.</p>';
+                $msg = '<h1>Elevchat</h1><p class="alert">E-mailen blev ikke sendt. Det plejer ikke at ske, prøv igen eller ring evt. til os på 75820811. I mellemtiden kan du fx lede efter svaret under <a href="'.url('/langekurser/faq').'">ofte stillede spørgsmål</a>.</p>';
             } else {
-                $msg = '<h1>Elevchat</h1><p class="notice"><strong>Tak for din e-mail. Jeg svarer p� den lige s� snart, jeg ser den.</strong></p>';
+                $msg = '<h1>Elevchat</h1><p class="notice"><strong>Tak for din e-mail. Jeg svarer på den lige så snart, jeg ser den.</strong></p>';
             }
             return $msg;
         }
