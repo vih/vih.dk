@@ -6,28 +6,27 @@ class VIH_Controller_Fotogalleri_Show extends k_Component
 {
     public $map = array();
     protected $template;
+    protected $mdb2;
+    protected $kernel;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, MDB2_Driver_Common $mdb2, VIH_Intraface_Kernel $kernel)
     {
         $this->template = $template;
+        $this->mdb2 = $mdb2;
+        $this->kernel = $kernel;
     }
 
-    function GET()
+    function renderHtml()
     {
-        $db = $this->registry->get('database:mdb2');
-
-        $result = $db->query('SELECT id FROM fotogalleri WHERE active = 1 ORDER BY date_created DESC LIMIT 1');
+        $result = $this->db->query('SELECT id FROM fotogalleri WHERE active = 1 ORDER BY date_created DESC LIMIT 1');
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
 
         if ($row = $result->fetchRow()) {
-            // HACK start
-            $kernel = $this->registry->get('intraface:kernel');
-            $kernel->session_id = $this->SESSION->getSessionId();
-            // HACK end
+            $this->kernel->session_id = $this->session()->sessionId();
 
-            $appender = new VIH_AppendFile($kernel, 'fotogalleri', $row['id']);
+            $appender = new VIH_AppendFile($this->kernel, 'fotogalleri', $row['id']);
             $appender->getDBQuery()->setFilter('order_by', 'name');
 
             $photos = $appender->getList();
@@ -64,7 +63,7 @@ class VIH_Controller_Fotogalleri_Show extends k_Component
 
             $list = array('photo' => $photo, 'previous' => $previous, 'next' => $next, 'list' => $this->context->url(NULL));
 
-            $this->document->setTitle('�rets h�jdepunkter');
+            $this->document->setTitle('ï¿½rets hï¿½jdepunkter');
             $this->document->theme = 'photogallery';
 
             $tpl = $this->template->create('sidebar-wrapper');
