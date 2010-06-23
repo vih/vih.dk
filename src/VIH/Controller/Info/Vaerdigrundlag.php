@@ -10,7 +10,7 @@ class VIH_Controller_Info_Vaerdigrundlag extends k_Component
 
     function renderHtml()
     {
-        $title = 'Værdigrundlag';
+        $title = 'VÃ¦rdigrundlag';
         $meta['description'] = '';
         $meta['keywords'] = '';
 

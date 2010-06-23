@@ -42,7 +42,7 @@ class VIH_Controller_PicasaWeb extends k_Component
 							  loading: "Henter billeder...",
 							  page: "Side",
 						      prev: "Forrige",
-							  next: "N�ste",
+							  next: "Næste",
 							  devider: "|"
 					},
 					months: ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September","Oktober","November","December"]
@@ -58,12 +58,12 @@ class VIH_Controller_PicasaWeb extends k_Component
 
     function getSubContent()
     {
-        return '<h2>�rets h�jdepunkter</h2>' . $this->getNews();
+        return '<h2>Årets højdepunkter</h2>' . $this->getNews();
     }
 
     function getNews()
     {
-        $data = array('nyheder' => VIH_News::getList('', 3, 'H�j'));
+        $data = array('nyheder' => VIH_News::getList('', 3, 'Høj'));
         $tpl = $this->template->create('News/sidebar-featured');
 
         return $tpl->render($this, $data) . '<p><a href="'.$this->url('/nyheder').'">Flere nyheder</a></p>';

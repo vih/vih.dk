@@ -48,9 +48,15 @@ class VIH_Controller_Kontakt_Elevchat extends k_Component
             $mail->addAddress($this->elevchatter['email'], $this->elevchatter['navn']);
             $mail->addAddress('lars@vih.dk', 'Lars Olesen');
             if (!$mail->Send()) {
+<<<<<<< HEAD:src/VIH/Controller/Kontakt/Elevchat.php
                 $msg = '<h1>Elevchat</h1><p class="alert">E-mailen blev ikke sendt. Det plejer ikke at ske, prøv igen eller ring evt. til os på 75820811. I mellemtiden kan du fx lede efter svaret under <a href="'.url('/langekurser/faq').'">ofte stillede spørgsmål</a>.</p>';
             } else {
                 $msg = '<h1>Elevchat</h1><p class="notice"><strong>Tak for din e-mail. Jeg svarer på den lige så snart, jeg ser den.</strong></p>';
+=======
+                $msg = '<h1>Elevchat</h1><p class="alert">E-mailen blev ikke sendt. Det plejer ikke at ske, prï¿½v igen eller ring evt. til os pï¿½ 75820811. I mellemtiden kan du fx lede efter svaret under <a href="'.url('/langekurser/faq').'">ofte stillede spï¿½rgsmï¿½l</a>.</p>';
+            } else {
+                $msg = '<h1>Elevchat</h1><p class="notice"><strong>Tak for din e-mail. Jeg svarer pï¿½ den lige sï¿½ snart, jeg ser den.</strong></p>';
+>>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/Kontakt/Elevchat.php
             }
             return $msg;
         }

@@ -26,7 +26,7 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
             }
             throw new Exception('Tilmeldingen er ikke fuldendt. <a href="'.$this->url('/langekurser/tilmelding/'.$tilmelding->get('session_id')).'">Fuldend tilmeldingen!</a>');
         } elseif (strtolower($tilmelding->get('status')) == 'slettet') {
-            throw new Exception('Tilmeldingen er slettet. Ring til Vejle Idr�tsh�jskole, hvis det er en fejl.');
+            throw new Exception('Tilmeldingen er slettet. Ring til Vejle Idrætshøjskole, hvis det er en fejl.');
         }
 
         $tilmelding->loadBetaling();
@@ -45,7 +45,7 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
             $tpl = $this->template->create('/LangtKursus/Tilmelding/prisoversigt');
             $oversigt_data['prisoversigt']  = $tpl->render($this, $pris_data);
         } else {
-            $oversigt_data['prisoversigt'] = '<p class="notice"><strong>Priser</strong><br />Forel�big skylder du '.$tilmelding->get('pris_tilmeldingsgebyr').' kroner. Den resterende pris kan du se, n�r vi har oprettet dine betalingsrater.</p>';
+            $oversigt_data['prisoversigt'] = '<p class="notice"><strong>Priser</strong><br />Foreløbig skylder du '.$tilmelding->get('pris_tilmeldingsgebyr').' kroner. Den resterende pris kan du se, når vi har oprettet dine betalingsrater.</p>';
         }
 
         $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));

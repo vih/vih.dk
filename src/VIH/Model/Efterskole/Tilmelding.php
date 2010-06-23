@@ -39,11 +39,11 @@ class VIH_SignUp {
 
     }
 
-    // følgende gør det til en invoice eller noget lignende
+    // fÃ¸lgende gÃ¥r det til en invoice eller noget lignende
     // og det kommer til at ligne vores debtor system
     function addProduct(VIH_Product $product) {
         $this->product[] = $product;
-        // kursusgebyr men også mange andre produkter
+        // kursusgebyr men ogsÃ¥ mange andre produkter
         // produkter skal sikkert bare oprettes on the fly
         // den her er ligeglad med om det er nye produkter
         // eller hvad det er
@@ -51,13 +51,13 @@ class VIH_SignUp {
     function getProducts() {
         return $this->product;
         // hvis vi bare lave en enkelt sql, der kalder alle produkter
-        // og så fylder et array - eller måske er det smartere
-        // at returnere objekter, men så sætte værdierne herfra
+        // og sÃ¥ fylder et array - eller mÃ¥ske er det smartere
+        // at returnere objekter, men sÃ¥ sÃ¦tte vÃ¦rdierne herfra
     }
     function getTotalPrice() {
         $total_price = 0;
         foreach ($this->getProducts() AS $product) {
-            // hvordan tager vi højde for rabatterne?
+            // hvordan tager vi hÃ¸jde for rabatterne?
         }
         // get all products and calculate
         return $total_price;
@@ -76,7 +76,7 @@ class VIH_SignUp {
         return ($this->getTotalPrice() - $this->getTotalPaid() >= 0);
     }
     // to make it possible to add more contacts
-    // for instance højskole skal der være en forældre kontakt
+    // for instance hÃ¸jskole skal der vÃ¦re en forÃ¦ldre kontakt
     function addContact(VIH_Contact $contact) {
         $this->contact[] = $contact;
     }

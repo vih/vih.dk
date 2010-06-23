@@ -5,9 +5,9 @@
 class VIH_Controller_LangtKursus_Skema extends k_Component
 {
     public $i18n = array('Diskussionsfag' => 'Teori',
-                         'Individuel tr�ning' => 'Tr�ning',
-                         'Idr�tsspeciale A' => 'Idr�t A',
-                         'Idr�tsspeciale B' => 'Idr�t B');
+                         'Individuel træning' => 'Træning',
+                         'Idrætsspeciale A' => 'Idræt A',
+                         'Idrætsspeciale B' => 'Idræt B');
     protected $template;
 
     function __construct(k_TemplateFactory $template)

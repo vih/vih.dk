@@ -34,7 +34,7 @@ class VIH_Controller_LangtKursus_Rejser extends k_Component
             $img = new Ilib_Filehandler_ImageRandomizer($filemanager, array($identifier));
             $file = $img->getRandomImage();
         } catch (Exception $e) {
-            return $this->url('/gfx/images/hojskole.jpg');
+            return $this->url('/gfx/images/højskole.jpg');
         }
 
         $instance = $file->createInstance('small');

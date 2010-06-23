@@ -1,7 +1,12 @@
 <?php
 /**
+<<<<<<< HEAD:src/VIH/Controller/KortKursus/Tilmelding/Kvittering.php
  * Denne side skal skrive en kvittering til kunden og sende en e-mailbekræftelse
  * på alt kunden har lavet i tilmeldingssystemet.
+=======
+ * Denne side skal skrive en kvittering til kunden og sende en e-mailbekrï¿½ftelse
+ * pï¿½ alt kunden har lavet i tilmeldingssystemet.
+>>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Tilmelding/Kvittering.php
  *
  * @author Lars Olesen <lars@legestue.net>
  */

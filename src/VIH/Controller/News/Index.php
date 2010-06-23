@@ -17,7 +17,7 @@ class VIH_Controller_News_Index extends k_Component
     {
         $title               = 'Nyheder';
         $meta['description'] = 'Her finder du de seneste nyheder fra Vejle Idrætshøjskole.';
-        $meta['keywords']    = 'Vejle, Idrætshøjskole, nyheder, sidste, nyt';
+        $meta['keywords']    = 'Vejle, Idrætsøjskole, nyheder, sidste, nyt';
 
         $this->document->setTitle($title);
         $this->document->addCrumb($this->name(), $this->url());
@@ -68,16 +68,16 @@ class VIH_Controller_News_Index extends k_Component
             $items[$i]['title'] = strip_tags($n->get('overskrift'));
             $items[$i]['description'] = strip_tags($n->get('teaser'));
             $items[$i]['pubDate'] = $n->get('date_rfc822');
-            $items[$i]['author'] = htmlspecialchars('Vejle Idr�tsh�jskole <kontor@vih.dk>');
+            $items[$i]['author'] = htmlspecialchars('Vejle Idrætshøjskole <kontor@vih.dk>');
             $items[$i]['link'] = 'http://vih.dk/nyheder/' . $n->get('id') . '/';
             $i++;
         endforeach;
 
         $data = array(
-            'title' => 'Nyheder fra Vejle Idr�tsh�jskole',
+            'title' => 'Nyheder fra Vejle Idrætshøjskole',
             'link' => 'http://vih.dk/',
             'language' => 'da',
-            'description' => 'De seneste nyheder fra Vejle Idr�tsh�jskole',
+            'description' => 'De seneste nyheder fra Vejle Idrætshøjskole',
             'docs' => 'http://vih.dk/rss/',
             'items' => $items);
 

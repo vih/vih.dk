@@ -1,15 +1,12 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Controller_Fag_Pakker_Boldspil extends k_Component
 {
     public $i18n = array(
-        'Idræt A' => 'Fodbold',
-        'Idræt B' => 'Volley',
+        'IdrÃ¦t A' => 'Fodbold',
+        'IdrÃ¦t B' => 'Volley',
         'Linje' => 'Mental challenge',
-        'Idrætsfag' => 'Floorball',
-        'Diskussion' => 'Det gælder livet'
+        'IdrÃƒÂ¦tsfag' => 'Floorball',
+        'Diskussion' => 'Det gÃ¦lder livet'
     );
 
     protected $template;
@@ -19,11 +16,11 @@ class VIH_Controller_Fag_Pakker_Boldspil extends k_Component
         $this->template = $template;
     }
 
-    function GET()
+    function renderHtml()
     {
-        $this->document->setTitle('Boldspil på Vejle Idrætshøjskole');
-        $this->document->description = 'Du kan sammensætte en fagpakke med boldspil på Vejle Idrætshøjskole. For dig der er til boldspil og højskole.';
-        $this->document->keywords = 'boldspil, højskole, idrætshøjskole';
+        $this->document->setTitle('Boldspil pÃ¥ Vejle IdrÃ¦tshÃ¸jskole');
+        $this->document->description = 'Du kan sammensÃ¦tte en fagpakke med boldspil pÃ¥ Vejle IdrÃ¦tshÃ¸jskole. For dig der er til boldspil og hÃ¸jskole.';
+        $this->document->keywords = 'boldspil, hÃ¸jskole, idrÃ¦tshÃ¸jskole';
 
         $this->document->theme = 'fodbold';
 
@@ -32,7 +29,7 @@ class VIH_Controller_Fag_Pakker_Boldspil extends k_Component
         $tpl = $this->template->create('Fag/pakke');
         $data = array(
             'pakke' => 'Boldspil',
-            'beskrivelse' => 'For dig der er interesseret i boldspil. Du får mulighed for at prøve en lang række forskellige boldspil. Nogen kan du have i mange timer om ugen, mens du kan have andre fag i kortere perioder. Du får bedre teknik og en øget taktiske forståelse, og du vil komme til at afprøve dig selv som træner.');
+            'beskrivelse' => 'For dig der er interesseret i boldspil. Du fÃ¥r mulighed for at prÃ¸ve en lang rÃ¦kke forskellige boldspil. Nogen kan du have i mange timer om ugen, mens du kan have andre fag i kortere perioder. Du fÃ¥r bedre teknik og en Ã¸get taktisk forstÃ¥else, og du vil komme til at afprÃ¸ve dig selv som trÃ¦ner.');
 
         return $tpl->render($this, $data);
     }

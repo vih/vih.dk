@@ -36,7 +36,7 @@ class VIH_Controller_Info_Index extends k_Component
         $this->document->widepicture = $this->url('/gfx/images/hojskole.jpg');
 
         $data = array('content' => '
-            <h1>Vi tror p�...</h1>
+            <h1>Vi tror på...</h1>
 
             <blockquote>
                 <p>...at sociale kompetencer er alt afgørende for voksenlivets karrierer. Et godt liv handler om at kunne engagere og involvere sig i andre mennesker - i arbejdsrelationer såvel som private.</p>

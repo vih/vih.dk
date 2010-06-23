@@ -1,7 +1,4 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Controller_Ansat_Index extends k_Component
 {
     protected $template;
@@ -13,9 +10,9 @@ class VIH_Controller_Ansat_Index extends k_Component
 
     function renderHtml()
     {
-        $title = 'Lærerkræfter';
-        $meta['description'] = 'Lærerteamet på Vejle Idrætshøjskole er et stærkt team';
-        $meta['keywords'] = 'vejle, idrætshøjskole, lærere, undervisere, e-mail, e-post, email, epost, kontakt';
+        $title = 'LÃ¦rerkrÃ¦fter';
+        $meta['description'] = 'LÃ¦rerteamet pÃ¥ Vejle IdrÃ¦tshÃ¸jskole er et stÃ¦rkt team';
+        $meta['keywords'] = 'vejle, idrÃ¦tshÃ¸jskole, lÃ¦rere, undervisere, e-mail, e-post, email, epost, kontakt';
 
         $this->document->setTitle($title);
         $this->document->meta = $meta;
@@ -25,8 +22,8 @@ class VIH_Controller_Ansat_Index extends k_Component
 
         $data = array('content' => '
             <h1>Holdning til sig selv og sin sport</h1>
-            <p>En skole bliver aldrig bedre end de lærerkræfter, der dagligt skal sikre en inspirerende og udviklende undervisning. Vi er derfor meget bevidste om, at vi skal kunne tiltrække og fastholde nogle af de dygtigste kapaciteter på de forskellige fagområder. Men det er ikke tilstrækkeligt kun med faglige kompetencer. Vejle Idrætshøjskoles slutprodukt er personlig udvikling, og derfor skal de menneskelige kompetencer også være i top. Vi er et lærekollegium, der skal dele målsætning, og det både indenfor og udenfor banen. For kun herved kan vi fastholde vores position som en af Danmarks førende idrætshøjskoler.</p>',
-                      'content_sub' => '<h2>Lær vores lærerteam nærmere at kende:</h2>' . $this->getTeacherList());
+            <p>En skole bliver aldrig bedre end de lÃ¦rerkrÃ¦fter, der dagligt skal sikre en inspirerende og udviklende undervisning. Vi er derfor meget bevidste om, at vi skal kunne tiltrÃ¦kke og fastholde nogle af de dygtigste kapaciteter pÃ¥ de forskellige fagomrÃ¥der. Men det er ikke tilstrÃ¦kkeligt kun med faglige kompetencer. Vejle IdrÃ¦tshÃ¸jskoles slutprodukt er personlig udvikling, og derfor skal de menneskelige kompetencer ogsÃ¥ vÃ¦re i top. Vi er et lÃ¦rekollegium, der skal dele mÃ¥lsÃ¦tning, og det bÃ¥de indenfor og udenfor banen. For kun herved kan vi fastholde vores position som en af Danmarks fÃ¸rende idrÃ¦tshÃ¸jskoler.</p>',
+                      'content_sub' => '<h2>LÃ¦r vores lÃ¦rerteam nÃ¦rmere at kende:</h2>' . $this->getTeacherList());
 
         $tpl = $this->template->create('sidebar-wrapper');
         return $tpl->render($this, $data);
@@ -34,7 +31,7 @@ class VIH_Controller_Ansat_Index extends k_Component
 
     function getTeacherList()
     {
-        $data = array('undervisere' => VIH_Model_Ansat::getList('lærere'));
+        $data = array('undervisere' => VIH_Model_Ansat::getList('lÃ¦rere'));
         $tpl = $this->template->create('Ansat/undervisere');
         return $tpl->render($this, $data);
     }

@@ -14,7 +14,7 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
     public function __construct($tilmelding, $id = 0)
     {
         if (!is_object($tilmelding)) {
-            throw new Exception('Deltager kræver en tilmelding');
+            throw new Exception('Deltager krÃ¦ver en tilmelding');
         }
         $this->tilmelding = $tilmelding;
         $this->id = (int)$id;
@@ -97,7 +97,7 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
 
         // vi skal have gemt nogle deltageroplysninger
 
-        //Fælles oplysninger
+        //FÃ¦lles oplysninger
         $oplysning = new VIH_Model_KortKursus_Tilmelding_DeltagerOplysning($this);
         $oplysning->save('sambo', $var['sambo']);
 
@@ -173,7 +173,7 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
         $this->value['birthday'] = $this->getBirthday($this->value['cpr']);
         $this->value['indkvartering_key'] = $db->f('indkvartering_key');
 
-        //Fælles oplysninger
+        //FÃ¦lles oplysninger
         $oplysning = new VIH_Model_KortKursus_Tilmelding_DeltagerOplysning($this);
         $this->value['sambo'] = $oplysning->get('sambo');
 
@@ -229,8 +229,8 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
     {
         $month = substr($cpr,2,2);
         $day = substr($cpr,0,2);
-        $year_last_two_digits = substr($cpr,4,2); // to sidste i årstallet taget fra cprnummeret
-        $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits; // trækker en fra aktuelle år
+        $year_last_two_digits = substr($cpr,4,2); // to sidste i ï¿½rstallet taget fra cprnummeret
+        $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits; // trï¿½kker en fra aktuelle ï¿½r
         if ($testyear < date('Y') AND (date('Y') - $testyear) < 100) {
             $year = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits;
         } else {

@@ -55,7 +55,7 @@ class VIH_Controller_Index extends k_Component
     {
         $tpl = $this->template->create('News/sidebar-featured');
 
-        $data = array('nyheder' => $tpl->render($this, array('nyheder' => VIH_News::getList('', 1, 'H�j'))),
+        $data = array('nyheder' => $tpl->render($this, array('nyheder' => VIH_News::getList('', 1, 'Hï¿½j'))),
                       'kurser' => VIH_Model_LangtKursus::getNext());
 
         $tpl = $this->template->create('frontpage-sidebar');

@@ -92,7 +92,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
                     	'enevaerelse['.$i.']' => true,
                         'sambo['.$i.']' => $deltager->get('sambo')));
                     break;
-                case 'højskole og kursuscenter':
+                case 'hojskole og kursuscenter':
                     $this->form->addElement('radio', 'værelse['.$i.']', 'Indkvartering', 'Enkeltværelse (bad og toilet deles med en anden)', 'enkelt', 'id="værelse_1"');
                     $this->form->addElement('radio', 'værelse['.$i.']', '', 'Dobbeltværelse', 'dobbelt', 'id="værelse_2"');
                     $this->form->addElement('radio', 'værelse['.$i.']', '', 'Plads i rum til 3 personer', '3-personers', 'id="værelse_3"');

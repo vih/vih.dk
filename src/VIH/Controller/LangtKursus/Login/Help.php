@@ -21,7 +21,7 @@ class VIH_Controller_LangtKursus_Login_Help extends k_Component
 
         $tpl = $this->template->create('Tilmelding/betaling');
         return '
-            <h1>Hj�lp</h1>
+            <h1>Hjælp</h1>
         ' . $tpl->render('VIH/View/tilmelding/betaling-tpl.php', $data);
     }
 }

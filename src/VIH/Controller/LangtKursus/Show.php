@@ -37,9 +37,9 @@ class VIH_Controller_LangtKursus_Show extends k_Component
 
         $ansat = new VIH_Model_Ansat($kursus->get('ansat_id'));
         if ($ansat->get('id')) {
-            $sprg_link = '<a href="'.$this->url('/underviser/' . $kursus->get('ansat_id')) . '">'.$ansat->get('navn').' svarer p� sp�rgsm�l</a>';
+            $sprg_link = '<a href="'.$this->url('/underviser/' . $kursus->get('ansat_id')) . '">'.$ansat->get('navn').' svarer på spørgsmål</a>';
         } else {
-            $sprg_link = '<a href="'.$this->url('/kontakt/') . '">Kontoret</a> svarer gerne p� sp�rgsm�l om kurset';
+            $sprg_link = '<a href="'.$this->url('/kontakt/') . '">Kontoret</a> svarer gerne på spørgsmål om kurset';
         }
 
         $pictures = $kursus->getPictures();
@@ -160,12 +160,12 @@ class VIH_Controller_LangtKursus_Show extends k_Component
             <ul>
                 <li>'.$sprg_link.'</li>
                 <li><a href="'.$this->url('tilmelding') . '">Tilmeld dig</a></li>
-                <li><a href="'.$this->url('../faq') . '">Ofte stillede sp�rgsm�l</a></li>
+                <li><a href="'.$this->url('../faq') . '">Ofte stillede spørgsmål</a></li>
             </ul>
-            <h2>St�ttemuligheder</h2>
+            <h2>Støttemuligheder</h2>
             <ul>
-                <li><a href="'.$this->url('../elevstotte') . '">Individuel elevst�tte</a></li>
-                <li><a href="'.$this->url('../statsstotte') . '">Statsst�tte til s�rlige grupper</a></li>
+                <li><a href="'.$this->url('../elevstøtte') . '">Individuel elevstøtte</a></li>
+                <li><a href="'.$this->url('../statsstøtte') . '">Statsstøtte til særlige grupper</a></li>
             </ul>';
     }
 
@@ -195,12 +195,12 @@ class VIH_Controller_LangtKursus_Show extends k_Component
                     <td>' . number_format($kursus->get('pris_rejsedepositum'), 0, ',', '.').' kroner</td>
                 </tr>
                 <tr>
-                    <th>N�gledepositum</th>
-                    <td>' . number_format($kursus->get('pris_noegledepositum'), 0, ',', '.').' kroner</td>
+                    <th>Nøgledepositum</th>
+                    <td>' . number_format($kursus->get('pris_nøgledepositum'), 0, ',', '.').' kroner</td>
                 </tr>
             </table>
 
-            <p>Ret til �ndringer forbeholdes. Alle skal p� en rejse af kortere varighed, som der opkr�ves et ekstra bel�b til. <a href="'.$this->url('../betalingsbetingelser') . '">L�s betalingsbetingelserne</a> eller mere om <a href="'.$this->url('../okonomi') . '">�konomien</a>.</p>
+            <p>Ret til ændringer forbeholdes. Alle skal på en rejse af kortere varighed, som der opkræves et ekstra beløb til. <a href="'.$this->url('../betalingsbetingelser') . '">Læs betalingsbetingelserne</a> eller mere om <a href="'.$this->url('../okonomi') . '">økonomien</a>.</p>
         ';
     }
 }

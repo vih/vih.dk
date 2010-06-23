@@ -20,7 +20,7 @@ class VIH_Controller_Om_Index extends k_Component
     {
         $title = 'Om hjemmesiden';
         $meta['description'] = 'Oplysninger informationspolitik og informationsstrategi - herunder om aktualitet og opdatering.';
-        $meta['keywords'] = 'aktualitet, opdatering, ophavsret, copyright, bedst p� nettet, stategi, politik, opdateringspolitik, h�ndtering, e-mail';
+        $meta['keywords'] = 'aktualitet, opdatering, ophavsret, copyright, bedst på nettet, stategi, politik, opdateringspolitik, håndtering, e-mail';
 
         $this->document->setTitle($title);
         $this->document->meta = $meta;

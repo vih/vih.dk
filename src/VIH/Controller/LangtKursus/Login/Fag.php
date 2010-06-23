@@ -3,7 +3,7 @@ class VIH_Controller_LangtKursus_Login_Fag extends VIH_Controller_LangtKursus_Ti
 {
     function renderHtml()
     {
-        $this->document->setTitle('V�lg fag');
+        $this->document->setTitle('Vælg fag');
 
         return parent::renderHtml() .  '<p><a href="'.$this->context->url().'">Tilbage</a></p>';
     }

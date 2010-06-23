@@ -55,7 +55,7 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
                         $mailer->setFrom($this->body('email'), $this->body('navn'));
                         $mailer->setBody($body);
 
-                        // i sommerperiden sendes e-mailen andetsteds hen.
+                        // i sommerperioden sendes e-mailen andetsteds hen.
                         if ((int)$this->body('langekurser') == 1 AND (date('Y-m-d') < date('y').'-06-25' OR date('Y-m-d') > date('y').'-08-01')) {
                             $mailer->addAddress(VIH_KONTAKTANSVARLIG_EMAIL, VIH_KONTAKTANSVARLIG);
                         } elseif ((int)$this->body('kursuscenter') == 1) {
