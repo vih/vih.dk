@@ -47,7 +47,7 @@ class VIH_Controller_Fag_Show extends k_Component
             ' . $this->getUdvidetBeskrivelse($fag) .'</div>',
                       'content_sub' =>
                             $this->getVideo() . '
-            <h2>Sp�rgsm�l?</h2>
+            <h2>SpÃ¸rgsmÃ¥l?</h2>
             ' . $this->getUndervisereHTML($fag->getUndervisere()) . $this->getSubContent($fag->get('identifier')));
 
         $tpl = $this->template->create('sidebar-wrapper');
@@ -86,7 +86,7 @@ class VIH_Controller_Fag_Show extends k_Component
     function getUdvidetBeskrivelse($fag)
     {
         $udvidet_beskrivelse = '';
-        if (!empty($this->GET['show']) AND $this->GET['show'] == 'udvidet') {
+        if ($this->query('show') == 'udvidet') {
             //$udvidet_beskrivelse = $this->getLangeKurserHTML($fag);
             $udvidet_beskrivelse = '';
             if ($fag->get('udvidet_beskrivelse')) {
@@ -161,8 +161,8 @@ class VIH_Controller_Fag_Show extends k_Component
             return '';
         }
         $data = array('kurser' => $fag->getKurser(),
-                      'caption' => $fag->get('navn') . ' er p� f�lgende kurser',
-                      'summary' => 'Oversigt over hvilke lange kurser, du kan f� ' . $fag->get('navn') . ' p�.');
+                      'caption' => $fag->get('navn') . ' er pÃ¥ fÃ¸lgende kurser',
+                      'summary' => 'Oversigt over hvilke lange kurser, du kan fÃ¥ ' . $fag->get('navn') . ' pÃ¥.');
         $tpl = $this->template->create('LangtKursus/kurser');
         return $tpl->render($this, $data);
     }

@@ -1,7 +1,4 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Controller_Facilitet_Index extends k_Component
 {
     protected $template;
@@ -18,7 +15,7 @@ class VIH_Controller_Facilitet_Index extends k_Component
 
     function renderHtml()
     {
-        $title = 'Faciliteter';
+        $title = 'Faciliteter - en dejlig legeplads!';
         $meta['description'] = 'Beskrivelse af alle faciliteterne på Vejle Idrætshøjskole.';
         $meta['keywords'] = 'faciliteter';
 
@@ -26,8 +23,6 @@ class VIH_Controller_Facilitet_Index extends k_Component
         $this->document->addCrumb($this->name(), $this->url());
         $this->document->meta  = $meta;
         $this->document->theme = 'faciliteter';
-
-        // <h1>Faciliteter - en dejlig legeplads!</h1>
 
         $data = array('content' => '
             ' . $this->getVideo(),
@@ -48,7 +43,7 @@ class VIH_Controller_Facilitet_Index extends k_Component
     function getSubContent()
     {
         return '<h2>Bestil en rundvisning</h2>
-            <p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian p� 2929 6387.</p>';
+            <p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian på 2929 6387.</p>';
     }
 
     function getVideo()

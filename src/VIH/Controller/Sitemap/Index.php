@@ -16,7 +16,7 @@ class VIH_Controller_Sitemap_Index
                 <dt><a href="' . $this->url('/') . '">Forside</a></dt>
                 <dd>
                     <dl>
-                        <dt><a href="'.url('/hojskole/') .'">Idr�tsh�jskolen</a></dt>
+                        <dt><a href="'.url('/hojskole/') .'">Idrï¿½tshï¿½jskolen</a></dt>
                         <dd><a href="'.url('/langekurser/') .'">Lange kurser</a></dd>
                         <dd><a href="'.url('/kortekurser/') .'">Korte kurser</a></dd>
                     </dl>

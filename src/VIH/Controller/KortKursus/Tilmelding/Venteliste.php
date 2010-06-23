@@ -15,7 +15,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
             return $this->form;
         }
         $form = new HTML_QuickForm('venteliste', 'POST', $this->url());
-        $form->addElement('header', 'null', 'Hvor mange personer vil du s�tte p� venteliste?');
+        $form->addElement('header', 'null', 'Hvor mange personer vil du sï¿½tte pï¿½ venteliste?');
         $form->addElement('select', 'antal', 'Antal deltagere', array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10));
         $form->addElement('header', null, 'Din personlige oplysninger');
         $form->addElement('text', 'navn', 'Navn');
@@ -64,7 +64,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
             throw new Exception("Ugyldigt kursus");
         }
 
-        $data = array('content' => '<h1>Vil du p� venteliste?</h1><p class="notice">Der er ikke nok ledige pladser p� '.$kursus->get('kursusnavn').'. Vi kan tilbyde dig at komme p� venteliste, hvis du udfylder nedenst�ende kontaktinformationer.</p>' . $this->getForm()->toHTML());
+        $data = array('content' => '<h1>Vil du pï¿½ venteliste?</h1><p class="notice">Der er ikke nok ledige pladser pï¿½ '.$kursus->get('kursusnavn').'. Vi kan tilbyde dig at komme pï¿½ venteliste, hvis du udfylder nedenstï¿½ende kontaktinformationer.</p>' . $this->getForm()->toHTML());
 
         $tpl = $this->template->create('wrapper');
         return $tpl->render($this, $data);
@@ -93,30 +93,30 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
                     }
 
                     $error = "";
-                    $body = "K�re ".$this->body('navn')."\n\nDu er nu skrevet p� venteliste til kurset: ".$venteliste->get("kursusnavn").". Du er pt. nummer ".$number." p� ventelisten. Vi kontakter dig, hvis der bliver ledig plads til dig. �nsker du ikke l�ngere at st� p� ventelisten, m� du meget gerne kontakte os p� telefon 75820811 eller besvare denne e-mail.\n\nMed venlig hilsen\nVejle Idr�tsh�jskole";
+                    $body = "Kï¿½re ".$this->body('navn')."\n\nDu er nu skrevet pï¿½ venteliste til kurset: ".$venteliste->get("kursusnavn").". Du er pt. nummer ".$number." pï¿½ ventelisten. Vi kontakter dig, hvis der bliver ledig plads til dig. ï¿½nsker du ikke lï¿½ngere at stï¿½ pï¿½ ventelisten, mï¿½ du meget gerne kontakte os pï¿½ telefon 75820811 eller besvare denne e-mail.\n\nMed venlig hilsen\nVejle Idrï¿½tshï¿½jskole";
 
                     $mailer = new VIH_Email;
-                    $mailer->setSubject("Opskrivning p� venteliste");
+                    $mailer->setSubject("Opskrivning pï¿½ venteliste");
                     $mailer->addAddress($this->body('email'), $this->body('navn'));
                     $mailer->setBody($body);
 
                     if ($mailer->send()) {
-                        $emailsender = "<p>Du vil om kort tid modtage en e-mail med en bekr�ftelse p� at du er optaget p� ventelisten.</p><p>Med venlig hilsen<br />En venlig e-mail-robot<br />Vejle Idr�tsh�jskole</p>";
+                        $emailsender = "<p>Du vil om kort tid modtage en e-mail med en bekrï¿½ftelse pï¿½ at du er optaget pï¿½ ventelisten.</p><p>Med venlig hilsen<br />En venlig e-mail-robot<br />Vejle Idrï¿½tshï¿½jskole</p>";
                     } else {
-                        //trigger_error("Der er opst�et en fejl i email-senderen i forbindelse med opskrivning p� venteliste. Der er ikke sendt en bekr�ftelse til ".$this->getForm()->exportValue('navn'), E_USER_NOTICE);
-                        $emailsender = "<p>Det var ikke muligt at sende dig en bekr�ftelse p� e-mail p� din optagelse p� venteliste. Har du sp�rgsm�l er du velkommen til at kontakte Vejle Idr�tsh�jskole. Imens tager vi lige en alvorlig snak med webmasteren.</p>";
+                        //trigger_error("Der er opstï¿½et en fejl i email-senderen i forbindelse med opskrivning pï¿½ venteliste. Der er ikke sendt en bekrï¿½ftelse til ".$this->getForm()->exportValue('navn'), E_USER_NOTICE);
+                        $emailsender = "<p>Det var ikke muligt at sende dig en bekrï¿½ftelse pï¿½ e-mail pï¿½ din optagelse pï¿½ venteliste. Har du spï¿½rgsmï¿½l er du velkommen til at kontakte Vejle Idrï¿½tshï¿½jskole. Imens tager vi lige en alvorlig snak med webmasteren.</p>";
                     }
                 }
 
-                $data = array('content' => '<h1>Du er optaget p� ventelisten!</h1><p>Du er nu optaget p� ventelisten til '.$kursus->get('kursusnavn').' med '.$venteliste->get("antal").' deltagere. Du st�r som nummer <strong>'.$number.'</strong> p� ventelisten.</p>'.$emailsender);
+                $data = array('content' => '<h1>Du er optaget pï¿½ ventelisten!</h1><p>Du er nu optaget pï¿½ ventelisten til '.$kursus->get('kursusnavn').' med '.$venteliste->get("antal").' deltagere. Du stï¿½r som nummer <strong>'.$number.'</strong> pï¿½ ventelisten.</p>'.$emailsender);
             } else {
                 $data = array('content' => '
                     <h1>Fejl i indtastning!</h1>
-                    <p>Der er fejl i de indtastede data, g� venligst tilbage og kontroller at de korrekte.</p>');
+                    <p>Der er fejl i de indtastede data, gï¿½ venligst tilbage og kontroller at de korrekte.</p>');
 
             }
         } else {
-            $data = array('content' => '<h1>Vil du p� venteliste?</h1><p>Der var fejl i dine indtastninger.</p>' . $this->getForm()->toHTML());
+            $data = array('content' => '<h1>Vil du pï¿½ venteliste?</h1><p>Der var fejl i dine indtastninger.</p>' . $this->getForm()->toHTML());
         }
 
         $tpl = $this->template->create('wrapper');

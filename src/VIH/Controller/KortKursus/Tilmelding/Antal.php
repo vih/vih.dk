@@ -2,13 +2,13 @@
 /**
  * Tilmeldingssystem til Korte Kurser
  *
- * Denne side starter tilmeldingen op. Til det har vi brug for at vide følgende:
+ * Denne side starter tilmeldingen op. Til det har vi brug for at vide fÃ¸lgende:
  *
- * - kursus vedkommende vil deltage p�
+ * - kursus vedkommende vil deltage pï¿½
  * - antallet af deltagere vedkommende vil tilmelde
  *
- * Man kan b�de tilmelde sig kurser med og uden ledige pladser. Hvis man tilmelder
- * sig et kursus uden ledige pladser skal man kunne komme p� venteliste.
+ * Man kan bï¿½de tilmelde sig kurser med og uden ledige pladser. Hvis man tilmelder
+ * sig et kursus uden ledige pladser skal man kunne komme pï¿½ venteliste.
  *
  * @author Lars Olesen <lars@legestue.net>
  */
@@ -52,9 +52,9 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
             $kursus->getPladser();
             $kursus->getBegyndere();
             if ($kursus->get('pladser_ledige') <= 0):
-                $extra_text = '<p class="alert">Der er ikke flere ledige pladser p� '.$kursus->get('kursusnavn').'. Du kan blive skrevet p� venteliste ved at klikke dig videre i formularen nedenunder, eller du kan v�lge et andet kursus.</p>';
+                $extra_text = '<p class="alert">Der er ikke flere ledige pladser pï¿½ '.$kursus->get('kursusnavn').'. Du kan blive skrevet pï¿½ venteliste ved at klikke dig videre i formularen nedenunder, eller du kan vï¿½lge et andet kursus.</p>';
             elseif ($kursus->get('pladser_begyndere_ledige') <= 0 AND $kursus->get('gruppe_id') == 1): // golf
-                $extra_text = '<p class="alert">Der er ikke flere ledige begynderpladser p� '.$kursus->get('kursusnavn').'.</p>';
+                $extra_text = '<p class="alert">Der er ikke flere ledige begynderpladser pï¿½ '.$kursus->get('kursusnavn').'.</p>';
             endif;
         }
 
@@ -62,8 +62,8 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
 
         $data = array('headline' => 'Tilmelding til korte kurser',
                       'explanation' => $extra_text. '
-            <p>Du kan tilmelde dig de korte kurser ved at udfylde tilmeldingsformularen nedenunder. Du kan se de trin, du skal igennem oppe i �verste h�jre hj�rne. Du kan ogs� ringe til h�jskolen og f� en formular tilsendt med posten.</p>
-            <p class="notice"><strong>Vigtigt:</strong> Du angiver en kontaktperson pr. tilmelding. Det er kun kontaktpersonen, der f�r bekr�ftelser og program. Hvis I er flere, der �nsker at f� post, beder vi jer lave flere tilmeldinger.</p>
+            <p>Du kan tilmelde dig de korte kurser ved at udfylde tilmeldingsformularen nedenunder. Du kan se de trin, du skal igennem oppe i ï¿½verste hï¿½jre hjï¿½rne. Du kan ogsï¿½ ringe til hï¿½jskolen og fï¿½ en formular tilsendt med posten.</p>
+            <p class="notice"><strong>Vigtigt:</strong> Du angiver en kontaktperson pr. tilmelding. Det er kun kontaktpersonen, der fï¿½r bekrï¿½ftelser og program. Hvis I er flere, der ï¿½nsker at fï¿½ post, beder vi jer lave flere tilmeldinger.</p>
         ',
                       'content' => $this->getForm()->toHTML());
 
@@ -99,7 +99,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
                             $deltager->add();
                         }
                     } elseif (count($deltagere) > $tilmelding->get('antal_deltagere')) {
-                        // burde nok lave et tjek p�, om nogle af dem er tomme?
+                        // burde nok lave et tjek pï¿½, om nogle af dem er tomme?
                         for ($i = 1, $max = count($deltagere) - $this->body('antal_deltagere'); $i <= $max; $i++) {
                             $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $deltagere[$i]->get('id'));
                             $deltager->delete();
@@ -129,7 +129,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
         $kursus = new VIH_Model_KortKursus;
         $kurser = $kursus->getList();
 
-        $kursus_list = array('' => 'V�lg');
+        $kursus_list = array('' => 'Vï¿½lg');
         foreach ($kurser AS $kursus) {
             $kursus_id = $kursus->get('id');
             $kursus_navn = $kursus->get('kursusnavn') . ' ('.$kursus->get('pladser_status').')';
@@ -155,11 +155,11 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
         $form->setDefaults($defaults);
 
         $form->applyFilter('__ALL__', 'trim');
-        $form->addRule('kursus_id', 'Du skal v�lge et kursus', 'required');
-        $form->addRule('kursus_id', 'Du skal v�lge et kursus', 'numeric');
-        $form->addRule('antal_deltagere', 'Du skal v�lge hvor mange, du vil have', 'required');
-        $form->addRule('antal_deltagere', 'Deltagerne skal v�re et tal', 'numeric');
-        // $form->addRule('antal_deltagere', 'Du skal v�lge flere end en deltager', 'range', array(1,10));
+        $form->addRule('kursus_id', 'Du skal vï¿½lge et kursus', 'required');
+        $form->addRule('kursus_id', 'Du skal vï¿½lge et kursus', 'numeric');
+        $form->addRule('antal_deltagere', 'Du skal vï¿½lge hvor mange, du vil have', 'required');
+        $form->addRule('antal_deltagere', 'Deltagerne skal vï¿½re et tal', 'numeric');
+        // $form->addRule('antal_deltagere', 'Du skal vï¿½lge flere end en deltager', 'range', array(1,10));
 
         return ($this->form = $form);
     }

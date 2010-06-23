@@ -26,7 +26,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
 
     function GET()
     {
-        $this->document->setTitle('Tilmelding: V�lg fag');
+        $this->document->setTitle('Tilmelding: Vï¿½lg fag');
 
         $tilmelding = $this->getRegistration();
 
@@ -42,7 +42,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
     function postForm()
     {
         if (!$this->validate()) {
-            throw new Exception('Du skal v�lge et af hvert fag');
+            throw new Exception('Du skal vï¿½lge et af hvert fag');
         }
 
         $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->getRegistration()->getId());

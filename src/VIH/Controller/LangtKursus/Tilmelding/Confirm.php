@@ -29,10 +29,10 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
 
         if (!$tilmelding->getId()) {
-            throw new Exception('Du har ikke adgang til at v�re her');
+            throw new Exception('Du har ikke adgang til at vï¿½re her');
         }
 
-        $this->document->setTitle('Bekr�ft reservation af plads');
+        $this->document->setTitle('Bekrï¿½ft reservation af plads');
 
         $data = array('tilmelding' => $tilmelding,
                       'caption' => 'Tilmeldingsoplysninger');
@@ -42,8 +42,8 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
         $tpl = $this->template->create('LangtKursus/Tilmelding/oplysninger');
 
         return '
-            <h1>Bekr�ft reservationen</h1>
-            <p>Nu er du der n�sten. F�rst skal du lige tjekke om oplysningerne er korrekte, og s� skal du lige godkende vores betingelser.</p>
+            <h1>Bekrï¿½ft reservationen</h1>
+            <p>Nu er du der nï¿½sten. Fï¿½rst skal du lige tjekke om oplysningerne er korrekte, og sï¿½ skal du lige godkende vores betingelser.</p>
             ' .
             $tpl->render($this, $data) . $this->getForm()->toHTML();
 
@@ -55,22 +55,22 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
 
         if ($this->getForm()->validate()) {
             if (!$tilmelding->setStatus('tilmeldt')) {
-                throw new Exception('Status kunne ikke s�ttes');
+                throw new Exception('Status kunne ikke sï¿½ttes');
             }
 
             if ($this->body('confirm')) {
                 if (!$tilmelding->confirm()) {
-                    throw new Exception('Tilmelding ' . $tilmelding->getId() . ' kunne ikke bekr�ftes');
+                    throw new Exception('Tilmelding ' . $tilmelding->getId() . ' kunne ikke bekrï¿½ftes');
                 }
                 if ($tilmelding->get('email')) {
                     $historik = new VIH_Model_Historik('langekurser', $tilmelding->get('id'));
                     if (!$tilmelding->sendEmail()) {
-                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekr�ftelse p� onlinetilmelding kunne ikke sendes'))) {
+                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekrï¿½ftelse pï¿½ onlinetilmelding kunne ikke sendes'))) {
                             throw new Exception('Historikken kunne ikke gemmes');
                         }
                         throw new Exception('E-mailen kunne ikke sendes til ordre ' . $tilmelding->getId());
                     } else {
-                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekr�ftelse p� onlinetilmelding'))) {
+                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekrï¿½ftelse pï¿½ onlinetilmelding'))) {
                             throw new Exception('Historikken kunne ikke gemmes');
                         }
                     }

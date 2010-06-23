@@ -10,24 +10,24 @@ class VIH_Controller_Hojskole_Index extends k_Component
 
     function GET()
     {
-        $title = 'H�jskole i Vejle - den bedste af alle h�jskoler';
-        $meta['description'] = 'H�jskole og h�jskoler: Vejle Idr�tsh�jskole tilbyder forskellige h�jskolekurser. Vi er en h�jskole med idr�tten som samlingspunkt.';
-        $meta['keywords'] = 'h�jskole, h�jskoler, idr�tsh�jskoler';
+        $title = 'Hï¿½jskole i Vejle - den bedste af alle hï¿½jskoler';
+        $meta['description'] = 'Hï¿½jskole og hï¿½jskoler: Vejle Idrï¿½tshï¿½jskole tilbyder forskellige hï¿½jskolekurser. Vi er en hï¿½jskole med idrï¿½tten som samlingspunkt.';
+        $meta['keywords'] = 'hï¿½jskole, hï¿½jskoler, idrï¿½tshï¿½jskoler';
 
         $this->document->setTitle($title);
         $this->document->meta = $meta;
 
         return '
-        <h1>Vilde med idr�t og h�jskole</h1>
-        <p><a href="http://vih.dk/">Vejle Idr�tsh�jskole</a> er en af Danmarks mange h�jskoler. Du kan l�se mere om de forskellige h�jskoler p� <a href="http://www.hojskolerne.dk/">hojskolerne.dk</a> eller p� <a href="http://da.wikipedia.org/wiki/Folkeh%C3%B8jskole">Wikipedia</a>.</p>
-        <h2>Hvad er en h�jskole?</h2>
-        <p>En h�jskole er mange ting. F�lles for alle h�jskoler er h�jskolelivet, som er kendetegnet ved at man undervises p� skolen, spiser p� skolen, sover p� skolen og i det hele taget lever livet p� skolen.</p>
-        <h2>Hvor mange h�jskoler findes?</h2>
-        <p>Der findes mange h�jskoler i Danmark. Den seneste opdaterede liste finder du p� <a href="http://www.folkehojskoler.dk/">folkehojskoler.dk</a>.</p>
-        <h2>Hvad er en idr�tsh�jskole?</h2>
-        <p>Det er en h�jskole, der har idr�t som s�rinteresse.</p>
-        <h2>Hvor mange idr�tsh�jskoler findes der?</h2>
-        <p>Der findes ikke s� mange h�jskoler, hvor idr�tten er det centrale. Hvis du vil se en liste over alle idr�tsh�jskoler i Danmark, kan du klikke forbi <a href="http://www.folkehojskoler.dk/">folkehojskoler.dk</a></p>
+        <h1>Vilde med idrï¿½t og hï¿½jskole</h1>
+        <p><a href="http://vih.dk/">Vejle Idrï¿½tshï¿½jskole</a> er en af Danmarks mange hï¿½jskoler. Du kan lï¿½se mere om de forskellige hï¿½jskoler pï¿½ <a href="http://www.hojskolerne.dk/">hojskolerne.dk</a> eller pï¿½ <a href="http://da.wikipedia.org/wiki/Folkeh%C3%B8jskole">Wikipedia</a>.</p>
+        <h2>Hvad er en hï¿½jskole?</h2>
+        <p>En hï¿½jskole er mange ting. Fï¿½lles for alle hï¿½jskoler er hï¿½jskolelivet, som er kendetegnet ved at man undervises pï¿½ skolen, spiser pï¿½ skolen, sover pï¿½ skolen og i det hele taget lever livet pï¿½ skolen.</p>
+        <h2>Hvor mange hï¿½jskoler findes?</h2>
+        <p>Der findes mange hï¿½jskoler i Danmark. Den seneste opdaterede liste finder du pï¿½ <a href="http://www.folkehojskoler.dk/">folkehojskoler.dk</a>.</p>
+        <h2>Hvad er en idrï¿½tshï¿½jskole?</h2>
+        <p>Det er en hï¿½jskole, der har idrï¿½t som sï¿½rinteresse.</p>
+        <h2>Hvor mange idrï¿½tshï¿½jskoler findes der?</h2>
+        <p>Der findes ikke sï¿½ mange hï¿½jskoler, hvor idrï¿½tten er det centrale. Hvis du vil se en liste over alle idrï¿½tshï¿½jskoler i Danmark, kan du klikke forbi <a href="http://www.folkehojskoler.dk/">folkehojskoler.dk</a></p>
         ';
     }
 }

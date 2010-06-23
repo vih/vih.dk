@@ -48,72 +48,72 @@ class VIH_Controller_KortKursus_Index extends k_Component
         $kurser = VIH_Model_KortKursus::getList('open', $name); // array with the courses
         switch ($name) {
             case 'golf':
-                $title = 'H�jskole og golf - tag p� golfh�jskole p� Vejle Idr�tsh�jskole';
-                $meta['description'] = 'Golfkurser: Golfkursus p� Vejle Idr�tsh�jskole krydrer din passion for golf med debat og foredrag p� h�jskole. Golfh�jskole henvender sig til spillere p� flere niveauer: lige fra begynderen til den mere �vede.';
-                $meta['keywords'] = 'golf, h�jskole, h�jskolegolf, golfh�jskole, idr�tsh�jskole, golfkursus, kursus, golfkurser';
-                $table_data = array('summary' => 'Golfkurser: Oversigt over de aktuelle golfkurser p� Vejle Idr�tsh�jskole. Kig her hvis du vil p� golfkursus.',
-                                    'caption' => 'H�jskole og golf - tag et kursus i golf',
+                $title = 'Hï¿½jskole og golf - tag pï¿½ golfhï¿½jskole pï¿½ Vejle Idrï¿½tshï¿½jskole';
+                $meta['description'] = 'Golfkurser: Golfkursus pï¿½ Vejle Idrï¿½tshï¿½jskole krydrer din passion for golf med debat og foredrag pï¿½ hï¿½jskole. Golfhï¿½jskole henvender sig til spillere pï¿½ flere niveauer: lige fra begynderen til den mere ï¿½vede.';
+                $meta['keywords'] = 'golf, hï¿½jskole, hï¿½jskolegolf, golfhï¿½jskole, idrï¿½tshï¿½jskole, golfkursus, kursus, golfkurser';
+                $table_data = array('summary' => 'Golfkurser: Oversigt over de aktuelle golfkurser pï¿½ Vejle Idrï¿½tshï¿½jskole. Kig her hvis du vil pï¿½ golfkursus.',
+                                    'caption' => 'Hï¿½jskole og golf - tag et kursus i golf',
                                     'kurser' => $kurser);
-                $content_data = array('headline' => 'H�jskole og golf - golfh�jskole',
-                                      'text' => 'Vi forst�r din passion for golf - og din lyst til at tage p� golfh�jskole. Det er et dejligt spil, og hvad kan v�re bedre end at have en uge p� h�jskole, hvor du har tid og rum til at �ve dig, s� banen i par kommer endnu t�ttere p�. Kurserne henvender sig til spillere p� flere niveauer: lige fra begynderen til den mere �vede. Du kan stille dine sp�rgsm�l til kursuslederne af det golfkursus, du er interesseret i.');
+                $content_data = array('headline' => 'Hï¿½jskole og golf - golfhï¿½jskole',
+                                      'text' => 'Vi forstï¿½r din passion for golf - og din lyst til at tage pï¿½ golfhï¿½jskole. Det er et dejligt spil, og hvad kan vï¿½re bedre end at have en uge pï¿½ hï¿½jskole, hvor du har tid og rum til at ï¿½ve dig, sï¿½ banen i par kommer endnu tï¿½ttere pï¿½. Kurserne henvender sig til spillere pï¿½ flere niveauer: lige fra begynderen til den mere ï¿½vede. Du kan stille dine spï¿½rgsmï¿½l til kursuslederne af det golfkursus, du er interesseret i.');
                 $news_data = array('nyheder' => VIH_News::getList(1));
                 $this->document->theme = 'golf';
                 break;
             case 'sommerhojskole':
-                $title = 'Sommerh�jskole og sommerkurser - tag p� h�jskole til sommer';
-                $meta['description'] = 'Sommerh�jskole og sommerkurser: Tag p� sommerkursus p� h�jskole i l�bet af sommeren. Vi har b�de kurser til familier eller voksne.';
-                $meta['keywords'] = 'sommerh�jskole, kurser, sommerkursus, sommerkurser, sommer, h�jskole';
-                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser p� Vejle Idr�tsh�jskole - h�jskole til sommer, sommerh�jskole',
-                                    'caption' => 'Sommerh�jskole - sommerkurser',
+                $title = 'Sommerhï¿½jskole og sommerkurser - tag pï¿½ hï¿½jskole til sommer';
+                $meta['description'] = 'Sommerhï¿½jskole og sommerkurser: Tag pï¿½ sommerkursus pï¿½ hï¿½jskole i lï¿½bet af sommeren. Vi har bï¿½de kurser til familier eller voksne.';
+                $meta['keywords'] = 'sommerhï¿½jskole, kurser, sommerkursus, sommerkurser, sommer, hï¿½jskole';
+                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser pï¿½ Vejle Idrï¿½tshï¿½jskole - hï¿½jskole til sommer, sommerhï¿½jskole',
+                                    'caption' => 'Sommerhï¿½jskole - sommerkurser',
                                     'kurser' => $kurser);
-                $content_data = array('headline' => 'Sommerh�jskole p� Vejle Idr�tsh�jskole',
-                                     'text' => 'Tag p� h�jskole til sommer og f� en stor oplevelse. At tage p� sommerh�jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart p�, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges p� h�jskole - og vi har en masse sommerkurser at v�lge mellem:');
+                $content_data = array('headline' => 'Sommerhï¿½jskole pï¿½ Vejle Idrï¿½tshï¿½jskole',
+                                     'text' => 'Tag pï¿½ hï¿½jskole til sommer og fï¿½ en stor oplevelse. At tage pï¿½ sommerhï¿½jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart pï¿½, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges pï¿½ hï¿½jskole - og vi har en masse sommerkurser at vï¿½lge mellem:');
                 $news_data = array('nyheder' => VIH_News::getList(1));
                 $this->document->theme = 'familiekursus';
                 break;
             case 'camp':
-                $title = 'Idr�tsCamp - tag p� h�jskole til sommer';
-                $meta['description'] = 'Sommerh�jskole og sommerkurser: Tag p� Idr�tsCamp p� h�jskole i l�bet af sommeren. Vi har b�de kurser til familier eller voksne.';
-                $meta['keywords'] = 'sommerh�jskole, kurser, sommerkursus, sommerkurser, sommer, h�jskole';
-                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser p� Vejle Idr�tsh�jskole - h�jskole til sommer, sommerh�jskole, idr�tscamp',
-                                    'caption' => 'Sommerh�jskole - sommerkurser',
+                $title = 'Idrï¿½tsCamp - tag pï¿½ hï¿½jskole til sommer';
+                $meta['description'] = 'Sommerhï¿½jskole og sommerkurser: Tag pï¿½ Idrï¿½tsCamp pï¿½ hï¿½jskole i lï¿½bet af sommeren. Vi har bï¿½de kurser til familier eller voksne.';
+                $meta['keywords'] = 'sommerhï¿½jskole, kurser, sommerkursus, sommerkurser, sommer, hï¿½jskole';
+                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser pï¿½ Vejle Idrï¿½tshï¿½jskole - hï¿½jskole til sommer, sommerhï¿½jskole, idrï¿½tscamp',
+                                    'caption' => 'Sommerhï¿½jskole - sommerkurser',
                                     'kurser' => $kurser);
-                $content_data = array('headline' => 'Idr�tsCamp p� Vejle Idr�tsh�jskole',
-                                     'text' => 'Tag p� h�jskole til sommer og f� en stor oplevelse. At tage p� sommerh�jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart p�, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges p� h�jskole - og vi har en masse sommerkurser at v�lge mellem:');
+                $content_data = array('headline' => 'Idrï¿½tsCamp pï¿½ Vejle Idrï¿½tshï¿½jskole',
+                                     'text' => 'Tag pï¿½ hï¿½jskole til sommer og fï¿½ en stor oplevelse. At tage pï¿½ sommerhï¿½jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart pï¿½, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges pï¿½ hï¿½jskole - og vi har en masse sommerkurser at vï¿½lge mellem:');
                 $news_data = array('nyheder' => VIH_News::getList(7));
                 $this->document->theme = 'camp';
                 break;
             case 'familiekursus':
-                $title = 'Familiekursus - tag p� h�jskole til sommer';
-                $meta['description'] = 'Sommerh�jskole og sommerkurser: Tag p� Idr�tsCamp p� h�jskole i l�bet af sommeren. Vi har b�de kurser til familier eller voksne.';
-                $meta['keywords'] = 'sommerh�jskole, kurser, sommerkursus, sommerkurser, sommer, h�jskole';
-                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser p� Vejle Idr�tsh�jskole - h�jskole til sommer, sommerh�jskole, idr�tscamp',
-                                    'caption' => 'Sommerh�jskole - sommerkurser',
+                $title = 'Familiekursus - tag pï¿½ hï¿½jskole til sommer';
+                $meta['description'] = 'Sommerhï¿½jskole og sommerkurser: Tag pï¿½ Idrï¿½tsCamp pï¿½ hï¿½jskole i lï¿½bet af sommeren. Vi har bï¿½de kurser til familier eller voksne.';
+                $meta['keywords'] = 'sommerhï¿½jskole, kurser, sommerkursus, sommerkurser, sommer, hï¿½jskole';
+                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser pï¿½ Vejle Idrï¿½tshï¿½jskole - hï¿½jskole til sommer, sommerhï¿½jskole, idrï¿½tscamp',
+                                    'caption' => 'Sommerhï¿½jskole - sommerkurser',
                                     'kurser' => $kurser);
-                $content_data = array('headline' => 'Familiekursus p� Vejle Idr�tsh�jskole',
-                                     'text' => 'Tag p� h�jskole til sommer og f� en stor oplevelse. At tage p� sommerh�jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart p�, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges p� h�jskole - og vi har en masse sommerkurser at v�lge mellem:');
+                $content_data = array('headline' => 'Familiekursus pï¿½ Vejle Idrï¿½tshï¿½jskole',
+                                     'text' => 'Tag pï¿½ hï¿½jskole til sommer og fï¿½ en stor oplevelse. At tage pï¿½ sommerhï¿½jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart pï¿½, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges pï¿½ hï¿½jskole - og vi har en masse sommerkurser at vï¿½lge mellem:');
                 $news_data = array('nyheder' => VIH_News::getList(7));
                 $this->document->theme = 'camp';
                 break;
              case 'cykel':
-                $title = 'Cykel & H�jskole - tag p� h�jskole til sommer';
-                $meta['description'] = 'Sommerh�jskole og sommerkurser: Tag p� Idr�tsCamp p� h�jskole i l�bet af sommeren. Vi har b�de kurser til familier eller voksne.';
-                $meta['keywords'] = 'sommerh�jskole, kurser, sommerkursus, sommerkurser, sommer, h�jskole';
-                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser p� Vejle Idr�tsh�jskole - h�jskole til sommer, sommerh�jskole, idr�tscamp',
-                                    'caption' => 'Sommerh�jskole - sommerkurser',
+                $title = 'Cykel & Hï¿½jskole - tag pï¿½ hï¿½jskole til sommer';
+                $meta['description'] = 'Sommerhï¿½jskole og sommerkurser: Tag pï¿½ Idrï¿½tsCamp pï¿½ hï¿½jskole i lï¿½bet af sommeren. Vi har bï¿½de kurser til familier eller voksne.';
+                $meta['keywords'] = 'sommerhï¿½jskole, kurser, sommerkursus, sommerkurser, sommer, hï¿½jskole';
+                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser pï¿½ Vejle Idrï¿½tshï¿½jskole - hï¿½jskole til sommer, sommerhï¿½jskole, idrï¿½tscamp',
+                                    'caption' => 'Sommerhï¿½jskole - sommerkurser',
                                     'kurser' => $kurser);
-                $content_data = array('headline' => 'Cykel & H�jskole p� Vejle Idr�tsh�jskole',
-                                     'text' => 'Tag p� h�jskole til sommer og f� en stor oplevelse. At tage p� sommerh�jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart p�, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges p� h�jskole - og vi har en masse sommerkurser at v�lge mellem:');
+                $content_data = array('headline' => 'Cykel & Hï¿½jskole pï¿½ Vejle Idrï¿½tshï¿½jskole',
+                                     'text' => 'Tag pï¿½ hï¿½jskole til sommer og fï¿½ en stor oplevelse. At tage pï¿½ sommerhï¿½jskole er giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart pï¿½, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges pï¿½ hï¿½jskole - og vi har en masse sommerkurser at vï¿½lge mellem:');
                 $news_data = array('nyheder' => VIH_News::getList(8));
                 $this->document->theme = 'cykel';
                 break;
             default:
-                $title = 'Korte kurser og sommerkurser p� h�jskole - h�jskolekurser';
-                $meta['description'] = 'Korte kurser og sommerkurser p� Vejle Idr�tsh�jskole. Brug din ferie p� h�jskole. Vi har masser af h�jskolekurser at v�lge mellem.';
-                $meta['keywords'] = 'h�jskole, idr�tsh�jskole, sommerkurser, sommerkursus, h�jskolekurser, korte kurser, sommerh�jskole';
+                $title = 'Korte kurser og sommerkurser pï¿½ hï¿½jskole - hï¿½jskolekurser';
+                $meta['description'] = 'Korte kurser og sommerkurser pï¿½ Vejle Idrï¿½tshï¿½jskole. Brug din ferie pï¿½ hï¿½jskole. Vi har masser af hï¿½jskolekurser at vï¿½lge mellem.';
+                $meta['keywords'] = 'hï¿½jskole, idrï¿½tshï¿½jskole, sommerkurser, sommerkursus, hï¿½jskolekurser, korte kurser, sommerhï¿½jskole';
                 $content_data = array('headline' => 'Korte kurser',
-                                      'text' => 'Vi arrangerer hele �ret korte h�jskolekurser. Vi har voksenkurser, familiekurser og kurser for <a href="'.$this->url('/kortekurser/golf/').'">golfentusiaster</a>. Du sparker til livet gennem legen og fordybelsen, diskussionerne og festlighederne. Hvis du har sp�rgsm�l om kurserne, er du meget velkommen til at ringe til skolen eller kursuslederne for de enkelte kurser.');
-                $table_data = array('summary' => 'Oversigt over de aktuelle korte kurser p� Vejle Idr�tsh�jskole - h�jskolekurser',
+                                      'text' => 'Vi arrangerer hele ï¿½ret korte hï¿½jskolekurser. Vi har voksenkurser, familiekurser og kurser for <a href="'.$this->url('/kortekurser/golf/').'">golfentusiaster</a>. Du sparker til livet gennem legen og fordybelsen, diskussionerne og festlighederne. Hvis du har spï¿½rgsmï¿½l om kurserne, er du meget velkommen til at ringe til skolen eller kursuslederne for de enkelte kurser.');
+                $table_data = array('summary' => 'Oversigt over de aktuelle korte kurser pï¿½ Vejle Idrï¿½tshï¿½jskole - hï¿½jskolekurser',
                                     'caption' => 'Oversigt over aktuelle korte kurser',
                                     'kurser' => VIH_Model_KortKursus::getList());
                 $news_data = array('nyheder' => VIH_News::getList(1));
@@ -147,7 +147,7 @@ class VIH_Controller_KortKursus_Index extends k_Component
         $content = $tpl->render($this, $data);
 
         $data = array('headline' => 'Praktiske oplysninger',
-                      'text' => '<a href="'.$this->url('./praktiskeoplysninger').'">L�s om de praktiske oplysninger</a>.');
+                      'text' => '<a href="'.$this->url('./praktiskeoplysninger').'">Lï¿½s om de praktiske oplysninger</a>.');
         $content .= $tpl->render($this, $data);
 
         return $content;
@@ -202,16 +202,16 @@ class VIH_Controller_KortKursus_Index extends k_Component
             $items[$i]['title']       = $kursus->get('kursusnavn');
             $items[$i]['description'] = $kursus->get('description');
             $items[$i]['pubDate']     = $kursus->get('date_updated_rfc822');
-            $items[$i]['author']      = htmlspecialchars('Vejle Idr�tsh�jskole <kontor@vih.dk>');
+            $items[$i]['author']      = htmlspecialchars('Vejle Idrï¿½tshï¿½jskole <kontor@vih.dk>');
             $items[$i]['link']        = 'http://vih.dk/kortekurser/' . $kursus->get('id') . '/';
             $i++;
         endforeach;
 
         $data = array(
-            'title'       => 'Korte kurser p� Vejle Idr�tsh�jskole',
+            'title'       => 'Korte kurser pï¿½ Vejle Idrï¿½tshï¿½jskole',
             'link'        => 'http://vih.dk/',
             'language'    => 'da',
-            'description' => 'Kursusoversigten over korte kurser p� Vejle Idr�tsh�jskole',
+            'description' => 'Kursusoversigten over korte kurser pï¿½ Vejle Idrï¿½tshï¿½jskole',
             'docs'        => 'http://vih.dk/rss/',
             'items'       => $items
         );

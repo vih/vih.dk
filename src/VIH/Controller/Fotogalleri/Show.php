@@ -63,7 +63,7 @@ class VIH_Controller_Fotogalleri_Show extends k_Component
 
             $list = array('photo' => $photo, 'previous' => $previous, 'next' => $next, 'list' => $this->context->url(NULL));
 
-            $this->document->setTitle('ï¿½rets hï¿½jdepunkter');
+            $this->document->setTitle('Årets højdepunkter');
             $this->document->theme = 'photogallery';
 
             $tpl = $this->template->create('sidebar-wrapper');

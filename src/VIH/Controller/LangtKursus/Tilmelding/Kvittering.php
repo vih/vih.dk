@@ -15,7 +15,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Kvittering extends k_Component
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
 
         if (!$tilmelding->getId()) {
-            throw new Exception('Du har ikke adgang til at v�re her');
+            throw new Exception('Du har ikke adgang til at vï¿½re her');
         }
 
         $tilmelding->getPriserFromKursus();
@@ -26,9 +26,9 @@ class VIH_Controller_LangtKursus_Tilmelding_Kvittering extends k_Component
             <h2>Betaling</h2>
         ' . $this->getBetaling($tilmelding). '
             <h2>Program og yderligere oplysninger</h2>
-            <p>Vi sender flere oplysninger til dig, inden kurset starter, hvor du kan l�se om vores forventninger til dig, hvad vi skal lave og hvad du skal have med. Vi gl�der os til at se dig i Vejle.</p>
+            <p>Vi sender flere oplysninger til dig, inden kurset starter, hvor du kan lï¿½se om vores forventninger til dig, hvad vi skal lave og hvad du skal have med. Vi glï¿½der os til at se dig i Vejle.</p>
             <ul class="options">
-                <li><a id="close" href="'.$this->url('../close').'">Luk tilmeldingen og g� tilbage til forsiden</a></li>
+                <li><a id="close" href="'.$this->url('../close').'">Luk tilmeldingen og gï¿½ tilbage til forsiden</a></li>
             </ul>
         ';
     }
@@ -36,7 +36,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Kvittering extends k_Component
     function getOplysninger($tilmelding)
     {
         $data = array('tilmelding' => $tilmelding,
-                      'caption' => 'Vi har registreret f�lgende oplysninger');
+                      'caption' => 'Vi har registreret fï¿½lgende oplysninger');
         $tpl = $this->template->create('LangtKursus/Tilmelding/oplysninger');
         return $tpl->render($this, $data);
 
@@ -46,10 +46,10 @@ class VIH_Controller_LangtKursus_Tilmelding_Kvittering extends k_Component
     {
         $data = array('headline' => 'Kvittering for reservation',
                       'explanation' => '
-            <p>Tak for din tilmelding. Forel�big har du reserveret en plads. Din reservation g�lder i otte dage. Du er f�rst endelig tilmeldt kurset, n�r du har gjort f�lgende:</p>
+            <p>Tak for din tilmelding. Forelï¿½big har du reserveret en plads. Din reservation gï¿½lder i otte dage. Du er fï¿½rst endelig tilmeldt kurset, nï¿½r du har gjort fï¿½lgende:</p>
             <ul>
-                <li><strong>betalt ' . number_format($tilmelding->kursus->get('pris_tilmeldingsgebyr'), 0, ',', '') . ' kroner</strong> som d�kker tilmeldingsgebyret</li>
-                <li><strong>modtaget bekr�ftelse</strong>. Den sender vi, n�r vi har modtaget tilmeldingsgebyret.</li>
+                <li><strong>betalt ' . number_format($tilmelding->kursus->get('pris_tilmeldingsgebyr'), 0, ',', '') . ' kroner</strong> som dï¿½kker tilmeldingsgebyret</li>
+                <li><strong>modtaget bekrï¿½ftelse</strong>. Den sender vi, nï¿½r vi har modtaget tilmeldingsgebyret.</li>
             </ul>
         ',
                       'oplysninger' => $this->getOplysninger($tilmelding));

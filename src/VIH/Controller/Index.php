@@ -22,9 +22,9 @@ class VIH_Controller_Index extends k_Component
 
     function renderHtml()
     {
-        $title = 'En højskole for livet';
-        $meta['description'] = 'Vejle Idrætshøjskole tilbyder forskellige højskolekurser. Vi er en højskole med idrætten som samlingspunkt.';
-        $meta['keywords'] = 'jyske, idrætsskole, idrætshøjskoler, idrætshøjskole, højskole, højskoler, højskolekursus, højskolekurser, kursus, korte kurser, sommerkurser';
+        $title = 'En hÃ¸jskole for livet';
+        $meta['description'] = 'Vejle IdrÃ¦tshÃ¸jskole tilbyder forskellige hÃ¸jskolekurser. Vi er en hÃ¸jskole med idrÃ¦tten som samlingspunkt.';
+        $meta['keywords'] = 'jyske, idrÃ¦tsskole, idrÃ¦tshÃ¸jskoler, idrÃ¦tshÃ¸jskole, hÃ¸jskole, hÃ¸jskoler, hÃ¸jskolekursus, hÃ¸jskolekurser, kursus, korte kurser, sommerkurser';
 
         $this->document->setTitle($title);
         $this->document->meta  = $meta;
@@ -55,7 +55,7 @@ class VIH_Controller_Index extends k_Component
     {
         $tpl = $this->template->create('News/sidebar-featured');
 
-        $data = array('nyheder' => $tpl->render($this, array('nyheder' => VIH_News::getList('', 1, 'H�j'))),
+        $data = array('nyheder' => $tpl->render($this, array('nyheder' => VIH_News::getList('', 1, 'Hï¿½j'))),
                       'kurser' => VIH_Model_LangtKursus::getNext());
 
         $tpl = $this->template->create('frontpage-sidebar');

@@ -20,8 +20,8 @@ class VIH_Controller_Kontakt_Index extends k_Component
     function renderHtml()
     {
         $title = 'Kontakt';
-        $meta['description'] = 'Her finder du kontaktinformation om h�jskolen. Adresse, telefonnumre og e-mail-adresser p� det administrative personale p� skolens kontor.';
-        $meta['keywords'] = 'Vejle, idr�tsh�jskole, jyske, idr�tsskole, beliggenhed, telefonnummer, kontakt, �bningstider, elevtelefon, administrativt personale, markedsf�ring, marketing, annoncer, forretningsf�rer, forstander, e-post, epost, email, e-mail, adresseliste, skolens kontor, telefon, telefontid';
+        $meta['description'] = 'Her finder du kontaktinformation om hï¿½jskolen. Adresse, telefonnumre og e-mail-adresser pï¿½ det administrative personale pï¿½ skolens kontor.';
+        $meta['keywords'] = 'Vejle, idrï¿½tshï¿½jskole, jyske, idrï¿½tsskole, beliggenhed, telefonnummer, kontakt, ï¿½bningstider, elevtelefon, administrativt personale, markedsfï¿½ring, marketing, annoncer, forretningsfï¿½rer, forstander, e-post, epost, email, e-mail, adresseliste, skolens kontor, telefon, telefontid';
 
         $this->document->setTitle($title);
         $this->document->meta = $meta;

@@ -16,8 +16,8 @@ class VIH_Controller_News_Index extends k_Component
     function renderHtml()
     {
         $title               = 'Nyheder';
-        $meta['description'] = 'Her finder du de seneste nyheder fra Vejle Idrætshøjskole.';
-        $meta['keywords']    = 'Vejle, Idrætshøjskole, nyheder, sidste, nyt';
+        $meta['description'] = 'Her finder du de seneste nyheder fra Vejle IdrÃ¦tshÃ¸jskole.';
+        $meta['keywords']    = 'Vejle, IdrÃ¦tshÃ¸jskole, nyheder, sidste, nyt';
 
         $this->document->setTitle($title);
         $this->document->addCrumb($this->name(), $this->url());
@@ -26,7 +26,7 @@ class VIH_Controller_News_Index extends k_Component
                                        'link' => $this->url('/rss/nyheder'));
 
         $data = array('content' => '<h1>Nyheder</h1>
-            <p class="rss-big">Du kan abonnere på vores nyheder gennem et <a href="'.$this->url('/rss/nyheder') . '">rss-feed</a>.  <a href="'.$this->url('/rss/').'">Hvad er det for noget?</a>.</p>
+            <p class="rss-big">Du kan abonnere pÃ¥ vores nyheder gennem et <a href="'.$this->url('/rss/nyheder') . '">rss-feed</a>.  <a href="'.$this->url('/rss/').'">Hvad er det for noget?</a>.</p>
             ' . $this->getNewsList(),
                       'content_sub' => $this->getSubContent());
         $tpl = $this->template->create('sidebar-wrapper');
@@ -53,7 +53,7 @@ class VIH_Controller_News_Index extends k_Component
 
 
         $data = array('headline' => 'Nyhedsbrev',
-                      'text' => 'Du kan være sikker på at få de vigtigste nyheder, hvis du <a href="' . $this->url('/nyhedsbrev/') . '">tilmelder dig vores nyhedsbrev</a>.');
+                      'text' => 'Du kan vÃ¦re sikker pÃ¥ at fÃ¥ de vigtigste nyheder, hvis du <a href="' . $this->url('/nyhedsbrev/') . '">tilmelder dig vores nyhedsbrev</a>.');
 
         $tpl = $this->template->create('spot');
         return $tpl->render($this, $data) .  $content;
@@ -68,16 +68,16 @@ class VIH_Controller_News_Index extends k_Component
             $items[$i]['title'] = strip_tags($n->get('overskrift'));
             $items[$i]['description'] = strip_tags($n->get('teaser'));
             $items[$i]['pubDate'] = $n->get('date_rfc822');
-            $items[$i]['author'] = htmlspecialchars('Vejle Idr�tsh�jskole <kontor@vih.dk>');
+            $items[$i]['author'] = htmlspecialchars('Vejle Idrï¿½tshï¿½jskole <kontor@vih.dk>');
             $items[$i]['link'] = 'http://vih.dk/nyheder/' . $n->get('id') . '/';
             $i++;
         endforeach;
 
         $data = array(
-            'title' => 'Nyheder fra Vejle Idr�tsh�jskole',
+            'title' => 'Nyheder fra Vejle Idrï¿½tshï¿½jskole',
             'link' => 'http://vih.dk/',
             'language' => 'da',
-            'description' => 'De seneste nyheder fra Vejle Idr�tsh�jskole',
+            'description' => 'De seneste nyheder fra Vejle Idrï¿½tshï¿½jskole',
             'docs' => 'http://vih.dk/rss/',
             'items' => $items);
 

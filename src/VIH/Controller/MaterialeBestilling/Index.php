@@ -13,7 +13,7 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
     function renderHtml()
     {
         $title = 'Materialebestilling';
-        $meta['description'] = 'Bestil materiale til korte og lange kurser fra Vejle Idrætshøjskole.';
+        $meta['description'] = 'Bestil materiale til korte og lange kurser fra Vejle IdrÃ¦tshÃ¸jskole.';
         $meta['keywords'] = 'materiale, bestil, bestilling, brochure, oplysninger, oplysning';
 
         $this->document->setTitle($title);
@@ -49,7 +49,7 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
                     if(!defined('VIH_KONTAKTANSVARLIG_EMAIL') || VIH_KONTAKTANSVARLIG_EMAIL == '') {
                         throw new Exception('Konstanten VIH_KONTAKTANSVARLIG_EMAIL er ikke sat eller udfyldt');
                     } elseif(trim($this->body('besked')) != '') {
-                        $body = "Besked sendt i forbindelse med bestilling af materiale:\n\n".$this->body('besked')."\n\n Sendt af ".$this->body('navn')."\n\nSend gerne videre til fagansvarlig lærer.";
+                        $body = "Besked sendt i forbindelse med bestilling af materiale:\n\n".$this->body('besked')."\n\n Sendt af ".$this->body('navn')."\n\nSend gerne videre til fagansvarlig lÃ¦rer.";
                         $mailer = new VIH_Email;
                         $mailer->setSubject('Fra hjemmesiden');
                         $mailer->setFrom($this->body('email'), $this->body('navn'));
@@ -61,14 +61,14 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
                         } elseif ((int)$this->body('kursuscenter') == 1) {
                             $mailer->addAddress('kursuscenter@vih.dk', 'Kursuscenteret');
                         } else {
-                            $mailer->addAddress('kontor@vih.dk', 'Vejle Idrætshøjskole');
+                            $mailer->addAddress('kontor@vih.dk', 'Vejle IdrÃ¦tshÃ¸jskole');
                         }
                         if (!$mailer->send()) {
-                            throw new Exception("Der er opstået en fejl i email-senderen i forbindelse bestilling af materiale. E-mail til VIH_KONTAKTANSVARLIG er ikke sendt. Det drejer sig om en forespørgsel fra ".$this->body('navn'));
+                            throw new Exception("Der er opstÃ¥et en fejl i email-senderen i forbindelse bestilling af materiale. E-mail til VIH_KONTAKTANSVARLIG er ikke sendt. Det drejer sig om en forespÃ¸rgsel fra ".$this->body('navn'));
                         }
                     }
                     if (trim($this->body('email')) != '') {
-                        $body = "Kære ".$this->body('navn')."\n\nVi har modtaget din bestilling af materiale, og vi sender det så hurtigt som muligt.\n\nHvis du har nogen spørgsmål, er du meget velkommen til at ringe til os på 7582 0811.\n\nMed venlig hilsen\nVejle Idrætshøjskole";
+                        $body = "KÃ¦re ".$this->body('navn')."\n\nVi har modtaget din bestilling af materiale, og vi sender det sÃ¥ hurtigt som muligt.\n\nHvis du har nogen spÃ¸rgsmÃ¥l, er du meget velkommen til at ringe til os pÃ¥ 7582 0811.\n\nMed venlig hilsen\nVejle IdrÃ¦tshÃ¸jskole";
 
                         $mailer = new VIH_Email;
                         $mailer->setSubject("Bestilling af materiale fra VIH");
@@ -76,14 +76,14 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
                         $mailer->setBody($body);
 
                         if (!$mailer->send()) {
-                            throw new Exception("Der er opstået en fejl i email-senderen i forbindelse bestilling af materiale. Der er ikke sendt en bekræftelse til ".$this->body('navn'));
-                            $error = "<p>Det var ikke muligt at sende dig en bekræftelse på din bestilling, men bare rolig vi har modtaget den, og sender hurtigst muligt materialet. Imens hænger vi webmasteren op i flagstangen, indtil han siger undskyld.";
+                            throw new Exception("Der er opstÃ¥et en fejl i email-senderen i forbindelse bestilling af materiale. Der er ikke sendt en bekrÃ¦ftelse til ".$this->body('navn'));
+                            $error = "<p>Det var ikke muligt at sende dig en bekrÃ¦ftelse pÃ¥ din bestilling, men bare rolig vi har modtaget den, og sender hurtigst muligt materialet. Imens hÃ¦nger vi webmasteren op i flagstangen, indtil han siger undskyld.";
                         }
                     }
                 }
             }
             $data = array('content' => '<h1>Tak for din bestilling</h1>
-                    <p>Vi vil skynde os at pakke noget materiale til dig, og vi sender det så hurtigt som muligt. Du skulle gerne have det i løbet af 2-3 arbejdsdage alt efter hvor hurtigt postvæsenet arbejder.</p>
+                    <p>Vi vil skynde os at pakke noget materiale til dig, og vi sender det sÃ¥ hurtigt som muligt. Du skulle gerne have det i lÃ¸bet af 2-3 arbejdsdage alt efter hvor hurtigt postvÃ¦senet arbejder.</p>
                     <h2>Nyhedsbrev</h2>
                     <p>Hvis det har nogen interesse, kan du <a href="'.$this->url('/nyhedsbrev/').'">tilmelde dig vores nyhedsbrev</a>.</p>
                     '.$error);
@@ -128,9 +128,9 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
         $this->form->addElement('text', 'postby', 'Postby');
         $this->form->addElement('text', 'email', 'E-mail');
         $this->form->addElement('text', 'telefon', 'Telefon');
-        $this->form->addElement('header', null, 'Øvrige oplysninger');
+        $this->form->addElement('header', null, 'Ãvrige oplysninger');
         $this->form->addElement('textarea', 'besked', 'Besked', array('rows' => 5, 'cols' => 20));
-        $this->form->addElement('submit', 'submit', 'Send mig ovenstående brochurer');
+        $this->form->addElement('submit', 'submit', 'Send mig ovenstÃ¥ende brochurer');
         $this->form->addRule('navn','Du skal skrive et navn', 'required');
         $this->form->addRule('adresse','Du skal skrive en adresse', 'required');
         $this->form->addRule('postnr','Du skal skrive et postnummer', 'required');

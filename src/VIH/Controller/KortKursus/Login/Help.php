@@ -20,7 +20,7 @@ class VIH_Controller_KortKursus_Login_Help extends k_Component
 
         $tpl = $this->template->create('Tilmelding/betaling');
         return '
-            <h1>Hj�lp</h1>
+            <h1>Hjï¿½lp</h1>
             ' . $tpl->render($this);
     }
 }

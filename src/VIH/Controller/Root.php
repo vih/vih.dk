@@ -47,19 +47,19 @@ class VIH_Controller_Root extends k_Component
             'content' => $content,
             'navigation' => array(
                 array('url' => $this->url('/faciliteter'), 'navigation_name' => 'Rundvisning'),
-                array('url' => $this->url('/fotogalleri'), 'navigation_name' => 'Højdepunkter'),
+                array('url' => $this->url('/fotogalleri'), 'navigation_name' => 'HÃ¸jdepunkter'),
                 array('url' => $this->url('/nyheder'), 'navigation_name' => 'Nyheder'),
                 array('url' => $this->url('/fag'), 'navigation_name' => 'Linjer og specialer'),
                 array('url' => $this->url('/langekurser'), 'navigation_name' => 'Lange kurser'),
                 array('url' => $this->url('/langekurser/rejser'), 'navigation_name' => 'Rejser'),
                 array('url' => $this->url('/kortekurser'), 'navigation_name' => 'Korte kurser'),
-                array('url' => $this->url('/underviser'), 'navigation_name' => 'Lærerkræfter'),
+                array('url' => $this->url('/underviser'), 'navigation_name' => 'LÃ¦rerkrÃ¦fter'),
                 array('url' => $this->url('/info'), 'navigation_name' => 'Info og filosofi'),
                 array('url' => $this->url('/bestilling'), 'navigation_name' => 'Bestilling')
             ),
             'url' => $this->url('/'),
-            'site_info' => '<a href="'.$this->url('/kontakt') .'">Vejle Idrætshøjskole</a> Ørnebjervej 28 7100 Vejle Tlf. 7582 0811 ' . email('kontor@vih.dk'),
-            'name' => 'Vejle Idrætshøjskole',
+            'site_info' => '<a href="'.$this->url('/kontakt') .'">Vejle IdrÃ¦tshÃ¸jskole</a> Ãrnebjervej 28 7100 Vejle Tlf. 7582 0811 ' . email('kontor@vih.dk'),
+            'name' => 'Vejle IdrÃ¦tshÃ¸jskole',
             'navigation_section' => array(
                 array('url' => 'http://vih.dk/kursuscenter/', 'navigation_name' => 'Kursuscenter'),
                 array('url' => 'http://vih.dk/elevforeningen/', 'navigation_name' => 'Elevforeningen'),
@@ -154,7 +154,7 @@ class VIH_Controller_Root extends k_Component
         }
 
         if (empty($news)) {
-            return '<p>Spørgsmål til højskoleophold eller rundvisning<span>Kontakt Peter Sebastian på 2929 6387 eller ps@vih.dk.</span></p>';
+            return '<p>SpÃ¸rgsmÃ¥l til hÃ¸jskoleophold eller rundvisning<span>Kontakt Peter Sebastian pÃ¥ 2929 6387 eller ps@vih.dk.</span></p>';
 
         } else {
             return '<p>'.$news[0]->get('title').'<span>'.$news[0]->get('tekst').'</span></p>';

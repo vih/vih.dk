@@ -1,7 +1,4 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Controller_Facilitet_Show extends k_Component
 {
     protected $template;
@@ -39,7 +36,7 @@ class VIH_Controller_Facilitet_Show extends k_Component
 
     function getFaciliteterList()
     {
-        $data = array('faciliteter' => VIH_Model_Facilitet::getList('højskole'));
+        $data = array('faciliteter' => VIH_Model_Facilitet::getList('hÃ¸jskole'));
         $tpl = $this->template->create('Facilitet/faciliteter');
         return $tpl->render($this, $data);
     }

@@ -25,7 +25,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 
         $extra_text = '';
         if (is_object($tilmelding->betalingsobject) AND count($tilmelding->betalingsobject->getList('not_approved')) > 0) {
-            $extra_text = '<p id="notice"><strong>Advarsel</strong>: V�r opm�rksom p�, at du har afventende betalinger p� '.$tilmelding->get('betalt_not_approved').' kroner. Du skal kun bruge formularen, hvis du er helt sikker p�, at du skal betale bel�bene nedenunder.</p>';
+            $extra_text = '<p id="notice"><strong>Advarsel</strong>: Vï¿½r opmï¿½rksom pï¿½, at du har afventende betalinger pï¿½ '.$tilmelding->get('betalt_not_approved').' kroner. Du skal kun bruge formularen, hvis du er helt sikker pï¿½, at du skal betale belï¿½bene nedenunder.</p>';
         }
 
         $error = "";
@@ -48,10 +48,10 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         $tilmelding->loadBetaling();
 
         if ($this->getForm()->validate()) {
-            // f�rst skal vi oprette en betaling - som kan fungere som id hos qp
+            // fï¿½rst skal vi oprette en betaling - som kan fungere som id hos qp
             // betalingen skal kobles til den aktuelle tilmelding
-            // n�r vi s� har haft den omkring pbs skal betalingen opdateres med status for betalingen
-            // status s�ttes til 000, hvis den er godkendt hos pbs.
+            // nï¿½r vi sï¿½ har haft den omkring pbs skal betalingen opdateres med status for betalingen
+            // status sï¿½ttes til 000, hvis den er godkendt hos pbs.
 
             $eval = false;
 
@@ -66,7 +66,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
             } elseif (is_numeric($submitted_amount)) {
                 $total_amount = $submitted_amount;
             } else {
-                throw new Exception('De postede bel�bsv�rdier er ikke gyldige');
+                throw new Exception('De postede belï¿½bsvï¿½rdier er ikke gyldige');
             }
 
             $betaling_amount = $total_amount / 100;
@@ -86,7 +86,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
                 $this->body('yy') . $this->body('mm'), //YYMM
                 $this->body('cvd'), // sikkerhedsnummer
                 $betaling_id, // ordrenummer
-                $total_amount   // bel�b
+                $total_amount   // belï¿½b
             );
 
             if ($eval) {
@@ -112,7 +112,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 
                 } else {
                     // An error occured with the authorize
-                    $error = "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan pr�ve igen.</strong></p>";
+                    $error = "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan prï¿½ve igen.</strong></p>";
                     /*
                     echo 'Authorization: ' . $qpstatText["" . $eval['qpstat'] . ""] . '<br />';
                     echo "<pre>";
@@ -137,10 +137,10 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         $tilmelding->loadBetaling();
 
         $form = new HTML_QuickForm('onlinebetaling', 'POST', $this->url());
-        $form->addElement('header', null, 'Hvilke bel�b vil du betale?');
+        $form->addElement('header', null, 'Hvilke belï¿½b vil du betale?');
 
         if ($tilmelding->get('skyldig_tilmeldingsgebyr') > 0) {
-            $options[0] = HTML_QuickForm::createElement('checkbox', 0, null, number_format($tilmelding->get('skyldig_tilmeldingsgebyr'), 0, ',','.') . ' kroner (DKK) - d�kker tilmeldingsgebyret');
+            $options[0] = HTML_QuickForm::createElement('checkbox', 0, null, number_format($tilmelding->get('skyldig_tilmeldingsgebyr'), 0, ',','.') . ' kroner (DKK) - dï¿½kker tilmeldingsgebyret');
             $options[0]->updateAttributes(array('value'=>$tilmelding->get('skyldig_tilmeldingsgebyr') * 100));
         }
 
@@ -154,17 +154,17 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
                 $i++;
             }
         } elseif ($tilmelding->get('skyldig_tilmeldingsgebyr') == 0) {
-                $options[0] = HTML_QuickForm::createElement('checkbox', $i, null, 'Du kan betale igen, n�r vi har oprettet dine rater.');
+                $options[0] = HTML_QuickForm::createElement('checkbox', $i, null, 'Du kan betale igen, nï¿½r vi har oprettet dine rater.');
                 $options[0]->updateAttributes(array('disabled'=>'disabled'));
         }
 
-        $form->addGroup($options, 'amount', 'Bel�b', '<br />');
+        $form->addGroup($options, 'amount', 'Belï¿½b', '<br />');
 
         $form->addElement('header', null, 'Betaling');
         $form->addElement('text', 'cardnumber', 'Kortnummer');
         $form->addElement('text', 'cvd', 'Sikkerhedsnummer');
         $form->addElement('text', 'mm', 'Mdr.');
-        $form->addElement('text', 'yy', '�r');
+        $form->addElement('text', 'yy', 'ï¿½r');
         $form->addElement('submit', null, 'Betal');
 
         $form->addRule('cardnumber', 'Du skal skrive et kortnummer', 'required');
@@ -173,8 +173,8 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         $form->addRule('cvd', 'Du skal skrive et sikkerhedsnummer', 'numeric');
         $form->addRule('mm', 'Du skal udfylde Mdr.', 'required');
         $form->addRule('mm', 'Du skal udfylde Mdr.', 'numeric');
-        $form->addRule('yy', 'Du skal udfylde �r ', 'required');
-        $form->addRule('yy', 'Du skal udfylde �r', 'numeric');
+        $form->addRule('yy', 'Du skal udfylde ï¿½r ', 'required');
+        $form->addRule('yy', 'Du skal udfylde ï¿½r', 'numeric');
 
         $form->applyFilter('__ALL__', 'trim');
         $form->applyFilter('__ALL__', 'addslashes');

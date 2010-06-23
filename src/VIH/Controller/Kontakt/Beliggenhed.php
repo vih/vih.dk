@@ -11,8 +11,8 @@ class VIH_Controller_Kontakt_Beliggenhed extends k_Component
     function renderHtml()
     {
         $title = 'Beliggenhed, rutebeskrivelse, transport';
-        $meta['description'] = 'Beskrivelse af beliggenhed med k�rselsvejledning med offentlige transportmidler og med bil fra st�rre indfaldsveje og fra stationen i Vejle.';
-        $meta['keywords'] = 'Vejle, idr�tsh�jskole, jyske, idr�tsskole, beliggenhed, kommune, kort, vejbeskrivelse, k�rselsvejledning, k�rsel, rutebeskrivelse, hvor ligger skolen, placering, k�rselsvejvisning, k�rselshenvisningormation, transport, indfaldsveje, stationer, station';
+        $meta['description'] = 'Beskrivelse af beliggenhed med kï¿½rselsvejledning med offentlige transportmidler og med bil fra stï¿½rre indfaldsveje og fra stationen i Vejle.';
+        $meta['keywords'] = 'Vejle, idrï¿½tshï¿½jskole, jyske, idrï¿½tsskole, beliggenhed, kommune, kort, vejbeskrivelse, kï¿½rselsvejledning, kï¿½rsel, rutebeskrivelse, hvor ligger skolen, placering, kï¿½rselsvejvisning, kï¿½rselshenvisningormation, transport, indfaldsveje, stationer, station';
 
         $this->document->setTitle($title);
         $this->document->meta = $meta;

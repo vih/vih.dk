@@ -9,10 +9,10 @@ class VIH_Controller_Newsletter_Index extends k_Component
         'Save' => 'Gem',
         'Email' => 'E-mail',
         'You have to supply an email address' => 'Du skal skrive en e-mail-adresse',
-        'An error occured. You could not subscribe.' => 'Der skete en fejl, s� du kunne ikke tilmelde dig. Skriv til lars@vih.dk.',
+        'An error occured. You could not subscribe.' => 'Der skete en fejl, sï¿½ du kunne ikke tilmelde dig. Skriv til lars@vih.dk.',
         'You have unsubscribed from the newsletter.' => 'Du er nu frameldt nyhedsbrevet.',
-        'An error occured. You could not be removed from the newsletter.' => 'Der skete en fejl, s� du kunne ikke framelde dig. Skriv til lars@vih.dk.',
-        'Information about the newsletter.' => 'Vi udsender seks-otte nyhedsbreve om �ret. Nyhedsbrevene fort�ller om de vigtigste nyheder fra Vejle Idr�tsh�jskole. Du finder nyheder om de lange og korte kurser og om kursuscenteret. Nyhedsbrevet sendes i tekstformat.'
+        'An error occured. You could not be removed from the newsletter.' => 'Der skete en fejl, sï¿½ du kunne ikke framelde dig. Skriv til lars@vih.dk.',
+        'Information about the newsletter.' => 'Vi udsender seks-otte nyhedsbreve om ï¿½ret. Nyhedsbrevene fortï¿½ller om de vigtigste nyheder fra Vejle Idrï¿½tshï¿½jskole. Du finder nyheder om de lange og korte kurser og om kursuscenteret. Nyhedsbrevet sendes i tekstformat.'
     );
 
     protected $template;

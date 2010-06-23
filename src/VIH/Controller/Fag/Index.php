@@ -16,7 +16,7 @@ class VIH_Controller_Fag_Index extends k_Component
     function renderHtml()
     {
         $title = 'Fagoversigt';
-        $meta['description'] = 'Fagoversigt p� Vejle Idr�tsh�jskole';
+        $meta['description'] = 'Fagoversigt på Vejle Idrætshøjskole';
         $meta['keywords'] = 'Fagoversigt';
 
         $this->document->setTitle($title);

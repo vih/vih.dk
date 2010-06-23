@@ -1,6 +1,6 @@
 <?php
 /**
- * Form�let med denne fil er at afbryde en igangv�rende tilmelding.
+ * Formï¿½let med denne fil er at afbryde en igangvï¿½rende tilmelding.
  * Efter afbrydelsen sendes brugeren blot videre til forsiden.
  *
  * @author Lars Olesen <lars@legestue.net>

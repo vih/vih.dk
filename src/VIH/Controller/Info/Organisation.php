@@ -11,8 +11,8 @@ class VIH_Controller_Info_Organisation extends k_Component
     function renderHtml()
     {
         $title = 'Organisation';
-        $meta['description'] = 'En beskrivelse af Vejle Idr�tsh�jskoles organisation - herunder beslutningsprocedurer.';
-        $meta['keywords'] = 'Vejle, Idr�tsh�jskole, organisation, repr�sentantskab, beslutningsprocedure, besluttende organer';
+        $meta['description'] = 'En beskrivelse af Vejle Idrï¿½tshï¿½jskoles organisation - herunder beslutningsprocedurer.';
+        $meta['keywords'] = 'Vejle, Idrï¿½tshï¿½jskole, organisation, reprï¿½sentantskab, beslutningsprocedure, besluttende organer';
 
         $this->document->setTitle($title);
         $this->document->meta = $meta;
