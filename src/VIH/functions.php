@@ -48,7 +48,7 @@ function vih_split_name($name)
 }
 
 /**
- * Udregner deltagerens alder. Alderens skal udregnes på kursusstartdatoen.
+ * Udregner deltagerens alder. Alderens skal udregnes pï¿½ kursusstartdatoen.
  *
  * @param date $birthday ISO-format
  * @param date $date ISO-format
@@ -103,8 +103,8 @@ function getBirthday($cpr)
 {
     $month = substr($cpr,2,2);
     $day = substr($cpr,0,2);
-    $year_last_two_digits = substr($cpr,4,2); // to sidste i årstallet taget fra cprnummeret
-    $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits; // trækker en fra aktuelle år
+    $year_last_two_digits = substr($cpr,4,2); // to sidste i ï¿½rstallet taget fra cprnummeret
+    $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits; // trï¿½kker en fra aktuelle ï¿½r
     if ($testyear < date('Y') AND (date('Y') - $testyear) < 100) {
         $year = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits;
     } else {
@@ -119,24 +119,13 @@ function vih_validate_cpr($cpr)
     return Validate_DK::ssn($cpr);
 }
 
-function vih_autoop($text)
+function autoop($text)
 {
     require_once 'markdown.php';
     require_once 'smartypants.php';
     $text = MarkDown($text);
     $text = SmartyPants($text);
     return $text;
-}
-
-function vih_url($href = '')
-{
-    $urlbuilder = new k_urlbuilder(PATH_WWW);
-    return $urlbuilder->url($href);
-}
-
-function vih_e($string)
-{
-    return htmlentities($string);
 }
 
 function vih_email($email)
@@ -167,13 +156,18 @@ function vih_handle_microsoft($text)
     return $text;
 }
 
+function email($email)
+{
+    return $email;
+}
+
 function vih_print_error_msg($msg = '')
 {
 print '
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Der er opstået en  fejl</title>
+        <title>Der er opstï¿½et en  fejl</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
         <style type="text/css">
@@ -204,11 +198,11 @@ print '
         <div id="container">
             <h1>Hm, noget gik galt</h1>
             <p><strong>' . $msg . '</strong></p>
-            <p>Det burde ikke kunne ske. Hov, nu er vores webmaster ved at stikke af. Det kan vi godt forstå, for han har lovet, at du aldrig ville se denne side.</p>
-            <p>Vores webmaster råber, at du måske kan prøve at gå tilbage på den foregående side og tjekke om alt er rigtig udfyldt.</p>
-            <p>Hvis du har nogen spørgsmål, er du velkommen til at kontakte Vejle Idrætshøjskole på 75820811. Så skal vi nok pine webmasteren lidt.</p>
-            <p>Vi beklager ulejligheden &mdash; og håber at du har en god dag alligevel.</p>
-            <p>Med venlig hilsen<br>Vejle Idrætshøjskole</p>
+            <p>Det burde ikke kunne ske. Hov, nu er vores webmaster ved at stikke af. Det kan vi godt forstï¿½, for han har lovet, at du aldrig ville se denne side.</p>
+            <p>Vores webmaster rï¿½ber, at du mï¿½ske kan prï¿½ve at gï¿½ tilbage pï¿½ den foregï¿½ende side og tjekke om alt er rigtig udfyldt.</p>
+            <p>Hvis du har nogen spï¿½rgsmï¿½l, er du velkommen til at kontakte Vejle Idrï¿½tshï¿½jskole pï¿½ 75820811. Sï¿½ skal vi nok pine webmasteren lidt.</p>
+            <p>Vi beklager ulejligheden &mdash; og hï¿½ber at du har en god dag alligevel.</p>
+            <p>Med venlig hilsen<br>Vejle Idrï¿½tshï¿½jskole</p>
         </div>
     </body>
 </html>';

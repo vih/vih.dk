@@ -13,6 +13,6 @@ $i = 0;
     $i++;
     ?>
 
-    <a href="<?php e($photo['show_url']); ?>"><img src="<?php e($this->url('/file.php') . $photo['instance']['file_uri_parameters']); ?>" width="<?php e($photo['instance']['width']); ?>" height="<?php e($photo['instance']['height']); ?>" alt="" /></a>
+    <a href="<?php e($photo['show_url']); ?>"><img src="<?php e(url('/file.php') . $photo['instance']['file_uri_parameters']); ?>" width="<?php e($photo['instance']['width']); ?>" height="<?php e($photo['instance']['height']); ?>" alt="" /></a>
 <?php endforeach; ?>
 </div>

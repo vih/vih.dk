@@ -1,7 +1,7 @@
 
 
 <div style="height: <?php e($photo['instance']['instance_properties']['max_height']); ?>; text-align: center;">
-    <img src="<?php e($this->url('/file.php') . $photo['instance']['file_uri_parameters']); ?>" width="<?php e($photo['instance']['width']); ?>" height="<?php e($photo['instance']['height']); ?>" />
+    <img src="<?php e(url('/file.php') . $photo['instance']['file_uri_parameters']); ?>" width="<?php e($photo['instance']['width']); ?>" height="<?php e($photo['instance']['height']); ?>" />
 </div>
 
 <?php if(!empty($photo['description'])): ?>

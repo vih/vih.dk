@@ -1,10 +1,10 @@
 <div class="content2">
-    <h1><span>Højskole &mdash; skole for livet</span></h1>
-    <p>At være på idrætshøjskole handler om at udfordre og udvikle sig selv, kunne rumme andre og se mulighederne. Livsglæde udleves ikke på sofaen, men i et aktivt liv, hvor man involverer sig og har energien til at gøre en forskel. Så velkommen på vih.dk. Håber at du vil blive inspireret de næste minutter...</p>
+    <h1><span>HÃ¸jskole &mdash; skole for livet</span></h1>
+    <p>At vÃ¦re pÃ¥ idrÃ¦tshÃ¸jskole handler om at udfordre og udvikle sig selv, kunne rumme andre og se mulighederne. LivsglÃ¦de udleves ikke pÃ¥ sofaen, men i et aktivt liv, hvor man involverer sig og har energien til at gÃ¸re en forskel. SÃ¥ velkommen pÃ¥ vih.dk. HÃ¥ber at du vil blive inspireret de nÃ¦ste minutter...</p>
 
     <ul id="pakker">
     <?php if (!empty($packages)): foreach ($packages as $package): ?>
-        <li><a id="<?php e($package); ?>" href="<?php e(url('/fag/pakke/' . $package)); ?>"><span></span><strong><?php e(__($package)); ?></strong></a></li>
+        <li><a id="<?php e($package); ?>" href="<?php e(url('/fag/pakke/' . $package)); ?>"><span></span><strong><?php e(t($package)); ?></strong></a></li>
     <?php endforeach; endif; ?>
     </ul>
 </div>

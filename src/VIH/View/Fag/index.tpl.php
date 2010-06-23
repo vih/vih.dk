@@ -1,13 +1,13 @@
 <h1>Linjer og specialer</h1>
-<p>For os er idræt en måde at være sammen på og et middel til at opleve egne og andres muligheder. Idræt er personlighedsudviklende, men personlig udvikling er andet og mere end idræt, derfor lægger vi vægt på musiske, kreative og andre mere bløde fag.</p>
-<p>På Vejle Idrætshøjskole får du en leder- og instruktøruddannelse i en af de syv idrætsgrene, men de fleste af vores elever, fremhæver ofte alle fagene omkring idrætten som deres primære udbytte.</p>
+<p>For os er idrï¿½t en mï¿½de at vï¿½re sammen pï¿½ og et middel til at opleve egne og andres muligheder. Idrï¿½t er personlighedsudviklende, men personlig udvikling er andet og mere end idrï¿½t, derfor lï¿½gger vi vï¿½gt pï¿½ musiske, kreative og andre mere blï¿½de fag.</p>
+<p>Pï¿½ Vejle Idrï¿½tshï¿½jskole fï¿½r du en leder- og instruktï¿½ruddannelse i en af de syv idrï¿½tsgrene, men de fleste af vores elever, fremhï¿½ver ofte alle fagene omkring idrï¿½tten som deres primï¿½re udbytte.</p>
 
-<h2>Sammensæt dit skema</h2>
+<h2>Sammensï¿½t dit skema</h2>
 
-<p>Du kan selv sammensætte dit skema fra fagene i den højre bjælke. Nedenunder har vi lavet fire eksempler på fagpakker, du kan få på Vejle Idrætshøjskole.</p>
+<p>Du kan selv sammensï¿½tte dit skema fra fagene i den hï¿½jre bjï¿½lke. Nedenunder har vi lavet fire eksempler pï¿½ fagpakker, du kan fï¿½ pï¿½ Vejle Idrï¿½tshï¿½jskole.</p>
 
 <ul id="pakker">
 <?php foreach ($packages as $package): ?>
-    <li><a id="<?php e($package); ?>" href="<?php e(url('pakke/' . $package)); ?>"><span></span><strong><?php e(__($package)); ?></strong></a></li>
+    <li><a id="<?php e($package); ?>" href="<?php e(url('pakke/' . $package)); ?>"><span></span><strong><?php e(t($package)); ?></strong></a></li>
 <?php endforeach; ?>
 </ul>
