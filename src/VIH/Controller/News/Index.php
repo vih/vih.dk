@@ -1,34 +1,43 @@
 <?php
-class VIH_Controller_News_Index extends k_Controller
+class VIH_Controller_News_Index extends k_Component
 {
-    function forward($name)
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $next = new VIH_Controller_News_Show($this, $name);
-        return $next->handleRequest();
+        $this->template = $template;
     }
 
-    function GET()
+    function map($name)
+    {
+        return 'VIH_Controller_News_Show';
+    }
+
+    function renderHtml()
     {
         $title               = 'Nyheder';
-        $meta['description'] = 'Her finder du de seneste nyheder fra Vejle Idrætshøjskole.';
-        $meta['keywords']    = 'Vejle, Idrætshøjskole, nyheder, sidste, nyt';
+        $meta['description'] = 'Her finder du de seneste nyheder fra Vejle IdrÃ¦tshÃ¸jskole.';
+        $meta['keywords']    = 'Vejle, IdrÃ¦tshÃ¸jskole, nyheder, sidste, nyt';
 
-        $this->document->title   = $title;
+        $this->document->setTitle($title);
+        $this->document->addCrumb($this->name(), $this->url());
         $this->document->meta    = $meta;
         $this->document->feeds[] = array('title' => 'Nyheder',
                                        'link' => $this->url('/rss/nyheder'));
 
         $data = array('content' => '<h1>Nyheder</h1>
-            <p class="rss-big">Du kan abonnere på vores nyheder gennem et <a href="'.$this->url('/rss/nyheder') . '">rss-feed</a>.  <a href="'.$this->url('/rss/').'">Hvad er det for noget?</a>.</p>
+            <p class="rss-big">Du kan abonnere pÃ¥ vores nyheder gennem et <a href="'.$this->url('/rss/nyheder') . '">rss-feed</a>.  <a href="'.$this->url('/rss/').'">Hvad er det for noget?</a>.</p>
             ' . $this->getNewsList(),
                       'content_sub' => $this->getSubContent());
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getNewsList()
     {
         $data = array('nyheder' => VIH_News::getList('', 100));
-        return $this->render('VIH/View/News/nyheder-tpl.php', $data);
+        $tpl = $this->template->create('News/nyheder');
+        return $tpl->render($this, $data);
     }
 
     function getSubContent()
@@ -44,15 +53,35 @@ class VIH_Controller_News_Index extends k_Controller
 
 
         $data = array('headline' => 'Nyhedsbrev',
-                      'text' => 'Du kan være sikker på at få de vigtigste nyheder, hvis du <a href="' . $this->url('/nyhedsbrev/') . '">tilmelder dig vores nyhedsbrev</a>.');
+                      'text' => 'Du kan vÃ¦re sikker pÃ¥ at fÃ¥ de vigtigste nyheder, hvis du <a href="' . $this->url('/nyhedsbrev/') . '">tilmelder dig vores nyhedsbrev</a>.');
 
-        return $this->render('VIH/View/spot-tpl.php', $data) . $content;
+        $tpl = $this->template->create('spot');
+        return $tpl->render($this, $data) .  $content;
     }
 
-    function handleRequest()
+    function renderXml()
     {
-        $this->document->trail[$this->name] = $this->url();
-        return parent::handleRequest();
-    }
+        $news = VIH_News::getList('', 10, '');
+        $i = 0;
+        $items = array();
+        foreach ($news AS $n):
+            $items[$i]['title'] = strip_tags($n->get('overskrift'));
+            $items[$i]['description'] = strip_tags($n->get('teaser'));
+            $items[$i]['pubDate'] = $n->get('date_rfc822');
+            $items[$i]['author'] = htmlspecialchars('Vejle Idrï¿½tshï¿½jskole <kontor@vih.dk>');
+            $items[$i]['link'] = 'http://vih.dk/nyheder/' . $n->get('id') . '/';
+            $i++;
+        endforeach;
 
+        $data = array(
+            'title' => 'Nyheder fra Vejle Idrï¿½tshï¿½jskole',
+            'link' => 'http://vih.dk/',
+            'language' => 'da',
+            'description' => 'De seneste nyheder fra Vejle Idrï¿½tshï¿½jskole',
+            'docs' => 'http://vih.dk/rss/',
+            'items' => $items);
+
+        $tpl = $this->template->create('rss20');
+        return $tpl->render($this, $data);
+    }
 }

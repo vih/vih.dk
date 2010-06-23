@@ -2,42 +2,45 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Fag_Index extends k_Controller
+class VIH_Controller_Fag_Index extends k_Component
 {
-    function GET()
+    protected $template;
+    protected $kernel;
+
+    function __construct(k_TemplateFactory $template, VIH_Intraface_Kernel $kernel)
+    {
+        $this->template = $template;
+        $this->kernel = $kernel;
+    }
+
+    function renderHtml()
     {
         $title = 'Fagoversigt';
-        $meta['description'] = 'Fagoversigt på Vejle Idrætshøjskole';
+        $meta['description'] = 'Fagoversigt pï¿½ Vejle Idrï¿½tshï¿½jskole';
         $meta['keywords'] = 'Fagoversigt';
 
-        $this->document->title = $title;
+        $this->document->setTitle($title);
+        $this->document->addCrumb($this->name(), $this->url());
         $this->document->meta = $meta;
         $this->document->theme = 'fag';
 
         $data = array('packages' => array('politi', 'fitness', 'outdoor', 'boldspil'));
 
-        $data = array('content' => $this->render('VIH/View/Fag/index.tpl.php', $data) . $this->getSkema(),
+        $tpl = $this->template->create('Fag/index');
+        $data = array('content' => $tpl->render($this, $data) . $this->getSkema(),
                       'content_sub' => $this->getSubContent());
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
-
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
-    function handleRequest()
-    {
-        $this->document->trail[$this->name] = $this->url();
-        return parent::handleRequest();
-    }
-
-    function forward($name)
+    function map($name)
     {
         if ($name == 'pakke') {
-        	$next = new VIH_Controller_Fag_Pakker_Index($this, $name);
+        	return 'VIH_Controller_Fag_Pakker_Index';
         } else {
-        	$next = new VIH_Controller_Fag_Show($this, $name);
+        	return 'VIH_Controller_Fag_Show';
         }
-
-        return $next->handleRequest();
     }
 
     function getSubContent()
@@ -45,20 +48,19 @@ class VIH_Controller_Fag_Index extends k_Controller
         $fag = VIH_Model_Fag::getPublishedWithDescription();
         $data = array('fag' => $fag);
 
-        return $this->render('VIH/View/Fag/faglist-tpl.php', $data);
+        $tpl = $this->template->create('Fag/faglist');
+        return $tpl->render($this, $data);
     }
 
     function getSkema()
     {
-        $skema = new VIH_Controller_LangtKursus_Skema($this);
-        return $skema_html = $skema->execute();
+        $skema = new VIH_Controller_LangtKursus_Skema($this->template);
+        return $skema_html = $skema->renderHtml();
     }
 
     function getWidePictureHTML($identifier)
     {
-        $kernel = $this->registry->get('intraface:kernel');
-        $translation = $kernel->getTranslation('filemanager');
-        $filemanager = new Ilib_Filehandler_Manager($kernel);
+        $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         try {
             $img = new Ilib_Filehandler_ImageRandomizer($filemanager, array($identifier));

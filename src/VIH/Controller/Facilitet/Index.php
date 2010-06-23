@@ -2,15 +2,28 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Facilitet_Index extends k_Controller
+class VIH_Controller_Facilitet_Index extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function map($name)
+    {
+        return 'VIH_Controller_Facilitet_Show';
+    }
+
+    function renderHtml()
     {
         $title = 'Faciliteter';
-        $meta['description'] = 'Beskrivelse af alle faciliteterne på Vejle Idrætshøjskole.';
+        $meta['description'] = 'Beskrivelse af alle faciliteterne pÃ¥ Vejle IdrÃ¦tshÃ¸jskole.';
         $meta['keywords'] = 'faciliteter';
 
-        $this->document->title = $title;
+        $this->document->setTitle($title);
+        $this->document->addCrumb($this->name(), $this->url());
         $this->document->meta  = $meta;
         $this->document->theme = 'faciliteter';
 
@@ -20,42 +33,31 @@ class VIH_Controller_Facilitet_Index extends k_Controller
             ' . $this->getVideo(),
                       'content_sub' => $this->getSubContent());
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getContent()
     {
-        $data = array('faciliteter' => VIH_Model_Facilitet::getList('højskole'));
-        return '<p>Klik dig rundt nedenunder for at tage en rundtur på Vejle Idrætshøjskole.</p>
-        ' . $this->render('VIH/View/Facilitet/oversigtsbillede-tpl.php', $data);
+        $tpl = $this->template->create('Facilitet/oversigtsbillede');
+        $data = array('faciliteter' => VIH_Model_Facilitet::getList('hÃ¸jskole'));
+        return '<p>Klik dig rundt nedenunder for at tage en rundtur pÃ¥ Vejle IdrÃ¦tshÃ¸jskole.</p>
+        ' . $tpl->render($this, $data);
     }
 
     function getSubContent()
     {
         return '<h2>Bestil en rundvisning</h2>
-            <p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian på 2929 6387.</p>';
+            <p>Du er meget velkommen til at ringe til skolen og aftale et tidspunkt for en rigtig rundvisning. Kontakt Peter Sebastian pï¿½ 2929 6387.</p>';
     }
 
     function getVideo()
     {
         $url = $this->url('/gfx/flash/vih-rundvisning.flv');
         $data = array('url' => $url, 'height' => 301, 'width' => 400, 'preview' => $this->url('/gfx/images/rundvisning.jpg'));
+        $tpl = $this->template->create('rundvisning-flv');
 
-
-        $this->document->scripts[] = $this->url('/scripts/swfobject.js');
-        return '<div id="flashwrap">' . $this->render('VIH/View/rundvisning-flv.tpl.php', $data) . '</div>';
+        $this->document->addScript($this->url('/scripts/swfobject.js'));
+        return '<div id="flashwrap">' . $tpl->render($this, $data) . '</div>';
     }
-
-    function handleRequest()
-    {
-        $this->document->trail[$this->name] = $this->url();
-        return parent::handleRequest();
-    }
-
-    function forward($name)
-    {
-        $next = new VIH_Controller_Facilitet_Show($this, $name);
-        return $next->handleRequest();
-    }
-
 }

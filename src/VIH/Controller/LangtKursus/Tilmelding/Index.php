@@ -1,24 +1,36 @@
 <?php
-class VIH_Controller_LangtKursus_Tilmelding_Index extends k_Controller
+class VIH_Controller_LangtKursus_Tilmelding_Index extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $session_id = md5($this->SESSION->getSessionId());
-        throw new k_http_Redirect($this->url($session_id));
+        $this->template = $template;
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Controller_LangtKursus_Tilmelding_Kontakt($this, $name);
-        $data = array('content' => $next->handleRequest());
-        return $this->render('VIH/View/wrapper-tpl.php', $data);
+        return 'VIH_Controller_LangtKursus_Tilmelding_Kontakt';
+    }
+
+    function renderHtml()
+    {
+        $session_id = md5($this->session()->sessionId());
+        return new k_SeeOther($this->url($session_id));
+    }
+
+    function wrapHtml($content)
+    {
+        $data = array('content' => $content);
+        $tpl = $this->template->create('wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getLangtKursusId()
     {
-        return $this->context->name;
+        return $this->context->name();
     }
-    
+
     function getSubjects()
     {
         return $this->context->getSubjects();

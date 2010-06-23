@@ -2,9 +2,15 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Fotogalleri_Show extends k_Controller
+class VIH_Controller_Fotogalleri_Show extends k_Component
 {
     public $map = array();
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function GET()
     {
@@ -58,10 +64,12 @@ class VIH_Controller_Fotogalleri_Show extends k_Controller
 
             $list = array('photo' => $photo, 'previous' => $previous, 'next' => $next, 'list' => $this->context->url(NULL));
 
-            $this->document->title = 'Årets højdepunkter';
+            $this->document->setTitle('ï¿½rets hï¿½jdepunkter');
             $this->document->theme = 'photogallery';
 
-            return $this->render('VIH/View/sidebar-wrapper.tpl.php', array('content' => $this->render('VIH/View/Fotogalleri/foto-tpl.php', $list), 'content_sub' => ''));
+            $tpl = $this->template->create('sidebar-wrapper');
+            $tpl_foto = $this->template->create('Fotogalleri/foto');
+            return $tpl->render($this, array('content' => $tpl_foto->render($this, $list), 'content_sub' => ''));
         }
     }
 }

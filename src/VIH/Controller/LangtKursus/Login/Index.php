@@ -1,14 +1,8 @@
 <?php
-class VIH_Controller_LangtKursus_Login_Index extends k_Controller
+class VIH_Controller_LangtKursus_Login_Index extends k_Component
 {
-    function GET()
+    function map($name)
     {
-        throw new Exception('Denne side kan ikke tilgås direkte.');
-    }
-
-    function forward($name)
-    {
-        $next = new VIH_Controller_LangtKursus_Login_Tilmelding($this, $name);
-        return $content = $next->handleRequest();
+        return 'VIH_Controller_LangtKursus_Login_Tilmelding';
     }
 }

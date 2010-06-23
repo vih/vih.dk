@@ -1,7 +1,8 @@
 <?php
-class VIH_Root extends k_Dispatcher
+class VIH_Controller_Root extends k_Component
 {
-    public $map = array('stylesheet'   => 'VIH_Controller_Stylesheet_Index',
+    public $map = array('forside'      => 'VIH_Controller_Index',
+                        'stylesheet'   => 'VIH_Controller_Stylesheet_Index',
                         'index'        => 'VIH_Controller_Index',
                         'faciliteter'  => 'VIH_Controller_Facilitet_Index',
                         'langekurser'  => 'VIH_Controller_LangtKursus_Index',
@@ -18,59 +19,72 @@ class VIH_Root extends k_Dispatcher
                         'om'           => 'VIH_Controller_Om_Index',
                         'rss'          => 'VIH_Controller_RSS_Index',
                         'file'         => 'Ilib_Filehandler_Controller_Viewer');
-    private $dbquery;
+    protected $dbquery;
+    protected $template;
+    protected $kernel;
 
-    function __construct()
+    function __construct(k_TemplateFactory $template, VIH_Intraface_Kernel $kernel)
     {
-        parent::__construct();
-
-        //$GLOBALS['_global_function_callback_url'] = array($this, 'url');
-        //$GLOBALS['_global_function_callback_e'] = array($this, 'outputString');
-
-        $this->document->template = 'VIH/View/main.tpl.php';
-        $this->document->feeds = array();
-        $this->document->trail = array();
-        $this->document->meta = array('description' => '', 'keywords' => '');
-        $this->document->title = 'Vejle Idrætshøjskole';
-        $this->document->body_id = 'vih';
-        $this->document->body_class = '';
-        $this->document->theme = '';
-        $this->document->protocol = substr($this->url(), 0, 5);
+        $this->template = $template;
+        $this->kernel = $kernel;
     }
 
-    function execute()
+    function map($name)
     {
-        return $this->forward('index');
+        return $this->map[$name];
     }
 
-    protected function forward($name)
+    function renderHtml()
     {
-        $this->document->trail['forside'] = $this->url();
-        $response = parent::forward($name);
+        return new k_SeeOther('forside');
+    }
+
+    function wrapHtml($content)
+    {
+        $this->document->addCrumb('forside', $this->url());
+
         $model = array(
-            'content' => $response,
+            'content' => $content,
             'navigation' => array(
                 array('url' => $this->url('/faciliteter'), 'navigation_name' => 'Rundvisning'),
-                array('url' => $this->url('/fotogalleri'), 'navigation_name' => 'Højdepunkter'),
+                array('url' => $this->url('/fotogalleri'), 'navigation_name' => 'HÃ¸jdepunkter'),
                 array('url' => $this->url('/nyheder'), 'navigation_name' => 'Nyheder'),
                 array('url' => $this->url('/fag'), 'navigation_name' => 'Linjer og specialer'),
                 array('url' => $this->url('/langekurser'), 'navigation_name' => 'Lange kurser'),
                 array('url' => $this->url('/langekurser/rejser'), 'navigation_name' => 'Rejser'),
                 array('url' => $this->url('/kortekurser'), 'navigation_name' => 'Korte kurser'),
-                array('url' => $this->url('/underviser'), 'navigation_name' => 'Lærerkræfter'),
+                array('url' => $this->url('/underviser'), 'navigation_name' => 'LÃ¦rerkrÃ¦fter'),
                 array('url' => $this->url('/info'), 'navigation_name' => 'Info og filosofi'),
                 array('url' => $this->url('/bestilling'), 'navigation_name' => 'Bestilling')
             ),
             'url' => $this->url('/'),
-            'site_info' => '<a href="'.$this->url('/kontakt') .'">Vejle Idrætshøjskole</a> Ørnebjervej 28 7100 Vejle Tlf. 7582 0811 ' . email('kontor@vih.dk'),
-            'name' => 'Vejle Idrætshøjskole',
+            'site_info' => '<a href="'.$this->url('/kontakt') .'">Vejle IdrÃ¦tshÃ¸jskole</a> Ã˜rnebjervej 28 7100 Vejle Tlf. 7582 0811 ' . email('kontor@vih.dk'),
+            'name' => 'Vejle IdrÃ¦tshÃ¸jskole',
             'navigation_section' => array(
                 array('url' => 'http://vih.dk/kursuscenter/', 'navigation_name' => 'Kursuscenter'),
                 array('url' => 'http://vih.dk/elevforeningen/', 'navigation_name' => 'Elevforeningen'),
                 array('url' => 'http://www.vies.dk/', 'navigation_name' => 'Efterskole')
-            )
+            ),
+            'trail' => $this->document->trail,
+            'title' => $this->document->title()
         );
-        return $this->render('VIH/View/body.tpl.php', $model);
+
+        $tpl = $this->template->create('body');
+        $content = $tpl->render($this, $model);
+
+        $data = array(
+            'content' => $content,
+            'meta' => $this->document->meta,
+            'styles' => $this->document->styles(),
+            'scripts' => $this->document->scripts(),
+            'feeds' => $this->document->rss,
+            'body_id' => $this->document->body_id,
+            'protocol' => $this->document->protocol,
+            'body_class' => $this->document->body_class,
+            'theme' => $this->document->theme);
+
+        $tpl = $this->template->create('main');
+        return $tpl->render($this, $data);
     }
 
     function getSidePicture()
@@ -85,18 +99,16 @@ class VIH_Root extends k_Dispatcher
 
         if (strstr($this->document->body_class, 'widepicture')) {
             $size = 'widepicture';
-            $standard = url('/gfx/images/hojskole.jpg');
+            $standard = $this->url('/gfx/images/hojskole.jpg');
         } elseif (strstr($this->document->body_class, 'sidepicture')) {
             $size = 'sidepicture';
-            $standard = url('/gfx/images2/sidepic3.jpg');
+            $standard = $this->url('/gfx/images2/sidepic3.jpg');
         } else {
             return ;
         }
 
-        $kernel = $this->registry->get('intraface:kernel');
-        $module = $kernel->module('filemanager');
-        $translation = $kernel->getTranslation('filemanager');
-        $filemanager = new Ilib_Filehandler_Manager($kernel);
+        $module = $this->kernel->module('filemanager');
+        $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         if (!empty($this->document->theme)) {
             $keywords = array('worthshowing', $this->document->theme);
@@ -142,7 +154,7 @@ class VIH_Root extends k_Dispatcher
         }
 
         if (empty($news)) {
-            return '<p>Spørgsmål til højskoleophold eller rundvisning<span>Kontakt Peter Sebastian på 2929 6387 eller ps@vih.dk.</span></p>';
+            return '<p>SpÃ¸rgsmÃ¥l til hÃ¸jskoleophold eller rundvisning<span>Kontakt Peter Sebastian pÃ¥ 2929 6387 eller ps@vih.dk.</span></p>';
 
         } else {
             return '<p>'.$news[0]->get('title').'<span>'.$news[0]->get('tekst').'</span></p>';

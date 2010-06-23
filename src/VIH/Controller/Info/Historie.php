@@ -1,11 +1,18 @@
 <?php
-class VIH_Controller_Info_Historie extends k_Controller
+class VIH_Controller_Info_Historie extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function renderPdf()
     {
         $data = file_get_contents($this->url('/gfx/folder/historie.pdf'));
 
-        $response = new k_http_Response(200, $data);
+        $response = new k_HttpResponse(200, $data);
         $response->setEncoding(NULL);
         $response->setContentType("application/pdf");
 

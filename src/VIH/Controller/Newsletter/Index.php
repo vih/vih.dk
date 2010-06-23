@@ -1,5 +1,5 @@
 <?php
-class VIH_Controller_Newsletter_Index extends k_Controller
+class VIH_Controller_Newsletter_Index extends k_Component
 {
     public $i18n = array(
         'Newsletter' => 'Nyhedsbrev',
@@ -9,19 +9,25 @@ class VIH_Controller_Newsletter_Index extends k_Controller
         'Save' => 'Gem',
         'Email' => 'E-mail',
         'You have to supply an email address' => 'Du skal skrive en e-mail-adresse',
-        'An error occured. You could not subscribe.' => 'Der skete en fejl, så du kunne ikke tilmelde dig. Skriv til lars@vih.dk.',
+        'An error occured. You could not subscribe.' => 'Der skete en fejl, sï¿½ du kunne ikke tilmelde dig. Skriv til lars@vih.dk.',
         'You have unsubscribed from the newsletter.' => 'Du er nu frameldt nyhedsbrevet.',
-        'An error occured. You could not be removed from the newsletter.' => 'Der skete en fejl, så du kunne ikke framelde dig. Skriv til lars@vih.dk.',
-        'Information about the newsletter.' => 'Vi udsender seks-otte nyhedsbreve om året. Nyhedsbrevene fortæller om de vigtigste nyheder fra Vejle Idrætshøjskole. Du finder nyheder om de lange og korte kurser og om kursuscenteret. Nyhedsbrevet sendes i tekstformat.'
+        'An error occured. You could not be removed from the newsletter.' => 'Der skete en fejl, sï¿½ du kunne ikke framelde dig. Skriv til lars@vih.dk.',
+        'Information about the newsletter.' => 'Vi udsender seks-otte nyhedsbreve om ï¿½ret. Nyhedsbrevene fortï¿½ller om de vigtigste nyheder fra Vejle Idrï¿½tshï¿½jskole. Du finder nyheder om de lange og korte kurser og om kursuscenteret. Nyhedsbrevet sendes i tekstformat.'
     );
 
-    function handleRequest()
-    {
-        $this->document->title = 'Nyhedsbrev';
+    protected $template;
 
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function wrapHtml()
+    {
         $next = new IntrafacePublic_Newsletter_Controller_Index($this);
         $content = $next->handleRequest();
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', array('content' => $content));
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, array('content' => $content));
     }
 }

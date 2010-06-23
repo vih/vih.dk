@@ -2,9 +2,15 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Ansat_Kontakt extends k_Controller
+class VIH_Controller_Ansat_Kontakt extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -12,10 +18,7 @@ class VIH_Controller_Ansat_Kontakt extends k_Controller
             return $this->form;
         }
 
-        $underviser = new VIH_Model_Ansat($this->name);
-
         $form = new HTML_QuickForm('underviser', 'POST', $this->url());
-        $form->addElement('hidden', 'id', $underviser->get('id'));
         $form->addElement('text', 'navn', 'Navn');
         $form->addElement('text', 'email', 'E-mail');
         $form->addElement('textarea', 'besked', 'Besked', array('rows' => 12, 'cols' => 30));
@@ -34,12 +37,12 @@ class VIH_Controller_Ansat_Kontakt extends k_Controller
 
     }
 
-    function GET()
+    function renderHtml()
     {
-        $underviser = new VIH_Model_Ansat($this->context->name);
+        $underviser = new VIH_Model_Ansat($this->context->name());
 
         if (!$underviser->get('id')) {
-            throw new k_http_Response(404);
+            throw new k_PageNotFound();
         }
 
         $msg = '';
@@ -53,7 +56,7 @@ class VIH_Controller_Ansat_Kontakt extends k_Controller
         $meta['description'] = $underviser->get('description');
         $meta['keywords'] = '';
 
-        $this->document->title = $title;
+        $this->document->setTitle($title);
         $this->document->meta = $meta;
         $this->document->body_class = 'sidepicture';
         $this->document->sidepicture = $this->context->getSidePicture($underviser->get('pic_id'));
@@ -65,44 +68,38 @@ class VIH_Controller_Ansat_Kontakt extends k_Controller
             ' . $extra_text . '</div>
         ', 'content_sub' => $this->getSubContent());
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getSubContent()
     {
-        $underviser = new VIH_Model_Ansat($this->context->name);
-
-        $fag_html = '';
-
-        if (count($underviser->getFag()) > 0) {
-            $data = array('fag' => $underviser->getFag());
-            $fag_html = '<h2>Underviser i</h2>'.$this->render('VIH/View/Fag/fag-tpl.php', $data);
-        }
-        return $fag_html;
+        return $this->context->getFagHTML();
     }
 
-    function POST()
+    function postForm()
     {
-        $underviser = new VIH_Model_Ansat($this->context->name);
-        $this->document->title = $underviser->get('navn');
+        $underviser = new VIH_Model_Ansat($this->context->name());
+        $this->document->setTitle($underviser->get('navn'));
 
         if ($this->getForm()->validate()) {
             $mail = new VIH_Email;
             $mail->setSubject('Fra hjemmesiden');
-            $mail->setFrom($this->POST['email'], $this->POST['navn']);
-            $mail->setBody($this->POST['besked'] . "\n\nFra\n" . $this->POST['navn']);
+            $mail->setFrom($this->body('email'), $this->body('navn'));
+            $mail->setBody($this->body('besked') . "\n\nFra\n" . $this->body('navn'));
             $mail->addAddress($underviser->get('email'), $underviser->get('navn'));
             if (!$mail->Send()) {
                 $msg = '<p class="alert"><strong>Beskeden blev ikke sendt.</strong></p>';
             } else {
-                $msg = '<p class="notice"><strong>Beskeden blev sendt - jeg svarer på den så snart jeg ser den.</strong></p>';
+                $msg = '<p class="notice"><strong>Beskeden blev sendt - jeg svarer pï¿½ den sï¿½ snart jeg ser den.</strong></p>';
             }
             $data = array('content' => '
                 <h1 class="fn">'.$underviser->get('navn').'</h1>' .
                 $msg.'
             ', 'content_sub' => $this->getSubContent());
 
-            return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+            $tpl = $this->template->create('sidebar-wrapper');
+            return $tpl->render($this, $data);
 
         } else {
             $this->document->body_class = 'sidepicture';
@@ -113,8 +110,8 @@ class VIH_Controller_Ansat_Kontakt extends k_Controller
                 $this->getForm()->toHTML().'</div>
             ', 'content_sub' => $this->getSubContent());
 
-            return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+            $tpl = $this->template->create('sidebar-wrapper');
+            return $tpl->render($this, $data);
         }
-
     }
 }

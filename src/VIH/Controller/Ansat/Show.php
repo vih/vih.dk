@@ -2,21 +2,35 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Ansat_Show extends k_Controller
+class VIH_Controller_Ansat_Show extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $underviser = new VIH_Model_Ansat($this->name);
+        $this->template = $template;
+    }
+
+    function dispatch()
+    {
+        $underviser = new VIH_Model_Ansat($this->name());
 
         if (!$underviser->get('id') OR $underviser->get('published') == 0) {
-            throw new k_http_Response(404);
+            throw new k_PageNotFound();
         }
+
+        return parent::dispatch();
+    }
+
+    function GET()
+    {
+        $underviser = new VIH_Model_Ansat($this->name());
 
         $title = $underviser->get('navn');
         $meta['description'] = $underviser->get('description');
         $meta['keywords'] = '';
 
-        $this->document->title = $title;
+        $this->document->setTitle($title);
         $this->document->meta = $meta;
         $this->document->body_class = 'sidepicture';
         $this->document->body_id = 'underviser';
@@ -28,7 +42,8 @@ class VIH_Controller_Ansat_Show extends k_Controller
             <p class="fn"><strong>'.$underviser->get('navn').', '.$underviser->get('titel').'</strong> (<a href="'.$this->url('kontakt').'">Kontakt</a>)</p>
         ', 'content_sub' => $this->getSubContent());
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getSidePicture($pic_id)
@@ -40,26 +55,27 @@ class VIH_Controller_Ansat_Show extends k_Controller
 
     function getSubContent()
     {
-        $underviser = new VIH_Model_Ansat($this->name);
+        $underviser = new VIH_Model_Ansat($this->name());
 
         return autoop($underviser->getExtraInfo());
     }
 
     function getFagHTML()
     {
-        $underviser = new VIH_Model_Ansat($this->name);
+        $underviser = new VIH_Model_Ansat($this->name());
         $fag_html = '';
+
+        $tpl = $this->template->create('Fag/fag');
 
         if (count($underviser->getFag()) > 0) {
             $data = array('fag' => $underviser->getFag());
-            $fag_html = '<h2>Underviser i</h2>'.$this->render('VIH/View/Fag/fag-tpl.php', $data);
+            $fag_html = '<h2>Underviser i</h2>'.$tpl->render($this, $data);
         }
         return $fag_html;
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Controller_Ansat_Kontakt($this, $name);
-        return $next->handleRequest();
+        return 'VIH_Controller_Ansat_Kontakt';
     }
 }

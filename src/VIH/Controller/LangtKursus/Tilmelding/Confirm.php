@@ -1,7 +1,15 @@
 <?php
-class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Controller
+class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
 {
     private $form;
+    protected $template;
+    protected $doctrine;
+
+    function __construct(k_TemplateFactory $template, Doctrine_Connection_Common $doctrine)
+    {
+        $this->template = $template;
+        $this->doctrine = $doctrine;
+    }
 
     private function getForm()
     {
@@ -16,61 +24,63 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Controller
         return $this->form;
     }
 
-    public function GET()
+    public function renderHtml()
     {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
 
         if (!$tilmelding->getId()) {
-            throw new Exception('Du har ikke adgang til at være her');
+            throw new Exception('Du har ikke adgang til at vï¿½re her');
         }
 
-        $this->document->title = 'Bekræft reservation af plads';
+        $this->document->setTitle('Bekrï¿½ft reservation af plads');
 
         $data = array('tilmelding' => $tilmelding,
                       'caption' => 'Tilmeldingsoplysninger');
 
-        $doctrine = $this->registry->get('doctrine');
-        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneBySessionId($this->context->name);
+        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneBySessionId($this->context->name());
+
+        $tpl = $this->template->create('LangtKursus/Tilmelding/oplysninger');
 
         return '
-            <h1>Bekræft reservationen</h1>
-            <p>Nu er du der næsten. Først skal du lige tjekke om oplysningerne er korrekte, og så skal du lige godkende vores betingelser.</p>
+            <h1>Bekrï¿½ft reservationen</h1>
+            <p>Nu er du der nï¿½sten. Fï¿½rst skal du lige tjekke om oplysningerne er korrekte, og sï¿½ skal du lige godkende vores betingelser.</p>
             ' .
-            $this->render('VIH/View/LangtKursus/Tilmelding/oplysninger-tpl.php', $data) . $this->getForm()->toHTML();
+            $tpl->render($this, $data) . $this->getForm()->toHTML();
 
     }
 
     public function POST()
     {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
 
         if ($this->getForm()->validate()) {
             if (!$tilmelding->setStatus('tilmeldt')) {
-                throw new Exception('Status kunne ikke sættes');
+                throw new Exception('Status kunne ikke sï¿½ttes');
             }
 
-            if ($this->POST['confirm']) {
+            if ($this->body('confirm')) {
                 if (!$tilmelding->confirm()) {
-                    throw new Exception('Tilmelding ' . $tilmelding->getId() . ' kunne ikke bekræftes');
+                    throw new Exception('Tilmelding ' . $tilmelding->getId() . ' kunne ikke bekrï¿½ftes');
                 }
                 if ($tilmelding->get('email')) {
                     $historik = new VIH_Model_Historik('langekurser', $tilmelding->get('id'));
                     if (!$tilmelding->sendEmail()) {
-                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekræftelse på onlinetilmelding kunne ikke sendes'))) {
+                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekrï¿½ftelse pï¿½ onlinetilmelding kunne ikke sendes'))) {
                             throw new Exception('Historikken kunne ikke gemmes');
                         }
                         throw new Exception('E-mailen kunne ikke sendes til ordre ' . $tilmelding->getId());
                     } else {
-                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekræftelse på onlinetilmelding'))) {
+                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekrï¿½ftelse pï¿½ onlinetilmelding'))) {
                             throw new Exception('Historikken kunne ikke gemmes');
                         }
                     }
                 }
-                throw new k_http_Redirect($this->context->url('kvittering'));
+                return new k_SeeOther($this->context->url('kvittering'));
             }
         } else {
             return $this->getForm()->toHTML();
         }
 
+        return $this->render();
     }
 }

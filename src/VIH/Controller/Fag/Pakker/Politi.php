@@ -2,20 +2,27 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Fag_Pakker_Politi extends k_Controller
+class VIH_Controller_Fag_Pakker_Politi extends k_Component
 {
     public $i18n = array(
-        'Idræt A' => 'Outdoor Energy',
-        'Idræt B' => 'Adventure',
+        'Idrï¿½t A' => 'Outdoor Energy',
+        'Idrï¿½t B' => 'Adventure',
         'Linje' => 'Politi',
         'Diskussion' => 'Almen viden'
     );
 
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
     function GET()
     {
-        $this->document->title = 'Forberedelse til politiet på Vejle Idrætshøjskole - politi';
-        $this->document->description = 'For dig der vil forberede dig til politiets optagelsesprøve. Politi forberedende linje.';
-        $this->document->keywords = 'politi, højskole, idrætshøjskole, politiets optagelsesprøve';
+        $this->document->setTitle('Forberedelse til politiet pï¿½ Vejle Idrï¿½tshï¿½jskole - politi');
+        $this->document->description = 'For dig der vil forberede dig til politiets optagelsesprï¿½ve. Politi forberedende linje.';
+        $this->document->keywords = 'politi, hï¿½jskole, idrï¿½tshï¿½jskole, politiets optagelsesprï¿½ve';
 
         $this->document->theme = 'politilinje';
 
@@ -23,8 +30,9 @@ class VIH_Controller_Fag_Pakker_Politi extends k_Controller
 
         $data = array(
             'pakke' => 'Politi',
-            'beskrivelse' => 'For dig som drømmer om at komme ind på politiskolen. Kurset forbereder dig til at kunne bestå Politiets optagelsesprøve og være klar til de udfordringer der venter på politiskolen og ved Politiet. Politikurset indeholder undervisning og testning indenfor alle de områder som er indeholdt i politiets optagelsesprøve. Dertil vil der være oplæg ved ansatte fra Politiet, oplæg om politiskolen,  bassinprøve m.m. Udover den målrettede politiundervisning er der mulighed for at vælge et idrætsspeciale og valgfag efter egen interesse. Kurset er planlagt på baggrund af mange års erfaringer, samt løbende dialog med Politiet.');
-        return $this->render('VIH/View/Fag/pakke.tpl.php', $data);
+            'beskrivelse' => 'For dig som drï¿½mmer om at komme ind pï¿½ politiskolen. Kurset forbereder dig til at kunne bestï¿½ Politiets optagelsesprï¿½ve og vï¿½re klar til de udfordringer der venter pï¿½ politiskolen og ved Politiet. Politikurset indeholder undervisning og testning indenfor alle de omrï¿½der som er indeholdt i politiets optagelsesprï¿½ve. Dertil vil der vï¿½re oplï¿½g ved ansatte fra Politiet, oplï¿½g om politiskolen,  bassinprï¿½ve m.m. Udover den mï¿½lrettede politiundervisning er der mulighed for at vï¿½lge et idrï¿½tsspeciale og valgfag efter egen interesse. Kurset er planlagt pï¿½ baggrund af mange ï¿½rs erfaringer, samt lï¿½bende dialog med Politiet.');
+        $tpl = $this->template->create('Fag/pakke');
+        return $tpl->render($this, $data);
     }
 
     function getSkema()
