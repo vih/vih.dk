@@ -54,8 +54,8 @@ class VIH_Controller_Fag_Index extends k_Component
 
     function getSkema()
     {
-        $skema = new VIH_Controller_LangtKursus_Skema($this->template);
-        return $skema_html = $skema->renderHtml();
+        $skema = $this->createComponent('VIH_Controller_LangtKursus_Skema', '');
+        return $skema->renderHtml();
     }
 
     function getWidePictureHTML($identifier)
