@@ -63,9 +63,9 @@ class VIH_Identifier
         $this->identifier = trim($this->identifier);
         $this->identifier = strtolower($this->identifier);
         $this->identifier = str_replace(' ', '-', $this->identifier);
-        $this->identifier = str_replace('æ', 'ae', $this->identifier);
-        $this->identifier = str_replace('ø', 'o', $this->identifier);
-        $this->identifier = str_replace('å', 'aa', $this->identifier);
+        $this->identifier = str_replace('Ã¦', 'ae', $this->identifier);
+        $this->identifier = str_replace('o', 'o', $this->identifier);
+        $this->identifier = str_replace('Ã¥', 'aa', $this->identifier);
         return $this->identifier;
     }
 }

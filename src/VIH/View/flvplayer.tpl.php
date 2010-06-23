@@ -6,7 +6,7 @@ $id = uniqid();
 ?>
 <div class="flashwrap5">
 <p id="<?php e($id); ?>" class="flashplayer5">
-    Du skal bruge Flash Player for at se denne film. Den kan hentes <a href="http://www.macromedia.com/go/getflashplayer">her</a>.
+    Du skal bruge Flash Player for at se denne film. Den kan hentes på <a href="http://www.macromedia.com/go/getflashplayer">macromedia.com</a>.
 </p>
 
 <script type="text/javascript">

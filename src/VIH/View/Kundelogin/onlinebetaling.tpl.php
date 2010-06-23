@@ -7,10 +7,10 @@
 </div>
 <div id="content-sub">
     <h2>Sikkerhedsnummeret</h2>
-    <p>Du finder sikkerhedsnummeret (cvd) bag på Dankortet.</p>
-    <p><img src="<?php e(url('/gfx/images/dankort_cifre.gif')); ?>" alt="Hvor er sikkerhedscifrene på dankortet?" /></p>
+    <p>Du finder sikkerhedsnummeret (cvd) bag pÃ¥ Dankortet.</p>
+    <p><img src="<?php e(url('/gfx/images/dankort_cifre.gif')); ?>" alt="Hvor er sikkerhedscifrene pÃ¥ dankortet?" /></p>
     <h2>Sikkerhed</h2>
-    <p>Du kan læse mere om sikkerhed og <span class="dankort">Dankort</span> på <a href="http://www.betaling.dk/">PBS</a>.</p>
-    <p>Vores betalingsløsning ligger på en sikker server, og vi gemmer aldrig kortoplysninger i vores database.</p>
-    <p>Hvis du har spørgsmål, er du velkommen til at ringe til os på telefon 7582 0811.</p>
+    <p>Du kan lÃ¦se mere om sikkerhed og <span class="dankort">Dankort</span> pÃ¥ <a href="http://www.betaling.dk/">PBS</a>.</p>
+    <p>Vores betalingslÃ¸sning ligger pÃ¥ en sikker server, og vi gemmer aldrig kortoplysninger i vores database.</p>
+    <p>Hvis du har spÃ¸rgsmÃ¥l, er du velkommen til at ringe til os pÃ¥ telefon 7582 0811.</p>
 </div>

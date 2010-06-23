@@ -1,4 +1,4 @@
-<h1>V�lg fag p� <?php e($tilmelding->getKursus()->getKursusNavn()); ?></h1>
+<h1>Vælg fag på <?php e($tilmelding->getKursus()->getKursusNavn()); ?></h1>
 
 <?php
     $chosen = array();
@@ -10,9 +10,9 @@
     }
 ?>
 
-<p>Inden du kommer p� skolen, skal du v�lge de fag, du har flest timer om ugen, mens du er p� skolen. Resten af fagene v�lger du, n�r du ankommer.</p>
+<p>Inden du kommer på skolen, skal du vælge de fag, du har flest timer om ugen, mens du er på skolen. Resten af fagene vælger du, når du ankommer.</p>
 
-<p class="notice"><strong>Husk:</strong> Du skal kun v�lge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for f� tilmeldte til faget. Dette f�r du besked om inden ankomst.</p>
+<p class="notice"><strong>Husk:</strong> Du skal kun vælge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for få tilmeldte til faget. Dette før du besked om inden ankomst.</p>
 
 <form action="<?php e(url()); ?>" method="post" id="fag">
 <?php $i = 0; foreach ($periods as $p): ?>

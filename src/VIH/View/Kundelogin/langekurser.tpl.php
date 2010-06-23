@@ -2,14 +2,14 @@
 
     <h1>Tilmelding #<?php e($tilmelding->get('id')); ?></h1>
 
-    <p>På denne side kan du altid følge din tilmelding, betale skyldige beløb og udskrive kvitteringer.</p>
+    <p>PÃ¥ denne side kan du altid fÃ¸lge din tilmelding, betale skyldige belÃ¸b og udskrive kvitteringer.</p>
 
     <?php if (count($tilmelding->betalingsobject->getList('not_approved')) > 0): ?>
-        <p id="notice">Du har afventende betalinger på <?php e($tilmelding->get('betalt_not_approved')); ?> kroner. Betalingerne fremgår først af oversigten, når vi har hævet betalingen.</p>
+        <p id="notice">Du har afventende betalinger pÃ¥ <?php e($tilmelding->get('betalt_not_approved')); ?> kroner. Betalingerne fremgÃ¥r fÃ¸rst af oversigten, nÃ¥r vi har hÃ¦vet betalingen.</p>
     <?php elseif ($tilmelding->get('skyldig_tilmeldingsgebyr') > 0): ?>
-        <p id="notice">Du skal lige have betalt tilmeldingsgebyret på <?php e($tilmelding->get('skyldig_tilmeldingsgebyr')); ?> kroner. Hvis du har betalt inden for de seneste par dage, kan du se bort fra denne meddelelse - <a href="<?php echo url('onlinebetaling'); ?>">Betal <span class="dankort">online</span> &rarr;</a></p>
+        <p id="notice">Du skal lige have betalt tilmeldingsgebyret pÃ¥ <?php e($tilmelding->get('skyldig_tilmeldingsgebyr')); ?> kroner. Hvis du har betalt inden for de seneste par dage, kan du se bort fra denne meddelelse - <a href="<?php echo url('onlinebetaling'); ?>">Betal <span class="dankort">online</span> &rarr;</a></p>
     <?php elseif ($tilmelding->get('saldo') > 0): ?>
-        <p id="notice">Du skylder <?php e($tilmelding->get('skyldig')); ?> kroner, som du skal betale i nogle forskellige rater. Du kan se mere under <a href="<?php echo url('onlinebetaling'); ?>">onlinebetalingen &rarr;</a>. Vær opmærksom på, at der går nogle dage før vi modtager dem. Derfor skal du være tålmodig.</p>
+        <p id="notice">Du skylder <?php e($tilmelding->get('skyldig')); ?> kroner, som du skal betale i nogle forskellige rater. Du kan se mere under <a href="<?php echo url('onlinebetaling'); ?>">onlinebetalingen &rarr;</a>. VÃ¦r opmÃ¦rksom pÃ¥, at der gÃ¥r nogle dage fÃ¸r vi modtager dem. Derfor skal du vÃ¦re tÃ¥lmodig.</p>
     <?php endif; ?>
 
     <?php echo $oplysninger; ?>
@@ -44,7 +44,7 @@
     <?php endif; ?>
 
     <p id="call">
-        Spørgsmål? &mdash; ring på
+        SpÃ¸rgsmÃ¥l? &mdash; ring pÃ¥
         <span>75820811</span>
     </p>
 </div>

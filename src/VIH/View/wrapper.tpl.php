@@ -5,11 +5,10 @@
     <h2>Sidelinjen<em></em></h2>
     <div class="col3inner">
     <?php
-    /*
         $news = array('nyheder' => VIH_News::getList(2));
-        $tpl = new k_Template('VIH/View/News/sidebar-featured.tpl.php');
+        $creator = $context->createComponent('k_TemplateFactory');
+        $tpl = $creator->create('News/sidebar-featured');
         echo $tpl->render($this, $news);
-    */
     ?>
     </div>
 </div>

@@ -5,7 +5,7 @@ if (empty($preview)) $preview = '';
 ?>
 
 <p id="flash-player">
-    Du skal bruge Flash Player for at se denne film. Den kan hentes <a href="http://www.macromedia.com/go/getflashplayer">her</a>.
+    Du skal bruge Flash Player for at se denne film. Den kan hentes hos <a href="http://www.macromedia.com/go/getflashplayer">macromedia.com</a>.
 </p>
 
 <script type="text/javascript">
