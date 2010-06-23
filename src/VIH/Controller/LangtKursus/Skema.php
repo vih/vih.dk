@@ -2,15 +2,22 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_LangtKursus_Skema extends k_Controller
+class VIH_Controller_LangtKursus_Skema extends k_Component
 {
     public $i18n = array('Diskussionsfag' => 'Teori',
-                         'Individuel træning' => 'Træning',
-                         'Idrætsspeciale A' => 'Idræt A',
-                         'Idrætsspeciale B' => 'Idræt B');
+                         'Individuel trï¿½ning' => 'Trï¿½ning',
+                         'Idrï¿½tsspeciale A' => 'Idrï¿½t A',
+                         'Idrï¿½tsspeciale B' => 'Idrï¿½t B');
+    protected $template;
 
-    function GET()
+    function __construct(k_TemplateFactory $template)
     {
-        return $this->render('VIH/View/LangtKursus/skema-tpl.php');
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $tpl = $this->template->create('LangtKursus/skema');
+        return $tpl->render($this);
     }
 }

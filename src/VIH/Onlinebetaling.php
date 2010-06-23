@@ -50,7 +50,7 @@ class VIH_Onlinebetaling
         $this->quickpay->set_md5checkword(QUICKPAY_MD5_SECRET);
         $this->quickpay->set_merchant(QUICKPAY_MERCHANT_ID);
         $this->quickpay->set_posc($posc);
-        $this->quickpay->set_curl_certificate(PATH_ROOT . 'certifikater/cacert.pem');
+        //$this->quickpay->set_curl_certificate(PATH_ROOT . 'certifikater/cacert.pem');
     }
 
     function addCustomVar($var, $value)

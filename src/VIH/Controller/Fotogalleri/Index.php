@@ -1,11 +1,20 @@
 <?php
-class VIH_Controller_Fotogalleri_Index extends k_Controller
+class VIH_Controller_Fotogalleri_Index extends k_Component
 {
-    function GET()
-    {
-        $db = $this->registry->get('database:mdb2');
+    protected $mdb2;
+    protected $kernel;
+    protected $template;
 
-        $result = $db->query('SELECT id FROM fotogalleri WHERE active = 1 ORDER BY date_created DESC LIMIT 1');
+    function __construct(MDB2_Driver_Common $db, VIH_Intraface_Kernel $kernel, k_TemplateFactory $template)
+    {
+        $this->kernel = $kernel;
+        $this->mdb2 = $db;
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $result = $this->mdb2->query('SELECT id FROM fotogalleri WHERE active = 1 ORDER BY date_created DESC LIMIT 1');
         if (PEAR::isError($result)) {
             throw new Exception($result->getUserInfo());
         }
@@ -16,55 +25,51 @@ class VIH_Controller_Fotogalleri_Index extends k_Controller
         }
 
         // HACK start
-        $kernel = $this->registry->get('intraface:kernel');
-        $kernel->session_id = $this->SESSION->getSessionId();
+        $this->kernel->session_id = uniqid();
         // HACK end
-        $appender = new VIH_AppendFile($kernel, 'fotogalleri', $row['id']);
+        $appender = new VIH_AppendFile($this->kernel, 'fotogalleri', $row['id']);
         $appender->getDBQuery()->setFilter('order_by', 'name');
 
         $photos = $appender->getList();
         $photo = array();
 
         for ($i = 0, $max = count($photos); $i < $max; $i++) {
-            $filehandler = new Ilib_Filehandler($kernel, $photos[$i]['file_handler_id']);
+            $filehandler = new Ilib_Filehandler($this->kernel, $photos[$i]['file_handler_id']);
             $filehandler->createInstance('filgallerithumb');
             $photos[$i]['instance'] = $filehandler->instance->get();
             $photos[$i]['show_url'] = $this->url($photos[$i]['id']);
         }
 
+        $tpl = $this->template->create('Fotogalleri/list');
+
         if (empty($photos)) {
             $data = array('content' => '<h1>Fotogalleri</h1><p>Galleriet et tomt</p>', 'content_sub' => $this->getSubContent());
         } else {
             $list = array('photos' => $photos);
-            $data = array('content' => $this->render('VIH/View/Fotogalleri/list-tpl.php', $list), 'content_sub' => $this->getSubContent());
+            $data = array('content' => $tpl->render($this, $list), 'content_sub' => $this->getSubContent());
         }
 
-        $this->document->title = 'Årets højdepunkter';
+        $this->document->setTitle('Ã…rets hÃ¸jdepunkter');
         $this->document->theme = 'photogallery';
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getSubContent()
     {
-        return '<h2>Årets højdepunkter</h2>' . $this->getNews();
+        return '<h2>ï¿½rets hï¿½jdepunkter</h2>' . $this->getNews();
     }
 
     function getNews()
     {
-        $data = array('nyheder' => VIH_News::getList('', 3, 'Høj'));
-        return $this->render('VIH/View/News/sidebar-featured.tpl.php', $data) . '<p><a href="'.$this->url('/nyheder').'">Flere nyheder</a></p>';
+        $data = array('nyheder' => VIH_News::getList('', 3, 'Hï¿½j'));
+        $tpl = $this->template->create('News/sidebar-featured');
+        return $tpl->render($this, $data) . '<p><a href="'.$this->url('/nyheder').'">Flere nyheder</a></p>';
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Controller_Fotogalleri_Show($this, $name);
-        return $next->handleRequest();
-    }
-
-    function handleRequest()
-    {
-        $this->document->trail[$this->name] = $this->url();
-        return parent::handleRequest();
+        return 'VIH_Controller_Fotogalleri_Show';
     }
 }

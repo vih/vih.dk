@@ -2,50 +2,58 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_LangtKursus_Hojskole extends k_Controller
+class VIH_Controller_LangtKursus_Hojskole extends k_Component
 {
-    function GET()
-    {
-        $title = 'Hvad er et langt højskolekursus?';
-        $meta['description'] = 'Vejle Idrætshøjskole er en idrætshøjskole. Højskolelivet dækker over mange ting, det er umuligt at beskrive. Vi har alligevel forsøgt: Læs noget om det her.';
-        $meta['keywords'] = 'højskolekurser, højskolekursus, højskoleliv, weekend, rettigheder, pligter';
+    protected $template;
 
-        $this->document->title = $title;
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $title = 'Hvad er et langt hï¿½jskolekursus?';
+        $meta['description'] = 'Vejle Idrï¿½tshï¿½jskole er en idrï¿½tshï¿½jskole. Hï¿½jskolelivet dï¿½kker over mange ting, det er umuligt at beskrive. Vi har alligevel forsï¿½gt: Lï¿½s noget om det her.';
+        $meta['keywords'] = 'hï¿½jskolekurser, hï¿½jskolekursus, hï¿½jskoleliv, weekend, rettigheder, pligter';
+
+        $this->document->setTitle($title);
         $this->document->meta = $meta;
         $this->document->body_class = 'widepicture';
 
         $data = array('content' => '
         <h1>Hvad er et langt kursus?</h1>
 
-        <p>Et langt højskolekursus på Vejle Idrætshøjskole varer mellem 16 og 41 uger. Du spiser, sover, hygger, bevæger dig, ja, kort sagt lever du på skolen. Der er inspirerende undervisning, caféaftener med underholdning, fede fester og masser af initiativ og aktivitet i fritiden.</p>
-        <p>Du kan se hvilke <a href="'.url('/langekurser/').'">kurser</a> og <a href="fag/">fag</a>, du kan vælge mellem.</p>
+        <p>Et langt hï¿½jskolekursus pï¿½ Vejle Idrï¿½tshï¿½jskole varer mellem 16 og 41 uger. Du spiser, sover, hygger, bevï¿½ger dig, ja, kort sagt lever du pï¿½ skolen. Der er inspirerende undervisning, cafï¿½aftener med underholdning, fede fester og masser af initiativ og aktivitet i fritiden.</p>
+        <p>Du kan se hvilke <a href="'.url('/langekurser/').'">kurser</a> og <a href="fag/">fag</a>, du kan vï¿½lge mellem.</p>
 
-        <h2>Højskole - livet i bevægelse</h2>
+        <h2>Hï¿½jskole - livet i bevï¿½gelse</h2>
 
-        <p>Vejle Idrætshøjskole er et sted sted med idræt, glæde og begejstring. Vejle Idrætshøjskole er en folkehøjskole med idræt som hovedinteresse, men vi tilbyder også mange kulturfag, hvor tankerne må på arbejde. Skolen har <a href="'.url('/underviser/').'">højtuddannede undervisere</a> med specialviden inden for deres fagområde og <a href="'.url('/faciliteter/').'">faciliteter</a> til lidt af hvert.</p>
+        <p>Vejle Idrï¿½tshï¿½jskole er et sted sted med idrï¿½t, glï¿½de og begejstring. Vejle Idrï¿½tshï¿½jskole er en folkehï¿½jskole med idrï¿½t som hovedinteresse, men vi tilbyder ogsï¿½ mange kulturfag, hvor tankerne mï¿½ pï¿½ arbejde. Skolen har <a href="'.url('/underviser/').'">hï¿½jtuddannede undervisere</a> med specialviden inden for deres fagomrï¿½de og <a href="'.url('/faciliteter/').'">faciliteter</a> til lidt af hvert.</p>
 
         <h2>Livet er ikke for tilskuere</h2>
-        <p>En højskole er ikke for tilskuere, men for medspillere. Vi lærer og lever sammen, og jo mere aktive alle er, des mere opnår vi i fællesskab. Ligesom i alle forhold i livet, må du give lidt for at kunne modtage meget.</p>
+        <p>En hï¿½jskole er ikke for tilskuere, men for medspillere. Vi lï¿½rer og lever sammen, og jo mere aktive alle er, des mere opnï¿½r vi i fï¿½llesskab. Ligesom i alle forhold i livet, mï¿½ du give lidt for at kunne modtage meget.</p>
 
-        <h2 id="forudsaetninger" title="Rettigheder og pligter">Jyske Lov - forudsætninger for at være elev på Vejle Idrætshøjskole</h2>
-        <p>For at alle får mest muligt ud af deres højskoleophold, har vi opstillet fire forudsætninger, som eleverne på Vejle Idrætshøjskole skal følge.</p>
+        <h2 id="forudsaetninger" title="Rettigheder og pligter">Jyske Lov - forudsï¿½tninger for at vï¿½re elev pï¿½ Vejle Idrï¿½tshï¿½jskole</h2>
+        <p>For at alle fï¿½r mest muligt ud af deres hï¿½jskoleophold, har vi opstillet fire forudsï¿½tninger, som eleverne pï¿½ Vejle Idrï¿½tshï¿½jskole skal fï¿½lge.</p>
 
         <ol>
             <li>Al undervisning er obligatorisk, og vi forventer at du deltager aktivt i den.</li>
             <li>Brug af doping, hash eller andre euforiserende stoffer er ikke tilladt.</li>
-            <li>Alkoholmisbrug må ikke finde sted.</li>
-            <li>Du har pligt til at vise hensyn over for andres arbejdsvilkår og trivsel.</li>
+            <li>Alkoholmisbrug mï¿½ ikke finde sted.</li>
+            <li>Du har pligt til at vise hensyn over for andres arbejdsvilkï¿½r og trivsel.</li>
         </ol>
 
-        <p>Vi forventer desuden, at du repræsenterer skolen værdigt i den tid, du er elev her. Har du nogle spørgsmål til forudsætningerne, kan du <a href="'.url('/kontakt/').'">ringe til skolen</a> og tale med vores forstander.</p>
+        <p>Vi forventer desuden, at du reprï¿½senterer skolen vï¿½rdigt i den tid, du er elev her. Har du nogle spï¿½rgsmï¿½l til forudsï¿½tningerne, kan du <a href="'.url('/kontakt/').'">ringe til skolen</a> og tale med vores forstander.</p>
 
-        <h2>På kryds og tværs</h2>
-        <p>Et højskolekursus på Vejle Idrætshøjskole veksler mellem normaluger og temauger, hvor vi sætter skemaet ud af kraft og arbejder på kryds og tværs. Det betyder ofte, at vi sætter skolen på den anden ende, og at fritimer, aftentimer og weekends bliver inddraget.</p>
+        <h2>Pï¿½ kryds og tvï¿½rs</h2>
+        <p>Et hï¿½jskolekursus pï¿½ Vejle Idrï¿½tshï¿½jskole veksler mellem normaluger og temauger, hvor vi sï¿½tter skemaet ud af kraft og arbejder pï¿½ kryds og tvï¿½rs. Det betyder ofte, at vi sï¿½tter skolen pï¿½ den anden ende, og at fritimer, aftentimer og weekends bliver inddraget.</p>
 
         <h2>Et frit fritidsliv!</h2>
-        <p>Et dynamisk højskoleliv kræver også et fritidsliv. Du kan fortsætte din foreningsidræt og skabe nye aktiviteter på skolen sammen med dine højskolekammerater.</p>
-        ', 'content_sub' => '<h2>Flere højskoler</h2><p>Der er mange forskellige højskoler i Danmark med forskellige specialer.</p><p>Hvis du er interesseret i at læse mere om højskolerne, kan du læse på <a href="http://www.leksikon.org/art.php?n=2824">leksikon.org</a> eller på <a href="http://www.hojskolerne.dk/">hojskolerne.dk</a>.</p>');
+        <p>Et dynamisk hï¿½jskoleliv krï¿½ver ogsï¿½ et fritidsliv. Du kan fortsï¿½tte din foreningsidrï¿½t og skabe nye aktiviteter pï¿½ skolen sammen med dine hï¿½jskolekammerater.</p>
+        ', 'content_sub' => '<h2>Flere hï¿½jskoler</h2><p>Der er mange forskellige hï¿½jskoler i Danmark med forskellige specialer.</p><p>Hvis du er interesseret i at lï¿½se mere om hï¿½jskolerne, kan du lï¿½se pï¿½ <a href="http://www.leksikon.org/art.php?n=2824">leksikon.org</a> eller pï¿½ <a href="http://www.hojskolerne.dk/">hojskolerne.dk</a>.</p>');
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 }

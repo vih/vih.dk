@@ -2,17 +2,24 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Fag_Show extends k_Controller
+class VIH_Controller_Fag_Show extends k_Component
 {
-    private $dbquery;
+    protected $dbquery;
+    protected $template;
+    protected $kernel;
 
-    function GET()
+    function __construct(k_TemplateFactory $template, VIH_Intraface_Kernel $kernel)
     {
+        $this->template = $template;
+        $this->kernel = $kernel;
+    }
 
-        $fag = new VIH_Model_Fag($this->name);
+    function renderHtml()
+    {
+        $fag = new VIH_Model_Fag($this->name());
 
         if (!$fag->get('id') OR $fag->get('active') != 1 OR $fag->get('published') != 1) {
-            throw new k_http_Response(404);
+            throw new k_PageNotFound();
         }
 
         $undervisere = $fag->getUndervisere();
@@ -24,10 +31,10 @@ class VIH_Controller_Fag_Show extends k_Controller
         $meta['description'] = $fag->get('description');
         $meta['keywords'] = $fag->get('keywords');
 
-        $this->document->title = $title;
+        $this->document->setTitle($title);
         $this->document->meta  = $meta;
         $this->document->theme = $fag->get('identifier');
-        if (empty($this->GET['show'])) {
+        if ($this->query('show')) {
             $this->document->body_class  = 'sidepicture';
             $this->document->sidepicture = $this->getPictureHTML($fag->get('identifier'));
         } else {
@@ -40,11 +47,11 @@ class VIH_Controller_Fag_Show extends k_Controller
             ' . $this->getUdvidetBeskrivelse($fag) .'</div>',
                       'content_sub' =>
                             $this->getVideo() . '
-            <h2>Spørgsmål?</h2>
+            <h2>Spï¿½rgsmï¿½l?</h2>
             ' . $this->getUndervisereHTML($fag->getUndervisere()) . $this->getSubContent($fag->get('identifier')));
 
-
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getSubContent($keyword)
@@ -72,7 +79,8 @@ class VIH_Controller_Fag_Show extends k_Controller
         }
 
         $data = array('nyheder' => $news);
-        return $this->render('VIH/View/News/sidebar-featured.tpl.php', $data);
+        $tpl = $this->template->create('News/sidebar-featured');
+        return $tpl->render($this, $data);
     }
 
     function getUdvidetBeskrivelse($fag)
@@ -111,21 +119,21 @@ class VIH_Controller_Fag_Show extends k_Controller
             return '';
         }
 
-        $this->document->scripts[] = $this->url('/scripts/swfobject.js');
-        return $this->render('VIH/View/flvplayer-tpl.php', array('url' => $url));
+        $this->document->addScript($this->url('/scripts/swfobject.js'));
+        $tpl = $this->template->create('flvplayer');
+        return $tpl->render($this, array('url' => $url));
     }
 
     function getUndervisereHTML($undervisere = array())
     {
         $data = array('undervisere' => $undervisere);
-        return $this->render('VIH/View/Ansat/undervisere-tpl.php', $data);
+        $tpl = $this->template->create('Ansat/undervisere');
+        return $tpl->render($this, $data);
     }
 
     function getPictureHTML($identifier)
     {
-        $kernel = $this->registry->get('intraface:kernel');
-        $translation = $kernel->getTranslation('filemanager');
-        $filemanager = new Ilib_Filehandler_Manager($kernel);
+        $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         try {
             $img = new Ilib_Filehandler_ImageRandomizer($filemanager, array($identifier));
@@ -153,10 +161,10 @@ class VIH_Controller_Fag_Show extends k_Controller
             return '';
         }
         $data = array('kurser' => $fag->getKurser(),
-                      'caption' => $fag->get('navn') . ' er på følgende kurser',
-                      'summary' => 'Oversigt over hvilke lange kurser, du kan få ' . $fag->get('navn') . ' på.');
-        return $this->render('VIH/View/LangtKursus/kurser-tpl.php', $data);
-
+                      'caption' => $fag->get('navn') . ' er pï¿½ fï¿½lgende kurser',
+                      'summary' => 'Oversigt over hvilke lange kurser, du kan fï¿½ ' . $fag->get('navn') . ' pï¿½.');
+        $tpl = $this->template->create('LangtKursus/kurser');
+        return $tpl->render($this, $data);
     }
 
     function getDBQuery()
@@ -167,5 +175,4 @@ class VIH_Controller_Fag_Show extends k_Controller
         $dbquery = new Ilib_DBQuery("nyhed", "nyhed.active = 1");
         return ($this->dbquery = $dbquery);
     }
-
 }

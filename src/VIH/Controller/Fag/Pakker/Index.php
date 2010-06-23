@@ -2,35 +2,42 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Fag_Pakker_Index extends k_Controller
+class VIH_Controller_Fag_Pakker_Index extends k_Component
 {
-    function forward($name)
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        if ($name == 'politi') {
-        	$next = new VIH_Controller_Fag_Pakker_Politi($this, $name);
-        } elseif ($name == 'outdoor') {
-        	$next = new VIH_Controller_Fag_Pakker_Outdoor($this, $name);
-        } elseif ($name == 'boldspil') {
-            $next = new VIH_Controller_Fag_Pakker_Boldspil($this, $name);
-        } elseif ($name == 'fitness') {
-            $next = new VIH_Controller_Fag_Pakker_Fitness($this, $name);
-        }
-        return $next->handleRequest();
+        $this->template = $template;
     }
 
-    function handleRequest()
+    function map($name)
     {
-        $this->document->trail[$this->name] = $this->url();
+        if ($name == 'politi') {
+        	return 'VIH_Controller_Fag_Pakker_Politi';
+        } elseif ($name == 'outdoor') {
+        	return 'VIH_Controller_Fag_Pakker_Outdoor';
+        } elseif ($name == 'boldspil') {
+            return 'VIH_Controller_Fag_Pakker_Boldspil';
+        } elseif ($name == 'fitness') {
+            return 'VIH_Controller_Fag_Pakker_Fitness';
+        }
+    }
+
+    function wrapHtml($content)
+    {
+        $this->document->addCrumb($this->name, $this->url());
         $this->document->body_class  = 'widepicture';
 
-        $data = array('content' => parent::handleRequest(), 'content_sub' => $this->context->getSubContent());
+        $data = array('content' => $content, 'content_sub' => $this->context->getSubContent());
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getSkema()
     {
-        $forklaring = '<p><strong>Herunder har du et skemaeksempel. Du kan selvfølgelig vælge mellem alle fagene ude i siden.</strong></p>';
+        $forklaring = '<p><strong>Herunder har du et skemaeksempel. Du kan selvfï¿½lgelig vï¿½lge mellem alle fagene ude i siden.</strong></p>';
 
         $skema = new VIH_Controller_LangtKursus_Skema($this);
         return $forklaring . $skema->execute();

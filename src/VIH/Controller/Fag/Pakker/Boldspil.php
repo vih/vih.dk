@@ -2,32 +2,39 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Fag_Pakker_Boldspil extends k_Controller
+class VIH_Controller_Fag_Pakker_Boldspil extends k_Component
 {
     public $i18n = array(
-        'Idræt A' => 'Fodbold',
-        'Idræt B' => 'Volley',
+        'Idrï¿½t A' => 'Fodbold',
+        'Idrï¿½t B' => 'Volley',
         'Linje' => 'Mental challenge',
-        'Idrætsfag' => 'Floorball',
-        'Diskussion' => 'Det gælder livet'
+        'Idrï¿½tsfag' => 'Floorball',
+        'Diskussion' => 'Det gï¿½lder livet'
     );
 
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function GET()
     {
-        $this->document->title = 'Boldspil på Vejle Idrætshøjskole';
-        $this->document->description = 'Du kan sammensætte en fagpakke med boldspil på Vejle Idrætshøjskole. For dig der er til boldspil og højskole.';
-        $this->document->keywords = 'boldspil, højskole, idrætshøjskole';
+        $this->document->setTitle('Boldspil pï¿½ Vejle Idrï¿½tshï¿½jskole');
+        $this->document->description = 'Du kan sammensï¿½tte en fagpakke med boldspil pï¿½ Vejle Idrï¿½tshï¿½jskole. For dig der er til boldspil og hï¿½jskole.';
+        $this->document->keywords = 'boldspil, hï¿½jskole, idrï¿½tshï¿½jskole';
 
         $this->document->theme = 'fodbold';
 
         $this->document->widepicture = $this->context->getWidePictureHTML('boldspil');
 
+        $tpl = $this->template->create('Fag/pakke');
         $data = array(
             'pakke' => 'Boldspil',
-            'beskrivelse' => 'For dig der er interesseret i boldspil. Du får mulighed for at prøve en lang række forskellige boldspil. Nogen kan du have i mange timer om ugen, mens du kan have andre fag i kortere perioder. Du får bedre teknik og en øget taktiske forståelse, og du vil komme til at afprøve dig selv som træner.');
+            'beskrivelse' => 'For dig der er interesseret i boldspil. Du fï¿½r mulighed for at prï¿½ve en lang rï¿½kke forskellige boldspil. Nogen kan du have i mange timer om ugen, mens du kan have andre fag i kortere perioder. Du fï¿½r bedre teknik og en ï¿½get taktiske forstï¿½else, og du vil komme til at afprï¿½ve dig selv som trï¿½ner.');
 
-        return $this->render('VIH/View/Fag/pakke.tpl.php', $data);
+        return $tpl->render($this, $data);
     }
 
     function getSkema()

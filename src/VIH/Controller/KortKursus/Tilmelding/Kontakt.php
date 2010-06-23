@@ -6,9 +6,15 @@
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
+class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
 {
     private $form;
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
 
     function getForm()
     {
@@ -28,9 +34,9 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
         $this->form->addElement('text', 'postnr', 'Postnummer');
         $this->form->addElement('text', 'postby', 'By');
         $this->form->addElement('text', 'telefonnummer', 'Telefonnummer');
-        //$this->form->addElement('text', 'arbejdstelefon', 'Telefon (ml. 8 og 16)', 'Telefonnummer hvor du kan træffes mellem 8 og 16');
+        //$this->form->addElement('text', 'arbejdstelefon', 'Telefon (ml. 8 og 16)', 'Telefonnummer hvor du kan trï¿½ffes mellem 8 og 16');
         //$this->form->addElement('text', 'mobil', 'Mobil');
-        $this->form->addElement('text', 'email', 'E-mail'); // 'Bekræftelse sendes til denne e-mail-adresse. Hvis den udelades bruger vi Post Danmark.'
+        $this->form->addElement('text', 'email', 'E-mail'); // 'Bekrï¿½ftelse sendes til denne e-mail-adresse. Hvis den udelades bruger vi Post Danmark.'
         $this->form->addElement('header', null, 'Vil du tegne afbestillingsforsikring');
         $this->form->addElement('radio', 'afbestillingsforsikring', 'Afbestillingsforsikring', 'Ja ('.$tilmelding->getKursus()->get('pris_afbestillingsforsikring').' kr ekstra)', 'Ja', 'id="forsikring_ja"');
         $this->form->addElement('radio', 'afbestillingsforsikring', '', 'Nej', 'Nej', 'id="forsikring_nej"');
@@ -42,7 +48,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
         $this->form->addRule('telefonnummer', 'Skriv venligst din telefonnummer', 'required');
         $this->form->addRule('arbejdstelefon', 'Skriv venligst din arbejdstelefon', 'required');
         $this->form->addRule('email', 'Den e-mail du har indtastet er ikke gyldig', 'email');
-        $this->form->addRule('afbestillingsforsikring', 'Du skal vælge, om du vil have en afbestillingsforsikring', 'required');
+        $this->form->addRule('afbestillingsforsikring', 'Du skal vï¿½lge, om du vil have en afbestillingsforsikring', 'required');
 
         $defaults = array(
         	'kontaktnavn' => $tilmelding->get('navn'),
@@ -66,7 +72,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
             $this->form->addElement('header', null, 'Deltager ' .  $deltager_nummer);
             $this->form->addElement('hidden', 'id['.$i.']');
             $this->form->addElement('text', 'navn['.$i.']', 'Navn');
-            $this->form->addElement('text', 'cpr['.$i.']', 'CPR-nummer', '(ddmmåå-xxxx)', null);
+            $this->form->addElement('text', 'cpr['.$i.']', 'CPR-nummer', '(ddmmï¿½ï¿½-xxxx)', null);
             $this->form->addRule('navn['.$i.']', 'Du skal skrive et navn', 'required');
             $this->form->addRule('cpr['.$i.']', 'Du skal skrive et cpr-nummer', 'required');
             //$this->form->addRule('cpr['.$i.']', 'Du skal skrive et gyldigt cpr-nummer', 'validate_cpr');
@@ -78,20 +84,20 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
             /*
             switch ($tilmelding->kursus->get('indkvartering')) {
                 case 'kursuscenteret':
-                    $this->form->addElement('radio', 'enevaerelse['.$i.']', 'Der er indkvartering på eneværelser', '', 'ja', 'id="vaerelse_ja"');
-                    $this->form->addElement('text', 'sambo['.$i.']', 'Jeg ønsker at dele toilet og bad med?');
-                    $this->form->addRule('enevaerelse['.$i.']', 'Der er kun indkvartering på eneværelser', 'required');
+                    $this->form->addElement('radio', 'enevaerelse['.$i.']', 'Der er indkvartering pï¿½ enevï¿½relser', '', 'ja', 'id="vaerelse_ja"');
+                    $this->form->addElement('text', 'sambo['.$i.']', 'Jeg ï¿½nsker at dele toilet og bad med?');
+                    $this->form->addRule('enevaerelse['.$i.']', 'Der er kun indkvartering pï¿½ enevï¿½relser', 'required');
                     // $this->form->addRule('sambo['.$i.']', 'Hvem vil du dele toilet og bad med?', 'required');
                     $this->form->setDefaults(array(
                     	'enevaerelse['.$i.']' => true,
                         'sambo['.$i.']' => $deltager->get('sambo')));
                     break;
                 case 'hojskole og kursuscenter':
-                    $this->form->addElement('radio', 'vaerelse['.$i.']', 'Indkvartering', 'Enkeltværelse (bad og toilet deles med en anden)', 'enkelt', 'id="vaerelse_1"');
-                    $this->form->addElement('radio', 'vaerelse['.$i.']', '', 'Dobbeltværelse', 'dobbelt', 'id="vaerelse_2"');
+                    $this->form->addElement('radio', 'vaerelse['.$i.']', 'Indkvartering', 'Enkeltvï¿½relse (bad og toilet deles med en anden)', 'enkelt', 'id="vaerelse_1"');
+                    $this->form->addElement('radio', 'vaerelse['.$i.']', '', 'Dobbeltvï¿½relse', 'dobbelt', 'id="vaerelse_2"');
                     $this->form->addElement('radio', 'vaerelse['.$i.']', '', 'Plads i rum til 3 personer', '3-personers', 'id="vaerelse_3"');
-                    $this->form->addElement('text', 'sambo['.$i.']', 'Jeg ønsker at dele toilet og bad med?');
-                    $this->form->addRule('vaerelse['.$i.']', 'Du skal vælge værelsestype', 'required');
+                    $this->form->addElement('text', 'sambo['.$i.']', 'Jeg ï¿½nsker at dele toilet og bad med?');
+                    $this->form->addRule('vaerelse['.$i.']', 'Du skal vï¿½lge vï¿½relsestype', 'required');
                     // $this->form->addRule('sambo['.$i.']', 'Hvem vil du dele toilet og bad med?', 'required');
                     $this->form->setDefaults(array(
                     	'vaerelse['.$i.']' => $deltager->get('vaerelse'),
@@ -106,11 +112,11 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
                     $indkvartering_headline = '';
                 }
                 if (empty($indkvartering_headline)) {
-                    $this->form->addElement('text', 'sambo['.$i.']', 'Vil gerne dele bad og toilet / værelse med?');
+                    $this->form->addElement('text', 'sambo['.$i.']', 'Vil gerne dele bad og toilet / vï¿½relse med?');
                     $this->form->setDefaults(array(
                         	'indkvartering_key['.$i.']' => $deltager->get('indkvartering_key'),
                             'sambo['.$i.']' => $deltager->get('sambo')));
-                    $this->form->addRule('vaerelse['.$i.']', 'Du skal vælge en indkvarteringsform', 'required');
+                    $this->form->addRule('vaerelse['.$i.']', 'Du skal vï¿½lge en indkvarteringsform', 'required');
                 }
             }
             switch ($tilmelding->kursus->get('gruppe_id')) {
@@ -121,8 +127,8 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
                     $this->form->addElement('radio', 'dgu['.$i.']', 'DGU-medlem', 'Ja', 'Ja', 'id="dgu_ja"');
                     $this->form->addElement('radio', 'dgu['.$i.']', '', 'Nej', 'Nej', 'id="dgu_nej"');
 
-                    $this->form->addRule('handicap['.$i.']', 'Du skal vælge dit handicap', 'required');
-                    // nedenstående regel skal lige aktiveres
+                    $this->form->addRule('handicap['.$i.']', 'Du skal vï¿½lge dit handicap', 'required');
+                    // nedenstï¿½ende regel skal lige aktiveres
                     //$this->form->addRule('handicap['.$i.']', 'Du skal skrive et gyldig handicap', '');
 
                     $this->form->setDefaults(array('handicap['.$i.']' => $deltager->get('handicap'),
@@ -130,15 +136,15 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
                                              'dgu['.$i.']' => $deltager->get('dgu')));
                     break;
                 case 3: // bridge
-                    //$niveau = array('Begynder' => 'Begynder', 'Let øvet' => 'Let øvet', 'Øvet' => 'Øvet', 'Meget øvet' => 'Meget øvet');
-                    $niveau = array('Let øvet' => 'Let øvet', 'Øvet' => 'Øvet', 'Meget øvet' => 'Meget øvet');
+                    //$niveau = array('Begynder' => 'Begynder', 'Let ï¿½vet' => 'Let ï¿½vet', 'ï¿½vet' => 'ï¿½vet', 'Meget ï¿½vet' => 'Meget ï¿½vet');
+                    $niveau = array('Let ï¿½vet' => 'Let ï¿½vet', 'ï¿½vet' => 'ï¿½vet', 'Meget ï¿½vet' => 'Meget ï¿½vet');
                     $this->form->addElement('select', 'niveau['.$i.']', 'Bridgeniveau', $niveau);
                     $this->form->addRule('niveau['.$i.']', 'Hvilket bridgeniveau har du?', 'required');
                     $this->form->setDefaults(array('niveau['.$i.']' => $deltager->get('niveau')));
                     break;
                 case 5:
-                    $speciale = array('Vælg', 'adventure' => 'Adventure', 'outdoor' => 'Outdoor Energy', 'fitness' => 'Fitness', 'boldspil' => 'Boldspil', 'dans' => 'Dans');
-                    $this->form->addElement('select', 'speciale['.$i.']', 'Idrætsspeciale', $speciale);
+                    $speciale = array('Vï¿½lg', 'adventure' => 'Adventure', 'outdoor' => 'Outdoor Energy', 'fitness' => 'Fitness', 'boldspil' => 'Boldspil', 'dans' => 'Dans');
+                    $this->form->addElement('select', 'speciale['.$i.']', 'Idrï¿½tsspeciale', $speciale);
                     $this->form->setDefaults(array('speciale['.$i.']' => $deltager->get('speciale')));
                     break;
                 default:
@@ -149,7 +155,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
             $i++;
         } // foreach
 
-        $this->form->addElement('header', null, 'Øvrige oplysninger');
+        $this->form->addElement('header', null, 'ï¿½vrige oplysninger');
         $this->form->addElement('textarea', 'besked', 'Besked');
         $this->form->addElement('submit', null, 'Videre >>');
 
@@ -163,37 +169,45 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
 
     function getTilmelding()
     {
-        return new VIH_Model_KortKursus_OnlineTilmelding($this->context->name);
+        return new VIH_Model_KortKursus_OnlineTilmelding($this->context->name());
     }
 
-    function GET()
+    function dispatch()
     {
         $tilmelding = $this->getTilmelding();
 
         if (!$tilmelding->get('id')) {
-            throw new Exception('Du har ikke ret til at være her');
+            throw new Exception('Du har ikke ret til at vï¿½re her');
         }
+
+        return parent::dispatch();
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = $this->getTilmelding();
 
         $extra_text = '';
         $tilmelding->kursus->getBegyndere();
         if ($tilmelding->kursus->get('pladser_begyndere_ledige') <= 0 AND $tilmelding->kursus->get('gruppe_id') == 1): // golf
-        $extra_text = '<p class="alert"><strong>Der er ikke flere ledige begynderpladser på dette kursus.</strong></p>';
+        $extra_text = '<p class="alert"><strong>Der er ikke flere ledige begynderpladser pï¿½ dette kursus.</strong></p>';
         endif;
 
-        $this->document->title = 'Indtast oplysninger';
+        $this->document->setTitle('Indtast oplysninger');
 
         $data = array('headline' => 'Indtast oplysninger',
                       'explanation' => $extra_text . '
-            <p>Du er ved at reservere en plads på ' . $tilmelding->kursus->get('kursusnavn') . '.</p>
+            <p>Du er ved at reservere en plads pï¿½ ' . $tilmelding->kursus->get('kursusnavn') . '.</p>
         ',
                       'content' =>
-            '<p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angående tilmeldingen, og det er også kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>'
+            '<p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angï¿½ende tilmeldingen, og det er ogsï¿½ kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ï¿½nsker at fï¿½ post, beder vi jer lave flere tilmeldinger.</p>'
             . $this->getForm()->toHTML());
 
-            return $this->render('VIH/View/KortKursus/Tilmelding/tilmelding-tpl.php', $data);
+        $tpl = $this->template->create('KortKursus/Tilmelding/tilmelding');
+        return $tpl->render($this, $data);
     }
 
-    function POST()
+    function postForm()
     {
         $tilmelding = $this->getTilmelding();
 
@@ -201,18 +215,18 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
 
         if ($this->getForm()->validate()) {
 
-            if ($tilmelding->save($this->POST->getArrayCopy())) {
+            if ($tilmelding->save($this->body())) {
                 $i = 0;
-                $indkvartering = $this->POST['indkvartering_key'];
-                $input = $this->POST->getArrayCopy();
+                $indkvartering = $this->body('indkvartering_key');
+                $input = $this->body();
                 foreach ($deltagere AS $deltager) {
-                    $var['id'] = $this->POST['id'][$i];
-                    $var['navn'] = $this->POST['navn'][$i];
-                    $var['cpr'] = $this->POST['cpr'][$i];
+                    $var['id'] = $input['id'][$i];
+                    $var['navn'] = $input['navn'][$i];
+                    $var['cpr'] = $input['cpr'][$i];
 
                     if (!empty($indkvartering[$i])) {
                         $var['indkvartering_key'] = $indkvartering[$i];
-                        $var['sambo'] = $this->POST['sambo'][$i];
+                        $var['sambo'] = $input['sambo'][$i];
                     }
                     /*
                     switch ($tilmelding->kursus->get('indkvartering')) {
@@ -229,21 +243,21 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
 
                     switch ($tilmelding->kursus->get('gruppe_id')) {
                         case 1: // golf
-                            $var['handicap'] = $this->POST['handicap'][$i];
-                            $var['klub'] = $this->POST['klub'][$i];
-                            $var['dgu'] = $this->POST['dgu'][$i];
+                            $var['handicap'] = $input['handicap'][$i];
+                            $var['klub'] = $input['klub'][$i];
+                            $var['dgu'] = $input['dgu'][$i];
                             break;
                         case 3: // bridge
-                            $var['niveau'] = $this->POST['niveau'][$i];
+                            $var['niveau'] = $input['niveau'][$i];
                             break;
                         case 4: // golf og bridge
-                            $var['handicap'] = $this->POST['handicap'][$i];
-                            $var['klub'] = $this->POST['klub'][$i];
-                            $var['dgu'] = $this->POST['dgu'][$i];
-                            $var['niveau'] = $this->POST['niveau'][$i];
+                            $var['handicap'] = $input['handicap'][$i];
+                            $var['klub'] = $input['klub'][$i];
+                            $var['dgu'] = $input['dgu'][$i];
+                            $var['niveau'] = $input['niveau'][$i];
                             break;
                         case 5:
-                            $var['speciale'] = $this->POST['speciale'][$i];
+                            $var['speciale'] = $input['speciale'][$i];
                         default:
                             break;
                     } // switch
@@ -258,17 +272,17 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Controller
                 } // foreach
 
                 if (!$tilmelding->setCode()) {
-                    throw new Exception('Tilmeldingen kunne ikke tilføjes en kode');
+                    throw new Exception('Tilmeldingen kunne ikke tilfï¿½jes en kode');
                 }
 
-                throw new k_http_Redirect($this->getRedirectUrl());
+                return new k_SeeOther($this->getRedirectUrl());
 
             } else {
-                trigger_error('Tilmeldingen kunne ikke gemmes', E_USER_ERROR);
+                throw new Exception('Tilmeldingen kunne ikke gemmes');
             }
 
         } else {
-            return '<h1>Indtast oplysninger</h1><p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angående tilmeldingen, og det er også kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>' . $this->getForm()->toHTML();
+            return '<h1>Indtast oplysninger</h1><p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angï¿½ende tilmeldingen, og det er ogsï¿½ kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ï¿½nsker at fï¿½ post, beder vi jer lave flere tilmeldinger.</p>' . $this->getForm()->toHTML();
         }
 
     }

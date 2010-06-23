@@ -166,3 +166,50 @@ function vih_handle_microsoft($text)
     $text = str_replace(chr(133), '...', $text);
     return $text;
 }
+
+function vih_print_error_msg($msg = '')
+{
+print '
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title>Der er opstået en  fejl</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+        <style type="text/css">
+            body {
+                text-align: center;
+                font-family: "trebuchet ms", arial, sans-serif;
+            }
+            #container {
+                text-align: left;
+                width: 60%;
+                margin: auto;
+                border: 8px solid #d1aad1;
+                padding: 2em;
+            }
+
+            p strong {
+                background: #eeccee;
+                padding: 0.5em;
+                width: 100%;
+                line-height: 2em;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="container">
+            <h1>Hm, noget gik galt</h1>
+            <p><strong>' . $msg . '</strong></p>
+            <p>Det burde ikke kunne ske. Hov, nu er vores webmaster ved at stikke af. Det kan vi godt forstå, for han har lovet, at du aldrig ville se denne side.</p>
+            <p>Vores webmaster råber, at du måske kan prøve at gå tilbage på den foregående side og tjekke om alt er rigtig udfyldt.</p>
+            <p>Hvis du har nogen spørgsmål, er du velkommen til at kontakte Vejle Idrætshøjskole på 75820811. Så skal vi nok pine webmasteren lidt.</p>
+            <p>Vi beklager ulejligheden &mdash; og håber at du har en god dag alligevel.</p>
+            <p>Med venlig hilsen<br>Vejle Idrætshøjskole</p>
+        </div>
+    </body>
+</html>';
+}

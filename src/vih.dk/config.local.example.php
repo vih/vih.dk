@@ -2,7 +2,6 @@
 error_reporting(E_ALL & ~E_DEPRECATED);
 
 define('PATH_ROOT',      dirname(__FILE__) . '/../');
-define('PATH_INCLUDE',   '.' . PATH_SEPARATOR . PATH_ROOT . PATH_SEPARATOR . get_include_path());
 define('PATH_WWW',       'http://localhost/vih/hojskole/src/vih.dk/');
 define('DB_USER',        'root');
 define('DB_PASSWORD',    '');
@@ -17,4 +16,6 @@ define('PATH_UPLOAD_TEMPORARY', 'temp/');
 define('IMAGE_POPUP_SIZE', 'medium');
 define('FILE_VIEWER', '/hojskole/src/vih.dk/file.php');
 
-set_include_path(PATH_INCLUDE);
+set_include_path('.' . PATH_SEPARATOR . PATH_ROOT . PATH_SEPARATOR . get_include_path());
+
+$GLOBALS['error_log_file'] = '/home/lsolesen/tmp/vih.error.log';

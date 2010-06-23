@@ -1,7 +1,14 @@
 <?php
-class VIH_Controller_LangtKursus_Login_Help
+class VIH_Controller_LangtKursus_Login_Help extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function renderHtml()
     {
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($usr->getProperty('handle'));
         $tilmelding->loadBetaling();
@@ -9,10 +16,12 @@ class VIH_Controller_LangtKursus_Login_Help
         $data = array('login_uri' => KORTEKURSER_LOGIN_URI,
                       'tilmelding' => $tilmelding);
 
-        
-        $this->document->title = 'Tilmelding #' . $tilmelding->get('id');
+
+        $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));
+
+        $tpl = $this->template->create('Tilmelding/betaling');
         return '
-            <h1>Hjælp</h1>
-        ' . $this->render('VIH/View/tilmelding/betaling-tpl.php', $data);
+            <h1>Hjï¿½lp</h1>
+        ' . $tpl->render('VIH/View/tilmelding/betaling-tpl.php', $data);
     }
 }

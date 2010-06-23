@@ -8,23 +8,29 @@
  *
  * @todo make sure that not every rate is displayed. Only the ones which has not been paid
  */
-class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
+class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 {
     private $form;
+    protected $template;
 
-    function GET()
+    function __construct(k_TemplateFactory $template)
     {
-        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name);
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name());
         $tilmelding->loadBetaling();
 
         $extra_text = '';
         if (is_object($tilmelding->betalingsobject) AND count($tilmelding->betalingsobject->getList('not_approved')) > 0) {
-            $extra_text = '<p id="notice"><strong>Advarsel</strong>: Vær opmærksom på, at du har afventende betalinger på '.$tilmelding->get('betalt_not_approved').' kroner. Du skal kun bruge formularen, hvis du er helt sikker på, at du skal betale beløbene nedenunder.</p>';
+            $extra_text = '<p id="notice"><strong>Advarsel</strong>: Vï¿½r opmï¿½rksom pï¿½, at du har afventende betalinger pï¿½ '.$tilmelding->get('betalt_not_approved').' kroner. Du skal kun bruge formularen, hvis du er helt sikker pï¿½, at du skal betale belï¿½bene nedenunder.</p>';
         }
 
         $error = "";
 
-        $this->document->title = 'Betaling med dankort';
+        $this->document->setTitle('Betaling med dankort');
 
         $data = array(
             'tilmelding' => $tilmelding,
@@ -32,25 +38,26 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
             'extra_text' => $extra_text
         );
 
-        return $this->render('VIH/View/Kundelogin/onlinebetaling-tpl.php', $data);
+        $tpl = $this->template->create('Kundelogin/onlinebetaling');
+        return $tpl->render($this, $data);
     }
 
-    function POST()
+    function postForm()
     {
-        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name);
+        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name());
         $tilmelding->loadBetaling();
 
         if ($this->getForm()->validate()) {
-            // først skal vi oprette en betaling - som kan fungere som id hos qp
+            // fï¿½rst skal vi oprette en betaling - som kan fungere som id hos qp
             // betalingen skal kobles til den aktuelle tilmelding
-            // når vi så har haft den omkring pbs skal betalingen opdateres med status for betalingen
-            // status sættes til 000, hvis den er godkendt hos pbs.
+            // nï¿½r vi sï¿½ har haft den omkring pbs skal betalingen opdateres med status for betalingen
+            // status sï¿½ttes til 000, hvis den er godkendt hos pbs.
 
             $eval = false;
 
             $betaling = $tilmelding->betalingFactory();
 
-            $submitted_amount = $this->POST['amount'];
+            $submitted_amount = $this->body('amount');
             if (is_array($submitted_amount)) {
                 $amount = 0;
                 foreach ($submitted_amount as $amount) {
@@ -59,13 +66,13 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
             } elseif (is_numeric($submitted_amount)) {
                 $total_amount = $submitted_amount;
             } else {
-                trigger_error('De postede beløbsværdier er ikke gyldige', E_USER_ERROR);
+                throw new Exception('De postede belï¿½bsvï¿½rdier er ikke gyldige');
             }
 
             $betaling_amount = $total_amount / 100;
             $betaling_id = $betaling->save(array('type' => 'quickpay', 'amount' => $betaling_amount));
             if($betaling_id == 0) {
-                trigger_error("Kunne ikke oprette betaling", E_USER_ERROR);
+                throw new Exception("Kunne ikke oprette betaling");
             }
 
             $onlinebetaling = new VIH_Onlinebetaling('authorize');
@@ -75,11 +82,11 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
             $onlinebetaling->addCustomVar("Tilmelding_ID", $tilmelding->get("id"));
 
             $eval = $onlinebetaling->authorize(
-                $this->POST['cardnumber'], // kortnummer
-                $this->POST['yy'] . $this->POST['mm'], //YYMM
-                $this->POST['cvd'], // sikkerhedsnummer
+                $this->body('cardnumber'), // kortnummer
+                $this->body('yy') . $this->body('mm'), //YYMM
+                $this->body('cvd'), // sikkerhedsnummer
                 $betaling_id, // ordrenummer
-                $total_amount   // beløb
+                $total_amount   // belï¿½b
             );
 
             if ($eval) {
@@ -98,14 +105,14 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
 
                     $historik = new VIH_Model_Historik($betaling->get('belong_to'), $betaling->get('belong_to_id'));
                     if (!$historik->save(array('betaling_id' => $betaling->get('id'), 'type' => 'dankort', 'comment' => 'Onlinebetaling # ' . $betaling->get('transactionnumber')))) {
-                        trigger_error('Der var en fejl med at gemme historikken.', E_USER_ERROR);
+                        throw new Exception('Der var en fejl med at gemme historikken.');
                     }
 
-                    throw new k_http_Redirect($this->context->url());
+                    return new k_SeeOther($this->context->url());
 
                 } else {
                     // An error occured with the authorize
-                    $error = "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan prøve igen.</strong></p>";
+                    $error = "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan prï¿½ve igen.</strong></p>";
                     /*
                     echo 'Authorization: ' . $qpstatText["" . $eval['qpstat'] . ""] . '<br />';
                     echo "<pre>";
@@ -117,8 +124,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
                 throw new Exception('Kommunikationsfejl med PBS og QuickPay');
             }
         }
-        throw new k_http_Redirect($this->url());
-
+        return $this->render();
     }
 
     public function getForm()
@@ -127,14 +133,14 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
             return $this->form;
         }
 
-        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name);
+        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name());
         $tilmelding->loadBetaling();
 
         $form = new HTML_QuickForm('onlinebetaling', 'POST', $this->url());
-        $form->addElement('header', null, 'Hvilke beløb vil du betale?');
+        $form->addElement('header', null, 'Hvilke belï¿½b vil du betale?');
 
         if ($tilmelding->get('skyldig_tilmeldingsgebyr') > 0) {
-            $options[0] = HTML_QuickForm::createElement('checkbox', 0, null, number_format($tilmelding->get('skyldig_tilmeldingsgebyr'), 0, ',','.') . ' kroner (DKK) - dækker tilmeldingsgebyret');
+            $options[0] = HTML_QuickForm::createElement('checkbox', 0, null, number_format($tilmelding->get('skyldig_tilmeldingsgebyr'), 0, ',','.') . ' kroner (DKK) - dï¿½kker tilmeldingsgebyret');
             $options[0]->updateAttributes(array('value'=>$tilmelding->get('skyldig_tilmeldingsgebyr') * 100));
         }
 
@@ -148,17 +154,17 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
                 $i++;
             }
         } elseif ($tilmelding->get('skyldig_tilmeldingsgebyr') == 0) {
-                $options[0] = HTML_QuickForm::createElement('checkbox', $i, null, 'Du kan betale igen, når vi har oprettet dine rater.');
+                $options[0] = HTML_QuickForm::createElement('checkbox', $i, null, 'Du kan betale igen, nï¿½r vi har oprettet dine rater.');
                 $options[0]->updateAttributes(array('disabled'=>'disabled'));
         }
 
-        $form->addGroup($options, 'amount', 'Beløb', '<br />');
+        $form->addGroup($options, 'amount', 'Belï¿½b', '<br />');
 
         $form->addElement('header', null, 'Betaling');
         $form->addElement('text', 'cardnumber', 'Kortnummer');
         $form->addElement('text', 'cvd', 'Sikkerhedsnummer');
         $form->addElement('text', 'mm', 'Mdr.');
-        $form->addElement('text', 'yy', 'År');
+        $form->addElement('text', 'yy', 'ï¿½r');
         $form->addElement('submit', null, 'Betal');
 
         $form->addRule('cardnumber', 'Du skal skrive et kortnummer', 'required');
@@ -167,8 +173,8 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
         $form->addRule('cvd', 'Du skal skrive et sikkerhedsnummer', 'numeric');
         $form->addRule('mm', 'Du skal udfylde Mdr.', 'required');
         $form->addRule('mm', 'Du skal udfylde Mdr.', 'numeric');
-        $form->addRule('yy', 'Du skal udfylde År ', 'required');
-        $form->addRule('yy', 'Du skal udfylde År', 'numeric');
+        $form->addRule('yy', 'Du skal udfylde ï¿½r ', 'required');
+        $form->addRule('yy', 'Du skal udfylde ï¿½r', 'numeric');
 
         $form->applyFilter('__ALL__', 'trim');
         $form->applyFilter('__ALL__', 'addslashes');
@@ -182,7 +188,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Controller
         $protocol = substr($this->url(), 0, 5);
         if ($protocol != 'https') {
             $link = 'https' . substr($this->url(), 4);
-            throw new k_http_Redirect($link);
+            throw new k_SeeOther($link);
         }
         return parent::execute();
     }

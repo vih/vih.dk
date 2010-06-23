@@ -2,17 +2,39 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_KortKursus_Show extends k_Controller
+class VIH_Controller_KortKursus_Show extends k_Component
 {
-    function GET()
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
     {
-        $kursus = new VIH_Model_KortKursus($this->name);
+        $this->template = $template;
+    }
+
+    function map($name)
+    {
+        if ($name == 'tilmelding') {
+            return 'VIH_Controller_KortKursus_Tilmelding_Index';
+        } else {
+            return 'VIH_Controller_KortKursus_Tilmelding_Venteliste';
+        }
+    }
+
+    function dispatch()
+    {
+        $kursus = new VIH_Model_KortKursus($this->name());
+        if (!$kursus->get('kursusnavn') OR $kursus->get('dato_slut') < date('Y-m-d') OR $kursus->get('published') == 0) {
+            throw new k_PageNotFound();
+        }
+
+        return parent::dispatch();
+    }
+
+    function renderHtml()
+    {
+        $kursus = new VIH_Model_KortKursus($this->name());
         $kursus->getPladser();
         $kursus->getBegyndere();
-
-        if (!$kursus->get('kursusnavn') OR $kursus->get('dato_slut') < date('Y-m-d') OR $kursus->get('published') == 0) {
-            throw new k_http_Response(404);
-        }
 
         $underviser = new VIH_Model_Ansat($kursus->get('ansat_id'));
 
@@ -26,7 +48,7 @@ class VIH_Controller_KortKursus_Show extends k_Controller
         }
 
         $this->document->theme = $kursus->getGruppe();
-        $this->document->title = $kursus->get('title');
+        $this->document->setTitle($kursus->get('title'));
         $this->document->meta = array('keywords' => $kursus->get('keywords'),
                                       'description' => $kursus->get('description'));
         $this->document->body_class = 'widepicture';
@@ -34,19 +56,11 @@ class VIH_Controller_KortKursus_Show extends k_Controller
         $data = array('kursus' => $kursus,
                       'kursusleder' => new VIH_Model_Ansat($kursus->get('ansat_id')));
 
-        $content = array('content' =>  $this->render('VIH/View/KortKursus/kursus-tpl.php', $data));
+        $tpl = $this->template->create('KortKursus/kursus');
+        $content = array('content' =>  $tpl->render($this, $data));
 
-        return $this->render('VIH/View/wrapper-tpl.php', $content);
+        $tpl = $this->template->create('wrapper');
+        return $tpl->render($this, $content);
     }
 
-    function forward($name)
-    {
-        if ($name == 'tilmelding') {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Index($this, $name);
-            return $next->handleRequest();
-        } else {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Venteliste($this, $name);
-            return $next->handleRequest();
-        }
-    }
 }

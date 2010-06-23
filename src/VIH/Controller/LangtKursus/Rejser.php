@@ -2,23 +2,33 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_LangtKursus_Rejser extends k_Controller
+class VIH_Controller_LangtKursus_Rejser extends k_Component
 {
+    protected $template;
+    protected $mdb2;
+    protected $kernel;
+
+    function __construct(k_TemplateFactory $template, MDB2_Driver_Common $mdb2, VIH_Intraface_Kernel $kernel)
+    {
+        $this->template = $template;
+        $this->mdb2 = $mdb2;
+        $this->kernel = $kernel;
+    }
+
     function GET()
     {
-        $conn = $this->registry->get('database:mdb2');
-        $result = $conn->query('SELECT * FROM langtkursus_fag WHERE fag_gruppe_id = 4 ORDER BY id'); // 4 er rejser
+        $result = $this->mdb2->query('SELECT * FROM langtkursus_fag WHERE fag_gruppe_id = 4 ORDER BY id'); // 4 er rejser
 
-        $content = $this->render('VIH/View/LangtKursus/rejser.tpl.php', array('rejser' => $result));
+        $tpl = $this->template->create('LangtKursus/rejser');
+        $content = $tpl->render($this, array('rejser' => $result));
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', array('content' => $content));
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, array('content' => $content));
     }
 
     function getPictureHTML($identifier)
     {
-        $kernel = $this->registry->get('intraface:kernel');
-        $translation = $kernel->getTranslation('filemanager');
-        $filemanager = new Ilib_Filehandler_Manager($kernel);
+        $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         try {
             $img = new Ilib_Filehandler_ImageRandomizer($filemanager, array($identifier));

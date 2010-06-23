@@ -2,15 +2,22 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_Ansat_Index extends k_Controller
+class VIH_Controller_Ansat_Index extends k_Component
 {
-    function GET()
-    {
-        $title = 'Lærerkræfter';
-        $meta['description'] = 'Lærerteamet på Vejle Idrætshøjskole er et stærkt team';
-        $meta['keywords'] = 'vejle, idrætshøjskole, lærere, undervisere, e-mail, e-post, email, epost, kontakt';
+    protected $template;
 
-        $this->document->title = $title;
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function renderHtml()
+    {
+        $title = 'Lï¿½rerkrï¿½fter';
+        $meta['description'] = 'Lï¿½rerteamet pï¿½ Vejle Idrï¿½tshï¿½jskole er et stï¿½rkt team';
+        $meta['keywords'] = 'vejle, idrï¿½tshï¿½jskole, lï¿½rere, undervisere, e-mail, e-post, email, epost, kontakt';
+
+        $this->document->setTitle($title);
         $this->document->meta = $meta;
         $this->document->body_class = 'widepicture';
         $this->document->theme = 'underviser';
@@ -18,28 +25,22 @@ class VIH_Controller_Ansat_Index extends k_Controller
 
         $data = array('content' => '
             <h1>Holdning til sig selv og sin sport</h1>
-            <p>En skole bliver aldrig bedre end de lærerkræfter, der dagligt skal sikre en inspirerende og udviklende undervisning. Vi er derfor meget bevidste om, at vi skal kunne tiltrække og fastholde nogle af de dygtigste kapaciteter på de forskellige fagområder. Men det er ikke tilstrækkeligt kun med faglige kompetencer. Vejle Idrætshøjskoles slutprodukt er personlig udvikling, og derfor skal de menneskelige kompetencer også være i top. Vi er et lærekollegium, der skal dele målsætning, og det både indenfor og udenfor banen. For kun herved kan vi fastholde vores position som en af Danmarks førende idrætshøjskoler.</p>',
-                      'content_sub' => '<h2>Lær vores lærerteam nærmere at kende:</h2>' . $this->getTeacherList());
+            <p>En skole bliver aldrig bedre end de lï¿½rerkrï¿½fter, der dagligt skal sikre en inspirerende og udviklende undervisning. Vi er derfor meget bevidste om, at vi skal kunne tiltrï¿½kke og fastholde nogle af de dygtigste kapaciteter pï¿½ de forskellige fagomrï¿½der. Men det er ikke tilstrï¿½kkeligt kun med faglige kompetencer. Vejle Idrï¿½tshï¿½jskoles slutprodukt er personlig udvikling, og derfor skal de menneskelige kompetencer ogsï¿½ vï¿½re i top. Vi er et lï¿½rekollegium, der skal dele mï¿½lsï¿½tning, og det bï¿½de indenfor og udenfor banen. For kun herved kan vi fastholde vores position som en af Danmarks fï¿½rende idrï¿½tshï¿½jskoler.</p>',
+                      'content_sub' => '<h2>Lï¿½r vores lï¿½rerteam nï¿½rmere at kende:</h2>' . $this->getTeacherList());
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $data);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $data);
     }
 
     function getTeacherList()
     {
-        $data = array('undervisere' => VIH_Model_Ansat::getList('lærere'));
-        return $this->render('VIH/View/Ansat/undervisere-tpl.php', $data);
+        $data = array('undervisere' => VIH_Model_Ansat::getList('lï¿½rere'));
+        $tpl = $this->template->create('Ansat/undervisere');
+        return $tpl->render($this, $data);
     }
 
-    function forward($name)
+    function map($name)
     {
-        $next = new VIH_Controller_Ansat_Show($this, $name);
-        return $next->handleRequest();
-
-    }
-
-    function handleRequest()
-    {
-        $this->document->trail[$this->name] = $this->url();
-        return parent::handleRequest();
+        return 'VIH_Controller_Ansat_Show';
     }
 }

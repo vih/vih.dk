@@ -2,22 +2,44 @@
 /**
  * Controller for the intranet
  */
-class VIH_Controller_LangtKursus_Show extends k_Controller
+class VIH_Controller_LangtKursus_Show extends k_Component
 {
-    function GET()
+    protected $template;
+    protected $doctrine;
+
+    function __construct(k_TemplateFactory $template, Doctrine_Connection_Common $doctrine)
     {
-        $soegestreng = strip_tags($this->name);
+        $this->template = $template;
+        $this->doctrine = $doctrine;
+    }
+
+    function dispatch()
+    {
+        $soegestreng = strip_tags($this->name());
         $kursus = new VIH_Model_LangtKursus($soegestreng);
 
         if (!$kursus->get('id') OR $kursus->get('dato_slut') < date('Y-m-d')) {
-            throw new k_http_Response(404);
+            throw new k_PageNotFound();
         }
+
+        return parent::dispatch();
+    }
+
+    function map($name)
+    {
+        return 'VIH_Controller_LangtKursus_Tilmelding_Index';
+    }
+
+    function renderHtml()
+    {
+        $soegestreng = strip_tags($this->name());
+        $kursus = new VIH_Model_LangtKursus($soegestreng);
 
         $ansat = new VIH_Model_Ansat($kursus->get('ansat_id'));
         if ($ansat->get('id')) {
-            $sprg_link = '<a href="'.$this->url('/underviser/' . $kursus->get('ansat_id')) . '">'.$ansat->get('navn').' svarer på spørgsmål</a>';
+            $sprg_link = '<a href="'.$this->url('/underviser/' . $kursus->get('ansat_id')) . '">'.$ansat->get('navn').' svarer pï¿½ spï¿½rgsmï¿½l</a>';
         } else {
-            $sprg_link = '<a href="'.$this->url('/kontakt/') . '">Kontoret</a> svarer gerne på spørgsmål om kurset';
+            $sprg_link = '<a href="'.$this->url('/kontakt/') . '">Kontoret</a> svarer gerne pï¿½ spï¿½rgsmï¿½l om kurset';
         }
 
         $pictures = $kursus->getPictures();
@@ -46,43 +68,23 @@ class VIH_Controller_LangtKursus_Show extends k_Controller
         $meta['description'] = $kursus->get('description');
         $meta['keywords'] = $kursus->get('keywords');
 
-        $this->document->title = $kursus->getKursusNavn();
+        $this->document->setTitle($kursus->getKursusNavn());
         $this->document->meta = $meta;
 
         $data = array('kursus' => $kursus,
                       'fag' => $this->getSubjectsTable());
 
-        $content = array('content' => $this->render('VIH/View/LangtKursus/kursus-tpl.php', $data)  . $this->getInformationAboutCourse($kursus),
+        $tpl = $this->template->create('LangtKursus/kursus');
+        $content = array('content' => $tpl->render($this, $data)  . $this->getInformationAboutCourse($kursus),
                          'content_sub' => $this->getSubContent($sprg_link));
 
-        return $this->render('VIH/View/sidebar-wrapper.tpl.php', $content);
+        $tpl = $this->template->create('sidebar-wrapper');
+        return $tpl->render($this, $content);
     }
-
-    /*
-    function getSubjects()
-    {
-        $fag = '';
-        $doctrine = $this->registry->get('doctrine');
-        $period = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name);
-        foreach ($period as $p) {
-            $fag .= '<h2>'.$p->getName().'</h2>';
-            $subjectgroups = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findByPeriodId($p->getId());
-            foreach ($subjectgroups as $grp) {
-                $fag .= '<h3>' . $grp->getName() . '</h3>';
-                foreach ($grp->Subjects as $subj) {
-                    $fag .= '<a href="'.$this->url('/fag/' . $subj->get('identifier')).'">' . $subj->getName() . '</a> ';
-                }
-            }
-        }
-
-        return $fag;
-    }
-    */
 
     private function isSubjectAvailable($period, $subject)
     {
-        $doctrine = $this->registry->get('doctrine');
-        $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name);
+        $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name());
 
         foreach ($periods as $p) {
             $col[$p->getId()] = $p->getName();
@@ -102,8 +104,7 @@ class VIH_Controller_LangtKursus_Show extends k_Controller
         $i = 0;
 
         $subjects = VIH_Model_Fag::getPublishedWithDescription();
-        $doctrine = $this->registry->get('doctrine');
-        $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name);
+        $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name());
 
         $attr = array('class' => 'skema');
 
@@ -159,12 +160,12 @@ class VIH_Controller_LangtKursus_Show extends k_Controller
             <ul>
                 <li>'.$sprg_link.'</li>
                 <li><a href="'.$this->url('tilmelding') . '">Tilmeld dig</a></li>
-                <li><a href="'.$this->url('../faq') . '">Ofte stillede spørgsmål</a></li>
+                <li><a href="'.$this->url('../faq') . '">Ofte stillede spï¿½rgsmï¿½l</a></li>
             </ul>
-            <h2>Støttemuligheder</h2>
+            <h2>Stï¿½ttemuligheder</h2>
             <ul>
-                <li><a href="'.$this->url('../elevstotte') . '">Individuel elevstøtte</a></li>
-                <li><a href="'.$this->url('../statsstotte') . '">Statsstøtte til særlige grupper</a></li>
+                <li><a href="'.$this->url('../elevstotte') . '">Individuel elevstï¿½tte</a></li>
+                <li><a href="'.$this->url('../statsstotte') . '">Statsstï¿½tte til sï¿½rlige grupper</a></li>
             </ul>';
     }
 
@@ -194,20 +195,12 @@ class VIH_Controller_LangtKursus_Show extends k_Controller
                     <td>' . number_format($kursus->get('pris_rejsedepositum'), 0, ',', '.').' kroner</td>
                 </tr>
                 <tr>
-                    <th>Nøgledepositum</th>
+                    <th>Nï¿½gledepositum</th>
                     <td>' . number_format($kursus->get('pris_noegledepositum'), 0, ',', '.').' kroner</td>
                 </tr>
             </table>
 
-            <p>Ret til ændringer forbeholdes. Alle skal på en rejse af kortere varighed, som der opkræves et ekstra beløb til. <a href="'.$this->url('../betalingsbetingelser') . '">Læs betalingsbetingelserne</a> eller mere om <a href="'.$this->url('../okonomi') . '">økonomien</a>.</p>
+            <p>Ret til ï¿½ndringer forbeholdes. Alle skal pï¿½ en rejse af kortere varighed, som der opkrï¿½ves et ekstra belï¿½b til. <a href="'.$this->url('../betalingsbetingelser') . '">Lï¿½s betalingsbetingelserne</a> eller mere om <a href="'.$this->url('../okonomi') . '">ï¿½konomien</a>.</p>
         ';
-    }
-
-    function forward($name)
-    {
-        if ($name == 'tilmelding') {
-            $next = new VIH_Controller_LangtKursus_Tilmelding_Index($this, $name);
-            return $next->handleRequest();
-        }
     }
 }

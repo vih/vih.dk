@@ -2,23 +2,31 @@
 /**
  * @package VIH
  */
-class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Controller
+class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
 {
+    protected $template;
+    protected $doctrine;
+
+    function __construct(k_TemplateFactory $template, Doctrine_Connection_Common $doctrine)
+    {
+        $this->template = $template;
+        $this->doctrine = $doctrine;
+    }
+
     function getPeriods()
     {
-        $doctrine = $this->registry->get('doctrine');
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name);
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
         return Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($tilmelding->getKursus()->getId());
     }
 
     function getRegistration()
     {
-        return new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name);
+        return new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
     }
 
     function GET()
     {
-        $this->document->title = 'Tilmelding: Vælg fag';
+        $this->document->setTitle('Tilmelding: Vï¿½lg fag');
 
         $tilmelding = $this->getRegistration();
 
@@ -27,16 +35,16 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Controller
         $data = array('periods' => $periods,
                       'tilmelding' => $tilmelding);
 
-        return $this->render('VIH/View/LangtKursus/Tilmelding/fag-tpl.php', $data);
+        $tpl = $this->template->create('LangtKursus/Tilmelding/fag');
+        return $tpl->render($this, $data);
     }
 
-    function POST()
+    function postForm()
     {
         if (!$this->validate()) {
-            throw new Exception('Du skal vælge et af hvert fag');
+            throw new Exception('Du skal vï¿½lge et af hvert fag');
         }
 
-        $doctrine = $this->registry->get('doctrine');
         $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->getRegistration()->getId());
 
         $current_subjects = Doctrine::getTable('VIH_Model_Course_Registration_Subject')->findByRegistrationId($this->getRegistration()->getId());
@@ -58,8 +66,8 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Controller
         }
         */
 
-        if (!empty($this->POST['subject'])) {
-            foreach ($this->POST['subject'] as $key => $value) {
+        if ($this->body('subject')) {
+            foreach ($this->body('subject') as $key => $value) {
                 $registrationsubject = new VIH_Model_Course_Registration_Subject;
                 $registrationsubject->period_id = $this->POST['subjectperiod'][$key];
                 $registrationsubject->registration_id = $this->getRegistration()->getId();
@@ -71,7 +79,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Controller
 
         //$registration->save();
 
-        throw new k_http_Redirect($this->getRedirectUrl());
+        return new k_SeeOther($this->getRedirectUrl());
     }
 
     function getRedirectUrl()

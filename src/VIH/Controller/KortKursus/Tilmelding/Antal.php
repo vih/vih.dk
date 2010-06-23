@@ -2,29 +2,120 @@
 /**
  * Tilmeldingssystem til Korte Kurser
  *
- * Denne side starter tilmeldingen op. Til det har vi brug for at vide følgende:
+ * Denne side starter tilmeldingen op. Til det har vi brug for at vide fÃ¸lgende:
  *
- * - kursus vedkommende vil deltage på
+ * - kursus vedkommende vil deltage pï¿½
  * - antallet af deltagere vedkommende vil tilmelde
  *
- * Man kan både tilmelde sig kurser med og uden ledige pladser. Hvis man tilmelder
- * sig et kursus uden ledige pladser skal man kunne komme på venteliste.
+ * Man kan bï¿½de tilmelde sig kurser med og uden ledige pladser. Hvis man tilmelder
+ * sig et kursus uden ledige pladser skal man kunne komme pï¿½ venteliste.
  *
  * @author Lars Olesen <lars@legestue.net>
- * @version 22. januar 2006
  */
 
-class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Controller
+class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
 {
     private $form;
 
     public $map = array('kontakt'    => 'VIH_Controller_KortKursus_Tilmelding_Kontakt',
                         'confirm'    => 'VIH_Controller_KortKursus_Tilmelding_Confirm',
                         'kvittering' => 'VIH_Controller_KortKursus_Tilmelding_Kvittering');
+    protected $template;
+
+    function __construct(k_TemplateFactory $template)
+    {
+        $this->template = $template;
+    }
+
+    function map($name)
+    {
+        if ($name == 'kontakt') {
+            return 'VIH_Controller_KortKursus_Tilmelding_Kontakt';
+        } elseif ($name == 'confirm') {
+            return 'VIH_Controller_KortKursus_Tilmelding_Confirm';
+        } elseif ($name == 'kvittering') {
+            return 'VIH_Controller_KortKursus_Tilmelding_Kvittering';
+        } elseif ($name == 'close') {
+            return 'VIH_Controller_KortKursus_Tilmelding_Close';
+        } elseif ($name == 'betingelser') {
+            return 'VIH_Controller_KortKursus_Tilmelding_Betingelser';
+        }
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = $this->getTilmelding();
+
+        $extra_text = '';
+        if (is_numeric($this->query('kursus_id'))) {
+            $kursus = new VIH_Model_KortKursus($this->query('kursus_id'));
+            $kursus->getPladser();
+            $kursus->getBegyndere();
+            if ($kursus->get('pladser_ledige') <= 0):
+                $extra_text = '<p class="alert">Der er ikke flere ledige pladser pï¿½ '.$kursus->get('kursusnavn').'. Du kan blive skrevet pï¿½ venteliste ved at klikke dig videre i formularen nedenunder, eller du kan vï¿½lge et andet kursus.</p>';
+            elseif ($kursus->get('pladser_begyndere_ledige') <= 0 AND $kursus->get('gruppe_id') == 1): // golf
+                $extra_text = '<p class="alert">Der er ikke flere ledige begynderpladser pï¿½ '.$kursus->get('kursusnavn').'.</p>';
+            endif;
+        }
+
+        $this->document->setTitle('Tilmelding til de korte kurser');
+
+        $data = array('headline' => 'Tilmelding til korte kurser',
+                      'explanation' => $extra_text. '
+            <p>Du kan tilmelde dig de korte kurser ved at udfylde tilmeldingsformularen nedenunder. Du kan se de trin, du skal igennem oppe i ï¿½verste hï¿½jre hjï¿½rne. Du kan ogsï¿½ ringe til hï¿½jskolen og fï¿½ en formular tilsendt med posten.</p>
+            <p class="notice"><strong>Vigtigt:</strong> Du angiver en kontaktperson pr. tilmelding. Det er kun kontaktpersonen, der fï¿½r bekrï¿½ftelser og program. Hvis I er flere, der ï¿½nsker at fï¿½ post, beder vi jer lave flere tilmeldinger.</p>
+        ',
+                      'content' => $this->getForm()->toHTML());
+
+        $tpl = $this->template->create('KortKursus/Tilmelding/tilmelding');
+        return $tpl->render($this, $data);
+    }
+
+    function postForm()
+    {
+        $tilmelding = $this->getTilmelding();
+
+        if ($this->getForm()->validate()) {
+            $kursus = new VIH_Model_KortKursus($this->body('kursus_id'));
+            $kursus->getPladser();
+
+            if ($kursus->get('pladser_ledige') < $this->body('antal_deltagere')) {
+                return new k_SeeOther($this->context->url('../venteliste'), array('antal' => $this->body('antal_deltagere')));
+            }
+
+            if ($tilmelding->start($this->body())) {
+                $tilmelding->kursus->getPladser();
+                if ($tilmelding->kursus->get('pladser_ledige') >= $this->body('antal_deltagere')) {
+                    $deltagere = $tilmelding->getDeltagere();
+
+                    if (count($deltagere) == 0) {
+                        for($i = 1; $i <= $this->body('antal_deltagere'); $i++) {
+                            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding);
+                            $deltager->add();
+                        }
+                    } elseif (count($deltagere) < $this->body('antal_deltagere')) {
+                        for ($i = 1, $max = $this->body('antal_deltagere') - count($deltagere); $i <= $max; $i++) {
+                            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding);
+                            $deltager->add();
+                        }
+                    } elseif (count($deltagere) > $tilmelding->get('antal_deltagere')) {
+                        // burde nok lave et tjek pï¿½, om nogle af dem er tomme?
+                        for ($i = 1, $max = count($deltagere) - $this->body('antal_deltagere'); $i <= $max; $i++) {
+                            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $deltagere[$i]->get('id'));
+                            $deltager->delete();
+                        }
+                    }
+
+                    return new k_SeeOther($this->url('kontakt'));
+                }
+            }
+        }
+        return $this->render();
+    }
 
     function getTilmelding()
     {
-        return new VIH_Model_KortKursus_OnlineTilmelding($this->name);
+        return new VIH_Model_KortKursus_OnlineTilmelding($this->name());
     }
 
     function getForm()
@@ -38,7 +129,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Controller
         $kursus = new VIH_Model_KortKursus;
         $kurser = $kursus->getList();
 
-        $kursus_list = array('' => 'Vælg');
+        $kursus_list = array('' => 'Vï¿½lg');
         foreach ($kurser AS $kursus) {
             $kursus_id = $kursus->get('id');
             $kursus_navn = $kursus->get('kursusnavn') . ' ('.$kursus->get('pladser_status').')';
@@ -64,102 +155,12 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Controller
         $form->setDefaults($defaults);
 
         $form->applyFilter('__ALL__', 'trim');
-        $form->addRule('kursus_id', 'Du skal vælge et kursus', 'required');
-        $form->addRule('kursus_id', 'Du skal vælge et kursus', 'numeric');
-        $form->addRule('antal_deltagere', 'Du skal vælge hvor mange, du vil have', 'required');
-        $form->addRule('antal_deltagere', 'Deltagerne skal være et tal', 'numeric');
-        // $form->addRule('antal_deltagere', 'Du skal vælge flere end en deltager', 'range', array(1,10));
+        $form->addRule('kursus_id', 'Du skal vï¿½lge et kursus', 'required');
+        $form->addRule('kursus_id', 'Du skal vï¿½lge et kursus', 'numeric');
+        $form->addRule('antal_deltagere', 'Du skal vï¿½lge hvor mange, du vil have', 'required');
+        $form->addRule('antal_deltagere', 'Deltagerne skal vï¿½re et tal', 'numeric');
+        // $form->addRule('antal_deltagere', 'Du skal vï¿½lge flere end en deltager', 'range', array(1,10));
 
         return ($this->form = $form);
-    }
-
-    function GET()
-    {
-        $tilmelding = $this->getTilmelding();
-
-        $extra_text = '';
-        if (!empty($this->GET['kursus_id']) AND is_numeric($this->GET['kursus_id'])) {
-            $kursus = new VIH_Model_KortKursus($this->GET['kursus_id']);
-            $kursus->getPladser();
-            $kursus->getBegyndere();
-            if ($kursus->get('pladser_ledige') <= 0):
-                $extra_text = '<p class="alert">Der er ikke flere ledige pladser på '.$kursus->get('kursusnavn').'. Du kan blive skrevet på venteliste ved at klikke dig videre i formularen nedenunder, eller du kan vælge et andet kursus.</p>';
-            elseif ($kursus->get('pladser_begyndere_ledige') <= 0 AND $kursus->get('gruppe_id') == 1): // golf
-                $extra_text = '<p class="alert">Der er ikke flere ledige begynderpladser på '.$kursus->get('kursusnavn').'.</p>';
-            endif;
-        }
-
-        $this->document->title = 'Tilmelding til de korte kurser';
-
-        $data = array('headline' => 'Tilmelding til korte kurser',
-                      'explanation' => $extra_text. '
-            <p>Du kan tilmelde dig de korte kurser ved at udfylde tilmeldingsformularen nedenunder. Du kan se de trin, du skal igennem oppe i øverste højre hjørne. Du kan også ringe til højskolen og få en formular tilsendt med posten.</p>
-            <p class="notice"><strong>Vigtigt:</strong> Du angiver en kontaktperson pr. tilmelding. Det er kun kontaktpersonen, der får bekræftelser og program. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>
-        ',
-                      'content' => $this->getForm()->toHTML());
-
-        return $this->render('VIH/View/KortKursus/Tilmelding/tilmelding-tpl.php', $data);
-
-    }
-
-    function POST()
-    {
-        $tilmelding = $this->getTilmelding();
-
-        if ($this->getForm()->validate()) {
-            $kursus = new VIH_Model_KortKursus($this->POST['kursus_id']);
-            $kursus->getPladser();
-
-            if ($kursus->get('pladser_ledige') < $this->POST['antal_deltagere']) {
-                throw new k_http_Redirect($this->context->url('../venteliste'), array('antal' => $this->POST['antal_deltagere']));
-            }
-
-            if ($tilmelding->start($this->POST->getArrayCopy())) {
-                $tilmelding->kursus->getPladser();
-                if ($tilmelding->kursus->get('pladser_ledige') >= $this->POST['antal_deltagere']) {
-                    $deltagere = $tilmelding->getDeltagere();
-
-                    if (count($deltagere) == 0) {
-                        for($i = 1; $i <= $this->POST['antal_deltagere']; $i++) {
-                            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding);
-                            $deltager->add();
-                        }
-                    } elseif (count($deltagere) < $this->POST['antal_deltagere']) {
-                        for ($i = 1, $max = $this->POST['antal_deltagere'] - count($deltagere); $i <= $max; $i++) {
-                            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding);
-                            $deltager->add();
-                        }
-                    } elseif (count($deltagere) > $tilmelding->get('antal_deltagere')) {
-                        // burde nok lave et tjek på, om nogle af dem er tomme?
-                        for ($i = 1, $max = count($deltagere) - $this->POST['antal_deltagere']; $i <= $max; $i++) {
-                            $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $deltagere[$i]->get('id'));
-                            $deltager->delete();
-                        }
-                    }
-
-                    throw new k_http_Redirect($this->url('kontakt'));
-                }
-            }
-        }
-    }
-
-    function forward($name)
-    {
-        if ($name == 'kontakt') {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Kontakt($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'confirm') {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Confirm($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'kvittering') {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Kvittering($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'close') {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Close($this, $name);
-            return $next->handleRequest();
-        } elseif ($name == 'betingelser') {
-            $next = new VIH_Controller_KortKursus_Tilmelding_Betingelser($this, $name);
-            return $next->handleRequest();
-        }
     }
 }
