@@ -45,17 +45,10 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
     {
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->context->name());
         if ($this->getForm()->validate()) {
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
             // først skal vi oprette en betaling - som kan fungere som id hos qp
             // betalingen skal kobles til den aktuelle tilmelding
             // når vi så har haft den omkring pbs skal betalingen opdateres med status for betalingen
             // status sættes til 000, hvis den er godkendt hos pbs.
-=======
-            // fï¿½rst skal vi oprette en betaling - som kan fungere som id hos qp
-            // betalingen skal kobles til den aktuelle tilmelding
-            // nï¿½r vi sï¿½ har haft den omkring pbs skal betalingen opdateres med status for betalingen
-            // status sï¿½ttes til 000, hvis den er godkendt hos pbs.
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
 
             $eval = false;
 
@@ -76,11 +69,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
                 $this->body('yy') . $this->body('mm'), //YYMM
                 $this->body('cvd'), // sikkerhedsnummer
                 $betaling_id, // ordrenummer
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
                 $this->body('amount')    // beløb
-=======
-                $this->body('amount')    // belï¿½b
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
             );
 
             if ($eval) {
@@ -103,11 +92,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
                 } else {
                     // An error occured with the authorize
 
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
                     $this->extra_text = '<p class="warning">Der opstod en fejl under transaktionen. '.$onlinebetaling->statuskoder[$eval['qpstat']].'. Du kan prøve igen.</p>';
-=======
-                    $this->extra_text = '<p class="warning">Der opstod en fejl under transaktionen. '.$onlinebetaling->statuskoder[$eval['qpstat']].'. Du kan prï¿½ve igen.</p>';
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
                     /*
                     echo "<pre>";
                     var_dump($eval);
@@ -138,7 +123,6 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         $form = new HTML_QuickForm('onlinebetaling', 'POST', $this->url());
 
         if ($tilmelding->get('skyldig_depositum') > 0 AND $tilmelding->get('dato_forfalden') > date('Y-m-d')) {
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
             $form->addElement('header', null, 'Hvilket beløb vil du betale?');
             $options[] = &HTML_QuickForm::createElement('radio', null, null, $tilmelding->get('pris_total') . ' kroner (DKK) - dækker hele kursusprisen', $tilmelding->get('pris_total') * 100);
             $options[] = &HTML_QuickForm::createElement('radio', null, null, $tilmelding->get('pris_forudbetaling') . ' kroner (DKK) - dækker depositum' . $forsikringstekst, $tilmelding->get('pris_forudbetaling') * 100);
@@ -151,20 +135,6 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
             $form->addElement('radio', 'amount', 'Beløb', $tilmelding->get('skyldig') . ' kroner (DKK) - dækker resten af beløbet', $tilmelding->get('skyldig') * 100);
             $form->addRule('amount', 'Du skal vælge et beløb', 'required');
             $form->addRule('amount', 'Du skal vælge et beløb', 'numeric');
-=======
-            $form->addElement('header', null, 'Hvilket belï¿½b vil du betale?');
-            $options[] = &HTML_QuickForm::createElement('radio', null, null, $tilmelding->get('pris_total') . ' kroner (DKK) - dï¿½kker hele kursusprisen', $tilmelding->get('pris_total') * 100);
-            $options[] = &HTML_QuickForm::createElement('radio', null, null, $tilmelding->get('pris_forudbetaling') . ' kroner (DKK) - dï¿½kker depositum' . $forsikringstekst, $tilmelding->get('pris_forudbetaling') * 100);
-
-            $form->addGroup($options, 'amount', 'Belï¿½b', '<br />');
-            $form->addGroupRule('amount', 'Du skal vï¿½lge et belï¿½b', 'required', null);
-
-        } else {
-            $form->addElement('header', null, 'Du skal betale nedenstï¿½ende belï¿½b');
-            $form->addElement('radio', 'amount', 'Belï¿½b', $tilmelding->get('skyldig') . ' kroner (DKK) - dï¿½kker resten af belï¿½bet', $tilmelding->get('skyldig') * 100);
-            $form->addRule('amount', 'Du skal vï¿½lge et belï¿½b', 'required');
-            $form->addRule('amount', 'Du skal vï¿½lge et belï¿½b', 'numeric');
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
             $form->setDefaults(array('amount'=>$tilmelding->get('skyldig') * 100));
         }
 
@@ -172,13 +142,8 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         $form->addElement('text', 'cardnumber', 'Kortnummer');
         $form->addElement('text', 'cvd', 'Sikkerhedsnummer');
         $form->addElement('text', 'mm', 'Mdr.');
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
         $form->addElement('text', 'yy', 'år');
         $form->addElement('html', null, 'Vær opmærksom på, at det kan tage helt op til et minut at gennemføre transaktionen hos PBS.');
-=======
-        $form->addElement('text', 'yy', 'ï¿½r');
-        $form->addElement('html', null, 'Vï¿½r opmï¿½rksom pï¿½, at det kan tage helt op til et minut at gennemfï¿½re transaktionen hos PBS.');
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
         $form->addElement('submit', null, 'Betal');
 
         $form->addRule('cardnumber', 'Du skal skrive et kortnummer', 'required');
@@ -187,13 +152,8 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         $form->addRule('cvd', 'Du skal skrive et sikkerhedsnummer', 'numeric');
         $form->addRule('mm', 'Du skal udfylde Mdr.', 'required');
         $form->addRule('mm', 'Du skal udfylde Mdr.', 'numeric');
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
         $form->addRule('yy', 'Du skal udfylde år ', 'required');
         $form->addRule('yy', 'Du skal udfylde år', 'numeric');
-=======
-        $form->addRule('yy', 'Du skal udfylde ï¿½r ', 'required');
-        $form->addRule('yy', 'Du skal udfylde ï¿½r', 'numeric');
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Login/OnlineBetaling.php
         $form->applyFilter('__ALL__', 'trim');
         $form->applyFilter('__ALL__', 'addslashes');
         $form->applyFilter('__ALL__', 'strip_tags');
@@ -210,5 +170,4 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         }
         return parent::execute();
     }
-
 }
