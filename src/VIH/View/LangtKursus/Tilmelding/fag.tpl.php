@@ -1,4 +1,4 @@
-<h1>Vælg fag på <?php e($tilmelding->getKursus()->getKursusNavn()); ?></h1>
+<h1>Vï¿½lg fag pï¿½ <?php e($tilmelding->getKursus()->getKursusNavn()); ?></h1>
 
 <?php
     $chosen = array();
@@ -10,11 +10,11 @@
     }
 ?>
 
-<p>Inden du kommer på skolen, skal du vælge de fag, du har flest timer om ugen, mens du er på skolen. Resten af fagene vælger du, når du ankommer.</p>
+<p>Inden du kommer pï¿½ skolen, skal du vï¿½lge de fag, du har flest timer om ugen, mens du er pï¿½ skolen. Resten af fagene vï¿½lger du, nï¿½r du ankommer.</p>
 
-<p class="notice"><strong>Husk:</strong> Du skal kun vælge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for få tilmeldte til faget. Dette får du besked om inden ankomst.</p>
+<p class="notice"><strong>Husk:</strong> Du skal kun vï¿½lge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for fï¿½ tilmeldte til faget. Dette fï¿½r du besked om inden ankomst.</p>
 
-<form action="<?php e($this->url()); ?>" method="post" id="fag">
+<form action="<?php e(url()); ?>" method="post" id="fag">
 <?php $i = 0; foreach ($periods as $p): ?>
     <h2 class="periode"><?php e($p->getName()); ?></h2>
     <?php $subjectgroups = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findByPeriodId($p->getId()); ?>

@@ -8,42 +8,42 @@
         <th>Fredag</th>
     </tr>
     <tr class="food">
-        <td colspan="5"><?php e(__('Morgenmad og morgensamling')); ?></td>
+        <td colspan="5"><?php e(t('Morgenmad og morgensamling')); ?></td>
     </tr>
     <tr>
-        <td><?php e(__('Fællessang')); ?></td>
-        <td rowspan="2"><?php e(__('Idræt B')); ?></td>
-        <td rowspan="2"><?php e(__('Idræt A')); ?></td>
-        <td rowspan="2"><?php e(__('Linje')); ?></td>
-        <td rowspan="2"><?php e(__('Linje')); ?></td>
+        <td><?php e(t('Fï¿½llessang')); ?></td>
+        <td rowspan="2"><?php e(t('Idrï¿½t B')); ?></td>
+        <td rowspan="2"><?php e(t('Idrï¿½t A')); ?></td>
+        <td rowspan="2"><?php e(t('Linje')); ?></td>
+        <td rowspan="2"><?php e(t('Linje')); ?></td>
     </tr>
     <tr>
-        <td><?php e(__('Teammøde')); ?></td>
+        <td><?php e(t('Teammï¿½de')); ?></td>
     </tr>
 
     <tr>
-        <td><?php e(__('Idræt A')); ?></td>
-        <td><?php e(__('Kreative fag')); ?></td>
-        <td><?php e(__('Idrætsfag')); ?></td>
-        <td><?php e(__('Idræt B')); ?></td>
-        <td><?php e(__('Teammøde')); ?></td>
+        <td><?php e(t('Idrï¿½t A')); ?></td>
+        <td><?php e(t('Kreative fag')); ?></td>
+        <td><?php e(t('Idrï¿½tsfag')); ?></td>
+        <td><?php e(t('Idrï¿½t B')); ?></td>
+        <td><?php e(t('Teammï¿½de')); ?></td>
     </tr>
 
     <tr class="food">
         <td colspan="5">Frokost</td>
     </tr>
     <tr>
-        <td><?php e(__('Idræt B')); ?></td>
-        <td><?php e(__('Linje')); ?></td>
-        <td><?php e(__('Foredrag')); ?></td>
-        <td><?php e(__('Kreative fag')); ?></td>
-        <td><?php e(__('Idræt A')); ?></td>
+        <td><?php e(t('Idrï¿½t B')); ?></td>
+        <td><?php e(t('Linje')); ?></td>
+        <td><?php e(t('Foredrag')); ?></td>
+        <td><?php e(t('Kreative fag')); ?></td>
+        <td><?php e(t('Idrï¿½t A')); ?></td>
     </tr>
     <tr>
-        <td><?php e(__('Diskussion')); ?></td>
+        <td><?php e(t('Diskussion')); ?></td>
         <td></td>
-        <td><?php e(__('Individuel træning')); ?></td>
-        <td><?php e(__('Diskussion')); ?></td>
+        <td><?php e(t('Individuel trï¿½ning')); ?></td>
+        <td><?php e(t('Diskussion')); ?></td>
         <td></td>
     </tr>
     <tr class="food">

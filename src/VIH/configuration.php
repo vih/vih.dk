@@ -13,10 +13,6 @@ if (!defined('HOST')) { define('HOST', 'http://vih.dk'); }
 if (!defined('PATH_WWW')) { define('PATH_WWW', 'http://vih.dk'); }
 
 // database
-if (!defined('DB_HOST')) { define('DB_HOST', 'localhost'); }
-if (!defined('DB_USER')) { define('DB_USER', 'root'); }
-if (!defined('DB_PASSWORD')) { define('DB_PASSWORD', ''); }
-if (!defined('DB_NAME')) { define('DB_NAME', 'vih'); }
 if (!defined('DB_DSN')) { define('DB_DSN', 'mysql://'.DB_USER.':'.DB_PASSWORD.'@'.DB_HOST.'/'.DB_NAME.''); }
 
 // sikkerhedsindstillinger
@@ -27,7 +23,7 @@ if (!defined('SECURE_SERVER_STATUS')) { define('SECURE_SERVER_STATUS', 'online')
 if (!defined('EMAIL_STATUS')) { define('EMAIL_STATUS', 'online'); }
 
 // Standards
-define('VIH_NAVN', 'Vejle Idrætshøjskole');
+define('VIH_NAVN', 'Vejle Idrï¿½tshï¿½jskole');
 define('VIH_EMAIL', 'kontor@vih.dk');
 define('VIH_KONTAKTANSVARLIG', 'Peter Sebastian Pedersen');
 define('VIH_KONTAKTANSVARLIG_EMAIL', 'elev@vih.dk');

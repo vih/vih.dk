@@ -1,4 +1,4 @@
-<div id="content-main" style="<?php e('background-image: url(' . $this->document->widepicture); ?>)">
+<div id="content-main" style="<?php e('background-image: url(' . $widepicture); ?>)">
     <?php echo $content; ?>
 
 </div>
