@@ -3,7 +3,7 @@
  * Historik til kortekurser og langekurser tilmeldinger.
  * Samt mulighed for at implementere det andre steder ligeledes.
  *
- * @author Sune Jensen <sj@suent.dk>
+ * @author Sune Jensen <sj@sunet.dk>
  */
 class VIH_Model_Historik
 {
@@ -26,15 +26,15 @@ class VIH_Model_Historik
         7 => 'kode',
         8 => 'dankort',
         9 => 'email',
-        10 => 'betalingsopgørelse'
+        10 => 'betalingsopgÃ¸relse'
     );
     public $id;
 
     /**
      *
-     * @param $belong_to           Hvor gælder historikken til?
-     * @param $belong_to_id        Hvilket id gælder historikken til
-     * @param $id               		Id på historik
+     * @param $belong_to           Hvor gï¿½lder historikken til?
+     * @param $belong_to_id        Hvilket id gï¿½lder historikken til
+     * @param $id               		Id pï¿½ historik
      *
      */
     function __construct()
@@ -96,7 +96,7 @@ class VIH_Model_Historik
         $error = array();
 
         if(!Validate::number($input['type'], array('min' => 1))) $error[] = "type";
-        if(!Validate::string($input['comment'], array('format' => VALIDATE_NUM . VALIDATE_ALPHA . VALIDATE_PUNCTUATION . 'åøÅØ#æÆ-'))) $error[] = "comment";
+        if(!Validate::string($input['comment'], array('format' => VALIDATE_NUM . VALIDATE_ALPHA . VALIDATE_PUNCTUATION . 'ï¿½ï¿½ï¿½ï¿½#ï¿½ï¿½-'))) $error[] = "comment";
 
         if(count($error) > 0) {
             print_r($error);
