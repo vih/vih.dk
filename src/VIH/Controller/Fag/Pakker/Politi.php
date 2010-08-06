@@ -18,7 +18,7 @@ class VIH_Controller_Fag_Pakker_Politi extends k_Component
         $this->template = $template;
     }
 
-    function GET()
+    function renderHtml()
     {
         $this->document->setTitle('Forberedelse til politiet på Vejle Idrætshøjskole - politi');
         $this->document->description = 'For dig der vil forberede dig til politiets optagelsesprøve. Politi forberedende linje.';
@@ -28,11 +28,8 @@ class VIH_Controller_Fag_Pakker_Politi extends k_Component
 
         $this->document->widepicture = $this->context->getWidePictureHTML('politi');
 
-        $data = array(
-            'pakke' => 'Politi',
-            'beskrivelse' => 'For dig som drømmer om at komme ind på politiskolen. Kurset forbereder dig til at kunne bestå Politiets optagelsesprøve og være klar til de udfordringer der venter på politiskolen og ved Politiet. Politikurset indeholder undervisning og testning indenfor alle de områder som er indeholdt i politiets optagelsesprøve. Dertil vil der være oplæg ved ansatte fra Politiet, oplæg om politiskolen,  bassinprøve m.m. Udover den målrettede politiundervisning er der mulighed for at vælge et idrætsspeciale og valgfag efter egen interesse. Kurset er planlagt på baggrund af mange års erfaringer, samt løbende dialog med Politiet.');
-        $tpl = $this->template->create('Fag/pakke');
-        return $tpl->render($this, $data);
+        $tpl = $this->template->create('Fag/pakke/politi');
+        return $tpl->render($this);
     }
 
     function getSkema()
