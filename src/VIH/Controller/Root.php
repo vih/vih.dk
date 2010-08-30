@@ -81,7 +81,9 @@ class VIH_Controller_Root extends k_Component
             'body_id' => $this->document->body_id,
             'protocol' => $this->document->protocol,
             'body_class' => $this->document->body_class,
-            'theme' => $this->document->theme);
+            'theme' => $this->document->theme,
+            'title' => $this->document->title()
+        );
 
         $tpl = $this->template->create('main');
         return $tpl->render($this, $data);
