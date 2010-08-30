@@ -15,7 +15,7 @@ class VIH_Controller_LangtKursus_Rejser extends k_Component
         $this->kernel = $kernel;
     }
 
-    function GET()
+    function renderHtml()
     {
         $result = $this->mdb2->query('SELECT * FROM langtkursus_fag WHERE fag_gruppe_id = 4 ORDER BY id'); // 4 er rejser
 
