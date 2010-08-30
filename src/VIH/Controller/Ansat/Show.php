@@ -19,7 +19,12 @@ class VIH_Controller_Ansat_Show extends k_Component
         return parent::dispatch();
     }
 
-    function GET()
+    function map($name)
+    {
+        return 'VIH_Controller_Ansat_Kontakt';
+    }
+
+    function renderHtml()
     {
         $underviser = new VIH_Model_Ansat($this->name());
 
@@ -69,10 +74,5 @@ class VIH_Controller_Ansat_Show extends k_Component
             $fag_html = '<h2>Underviser i</h2>'.$tpl->render($this, $data);
         }
         return $fag_html;
-    }
-
-    function map($name)
-    {
-        return 'VIH_Controller_Ansat_Kontakt';
     }
 }

@@ -9,31 +9,6 @@ class VIH_Controller_Ansat_Kontakt extends k_Component
         $this->template = $template;
     }
 
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-
-        $form = new HTML_QuickForm('underviser', 'POST', $this->url());
-        $form->addElement('text', 'navn', 'Navn');
-        $form->addElement('text', 'email', 'E-mail');
-        $form->addElement('textarea', 'besked', 'Besked', array('rows' => 12, 'cols' => 30));
-        $form->addElement('submit', null, 'Send');
-
-        $form->addRule('navn', 'Du skal indtaste et navn', 'required');
-        $form->addRule('email', 'Du skal indtaste en email', 'required');
-        $form->addRule('email', 'Du skal indtaste en gyldig email', 'email');
-        $form->addRule('besked', 'Du skal indtaste en gyldig besked', 'required');
-
-        $form->applyFilter('__ALL__', 'trim');
-        $form->applyFilter('__ALL__', 'strip_tags');
-        $form->applyFilter('__ALL__', 'addslashes');
-
-        return ($this->form = $form);
-
-    }
-
     function renderHtml()
     {
         $underviser = new VIH_Model_Ansat($this->context->name());
@@ -67,11 +42,6 @@ class VIH_Controller_Ansat_Kontakt extends k_Component
 
         $tpl = $this->template->create('sidebar-wrapper');
         return $tpl->render($this, $data);
-    }
-
-    function getSubContent()
-    {
-        return $this->context->getFagHTML();
     }
 
     function postForm()
@@ -110,5 +80,34 @@ class VIH_Controller_Ansat_Kontakt extends k_Component
             $tpl = $this->template->create('sidebar-wrapper');
             return $tpl->render($this, $data);
         }
+    }
+
+    function getSubContent()
+    {
+        return $this->context->getFagHTML();
+    }
+
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+
+        $form = new HTML_QuickForm('underviser', 'POST', $this->url());
+        $form->addElement('text', 'navn', 'Navn');
+        $form->addElement('text', 'email', 'E-mail');
+        $form->addElement('textarea', 'besked', 'Besked', array('rows' => 12, 'cols' => 30));
+        $form->addElement('submit', null, 'Send');
+
+        $form->addRule('navn', 'Du skal indtaste et navn', 'required');
+        $form->addRule('email', 'Du skal indtaste en email', 'required');
+        $form->addRule('email', 'Du skal indtaste en gyldig email', 'email');
+        $form->addRule('besked', 'Du skal indtaste en gyldig besked', 'required');
+
+        $form->applyFilter('__ALL__', 'trim');
+        $form->applyFilter('__ALL__', 'strip_tags');
+        $form->applyFilter('__ALL__', 'addslashes');
+
+        return ($this->form = $form);
     }
 }

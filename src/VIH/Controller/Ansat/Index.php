@@ -8,6 +8,11 @@ class VIH_Controller_Ansat_Index extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return 'VIH_Controller_Ansat_Show';
+    }
+
     function renderHtml()
     {
         $title = 'Lærerkræfter';
@@ -34,10 +39,5 @@ class VIH_Controller_Ansat_Index extends k_Component
         $data = array('undervisere' => VIH_Model_Ansat::getList('lærere'));
         $tpl = $this->template->create('Ansat/undervisere');
         return $tpl->render($this, $data);
-    }
-
-    function map($name)
-    {
-        return 'VIH_Controller_Ansat_Show';
     }
 }
