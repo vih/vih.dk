@@ -22,7 +22,7 @@ class VIH_Factory
     function new_MDB2_Driver_Common()
     {
         $options= array("debug" => 2);
-        $db = MDB2::factory(DB_DSN, $options);
+        $db = MDB2::singleton(DB_DSN, $options);
         if (PEAR::isError($db)) {
             throw new Exception($db->getMessage());
         }
