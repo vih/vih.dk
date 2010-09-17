@@ -13,8 +13,8 @@ header('P3P: policyref="' . url('/w3c/p3p.xml') . '", CP="NID DSP ALL COR"');
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <title>Vejle Idrætshøjskole: <?php e($title); ?></title>
-        <meta name="description" content="<?php e($meta['description']); ?>">
-        <meta name="keywords" content="<?php e($meta['keywords']); ?>">
+        <meta name="description" content="<?php if (isset($meta['description'])) e($meta['description']); ?>">
+        <meta name="keywords" content="<?php if (isset($meta['keywords'])) e($meta['keywords']); ?>">
         <link href="<?php e(url('/css/main.css')); ?>" rel="stylesheet" media="screen, projection" type="text/css">
         <!--[if IE ]>
         <link href="<?php e(url('/css/iecss.css')); ?>" rel="stylesheet"  media="screen,projection" type="text/css">

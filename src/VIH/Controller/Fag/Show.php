@@ -14,13 +14,19 @@ class VIH_Controller_Fag_Show extends k_Component
         $this->kernel = $kernel;
     }
 
-    function renderHtml()
+    function dispatch()
     {
         $fag = new VIH_Model_Fag($this->name());
 
         if (!$fag->get('id') OR $fag->get('active') != 1 OR $fag->get('published') != 1) {
             throw new k_PageNotFound();
         }
+        return parent::dispatch();
+    }
+
+    function renderHtml()
+    {
+        $fag = new VIH_Model_Fag($this->name());
 
         $undervisere = $fag->getUndervisere();
 
@@ -35,10 +41,10 @@ class VIH_Controller_Fag_Show extends k_Component
         $this->document->meta  = $meta;
         $this->document->theme = $fag->get('identifier');
         if ($this->query('show')) {
-            $this->document->body_class  = 'sidepicture';
+            $this->document->body_class  = 'widepicture';
             $this->document->sidepicture = $this->getPictureHTML($fag->get('identifier'));
         } else {
-            $this->document->body_class  = 'widepicture';
+            $this->document->body_class  = 'sidepicture';
             $this->document->widepicture = $this->getWidePictureHTML($fag->get('identifier'));
         }
         $data = array('content' => '
@@ -47,7 +53,7 @@ class VIH_Controller_Fag_Show extends k_Component
             ' . $this->getUdvidetBeskrivelse($fag) .'</div>',
                       'content_sub' =>
                             $this->getVideo() . '
-            <h2>SpÃ¸rgsmÃ¥l?</h2>
+            <h2>Spørgsmål?</h2>
             ' . $this->getUndervisereHTML($fag->getUndervisere()) . $this->getSubContent($fag->get('identifier')));
 
         $tpl = $this->template->create('sidebar-wrapper');
@@ -87,7 +93,6 @@ class VIH_Controller_Fag_Show extends k_Component
     {
         $udvidet_beskrivelse = '';
         if ($this->query('show') == 'udvidet') {
-            //$udvidet_beskrivelse = $this->getLangeKurserHTML($fag);
             $udvidet_beskrivelse = '';
             if ($fag->get('udvidet_beskrivelse')) {
                 $udvidet_beskrivelse .= '<h1>Udvidet beskrivelse af '.strtolower($fag->get('navn')).'</h1>
@@ -103,17 +108,17 @@ class VIH_Controller_Fag_Show extends k_Component
 
     function getVideo()
     {
-        if ($this->name == 'musiklinje') {
+        if ($this->name() == 'musiklinje') {
             $url = $this->url('/gfx/flash/musiklinje.flv');
-        } elseif ($this->name == 'rejselinje') {
+        } elseif ($this->name() == 'rejselinje') {
             $url = $this->url('/gfx/flash/rejselinje.flv');
-        } elseif ($this->name == 'politilinje') {
+        } elseif ($this->name() == 'politilinje') {
             $url = $this->url('/gfx/flash/politilinje.flv');
-        } elseif ($this->name == 'fodboldakademi' OR $this->name == 'fodbold') {
+        } elseif ($this->name() == 'fodboldakademi' OR $this->name() == 'fodbold') {
             $url = $this->url('/gfx/flash/fodboldakademi.flv');
-        } elseif ($this->name == 'underviser') {
+        } elseif ($this->name() == 'underviser') {
             $url = $this->url('/gfx/flash/underviser.flv');
-        } elseif ($this->name == 'fitnessogsundhed' OR $this->name == 'fitness') {
+        } elseif ($this->name() == 'fitnessogsundhed' OR $this->name() == 'fitness') {
             $url = $this->url('/gfx/flash/fitnessogsundhed.flv');
         } else {
             return '';
@@ -161,8 +166,8 @@ class VIH_Controller_Fag_Show extends k_Component
             return '';
         }
         $data = array('kurser' => $fag->getKurser(),
-                      'caption' => $fag->get('navn') . ' er pÃ¥ fÃ¸lgende kurser',
-                      'summary' => 'Oversigt over hvilke lange kurser, du kan fÃ¥ ' . $fag->get('navn') . ' pÃ¥.');
+                      'caption' => $fag->get('navn') . ' er på følgende kurser',
+                      'summary' => 'Oversigt over hvilke lange kurser, du kan få ' . $fag->get('navn') . ' på.');
         $tpl = $this->template->create('LangtKursus/kurser');
         return $tpl->render($this, $data);
     }
