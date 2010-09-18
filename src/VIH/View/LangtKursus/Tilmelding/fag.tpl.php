@@ -23,7 +23,7 @@
         <fieldset>
         <legend><?php e($grp->getName()); ?></legend>
         <?php foreach ($grp->Subjects as $subj): ?>
-            <input type="checkbox" name="subject[<?php e($i); ?>]" value="<?php e($subj->getId()); ?>"<?php if ($chosen[$p->getId() . $subj->getId() . $grp->getId()] == $subj->getId()) echo ' checked="checked"' ?>>
+            <input type="checkbox" name="subject[<?php e($i); ?>]" value="<?php e($subj->getId()); ?>"<?php if (isset($chosen[$p->getId() . $subj->getId() . $grp->getId()]) AND $chosen[$p->getId() . $subj->getId() . $grp->getId()] == $subj->getId()) echo ' checked="checked"' ?>>
             <input type="hidden" name="subjectperiod[<?php e($i); ?>]" value="<?php e($p->getId()); ?>" />
             <input type="hidden" name="subjectgroup[<?php e($i); ?>]" value="<?php e($grp->getId()); ?>" />
             <label for=""><?php e($subj->getName()); ?></label>

@@ -194,7 +194,7 @@ class VIH_Controller_LangtKursus_Show extends k_Component
                 </tr>
                 <tr>
                     <th>Nøgledepositum</th>
-                    <td>' . number_format($kursus->get('pris_nøgledepositum'), 0, ',', '.').' kroner</td>
+                    <td>' . number_format((float)$kursus->get('pris_nøgledepositum'), 0, ',', '.').' kroner</td>
                 </tr>
             </table>
 

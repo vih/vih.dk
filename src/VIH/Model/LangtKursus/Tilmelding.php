@@ -21,10 +21,10 @@ class VIH_Model_LangtKursus_Tilmelding
         -2 => 'afbrudt ophold', // hvis opholdet afbrydes
         -1 => 'annulleret',     // annulleret under tilmeldingsproceduren
         0 => 'ikke tilmeldt',   // standardindstillingen
-        1 => 'undervejs',       // når man er ved at tilmelde sig
-        2 => 'reserveret',      // når man har bekræftet at man vil tilmelde sig
-        3 => 'tilmeldt',        // først når man har betalt indmeldelsesgebyret
-        4 => 'afsluttet'        // når alt er blevet betalt
+        1 => 'undervejs',       // nï¿½r man er ved at tilmelde sig
+        2 => 'reserveret',      // nï¿½r man har bekrï¿½ftet at man vil tilmelde sig
+        3 => 'tilmeldt',        // fï¿½rst nï¿½r man har betalt indmeldelsesgebyret
+        4 => 'afsluttet'        // nï¿½r alt er blevet betalt
     );
 
     public $uddannelse = array(
@@ -36,9 +36,9 @@ class VIH_Model_LangtKursus_Tilmelding
     );
 
     public $betaling = array(
-        1 => 'Egne midler / forældres',
-        2 => 'Arbejdsløshedskasse',
-        3 => 'Bistandshjælp',
+        1 => 'Egne midler / forï¿½ldres',
+        2 => 'Arbejdslï¿½shedskasse',
+        3 => 'Bistandshjï¿½lp',
         4 => 'andet'
     );
 
@@ -82,7 +82,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Returnerer værdier
+     * Returnerer vï¿½rdier
      *
      * @param string $key Key to return
      *
@@ -107,7 +107,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Loader værdier
+     * Loader vï¿½rdier
      *
      * @return integer
      */
@@ -147,7 +147,7 @@ class VIH_Model_LangtKursus_Tilmelding
 
         if ($db->f('adresse_id') > 0) {
             $adresse = new VIH_Model_Adresse($db->f('adresse_id'));
-            // skal lige overskrives, så den ikke tømmer arrayet
+            // skal lige overskrives, sï¿½ den ikke tï¿½mmer arrayet
             $this->value['navn'] = $adresse->get('navn');
             $this->value['adresse'] = $adresse->get('adresse');
             $this->value['postnr'] = $adresse->get('postnr');
@@ -265,7 +265,7 @@ class VIH_Model_LangtKursus_Tilmelding
     /**
      * Bruges til at slette tilmeldinger
      *
-     * Tilmeldinger må aldrig slettes helt fra databasen.
+     * Tilmeldinger mï¿½ aldrig slettes helt fra databasen.
      *
      * @return boolean
      */
@@ -340,7 +340,7 @@ class VIH_Model_LangtKursus_Tilmelding
         $bind['cpr'] = $var['cpr'];
         $bind['nationalitet'] = $var['nationalitet'];
         $bind['kommune'] = $var['kommune'];
-        $bind['sex'] = $var['sex'];
+        if (!empty($var['sex'])) $bind['sex'] = $var['sex'];
 
         Doctrine_Manager::connection(DB_DSN);
         $table = Doctrine::getTable('VIH_Model_Course_Registration');
@@ -619,7 +619,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Marker tilmelding som færdigbetalt hvis der ikke er noget skyldigt beløb
+     * Marker tilmelding som fï¿½rdigbetalt hvis der ikke er noget skyldigt belï¿½b
      */
     public function _updateStatus()
     {
@@ -667,7 +667,7 @@ class VIH_Model_LangtKursus_Tilmelding
         $this->value['skyldig_tilmeldingsgebyr'] = $this->get('pris_tilmeldingsgebyr') - $this->value['betalt'];
         $this->value['skyldig'] = $this->get('pris_total') - $this->get('betalt');
 
-        $this->value['forfalden'] = 0; // denne bør lige regnes ud
+        $this->value['forfalden'] = 0; // denne bï¿½r lige regnes ud
 
         $this->betaling_loaded = true;
 
@@ -893,27 +893,27 @@ class VIH_Model_LangtKursus_Tilmelding
         $mail->setBody('
 Tak for din tilmelding. Du er registreret i vores system.
 
-Du kan følge din tilmelding på:
+Du kan fÃ¸lge din tilmelding pÃ¥:
 
 '.LANGEKURSER_LOGIN_URI.$this->get('code').'
 
-På denne side kan du printe kvitteringer ud og betale evt. skyldige beløb.
-Vi glæder os til at møde dig!
+PÃ¥ denne side kan du printe kvitteringer ud og betale evt. skyldige belÃ¸b.
+Vi glÃ¦der os til at mÃ¸de dig!
 
 --
 Med venlig hilsen
 En email-robot
-Vejle Idrætshøjskole
+Vejle IdrÃ¦tshÃ¸jskole
 ');
         $mail->addAddress($this->get('email'), $this->get('navn'));
         return $mail->send();
     }
 
     /**
-     * Bruges til at sætte et session_id, hvis ordren ikke har noget, og brugeren
-     * skal fortsætte sin bestilling.
+     * Bruges til at sï¿½tte et session_id, hvis ordren ikke har noget, og brugeren
+     * skal fortsï¿½tte sin bestilling.
      *
-     * Bør meget sjældent bruges
+     * Bï¿½r meget sjï¿½ldent bruges
      */
 
     ///////////////////////////////////////////////////////////////////////////////

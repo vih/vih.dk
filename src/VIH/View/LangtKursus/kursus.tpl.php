@@ -1,7 +1,9 @@
 <h1><?php e($kursus->getKursusNavn()); ?></h1>
 
+<p><a href="<?php e(url('tilmelding')); ?>">Tilmeld mig</a></p>
+
 <div>
-    <?php echo vih_autoop($kursus->get('beskrivelse')); ?>
+    <?php echo autoop($kursus->get('beskrivelse')); ?>
 </div>
 
 <?php if (!empty($fag)): ?>
