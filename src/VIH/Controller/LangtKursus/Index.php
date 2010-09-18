@@ -35,7 +35,7 @@ class VIH_Controller_LangtKursus_Index extends k_Component
 
     function map($name)
     {
-        if (isset($this->map[$name])) {
+        if (!empty($this->map[$name])) {
             return $this->map[$name];
         }
         return 'VIH_Controller_LangtKursus_Show';

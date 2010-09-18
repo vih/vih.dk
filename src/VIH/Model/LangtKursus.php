@@ -271,7 +271,7 @@ class VIH_Model_LangtKursus
         $sql_ekstra = "";
 
         switch($show) {
-            case 'åbne': // fall through
+            case 'Ã¥bne': // fall through
             case 'open':
                 $sql_ekstra = "published = 1 AND DATE_ADD(dato_start, INTERVAL 14 DAY) > NOW()";
                 break;
@@ -328,9 +328,9 @@ class VIH_Model_LangtKursus
 
 
     /**
-     * Spørgsmålet er om hvor et kursus oftest vil starte. Har man på et kursus flere
+     * Spï¿½rgsmï¿½let er om hvor et kursus oftest vil starte. Har man pï¿½ et kursus flere
      * perioder, hvor man har nogle forskellige faggruper i hver periode? - eller
-     * har man forskellige faggruper, som man kan vælge i forskellige perioder.
+     * har man forskellige faggruper, som man kan vï¿½lge i forskellige perioder.
      */
     public function addFaggruppe($faggruppe)
     {
@@ -547,7 +547,7 @@ class VIH_Model_LangtKursus
 
             $db->query("SELECT DATE_FORMAT(betalingsdato, '%d') AS d, DATE_FORMAT(betalingsdato, '%m') AS m, DATE_FORMAT(betalingsdato, '%Y') AS y
                 FROM langtkursus_rate WHERE langtkursus_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT 1");
-            $db->nextRecord() OR trigger_error("Kan ikke tilføje er rate, hvis der ikke eksistere nogen", FATAL);
+            $db->nextRecord() OR trigger_error("Kan ikke tilfï¿½je er rate, hvis der ikke eksistere nogen", FATAL);
 
 
             for($i = 0; $i < $number; $i++) {

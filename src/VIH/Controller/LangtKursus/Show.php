@@ -15,8 +15,7 @@ class VIH_Controller_LangtKursus_Show extends k_Component
 
     function dispatch()
     {
-        $soegestreng = strip_tags($this->name());
-        $kursus = new VIH_Model_LangtKursus($soegestreng);
+        $kursus = new VIH_Model_LangtKursus($this->name());
 
         if (!$kursus->get('id') OR $kursus->get('dato_slut') < date('Y-m-d')) {
             throw new k_PageNotFound();
@@ -32,8 +31,7 @@ class VIH_Controller_LangtKursus_Show extends k_Component
 
     function renderHtml()
     {
-        $soegestreng = strip_tags($this->name());
-        $kursus = new VIH_Model_LangtKursus($soegestreng);
+        $kursus = new VIH_Model_LangtKursus($this->name());
 
         $ansat = new VIH_Model_Ansat($kursus->get('ansat_id'));
         if ($ansat->get('id')) {
