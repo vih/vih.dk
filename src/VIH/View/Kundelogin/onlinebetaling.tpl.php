@@ -8,7 +8,7 @@
 <div id="content-sub">
     <h2>Sikkerhedsnummeret</h2>
     <p>Du finder sikkerhedsnummeret (cvd) bag på Dankortet.</p>
-    <p><img src="<?php e(url('/gfx/images/dankort_cifre.gif')); ?>" alt="Hvor er sikkerhedscifrene på dankortet?" /></p>
+    <p><img src="<?php e(url('../../../../gfx/images/dankort_cifre.gif')); ?>" alt="Hvor er sikkerhedscifrene på dankortet?" /></p>
     <h2>Sikkerhed</h2>
     <p>Du kan læse mere om sikkerhed og <span class="dankort">Dankort</span> på <a href="http://www.betaling.dk/">PBS</a>.</p>
     <p>Vores betalingsløsning ligger på en sikker server, og vi gemmer aldrig kortoplysninger i vores database.</p>
