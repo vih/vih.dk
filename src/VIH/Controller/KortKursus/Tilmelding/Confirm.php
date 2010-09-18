@@ -88,11 +88,11 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
                 if ($tilmelding->get('email')) {
                     $historik = new VIH_Model_Historik('kortekurser', $tilmelding->get('id'));
                     if (!$tilmelding->sendEmail()) {
-                        if (!$historik->save(array('type' => 'kode', 'comment' => 'BekrÃ¦ftelse pÃ¥ onlinetilmelding kunne ikke sendes'))) {
+                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekræftelse på onlinetilmelding kunne ikke sendes'))) {
                             throw new Exception('Historikken kunne ikke gemmes');
                         }
                     } else {
-                        if (!$historik->save(array('type' => 'kode', 'comment' => 'BekrÃ¦ftelse pÃ¥ onlinetilmelding'))) {
+                        if (!$historik->save(array('type' => 'kode', 'comment' => 'Bekræftelse på onlinetilmelding'))) {
                             throw new Exception('Historikken kunne ikke gemmes');
                         }
                     }

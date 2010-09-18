@@ -38,7 +38,7 @@ class VIH_Controller_KortKursus_Login_Tilmelding extends k_Component
 
         $oversigt_data = array('tilmelding' => $tilmelding,
                                'oplysninger' => $opl_tpl->render($this, $opl_data),
-                               'deltagere' => $delt->render($this, $delt_data),
+                               'deltagere' => $delt_tpl->render($this, $delt_data),
                                'betalinger' => $bet_tpl->render($this, $betal_data));
 
         $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));

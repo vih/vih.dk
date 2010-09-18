@@ -72,6 +72,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
 
     function postForm()
     {
+        $emailsender = '';
         $kursus = new VIH_Model_KortKursus($this->context->name());
 
         if ($this->getForm()->validate()) {
@@ -103,7 +104,6 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
                     if ($mailer->send()) {
                         $emailsender = "<p>Du vil om kort tid modtage en e-mail med en bekræftelse på at du er optaget på ventelisten.</p><p>Med venlig hilsen<br />En venlig e-mail-robot<br />Vejle Idrætshøjskole</p>";
                     } else {
-                        //trigger_error("Der er opstået en fejl i email-senderen i forbindelse med opskrivning på venteliste. Der er ikke sendt en bekræftelse til ".$this->getForm()->exportValue('navn'), E_USER_NOTICE);
                         $emailsender = "<p>Det var ikke muligt at sende dig en bekræftelse på e-mail på din optagelse på venteliste. Har du spørgsmål er du velkommen til at kontakte Vejle Idrætshøjskole. Imens tager vi lige en alvorlig snak med webmasteren.</p>";
                     }
                 }

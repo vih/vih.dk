@@ -1,5 +1,5 @@
 <?php
-class VIH_Controller_Newsletter_Index extends k_Component
+class VIH_Controller_Newsletter_Index extends IntrafacePublic_Newsletter_Controller_Index
 {
     public $i18n = array(
         'Newsletter' => 'Nyhedsbrev',
@@ -20,14 +20,5 @@ class VIH_Controller_Newsletter_Index extends k_Component
     function __construct(k_TemplateFactory $template)
     {
         $this->template = $template;
-    }
-
-    function wrapHtml()
-    {
-        $next = new IntrafacePublic_Newsletter_Controller_Index($this);
-        $content = $next->handleRequest();
-
-        $tpl = $this->template->create('sidebar-wrapper');
-        return $tpl->render($this, array('content' => $content));
     }
 }
