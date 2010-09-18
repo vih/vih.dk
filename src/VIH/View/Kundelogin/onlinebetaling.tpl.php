@@ -3,7 +3,7 @@
     <p>Tak fordi du bruger <span class="dankort">Dankort</span> til at betale for tilmelding #<?php e($tilmelding->get('id')); ?> til de <?php e($course_type); ?> kurser.</p>
     <?php if (!empty($extra_text)) echo $extra_text; ?>
     <?php if (!empty($error)) echo $error; ?>
-    <?php echo $this->getForm()->toHTML(); ?>
+    <?php echo $context->getForm()->toHTML(); ?>
 </div>
 <div id="content-sub">
     <h2>Sikkerhedsnummeret</h2>

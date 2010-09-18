@@ -171,10 +171,10 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         $form->addRule('cardnumber', 'Du skal skrive et kortnummer', 'numeric');
         $form->addRule('cvd', 'Du skal skrive et sikkerhedsnummer', 'required');
         $form->addRule('cvd', 'Du skal skrive et sikkerhedsnummer', 'numeric');
-        $form->addRule('mm', 'Du skal udfylde Mdr.', 'required');
-        $form->addRule('mm', 'Du skal udfylde Mdr.', 'numeric');
-        $form->addRule('yy', 'Du skal udfylde År ', 'required');
-        $form->addRule('yy', 'Du skal udfylde År', 'numeric');
+        $form->addRule('mm', 'Du skal udfylde mdr.', 'required');
+        $form->addRule('mm', 'Du skal udfylde mdr.', 'numeric');
+        $form->addRule('yy', 'Du skal udfylde år ', 'required');
+        $form->addRule('yy', 'Du skal udfylde år', 'numeric');
 
         $form->applyFilter('__ALL__', 'trim');
         $form->applyFilter('__ALL__', 'addslashes');
@@ -183,12 +183,16 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         return ($this->form = $form);
     }
 
-    function execute()
+    /**
+     * @todo FIXME This does not work at the moment as $this->url() now only returns portion of the url
+     * @return unknown_type
+     */
+    function _execute()
     {
         $protocol = substr($this->url(), 0, 5);
         if ($protocol != 'https') {
             $link = 'https' . substr($this->url(), 4);
-            throw new k_SeeOther($link);
+            return new k_SeeOther($link);
         }
         return parent::execute();
     }

@@ -6,7 +6,7 @@ require_once 'VIH/functions.php';
 require_once 'konstrukt/konstrukt.inc.php';
 require_once 'bucket.inc.php';
 require_once 'Ilib/ClassLoader.php';
-require_once 'Doctrine/lib/Doctrine.php';
+require_once 'Doctrine.php';
 spl_autoload_register(array('Doctrine', 'autoload'));
 
 class VIH_NotFoundComponent extends k_Component
@@ -26,6 +26,11 @@ class VIH_NotFoundComponent extends k_Component
     }
 }
 
+class VIH_Document extends k_Document
+{
+
+}
+
 $factory = new VIH_Factory();
 $container = new bucket_Container($factory);
 
@@ -34,7 +39,7 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
     $components->setImplementation('k_DefaultPageNotFoundComponent', 'VIH_NotFoundComponent');
     k()
     ->setComponentCreator($components)
-    ->setLanguageLoader(new MyLanguageLoader())->setTranslatorLoader(new SimpleTranslatorLoader())
+    //->setLanguageLoader(new MyLanguageLoader())->setTranslatorLoader(new SimpleTranslatorLoader())
     ->run('VIH_Controller_Login_Root')
     ->out();
 }

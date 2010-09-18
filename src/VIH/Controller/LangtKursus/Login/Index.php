@@ -5,4 +5,9 @@ class VIH_Controller_LangtKursus_Login_Index extends k_Component
     {
         return 'VIH_Controller_LangtKursus_Login_Tilmelding';
     }
+
+    function renderHtml()
+    {
+        return 'her';
+    }
 }

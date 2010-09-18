@@ -161,7 +161,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         return ($this->form = $form);
     }
 
-    function execute()
+    function _execute()
     {
         $protocol = substr($this->url(), 0, 5);
         if ($protocol != 'https') {

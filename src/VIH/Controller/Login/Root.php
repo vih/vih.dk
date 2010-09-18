@@ -13,6 +13,11 @@ class VIH_Controller_Login_Root extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return $this->map[$name];
+    }
+
     function wrapHtml($content)
     {
         $navigation = array(
@@ -21,6 +26,6 @@ class VIH_Controller_Login_Root extends k_Component
             $this->url('/logout') => 'Logout'
         );
         $tpl = $this->template->create('Kundelogin/main');
-        return $tpl->render($this, array('navigation' => $navigation));
+        return $tpl->render($this, array('navigation' => $navigation, 'content' => $content));
     }
 }

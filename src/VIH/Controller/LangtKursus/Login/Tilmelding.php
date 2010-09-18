@@ -12,6 +12,11 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        return $this->map[$name];
+    }
+
     function renderHtml()
     {
         $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->name());
@@ -30,6 +35,7 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
         }
 
         $tilmelding->loadBetaling();
+
 
         $opl_data = array('tilmelding' => $tilmelding,
                       'caption' => 'Tilmeldingsoplysninger');

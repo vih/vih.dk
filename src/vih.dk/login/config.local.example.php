@@ -3,7 +3,7 @@ define('PATH_ROOT',      dirname(__FILE__) . '/../../');
 define('PATH_INCLUDE',   '/home/lsolesen/workspace/ilib/3Party/Ilib_Keyword/src/' . PATH_SEPARATOR . '/home/lsolesen/workspace/ilib/3Party/Ilib_DBQuery/src/' . PATH_SEPARATOR . '.' . PATH_SEPARATOR . PATH_ROOT . PATH_SEPARATOR . get_include_path());
 define('PATH_WWW',       'http://localhost/vih/hojskole/src/vih.dk/');
 define('DB_USER',        'root');
-define('DB_PASSWORD',    'klan1n');
+define('DB_PASSWORD',    'xxx');
 define('DB_NAME',        'vih');
 define('DB_HOST',        'localhost');
 define('DB_DSN',         'mysql://' . DB_USER . ':' . DB_PASSWORD . '@' . DB_HOST . '/' . DB_NAME);
