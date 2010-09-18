@@ -1,7 +1,7 @@
 vih.dk
 ==
 
-PHP code for [Vejle Idrætshøjskole's](http://vih.dk). You are more than welcome to suggest improvements. It is based on [konstrukt](http://konstrukt.dk), version 1, but we are hoping to refactor to use the newest version of konstrukt soon.
+PHP code for [Vejle IdrÃ¦tshÃ¸jskole's](http://vih.dk). You are more than welcome to suggest improvements. It is based on [konstrukt](http://konstrukt.dk), version 1, but we are hoping to refactor to use the newest version of konstrukt soon.
 
 Install source code
 --

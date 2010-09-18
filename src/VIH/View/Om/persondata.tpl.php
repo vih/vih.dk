@@ -27,4 +27,4 @@
         <h2>Håndtering af e-mails?</h2>
         <p>Vi læser din e-mail så hurtigt som vi kan, og så får vi den rette person til at svare på den. Vi prøver på at svare på e-mailen samme dag, som vi modtager den, men i hvert fald inden for tre arbejdsdage.</p>
         <h2>Cookies</h2>
-        <p>Cookies er små tekststumper, som visse websider overfører til din pc's harddisk. Data fra cookies kan ikke anvendes til at indsamle personlige oplysninger, men benyttes normalt til at g�re dit bes�g p� websitet lettere. En cookie kan fx gemme de indtastninger, du lavede sidste  gang du var på webstedet, så du ikke behøver at indtaste dem igen. </p>
+        <p>Cookies er små tekststumper, som visse websider overfører til din pc's harddisk. Data fra cookies kan ikke anvendes til at indsamle personlige oplysninger, men benyttes normalt til at gøre dit besøg på websitet lettere. En cookie kan fx gemme de indtastninger, du lavede sidste  gang du var på webstedet, så du ikke behøver at indtaste dem igen. </p>

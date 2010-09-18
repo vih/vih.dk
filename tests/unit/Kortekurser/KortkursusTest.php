@@ -33,7 +33,7 @@ class FakeKortKursus
         $this->values['pic_id'] = 0;
         $this->values['status'] = 0;
         $this->values['tilmeldingsmulighed'] = 1;
-        $this->values['published'] = 0; // aldrig udgive dem før de er blevet kigget igennem
+        $this->values['published'] = 0;
     }
 
     function get($key)

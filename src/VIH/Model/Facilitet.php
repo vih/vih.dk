@@ -5,8 +5,8 @@ class VIH_Model_Facilitet
     private $values;
     private $id;
     public $kategori = array(
-        1 => 'Idræt',
-        2 => 'Højskole',
+        1 => 'IdrÃ¦t',
+        2 => 'HÃ¸jskole',
         3 => 'Omgivelser',
         4 => 'Kursuscenter'
     );
@@ -115,7 +115,7 @@ class VIH_Model_Facilitet
         $sql = "SELECT id FROM facilitet WHERE active = 1";
         if ($type == 'published') {
             $sql .= " AND published = 1";
-        } elseif ($type == 'højskole') {
+        } elseif ($type == 'hÃ¸jskole') {
             $sql .= " AND kategori_id > 0 AND kategori_id < 4 AND published = 1";
         }
         $sql .= " ORDER BY kategori_id, navn";

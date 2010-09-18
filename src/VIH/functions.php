@@ -167,7 +167,7 @@ print '
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Der er opst�et en  fejl</title>
+        <title>Der er opstået en  fejl</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
         <style type="text/css">
@@ -198,11 +198,11 @@ print '
         <div id="container">
             <h1>Hm, noget gik galt</h1>
             <p><strong>' . $msg . '</strong></p>
-            <p>Det burde ikke kunne ske. Hov, nu er vores webmaster ved at stikke af. Det kan vi godt forst�, for han har lovet, at du aldrig ville se denne side.</p>
-            <p>Vores webmaster r�ber, at du m�ske kan pr�ve at g� tilbage p� den foreg�ende side og tjekke om alt er rigtig udfyldt.</p>
-            <p>Hvis du har nogen sp�rgsm�l, er du velkommen til at kontakte Vejle Idr�tsh�jskole p� 75820811. S� skal vi nok pine webmasteren lidt.</p>
-            <p>Vi beklager ulejligheden &mdash; og h�ber at du har en god dag alligevel.</p>
-            <p>Med venlig hilsen<br>Vejle Idr�tsh�jskole</p>
+            <p>Det burde ikke kunne ske. Hov, nu er vores webmaster ved at stikke af. Det kan vi godt forstå, for han har lovet, at du aldrig ville se denne side.</p>
+            <p>Vores webmaster råber, at du måske kan prøve at gå tilbage på den foregående side og tjekke om alt er rigtig udfyldt.</p>
+            <p>Hvis du har nogen spørgsmål, er du velkommen til at kontakte Vejle Idrætshøjskole på 75820811. Så skal vi nok pine webmasteren lidt.</p>
+            <p>Vi beklager ulejligheden &mdash; og håber at du har en god dag alligevel.</p>
+            <p>Med venlig hilsen<br>Vejle Idrætshøjskole</p>
         </div>
     </body>
 </html>';

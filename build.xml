@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />	
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="2.9.0" />
+    <property name="version" value="3.0.0" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 
@@ -21,12 +21,12 @@
     </target>
 
     <target name="checkout">
-        <echo msg="Exporting SVN files" />
-        <exec command="svn export ${source.dir}src ${build.dir}" />
+        <echo msg="Checking out git repository" />
+        <exec command="git clone git://github.com/vih/vih.dk.git ${build.dir}" />
 
         <mkdir dir="${build.dir}/package/${package-name}-${version}" />
         <copy todir="${build.dir}/package/${package-name}-${version}">
-            <fileset dir="${build.dir}">
+            <fileset dir="${build.dir}/src">
                 <include name="VIH/**" />
                 <include name="vih.dk/**" />
                 <exclude name="www/*.htm" />
@@ -161,7 +161,7 @@
                              minimum_version="1.6.0" />
                 </dependencies>
                 <notes>
-                    * Added social media and changed højdepunkter
+                    * Added new police description and changed to konstrukt2
                 </notes>
             </d51pearpkg2>
     </target>

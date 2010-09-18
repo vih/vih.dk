@@ -45,10 +45,6 @@ class DB_Sql
 
     function nextRecord()
     {
-        // Gennems�ger recordset.
-        // G�r videre til n�ste post hver gang den kaldes.
-        // Returnere true s� l�nge der er en post
-        // while($db->next_record()) {
         $this->row = $this->result->fetchRow(MDB2_FETCHMODE_ASSOC);
         if (PEAR::isError($this->row)) {
             die($this->row->getMessage() . '' . $this->row->getUserInfo());
@@ -59,39 +55,26 @@ class DB_Sql
 
     function affectedRows()
     {
-        // returnere antallet af ber�rte r�kker ved INSERT, UPDATE, DELETE
-        // print($db->affected_rows());
-
         return($this->db->_affectedRows(NULL));
     }
 
     function f($name)
     {
-        // Returnere v�rdien fra feltet med navet som er angivet.
-        // Print($db->f("felt"));
         return($this->row[$name]);
     }
 
     function free()
     {
-        // Frig�r hukommelse til resultatet
-        // $db->free();
         $this->result->free();
     }
 
     function insertedId()
     {
-        // Returnere det id som lige er blevet indsat
-        // $sidste_id = $db->inserted_id();
-
         return($this->db->lastInsertID());
     }
 
     function numRows()
     {
-        // Returnere antallet af r�kker
-        // print($db->num_rows());
-
         return($this->result->numRows());
     }
 

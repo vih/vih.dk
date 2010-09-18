@@ -105,7 +105,7 @@ class VIH_Event implements Event
     }
 
     /**
-     * Gets price in smallest amount, for instance cents and �re
+     * Gets price in smallest amount, for instance cents and øre
      *
      * @return integer
      */

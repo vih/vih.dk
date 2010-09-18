@@ -3,13 +3,13 @@
  * Filehandler til at uploade og vise billeder (samt redigere)
  *
  * Det er vel lidt fjollet, at den hedder en filehandler, hvis den er til billeder?
- * Så bør den hedde ImageHandler? Men det kunne jo være kvikt om FileHandler også kunne
+ * Sï¿½ bï¿½r den hedde ImageHandler? Men det kunne jo vï¿½re kvikt om FileHandler ogsï¿½ kunne
  * klare upload af fx pdf'er?
  *
  * @todo - klassen skal lige dokumenteres.
- * @todo - måske skal gif ikke være understøttet - der er vist nogle problemer med rettigheder.
- *         Jeg tror vi skal slå den understøttelse fra, for der er en del af de der
- *         php-halløjsaer, der ikke helt kan håndtere dem?
+ * @todo - mï¿½ske skal gif ikke vï¿½re understï¿½ttet - der er vist nogle problemer med rettigheder.
+ *         Jeg tror vi skal slï¿½ den understï¿½ttelse fra, for der er en del af de der
+ *         php-hallï¿½jsaer, der ikke helt kan hï¿½ndtere dem?
  *
  * @author Sune Jensen <sj@sunet.dk>
  **/
@@ -31,7 +31,7 @@ class VIH_FileHandler
     /**
      * void init.
      *
-     * @param id id på fil.
+     * @param id id pï¿½ fil.
      */
     function __construct($id = 0)
     {
@@ -164,20 +164,20 @@ class VIH_FileHandler
             return 0;
         }
 
-        // imagelibrary bør sættes udefra på en eller anden måde
+        // imagelibrary bï¿½r sï¿½ttes udefra pï¿½ en eller anden mï¿½de
         $image = Image_Transform::factory(IMAGE_LIBRARY);
         $error = $image->load($this->get('original_file_path'));
 
         if ($error !== true) {
             return 0;
-            trigger_error("Kunne ikke åbne fil i FileHandler->createInstance. ".$error->getMessage(), E_USER_ERROR);
+            trigger_error("Kunne ikke Ã¥bne fil i FileHandler->createInstance. ".$error->getMessage(), E_USER_ERROR);
         }
 
         // print('filehandler type_key'.$type.$type_prop['type_key']);
 
         if (!empty($type_prop['fixed'])) { // square
 
-            // skal lige resizes først!
+            // skal lige resizes fï¿½rst!
             if ($image->img_x > $image->img_y) {
                 $image->scaleByY($type_prop['max_height']);
             } else {
@@ -192,8 +192,8 @@ class VIH_FileHandler
                 trigger_error("Der opstod en fejl under formatering (fit) af billedet i FileHandler->createInstance", E_USER_ERROR);
             }
 
-            // skal tage højde for både højde og bredde max
-            // Nu tager den istedet nærmere højde for at det ikke er strict
+            // skal tage hï¿½jde for bï¿½de hï¿½jde og bredde max
+            // Nu tager den istedet nï¿½rmere hï¿½jde for at det ikke er strict
             /*
             if ($image->img_x < $image->img_y) {
                 $image->scaleByY($type_prop['max_height']);
@@ -226,12 +226,12 @@ class VIH_FileHandler
     }
 
     /**
-     * @todo - Bør denne metode hedde saveInstance()
+     * @todo - Bï¿½r denne metode hedde saveInstance()
      */
     function updateInstance($input, $id = 0)
     {
         if (!is_array($input)) {
-            trigger_error("Input skal være et array i FileHandler->updateInstance", E_USER_ERROR);
+            trigger_error("Input skal vÃ¦re et array i FileHandler->updateInstance", E_USER_ERROR);
         }
 
         $input = array_map("mysql_escape_string", $input);
@@ -298,8 +298,8 @@ class VIH_FileHandler
             return false;
         }
         if (!isset($prop['ext']) || $prop['ext'] == "") {
-            // Ved ikke om denne skal være der. Mener at mac-computere tit undlader at bruge extensions. /Sune 2/3 2006
-            // den skal være der, synes jeg for jeg har ofte oplevet at mac snyder / lo
+            // Ved ikke om denne skal vï¿½re der. Mener at mac-computere tit undlader at bruge extensions. /Sune 2/3 2006
+            // den skal vï¿½re der, synes jeg for jeg har ofte oplevet at mac snyder / lo
             $this->error[] = 'Filen mangler en filtype, f.eks. .pdf';
             return false;
         }
@@ -337,14 +337,14 @@ class VIH_FileHandler
     }
 
     /**
-     * @todo - denne metode bør hedde save() fordi den ikke updater, men gemmer
+     * @todo - denne metode bï¿½r hedde save() fordi den ikke updater, men gemmer
      */
     function update($input)
     {
         $db = new DB_Sql;
 
         if (!is_array($input)) {
-            trigger_error("Input skal være et array i FileHandler->updateInstance", E_USER_ERROR);
+            trigger_error("Input skal vÃ¦re et array i FileHandler->updateInstance", E_USER_ERROR);
         }
 
         $input = array_map("mysql_escape_string", $input);
@@ -444,7 +444,7 @@ class VIH_FileHandler
 
         if ($from == 'key') {
             if (!is_integer($key)) {
-                trigger_error("Når der skal findes mimetype fra key (default), skal første parameter til FileHandler->_getMimeType være en integer", E_USER_ERROR);
+                trigger_error("NÃ¥r der skal findes mimetype fra key (default), skal fÃ¸rste parameter til FileHandler->_getMimeType vÃ¦re en integer", E_USER_ERROR);
             }
             return $this->file_types[$key];
         }

@@ -23,7 +23,7 @@
 
 		<div id="container">
 			<h1>404 // Ikke fundet</h1>
-			<p>Undskyld, vi har ledt dig på vildspor. Vi har ledt over alt; i alle gemmesteder og p� alle de st�vede harddiske, men vi har ikke fundet det, du leder efter. Det er garanteret, fordi vi har flyttet siden og glemt at aflevere adresseændringen. Det undskylder vi - og vi håber, at du alligevel vil bruge lidt tid på Vejle Idrætshøjskoles side.</p>
+			<p>Undskyld, vi har ledt dig på vildspor. Vi har ledt over alt; i alle gemmesteder og på alle de støvede harddiske, men vi har ikke fundet det, du leder efter. Det er garanteret, fordi vi har flyttet siden og glemt at aflevere adresseændringen. Det undskylder vi - og vi håber, at du alligevel vil bruge lidt tid på Vejle Idrætshøjskoles side.</p>
 			<hr />
 			<p>Du kan måske komme på rette spor ved at prøve følgende:</p>
 			<ul>

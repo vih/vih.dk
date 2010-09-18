@@ -59,6 +59,6 @@
 
         <h2>Bedst på nettet</h2>
 
-        Vejle Idrætshøjskole har fået 5 &quot;netkroner&quot; af 5 mulige fra <a href="http://www.bedstpaanettet.dk/">Bedst P� Nettet</a> i 2003, og vi vandt i kategorien "Forskning, r�dgivning og uddannelse". Hvis du vil vide hvorfor, kan du l�se <a href="http://bedstpaanettet.dk/portal/page?_pageid=380,457316&_dad=portal&_schema=PORTAL">dommernes begrundelse</a>.
+        Vejle Idrætshøjskole har fået 5 &quot;netkroner&quot; af 5 mulige fra <a href="http://www.bedstpaanettet.dk/">Bedst På Nettet</a> i 2003, og vi vandt i kategorien "Forskning, rådgivning og uddannelse". Hvis du vil vide hvorfor, kan du læse <a href="http://bedstpaanettet.dk/portal/page?_pageid=380,457316&_dad=portal&_schema=PORTAL">dommernes begrundelse</a>.
 
         Læs mere på: <a href="http://www.bedstpaanettet.dk/">www.bedstpaanettet.dk</a>.

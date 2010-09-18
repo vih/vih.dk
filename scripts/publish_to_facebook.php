@@ -19,13 +19,13 @@ $kursus = $gateway->findById($id);
 class VIH_Host implements Event_Host
 {
     function getName() {
-        return 'Vejle Idrætshøjskole';
+        return 'Vejle IdrÃ¦tshÃ¸jskole';
     }
     function getContactPerson() {
         return 'Peter Sebastian Pedersen';
     }
     function getAddress() {
-        return 'Ørnebjergvej 28';
+        return 'Ã˜rnebjergvej 28';
     }
     function getZipcode() {
         return '7100';
@@ -65,7 +65,7 @@ class VIH_Event implements Event
      * @return string
      */
     function getLocation() {
-        return 'Vejle Idrætshøjskole, højskolen';
+        return 'Vejle IdrÃ¦tshÃ¸jskole, hÃ¸jskolen';
     }
 
     /**
@@ -83,7 +83,7 @@ class VIH_Event implements Event
      * @return string
      */
     function getTagline() {
-        return 'Sommerkursus på Vejle Idrætshøjskole';
+        return 'Sommerkursus pÃ¥ Vejle IdrÃ¦tshÃ¸jskole';
     }
 
     /**
@@ -101,11 +101,11 @@ class VIH_Event implements Event
      * @return string
      */
     function getDescription() {
-        return strip_tags($this->kursus->get('description')) . "\n\nTilmelding på " . $this->getLink();
+        return strip_tags($this->kursus->get('description')) . "\n\nTilmelding pÃ¥ " . $this->getLink();
     }
 
     /**
-     * Gets price in smallest amount, for instance cents and øre
+     * Gets price in smallest amount, for instance cents and Ã¸re
      *
      * @return integer
      */
@@ -128,7 +128,7 @@ class VIH_Event implements Event
      * @return string
      */
     function getSubcategory() {
-        return 'Sportstræning';
+        return 'SportstrÃ¦ning';
     }
 
     /**

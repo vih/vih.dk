@@ -1,5 +1,5 @@
 <h1>Personlig vejledning i valg af studie og erhvervsretning</h1>
-<p>Som elev på Vejle Idrætshøjskole bliver du indplaceret på teams med ca. 8 - 12 elever. Til hvert team er der tilknyttet en kontaktl�rer, hvis opgave bl.a. er, at afholde 3 samtaler med dig. Samtalerne afholdes ved begyndelsen, midtvejs og ved afslutningen af dit ophold.</p>
+<p>Som elev på Vejle Idrætshøjskole bliver du indplaceret på teams med ca. 8 - 12 elever. Til hvert team er der tilknyttet en kontaktlærer, hvis opgave bl.a. er, at afholde 3 samtaler med dig. Samtalerne afholdes ved begyndelsen, midtvejs og ved afslutningen af dit ophold.</p>
 
 <h2>Formålet med samtalerne er:</h2>
 <ol>

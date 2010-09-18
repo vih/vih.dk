@@ -19,7 +19,7 @@ $i = 0;
 while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
     $tilmelding = new VIH_Model_LangtKursus_Tilmelding($row['id']);
     $subject = 'Er du i form?';
-    $body = "Du er meldt til et af de kommende kurser på Vejle Idrætshøjskole. For at få mest muligt ud af dit højskoleophold, kan det være en god ide at have trænet lidt på forhånd. Man behøver på ingen måde at være en superhelt for at gå på Vejle Idrætshøjskole, men lidt træning på forhånd forebygger skader.\n\nHvis du kan få det presset ind i din hverdag, anbefaler vi at du følger nedenstående program:\n\nhttp://motionsplan.dk/exerciseprogram/showpublic/96\n\nVi glæder os til at møde dig. Hvis du har nogen spørgsmål, er du meget velkommen til at skrive til lars@vih.dk.\n\nVenlig hilsen\n\nLars Olesen\nVejle Idrætshøjskole";
+    $body = "Du er meldt til et af de kommende kurser pÃ¥ Vejle IdrÃ¦tshÃ¸jskole. For at fÃ¥ mest muligt ud af dit hÃ¸jskoleophold, kan det vÃ¦re en god ide at have trÃ¦net lidt pÃ¥ forhÃ¥nd. Man behÃ¸ver pÃ¥ ingen mÃ¥de at vÃ¦re en superhelt for at gÃ¥ pÃ¥ Vejle IdrÃ¦tshÃ¸jskole, men lidt trÃ¦ning pÃ¥ forhÃ¥nd forebygger skader.\n\nHvis du kan fÃ¥ det presset ind i din hverdag, anbefaler vi at du fÃ¸lger nedenstÃ¥ende program:\n\nhttp://motionsplan.dk/exerciseprogram/showpublic/96\n\nVi glÃ¦der os til at mÃ¸de dig. Hvis du har nogen spÃ¸rgsmÃ¥l, er du meget velkommen til at skrive til lars@vih.dk.\n\nVenlig hilsen\n\nLars Olesen\nVejle IdrÃ¦tshÃ¸jskole";
 
     $headers = 'From: lars@vih.dk' . "\r\n" .
     'Reply-To: lars@vih.dk';

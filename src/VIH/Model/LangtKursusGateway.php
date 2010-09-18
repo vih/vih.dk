@@ -11,7 +11,7 @@ class VIH_Model_LangtKursusGateway
         $sql_ekstra = "";
 
         switch($show) {
-            case 'åbne': // fall through
+            case 'Ã¥bne': // fall through
             case 'open':
                 $sql_ekstra = "published = 1 AND DATE_ADD(dato_start, INTERVAL 14 DAY) > NOW()";
                 break;

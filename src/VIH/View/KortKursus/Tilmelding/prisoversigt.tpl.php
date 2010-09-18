@@ -48,7 +48,7 @@
 	</tr>
 </table>
 <?php if (isset($mark)): ?>
-<p class="notice">* Der er afventende betalinger. Oversigten opdateres, når vi har hævet pengene.</p>
+<p class="notice">* Der er afventende betalinger. Oversigten opdateres, nÃ¥r vi har hÃ¦vet pengene.</p>
 <?php endif; ?>
 
 <?php endif; ?>

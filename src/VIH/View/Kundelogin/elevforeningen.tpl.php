@@ -2,7 +2,7 @@
 
 	<h1>Medlem # <?php e($medlem->get('id')); ?></h1>
 
-	<p class="explanation">På denne side kan du ændre dine adresseoplysninger og tilmelde dig Elevstævnet.</p>
+	<p class="explanation">PÃ¥ denne side kan du Ã¦ndre dine adresseoplysninger og tilmelde dig ElevstÃ¦vnet.</p>
 
 	<?php echo $medlemsoplysninger; ?>
 
@@ -11,7 +11,7 @@
 <div id="content-sub">
 
 	<p>
-		Der bør være et link, hvor man kan slette sig selv fra Elevforeningens register - no questions asked.
+		Der bÃ¸r vÃ¦re et link, hvor man kan slette sig selv fra Elevforeningens register - no questions asked.
 	</p>
 
 	<p>
@@ -21,7 +21,7 @@
 	</p>
 
 	<p id="call">
-		Spørgsmål? &mdash; skriv til
+		SpÃ¸rgsmÃ¥l? &mdash; skriv til
 		<?php echo antispambot('elevforeningen@vih.dk'); ?>
 	</p>
 

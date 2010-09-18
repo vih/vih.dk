@@ -15,10 +15,10 @@ class VIH_Model_KortKursus_Indkvartering
      * @var array
      */
     protected $types = array(
-        1 => 'DobbeltvÊrelse (bad og toilet pÂ gangen)',
-        2 => 'EnkeltvÊrelse (toilet og bad deles med en anden)',
-        3 => 'DobbeltvÊrelse (toilet og bad pÂ vÊrelset)',
-        4 => 'TremandsvÊrelse (toilet og bad pÂ vÊrelset)'
+        1 => 'Dobbeltv√¶relse (bad og toilet p√• gangen)',
+        2 => 'Enkeltv√¶relse (toilet og bad deles med en anden)',
+        3 => 'Dobbeltv√¶relse (toilet og bad p√• v√¶relset)',
+        4 => 'Tremandsv√¶relse (toilet og bad p√• v√¶relset)'
     );
 
     /**

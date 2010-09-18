@@ -1,8 +1,6 @@
 <?php
 /**
- * Denne fil bruges til at tilg� filerne.
- *
- * hvordan f�r vi puttet den her under unittests?
+ * Accesses the files
  *
  * @author Sune Jensen <sj@sunet.dk>
  * @author Lars Olesen <lars@legestue.net>

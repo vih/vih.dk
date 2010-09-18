@@ -2,7 +2,7 @@
 /**
  * Dekorator til Quickpay klassen.
  *
- * Skrevet så vi undgår at skulle sætte en masse af de faste variable på de
+ * Skrevet sï¿½ vi undgï¿½r at skulle sï¿½tte en masse af de faste variable pï¿½ de
  * enkelte sider. Skal returnere et array.
  *
  * @author Lars Olesen <lars@legestue.net>
@@ -17,19 +17,19 @@ class VIH_Onlinebetaling
         '000' => 'Godkendt',
         '001' => 'Afvist af PBS',
         '002' => 'Kommunikationsfejl',
-        '003' => 'Kort udløbet',
+        '003' => 'Kort udlÃ¸bet',
         '004' => 'Status er forkert (Ikke autoriseret)',
-        '005' => 'Autorisation er forældet',
+        '005' => 'Autorisation er forÃ¦ldet',
         '006' => 'Fejl hos PBS',
         '007' => 'Fejl hos QuickPay',
         '008' => 'Fejl i parameter sendt til QuickPay'
     );
     var $msg_types = array(
         '1100' => 'authorize', // tjekker
-        '1220' => 'capture', // hæver
+        '1220' => 'capture', // hï¿½ver
         'credit' => 'credit', // tilbagebetaler
-        '1420' => 'reversal', // ophæver reservationen
-        'status' => 'status' // ophæver reservationen
+        '1420' => 'reversal', // ophï¿½ver reservationen
+        'status' => 'status' // ophï¿½ver reservationen
 
     );
     var $type = 'quickpay';
@@ -64,7 +64,7 @@ class VIH_Onlinebetaling
         $this->quickpay->set_expirationdate($expirationdate); // YYMM
         $this->quickpay->set_cvd($cvd);
         $this->quickpay->set_ordernum($ordernum); // MUST at least be of length 4
-        $this->quickpay->set_amount($amount); // skal være i ører
+        $this->quickpay->set_amount($amount); // skal vï¿½re i ï¿½rer
         $this->quickpay->set_currency('DKK');
 
         $this->eval = $this->quickpay->authorize();

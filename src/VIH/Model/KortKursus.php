@@ -235,7 +235,7 @@ class VIH_Model_KortKursus
         $var['pic_id'] = $kursus->get('pic_id');
         $var['status'] = $kursus->get('status');
         $var['tilmeldingsmulighed'] = $kursus->get('status');
-        $var['published'] = 0; // aldrig udgive dem før de er blevet kigget igennem
+        $var['published'] = 0; // aldrig udgive dem fï¿½r de er blevet kigget igennem
 
         $new_kursus = new VIH_Model_KortKursus();
         if ($id = $new_kursus->save($var)) {
@@ -250,9 +250,9 @@ class VIH_Model_KortKursus
 
 
     /**
-     * Henter alle de åbne kurser
+     * Henter alle de ï¿½bne kurser
      *
-     * Skal gøres mere dynamisk
+     * Skal gï¿½res mere dynamisk
      */
     function getList($type = 'open', $gruppe = '')
     {
@@ -340,9 +340,9 @@ class VIH_Model_KortKursus
     ################################################################################
 
     /**
-     * Henter alle tilmeldinger på et kursus
+     * Henter alle tilmeldinger pï¿½ et kursus
      *
-     * @return array med id'er over deltagere på et kursus
+     * @return array med id'er over deltagere pï¿½ et kursus
      */
     function getTilmeldinger()
     {
@@ -362,17 +362,17 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Henter alle deltagerne på et kursus
+     * Henter alle deltagerne pï¿½ et kursus
      *
-     * @todo Kunne lige så godt returnere et array over alle deltagerne?
+     * @todo Kunne lige sï¿½ godt returnere et array over alle deltagerne?
      *
-     * @return array med id'er over deltagere på et kursus
+     * @return array med id'er over deltagere pï¿½ et kursus
      */
     function getDeltagere()
     {
         $db = new DB_Sql;
 
-        // vælger alle tilmeldte kursister
+        // vï¿½lger alle tilmeldte kursister
         $sql = "SELECT deltager.id AS id,
                 tilmelding.id AS tilmelding_id
             FROM kortkursus_deltager_ny deltager
@@ -395,13 +395,13 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Tæller antallet af optagne pladser
-     * Funktionen skal også tage højde for dem, der er ved at tilmelde sig.
+     * Tï¿½ller antallet af optagne pladser
+     * Funktionen skal ogsï¿½ tage hï¿½jde for dem, der er ved at tilmelde sig.
      * Derfor bruger vi status >= 1
      *
      * $status[1] = 'undervejs'
      * $status[2] = 'reserveret'
-     * $status[3] = 'tilmeldt' // når man har betalt depositum
+     * $status[3] = 'tilmeldt' // nï¿½r man har betalt depositum
      *
      * @todo Kan denne funktion optimeres?
      */
@@ -432,7 +432,7 @@ class VIH_Model_KortKursus
         }
 
         if ($this->value['pladser_ledige'] < $this->status['faa_ledige_pladser'] AND $this->value['pladser_ledige'] > $this->status['udsolgt']) {
-            $this->value['pladser_status'] = 'Få ledige pladser';
+            $this->value['pladser_status'] = 'FÃ¥ ledige pladser';
         } elseif ($this->value['pladser_ledige'] <= $this->status['udsolgt']) {
             $this->value['pladser_status'] = 'Udsolgt';
         } else {
@@ -443,18 +443,18 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Bruges særligt til golfkurserne
-     * Tæller med baggrund i handicap
+     * Bruges sï¿½rligt til golfkurserne
+     * Tï¿½ller med baggrund i handicap
      *
-     * @todo Denne funktion skal optimeres, så den ikke først gennemløber alle tilmeldingerne,
-     *       og derefter gennemløber alle deltagerne, inden den kan finde antallet af begyndere.
+     * @todo Denne funktion skal optimeres, sï¿½ den ikke fï¿½rst gennemlï¿½ber alle tilmeldingerne,
+     *       og derefter gennemlï¿½ber alle deltagerne, inden den kan finde antallet af begyndere.
      *
      * Denne funktion skal skrives helt om for at kunne finde begynderne. Enten skal statuskoderne
-     * hardkodes ind, eller også skal status gøres tilgængeligt uden om Tilmelding - evt ved at status
-     * arrayet er tilgængelig på anden måde
+     * hardkodes ind, eller ogsï¿½ skal status gï¿½res tilgï¿½ngeligt uden om Tilmelding - evt ved at status
+     * arrayet er tilgï¿½ngelig pï¿½ anden mï¿½de
      *
      * Regler:
-     * - man er begynder, hvis man har et handicap større end eller lig med 54
+     * - man er begynder, hvis man har et handicap stï¿½rre end eller lig med 54
      * - man er begynder, hvis man ikke har dgu-medlemskab
      */
     function getBegyndere()
@@ -489,10 +489,10 @@ class VIH_Model_KortKursus
 
     /**
      * Specielt til familiekurserne
-     * Bruges til at udregne om der er nok ledige værelser:
+     * Bruges til at udregne om der er nok ledige vï¿½relser:
      * Regler:
-     * - Personer over 2 år udløser en seng
-     * - Flere end tre personer på en tilmelding udløser en seng
+     * - Personer over 2 ï¿½r udlï¿½ser en seng
+     * - Flere end tre personer pï¿½ en tilmelding udlï¿½ser en seng
      * @see	Tilmelding
      */
     function getVaerelser()
@@ -511,11 +511,11 @@ class VIH_Model_KortKursus
     /**
      * Tilmeldingsstatistik
      *
-     * Denne skal gøres dynamisk, så vi kan tage perioder - knyttes evt. sammen med getList()
+     * Denne skal gï¿½res dynamisk, sï¿½ vi kan tage perioder - knyttes evt. sammen med getList()
      */
     function statistik($filter = '')
     {
-        // tæl antallet af pladser på korte kurser
+        // tï¿½l antallet af pladser pï¿½ korte kurser
         $countPladser = 0;
         $countOptagne = 0;
 

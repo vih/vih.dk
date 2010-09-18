@@ -1,7 +1,7 @@
 <?php
 /**
- * Holder styr på alle betalinger på højskolens side. Klassen er nødvendig,
- * for at vi kan lave onlinebetaling fra flere steder på højskolens side.
+ * Holder styr pï¿½ alle betalinger pï¿½ hï¿½jskolens side. Klassen er nï¿½dvendig,
+ * for at vi kan lave onlinebetaling fra flere steder pï¿½ hï¿½jskolens side.
  *
  * @author Lars Olesen <lars@legestue.net>
  * @author Sune Jensen <sj@sunet.dk>
@@ -30,9 +30,9 @@ class VIH_Model_Betaling
 
     /**
      *
-     * @param $belong_to           Hvor gælder betalingerne til?
-     * @param $belong_to_id        Hvilket id gælder betalingen til
-     * @param $id               		Id på betaling.
+     * @param $belong_to           Hvor gï¿½lder betalingerne til?
+     * @param $belong_to_id        Hvilket id gï¿½lder betalingen til
+     * @param $id               		Id pï¿½ betaling.
      *
      */
     function __construct()
@@ -85,7 +85,7 @@ class VIH_Model_Betaling
         }
 
         if($this->id < 1000) {
-            trigger_error("Id (".$this->id.") på betaling er mindre end 1000. Det må det ikke være da betaling id på quickpay skal være på mindst 4 tegn.", E_USER_ERROR);
+            throw new Exception("Id (".$this->id.") pÃ¥ betaling er mindre end 1000. Det mÃ¥ det ikke vÃ¦re da betaling id pÃ¥ quickpay skal vÃ¦re pÃ¥ mindst 4 tegn.");
         }
 
         $this->belong_to_key = $db->f('belong_to');
@@ -98,7 +98,7 @@ class VIH_Model_Betaling
         $this->value['belong_to_id'] = $db->f('belong_to_id');
         $this->value['type'] = $db->f('type');
         $this->value['transactionnumber'] = $db->f('transactionnumber');
-        # følgende bør lige laves så status er string og status key er integer - og den så gemmer i det rigtige felt i datbasen under save() også
+        # fï¿½lgende bï¿½r lige laves sï¿½ status er string og status key er integer - og den sï¿½ gemmer i det rigtige felt i datbasen under save() ogsï¿½
         $this->value['status'] = $db->f('status');
         $this->value['status_key'] = $db->f('status');
         $this->value['status_string'] = $this->allowed_status[$db->f('status')];
@@ -186,8 +186,8 @@ class VIH_Model_Betaling
             return false;
         }
 
-        if($status <= $this->get("status") AND $status != -1) { // -1 er ved  invalid, det må den gerne sættes til :D
-            trigger_error("Du kan ikke sætte status lavere eller samme som den allerede er", E_USER_ERROR); // Hvis man kan det, kan man forsøge at godkende dankortbetaling 2 gange ved quickpay.
+        if($status <= $this->get("status") AND $status != -1) { // -1 er ved  invalid, det mï¿½ den gerne sï¿½ttes til :D
+            throw new Exception("Du kan ikke sÃ¦tte status lavere eller samme som den allerede er"); // Hvis man kan det, kan man forsï¿½ge at godkende dankortbetaling 2 gange ved quickpay.
         }
 
         if($status == 2) { // dankort og approved
@@ -289,8 +289,8 @@ class VIH_Model_Betaling
 
         $howmany_sql = '';
 
-        // denne er sat ind, når vi vil have alle betalingerne.
-        // der er vist ikke noget i vejen for at gøre det på den måde?
+        // denne er sat ind, nï¿½r vi vil have alle betalingerne.
+        // der er vist ikke noget i vejen for at gï¿½re det pï¿½ den mï¿½de?
         if (!empty($this->belong_to_key) AND !empty($this->belong_to_id)) {
            $howmany_sql = "belong_to = ".$this->belong_to_key." AND belong_to_id = " . $this->belong_to_id." AND";
         }

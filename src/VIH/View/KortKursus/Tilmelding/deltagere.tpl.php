@@ -23,7 +23,7 @@
             <th>Alder</th>
         <?php endif; ?>
         <?php if(in_array('camp', $type)): ?>
-            <th>Idrætsspeciale</th>
+            <th>IdrÃ¦tsspeciale</th>
         <?php endif; ?>
         <?php if (!empty($vis_slet) AND $vis_slet == 'ja'): ?>
             <th></th>
@@ -61,7 +61,7 @@
                 <td><?php e($deltager->get('speciale')); ?></td>
             <?php endif; ?>
             <?php if (!empty($vis_slet) AND $vis_slet == 'ja'): ?>
-                <td><a href="<?php e(url(null, array('sletdeltager' => $deltager->get('id')))) ; ?>" onclick="return confirm('Er du sikker på, at du vil slette deltageren?');">Slet</a></td>
+                <td><a href="<?php e(url(null, array('sletdeltager' => $deltager->get('id')))) ; ?>" onclick="return confirm('Er du sikker pÃ¥, at du vil slette deltageren?');">Slet</a></td>
             <?php endif; ?>
 
         </tr>

@@ -3,6 +3,7 @@ require_once 'config.local.php';
 require_once 'VIH/ExceptionHandler.php';
 require_once 'VIH/Logger.php';
 require_once 'VIH/functions.php';
+require_once 'VIH/configuration.php';
 require_once 'konstrukt/konstrukt.inc.php';
 require_once 'bucket.inc.php';
 require_once 'Ilib/ClassLoader.php';

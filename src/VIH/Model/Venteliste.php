@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Venteliste (både korte og lange kurser)
+ * @package Venteliste (bï¿½de korte og lange kurser)
  * @author Sune Jensen <sj@sunet.dk>
  */
 class VIH_Model_Venteliste
@@ -12,8 +12,8 @@ class VIH_Model_Venteliste
 
     /**
     * @param belong_to: enten 1 for langt kursus, 2 for kort kursus
-    * @param belong_to_id: id på det entel langt eller kort kursus, som denne ventelisteperson er tilknyttet
-    * @param id: id på ventelisteperson
+    * @param belong_to_id: id pï¿½ det entel langt eller kort kursus, som denne ventelisteperson er tilknyttet
+    * @param id: id pï¿½ ventelisteperson
     */
     function __construct($belong_to, $belong_to_id, $id = 0)
     {
@@ -30,7 +30,7 @@ class VIH_Model_Venteliste
     }
 
     /**
-     * Returnerer værdier
+     * Returnerer vï¿½rdier
      */
     function get($key = '')
     {
@@ -44,7 +44,7 @@ class VIH_Model_Venteliste
     }
 
     /**
-     * Loader værdier
+     * Loader vï¿½rdier
      */
     function load()
     {
@@ -165,7 +165,7 @@ class VIH_Model_Venteliste
     }
 
     /**
-     * Giver list over personer på ventelisten
+     * Giver list over personer pï¿½ ventelisten
      *
      * @return array med ventelistepersoner
      */
@@ -211,7 +211,7 @@ class VIH_Model_Venteliste
     function getNumber()
     {
         if ($this->id == 0) {
-            throw new Exception("Du kan kun hente nummer, når der er id på venteliste");
+            throw new Exception("Du kan kun hente nummer, nÃ¥r der er id pÃ¥ venteliste");
         }
 
         $venteliste = $this->getList();

@@ -18,7 +18,6 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
 
         $db = new DB_Sql;
 
-        // tjekke om bestillingen er igangværende?
         $db->query("SELECT id FROM kortkursus_tilmelding WHERE session_id = '" . $session_id . "' AND active = 1 AND (status_key = ".$this->getStatusKey('undervejs')." OR ".$this->getStatusKey('reserveret').")");
         if ($db->nextRecord()) {
             $tilmelding_id = $db->f('id');
@@ -30,9 +29,8 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
     }
 
     /**
-     * Metode til at starte ordren med.
-     * Der bruges en særlig metode, for ellers vil den hvis man går tilbage i formularen
-     * overskrive de øvrige ting man har tastet ind.
+     * Starts the subscription
+     * Notice: Use this otherwise earlier saved stuff will be deleted when going back in the form
      *
      * @return inserted id on success
      */
@@ -68,8 +66,7 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
     }
 
     /**
-     * Metoden bruges under tilmeldingen til at bekræfte en tilmelding, så
-     * der reserveres en plads.
+     * Confirms a subscription to reserve a spot on the course
      *
      * @return 1 on success
      */
@@ -104,9 +101,9 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
 
 
     /**
-     * Oprydning i gamle tilmeldinger. Alle de tilmeldinger, som ikke er blevet til noget
-     * skal slettes, men status skal sættes til annulleret. Derfor skal denne metode bruge cancel()
-     * og ikke delete();
+     * Cleans up old subscriptions
+     *
+     * NOTICE: Use cancel() and not delete()
      *
      * @return 1 on success
      */

@@ -16,7 +16,7 @@ while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
     $tilmelding = new VIH_Model_LangtKursus_Tilmelding($row['id']);
     $link = 'http://vih.dk/login/langekurser/' .  $tilmelding->get('code');
     $subject = 'Tjek dine fag';
-    $body = 'Du er meldt til et af de kommende kurser på Vejle Idrætshøjskole. Vi sidder midt i planlægningen, og vi har brug for at vide, hvilke idrætsspecialer og linjer, du gerne vil have. Derfor beder vi dig gå ind på nedenstående link og tjekke om de rigtige fag er krydset af. Du skal vælge et fag fra hver faggruppe, og du finder linket til Dine fag nederst på siden.' . "\n\n" . $link . "\n\nVær opmærksom på, at det skyldige beløb ikke nødvendigvis er rigtigt regnet ud endnu. Det gør vores kontor hurtigst muligt. Hvis du har nogen spørgsmål, er du meget velkommen til at skrive til lars@vih.dk.\n\nVenlig hilsen\n\nLars Olesen\nVejle Idrætshøjskole";
+    $body = 'Du er meldt til et af de kommende kurser pÃ¥ Vejle IdrÃ¦tshÃ¸jskole. Vi sidder midt i planlÃ¦gningen, og vi har brug for at vide, hvilke idrÃ¦tsspecialer og linjer, du gerne vil have. Derfor beder vi dig gÃ¥ ind pÃ¥ nedenstÃ¥ende link og tjekke om de rigtige fag er krydset af. Du skal vÃ¦lge et fag fra hver faggruppe, og du finder linket til Dine fag nederst pÃ¥ siden.' . "\n\n" . $link . "\n\nVÃ¦r opmÃ¦rksom pÃ¥, at det skyldige belÃ¸b ikke nÃ¸dvendigvis er rigtigt regnet ud endnu. Det gÃ¸r vores kontor hurtigst muligt. Hvis du har nogen spÃ¸rgsmÃ¥l, er du meget velkommen til at skrive til lars@vih.dk.\n\nVenlig hilsen\n\nLars Olesen\nVejle IdrÃ¦tshÃ¸jskole";
 
     $headers = 'From: lars@vih.dk' . "\r\n" .
     'Reply-To: lars@vih.dk';

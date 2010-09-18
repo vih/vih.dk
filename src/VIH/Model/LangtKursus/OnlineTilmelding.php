@@ -29,10 +29,8 @@ class VIH_Model_LangtKursus_OnlineTilmelding extends VIH_Model_LangtKursus_Tilme
     }
 
     /**
-     * Funktionen skal rydde op i gamle tilmeldinger. Bør køres fra construktor.
-     * Funktionen skal bruge cancel() og ikke delete(), da tilmeldingernes status
-     * blot skal sættes til annulleret som hvis det var brugeren selv der annullerede
-     * og ikke slettet.
+     * Cleans up old subscriptions
+     * NOTICE: Use cancel() so the subscriptions is only cancelled and not deleted
      */
     public function cleanUp()
     {

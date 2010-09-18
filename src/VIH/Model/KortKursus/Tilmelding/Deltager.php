@@ -229,8 +229,8 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
     {
         $month = substr($cpr,2,2);
         $day = substr($cpr,0,2);
-        $year_last_two_digits = substr($cpr,4,2); // to sidste i �rstallet taget fra cprnummeret
-        $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits; // tr�kker en fra aktuelle �r
+        $year_last_two_digits = substr($cpr,4,2);
+        $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits;
         if ($testyear < date('Y') AND (date('Y') - $testyear) < 100) {
             $year = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits;
         } else {

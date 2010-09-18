@@ -23,7 +23,7 @@ if (!defined('SECURE_SERVER_STATUS')) { define('SECURE_SERVER_STATUS', 'online')
 if (!defined('EMAIL_STATUS')) { define('EMAIL_STATUS', 'online'); }
 
 // Standards
-define('VIH_NAVN', 'Vejle Idr�tsh�jskole');
+define('VIH_NAVN', 'Vejle Idrætshøjskole');
 define('VIH_EMAIL', 'kontor@vih.dk');
 define('VIH_KONTAKTANSVARLIG', 'Peter Sebastian Pedersen');
 define('VIH_KONTAKTANSVARLIG_EMAIL', 'elev@vih.dk');

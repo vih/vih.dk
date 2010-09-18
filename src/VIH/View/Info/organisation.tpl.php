@@ -2,16 +2,16 @@
         <p>Vejle Idrætshøjskole er en selvejende institution med følgende hierarkiske opbygning.</p>
         <!--
         <ul>
-            <li>Repr�sentantskab
+            <li>Repræsentantskab
             <ul>
                 <li>Bestyrelse
                 <ul>
                     <li>Forstander
                     <ul>
-                        <li>L�rerr�det</li>
+                        <li>Lærerrådet</li>
                     </ul>
                     </li>
-                    <li>Forretningsf�rer
+                    <li>Forretningsfører
                     <ul>
                         <li>Medarbejdergrupper</li>
                     </ul>
@@ -40,17 +40,17 @@
 
         <h3>Bestyrelsen</h3>
 
-        <p>Bestyrelsen er den overordnede politiske ledelse, som er ansvarlig over for ministeriet. Bestyrelsen best�r af f�lgende 5 medlemmer, der v�lges blandt repr�sentantskabets medlemmer. Repr�sentantskabets formand er tillige formand for bestyrelsen, ligesom repr�sentantsskabets n�stformand ogs� er næstformand for bestyrelsen. Bestyrelsen ansætter og afskediger forstander, forretningsfører, kursuschef og lærere.</p>
+        <p>Bestyrelsen er den overordnede politiske ledelse, som er ansvarlig over for ministeriet. Bestyrelsen består af følgende 5 medlemmer, der vælges blandt repræsentantskabets medlemmer. Repræsentantskabets formand er tillige formand for bestyrelsen, ligesom repræsentantsskabets næstformand også er næstformand for bestyrelsen. Bestyrelsen ansætter og afskediger forstander, forretningsfører, kursuschef og lærere.</p>
 
         <!--
-        <p>Den nuv�rende bestyrelse ser s�ledes ud:</p>
+        <p>Den nuværende bestyrelse ser således ud:</p>
 
-        <table summary="Bestyrelsens sammens�tning">
-        <caption>Bestyrelsens sammens�tning</caption>
+        <table summary="Bestyrelsens sammensætning">
+        <caption>Bestyrelsens sammensætning</caption>
         <thead>
             <tr>
                 <th scope="col">Formand</th>
-                <th scope="col">N�stformand</th>
+                <th scope="col">Næstformand</th>
                 <th scope="col">Menigt medlem</th>
                 <th scope="col">Menigt medlem</th>
                 <th scope="col">Menigt medlem</th>
@@ -58,11 +58,11 @@
         </thead>
         <tbody>
             <tr>
-                <td>Billede f�lger</td>
-                <td>Billede f�lger</td>
-                <td>Billede f�lger</td>
-                <td>Billede f�lger</td>
-                <td>Billede f�lger</td>
+                <td>Billede følger</td>
+                <td>Billede følger</td>
+                <td>Billede følger</td>
+                <td>Billede følger</td>
+                <td>Billede følger</td>
             </tr>
             <tr>
                 <td>Poul Grejs Petersen</td>
@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td>Dansk Sejlunion</td>
-                <td>Dansk H�ndbold Forbund</td>
+                <td>Dansk Håndbold Forbund</td>
                 <td>Dansk Badmintonforbund</td>
                 <td>Dansk Boldspil-Union</td>
                 <td>Elevforeningen</td>
