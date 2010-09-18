@@ -222,7 +222,13 @@ class KortekursertilmeldingTest extends PHPUnit_Framework_TestCase
 
     function testDeltagerOplysningCanSaveEmptyValue()
     {
-        $tilmelding = new FakeKorteKurserTilmelding;
+        $kort_kursus_id = $this->createKortKursusId();
+        $data = array('kursus_id' => $kort_kursus_id, 'antal_deltagere' => 1);
+        $session_id = uniqid();
+        $tilmelding = new VIH_Model_KortKursus_OnlineTilmelding($session_id);
+
+        $tilmelding->start($data);
+
         // add a beginner
         $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding);
         $data = array('navn' => 'tester', 'cpr' => '140676-9999', 'handicap' => 70, 'klub' => 'none', 'dgu' => 'nej');

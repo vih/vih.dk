@@ -34,7 +34,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
     {
         $session_id = rand(1, 1000000000);
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($session_id);
-        $this->assertTrue($tilmelding->start());
+        $this->assertTrue($tilmelding->start(1));
 
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($session_id);
         $this->assertEquals($tilmelding->get('session_id'), $session_id);
@@ -74,7 +74,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
 
         $session_id = rand(1, 1000000000);
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($session_id);
-        $tilmelding->start();
+        $tilmelding->start(1);
         $this->assertTrue($tilmelding->save($data) > 0);
         $this->assertEquals('undervejs', $tilmelding->get('status'));
     }
@@ -235,8 +235,8 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
             'telefonnummer' => '30587032',
             'arbejdstelefon' => '30587032',
             'cpr' => '1406909999',
-            'kontakt_navn' => 'Præst - Domhuset - Odense Leif og Lis Munksgaard',
-            'kontakt_adresse' => 'Folkekirkens Tværkultur, Smarilis, Vestagergade 51B',
+            'kontakt_navn' => 'PrÃ¦st - Domhuset - Odense Leif og Lis Munksgaard',
+            'kontakt_adresse' => 'Folkekirkens TvÃ¦rkultur, Smarilis, Vestagergade 51B',
             'kontakt_postnr' => '5000',
             'kontakt_postby' => 'Odense C',
             'kontakt_email' => '',
@@ -245,7 +245,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
             'kontakt_arbejdstelefon' => '63120873',
             'uddannelse' => 'Ingen',
             'betaling' => '1',
-            'besked' => 'Rikke Mandrup, Garanti højskolernes sekretariat',
+            'besked' => 'Rikke Mandrup, Garanti hÃ¸jskolernes sekretariat',
             'nationalitet' => 'Sudan',
             'kommune' => 'Odense',
             'ryger' => 'Nej',
@@ -256,7 +256,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
 
         $session_id = rand(1, 1000000000);
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($session_id);
-        $tilmelding->start();
+        $tilmelding->start(1);
         $tilmelding->save($data);
 
         $data = array('dato_start' => '2007-10-10',
