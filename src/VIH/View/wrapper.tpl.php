@@ -6,9 +6,8 @@
     <div class="col3inner">
     <?php
         $news = array('nyheder' => VIH_News::getList(2));
-        $creator = $context->createComponent('k_TemplateFactory');
-        $tpl = $creator->create('News/sidebar-featured');
-        echo $tpl->render($this, $news);
+        $tpl = new k_Template(dirname(__FILE__) . '/News/sidebar-featured.tpl.php');
+        echo $tpl->render($context, $news);
     ?>
     </div>
 </div>

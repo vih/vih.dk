@@ -29,6 +29,7 @@ class VIH_Factory
         $db->setOption("portability", MDB2_PORTABILITY_NONE);
         $db->setFetchMode(MDB2_FETCHMODE_ASSOC);
         $db->exec("SET time_zone=\"-01:00\"");
+        $db->query('SET NAMES utf8');
         return $db;
     }
 

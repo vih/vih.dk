@@ -119,6 +119,7 @@ class VIH_NotFoundComponent extends k_Component
 
 $factory = new VIH_Factory();
 $container = new bucket_Container($factory);
+$mdb2 = $container->get('mdb2_driver_common');
 
 if (realpath($_SERVER['SCRIPT_FILENAME']) == __FILE__) {
     $components = new k_InjectorAdapter($container, new VIH_Document);

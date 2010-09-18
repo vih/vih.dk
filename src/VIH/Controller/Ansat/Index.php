@@ -3,9 +3,10 @@ class VIH_Controller_Ansat_Index extends k_Component
 {
     protected $template;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, DB_Sql $db)
     {
         $this->template = $template;
+        $this->db_sql = $db;
     }
 
     function map($name)
@@ -39,5 +40,10 @@ class VIH_Controller_Ansat_Index extends k_Component
         $data = array('undervisere' => VIH_Model_Ansat::getList('lærere'));
         $tpl = $this->template->create('Ansat/undervisere');
         return $tpl->render($this, $data);
+    }
+
+    function getGateway()
+    {
+        return new VIH_Model_AnsatGateway($this->db_sql);
     }
 }

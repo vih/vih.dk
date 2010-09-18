@@ -16,7 +16,7 @@ class VIH_News
      * @var array
      */
     public $prioritet = array(
-        1 => 'h�j',
+        1 => 'høj',
         2 => 'mellem',
         3 => 'lav'
     );
@@ -34,7 +34,7 @@ class VIH_News
         2 => 'Lange kurser',
         28 => 'Fodbold',
         31 => 'Aerobic',
-        29 => 'H�ndbold',
+        29 => 'Håndbold',
         30 => 'Badminton',
         27 => 'Volleyball',
         9 => 'Kursuscenter',
