@@ -1,7 +1,7 @@
 <?php
 /**
  * @todo De ansatte skal gemmes med en type. Formentlig skal
- *       den være så man kan have flere funktioner.
+ *       den vï¿½re sï¿½ man kan have flere funktioner.
  */
 class VIH_Model_Ansat
 {
@@ -9,10 +9,10 @@ class VIH_Model_Ansat
     private $value;
     public $funktion = array(
         1 => 'administration',
-        2 => 'lærer',
-        3 => 'køkken',
+        2 => 'lÃ¦rer',
+        3 => 'kÃ¸kken',
         4 => 'pedel',
-        5 => 'rengøring',
+        5 => 'rengÃ¸ring',
         6 => 'elevforening',
         7 => 'elevchat'
     );
@@ -141,7 +141,7 @@ class VIH_Model_Ansat
         $db = new DB_Sql;
 
         switch ($type) {
-            case 'lærere': // fall through
+            case 'lÃ¦rere': // fall through
             case 'undervisere':
                     $sql = "SELECT id FROM ansat WHERE active = 1 AND funktion_id = 2 AND published = 1 ORDER BY fornavn ASC";
                 break;
