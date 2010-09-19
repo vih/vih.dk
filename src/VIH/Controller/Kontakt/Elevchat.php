@@ -34,7 +34,7 @@ class VIH_Controller_Kontakt_Elevchat extends k_Component
         $this->document->headline = $title;
 
         $this->document->meta = $meta;
-        return '<h1>Elevchat</h1>' . $msg . vih_autoop($this->elevchatter['text']) . $extra_text = '<h2>Send en besked</h2>' . $this->getForm()->toHTML();
+        return '<h1>Elevchat</h1>' . $msg . autoop($this->elevchatter['text']) . $extra_text = '<h2>Send en besked</h2>' . $this->getForm()->toHTML();
         //$main->set('content_sub', '<a rel="lightbox" title="'.$elevchatter['navn'].'" href="'.$file->get('file_uri').'">' . $elevchatter['billede'] . '</a>');
     }
 
