@@ -126,33 +126,10 @@ class VIH_Model_LangtKursus
             $this->values['beskrivelse'] = $db->f('lang_beskrivelse');
         }
         $this->values['pris_uge'] = $db->f('pris_uge');
-        /*
-        if ($this->values['pris_uge'] == 0) {
-            $this->values['pris_uge'] = $db->f('ugepris');
-        }
-        */
         $this->values['pris_materiale'] = $db->f('pris_materiale');
-        /*
-        if ($this->values['pris_materiale'] == 0) {
-            $this->values['pris_materiale'] = $db->f('materialepris');
-        }
-        */
-
         $this->values['pris_rejsedepositum'] = $db->f('pris_rejsedepositum');
-        /*
-        if ($this->values['pris_rejsedepositum'] == 0) {
-            $this->values['pris_rejsedepositum'] = $db->f('rejsedepositum');
-        }
-        */
         $this->values['pris_rejserest'] = $db->f('pris_rejserest');
-
         $this->values['pris_rejselinje'] = $db->f('pris_rejselinje');
-        /*
-        if ($this->values['pris_rejselinje'] == 0) {
-            $this->values['pris_rejselinje'] = $db->f('rejsepris');
-        }
-        */
-
         $this->values['pris_noegledepositum'] = $db->f('pris_noegledepositum');
 
         $this->values['pris_tilmeldingsgebyr'] = $db->f('pris_tilmeldingsgebyr');
@@ -375,14 +352,6 @@ class VIH_Model_LangtKursus
         if ($type == 'published') {
                     $sql .= " AND fag.active = 1 AND fag.published = 1";
         }
-        /*
-        $sql .= " GROUP BY x.fag_id ORDER BY
-                           date_start ASC,
-                           date_end DESC,
-                           gruppe.position ASC,
-                           fag.fag_gruppe_id ASC,
-                           fag.navn ASC";
-        */
         $sql .= " ORDER BY
                            date_start ASC,
                            date_end DESC,
