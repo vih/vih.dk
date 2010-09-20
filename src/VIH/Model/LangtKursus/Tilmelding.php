@@ -38,7 +38,7 @@ class VIH_Model_LangtKursus_Tilmelding
     public $betaling = array(
         1 => 'Egne midler / forældres',
         2 => 'Arbejdsløshedskasse',
-        3 => 'Bistandshjælp',
+        3 => 'Kontanthjælp',
         4 => 'andet'
     );
 
