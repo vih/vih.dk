@@ -2,4 +2,4 @@
 
 <p><?php e($beskrivelse); ?></p>
 
-<?php echo $this->getSkema(); ?>
+<?php echo $context->getSkema(); ?>
