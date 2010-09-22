@@ -63,12 +63,12 @@ class VIH_Controller_Fag_Show extends k_Component
     function getSubContent($keyword)
     {
         $keywords = array($keyword);
-        if(!is_array($keywords)) {
+        if (!is_array($keywords)) {
             throw new Exception('parameter should be an array with keywords');
         }
 
         $keyword_ids = array();
-        foreach($keywords as $keyword) {
+        foreach ($keywords as $keyword) {
             $keyword_object = new Ilib_Keyword(new VIH_News);
             // @todo: This is not really good, but the only way to identify keyword on name!
             $keyword_ids[] = $keyword_object->save(array('keyword' => $keyword));
@@ -80,7 +80,7 @@ class VIH_Controller_Fag_Show extends k_Component
 
         $news = array();
 
-        while($db->nextRecord()) {
+        while ($db->nextRecord()) {
             $news[] = new VIH_News($db->f('id'));
         }
 

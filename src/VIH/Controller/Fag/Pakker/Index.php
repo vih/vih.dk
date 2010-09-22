@@ -2,6 +2,7 @@
 class VIH_Controller_Fag_Pakker_Index extends k_Component
 {
     protected $template;
+    public $i18n;
 
     function __construct(k_TemplateFactory $template)
     {
@@ -23,10 +24,12 @@ class VIH_Controller_Fag_Pakker_Index extends k_Component
 
     function wrapHtml($content)
     {
-        $this->document->addCrumb($this->name, $this->url());
+        $this->document->addCrumb($this->name(), $this->url());
         $this->document->body_class  = 'widepicture';
 
-        $data = array('content' => $content, 'content_sub' => $this->context->getSubContent());
+        $data = array(
+            'content' => $content,
+            'content_sub' => $this->context->getSubContent());
 
         $tpl = $this->template->create('sidebar-wrapper');
         return $tpl->render($this, $data);

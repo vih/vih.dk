@@ -19,8 +19,8 @@ class VIH_Controller_Fag_Pakker_Boldspil extends k_Component
     function renderHtml()
     {
         $this->document->setTitle('Boldspil på Vejle Idrætshøjskole');
-        $this->document->description = 'Du kan sammensætte en fagpakke med boldspil på Vejle Idrætshøjskole. For dig der er til boldspil og højskole.';
-        $this->document->keywords = 'boldspil, højskole, idrætshøjskole';
+        $this->document->meta['description'] = 'Du kan sammensætte en fagpakke med boldspil på Vejle Idrætshøjskole. For dig der er til boldspil og højskole.';
+        $this->document->meta['keywords'] = 'boldspil, højskole, idrætshøjskole';
 
         $this->document->theme = 'fodbold';
 

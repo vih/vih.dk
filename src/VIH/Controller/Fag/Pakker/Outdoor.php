@@ -14,11 +14,11 @@ class VIH_Controller_Fag_Pakker_Outdoor extends k_Component
         $this->template = $template;
     }
 
-    function GET()
+    function renderHtml()
     {
         $this->document->setTitle('Outdoor fagpakke på Vejle Idrætshøjskole: en blanding af adventure, friluftsliv og outdoor');
-        $this->document->description = 'Du kan vælge outdoor som en fagpakke på Vejle Idrætshøjskole. For dig der er til adventure, friluftsliv og outdoor og højskole.';
-        $this->document->keywords = 'outdoor, adventure, friluftsliv, højskole, idrætshøjskole';
+        $this->document->meta['description'] = 'Du kan vælge outdoor som en fagpakke på Vejle Idrætshøjskole. For dig der er til adventure, friluftsliv og outdoor og højskole.';
+        $this->document->meta['keywords'] = 'outdoor, adventure, friluftsliv, højskole, idrætshøjskole';
 
         $this->document->theme = 'adventure';
 

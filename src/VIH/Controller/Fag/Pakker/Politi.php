@@ -1,7 +1,4 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Controller_Fag_Pakker_Politi extends k_Component
 {
     public $i18n = array(
@@ -21,8 +18,8 @@ class VIH_Controller_Fag_Pakker_Politi extends k_Component
     function renderHtml()
     {
         $this->document->setTitle('Forberedelse til politiet på Vejle Idrætshøjskole - politi');
-        $this->document->description = 'For dig der vil forberede dig til politiets optagelsesprøve. Politi forberedende linje.';
-        $this->document->keywords = 'politi, højskole, idrætshøjskole, politiets optagelsesprøve';
+        $this->document->meta['description'] = 'For dig der vil forberede dig til politiets optagelsesprøve. Politi forberedende linje.';
+        $this->document->meta['keywords'] = 'politi, højskole, idrætshøjskole, politiets optagelsesprøve';
 
         $this->document->theme = 'politilinje';
 

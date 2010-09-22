@@ -16,11 +16,11 @@ class VIH_Controller_Fag_Pakker_Fitness extends k_Component
         $this->template = $template;
     }
 
-    function GET()
+    function renderHtml()
     {
         $this->document->setTitle('Fitness på Vejle Idrætshøjskole');
-        $this->document->description = 'Hvis du vælger en fagpakke med fitness på Vejle Idrætshøjskole, kommer du til at få et bredt indblik i fitnessverden.';
-        $this->document->keywords = 'fitness, aerobic, højskole, idrætshøjskole';
+        $this->document->meta['description'] = 'Hvis du vælger en fagpakke med fitness på Vejle Idrætshøjskole, kommer du til at få et bredt indblik i fitnessverden.';
+        $this->document->meta['keywords'] = 'fitness, aerobic, højskole, idrætshøjskole';
 
 
         $this->document->theme = 'fitness';
