@@ -455,10 +455,10 @@ class VIH_Model_LangtKursus
 
     public function opretRater($antal, $foerste_rate_dato)
     {
-        if($this->antalRater() == 0) {
+        if ($this->antalRater() == 0) {
             $db = new DB_Sql;
             $dato = new VIH_Date($foerste_rate_dato);
-            if($dato->convert2db() == false) {
+            if ($dato->convert2db() == false) {
                 trigger_error("Ugydlig datoformat", E_USER_ERROR);
             }
 
@@ -493,12 +493,12 @@ class VIH_Model_LangtKursus
 
     public function updateRater($rater)
     {
-        if(is_array($rater)) {
+        if (is_array($rater)) {
             $db = new DB_Sql;
 
             for($i = 0, $max = count($rater); $i < $max; $i++) {
                 $dato = new VIH_Date($rater[$i]["betalingsdato"]);
-                if($dato->convert2db()) {
+                if ($dato->convert2db()) {
                     $db->query("UPDATE langtkursus_rate SET betalingsdato = \"".$dato->get()."\", beloeb = \"".intval($rater[$i]["beloeb"])."\" WHERE id = ".intval($rater[$i]["id"])." AND langtkursus_id = ".$this->get("id"));
                 }
             }
@@ -512,11 +512,11 @@ class VIH_Model_LangtKursus
         settype($number, "integer");
         $db = new DB_Sql;
 
-        if($number > 0) {
+        if ($number > 0) {
 
             $db->query("SELECT DATE_FORMAT(betalingsdato, '%d') AS d, DATE_FORMAT(betalingsdato, '%m') AS m, DATE_FORMAT(betalingsdato, '%Y') AS y
                 FROM langtkursus_rate WHERE langtkursus_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT 1");
-            $db->nextRecord() OR trigger_error("Kan ikke tilf�je er rate, hvis der ikke eksistere nogen", FATAL);
+            $db->nextRecord() OR trigger_error("Kan ikke tilføje er rate, hvis der ikke eksistere nogen", FATAL);
 
 
             for($i = 0; $i < $number; $i++) {
@@ -525,7 +525,7 @@ class VIH_Model_LangtKursus
             }
         }
 
-        if($number < 0) {
+        if ($number < 0) {
             $number *= -1;
             $db->query("DELETE FROM langtkursus_rate WHERE langtkursus_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT ". $number);
         }
