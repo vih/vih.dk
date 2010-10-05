@@ -2,6 +2,8 @@
 
 <?php
     $chosen = array();
+    $conn = Doctrine_Manager::connection(DB_DSN);
+    $conn->setCharset('utf8');
     $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($tilmelding->getId());
     $ch_subj = Doctrine::getTable('VIH_Model_Course_Registration_Subject')->findByRegistrationId($tilmelding->getId());
 
@@ -12,7 +14,7 @@
 
 <p>Inden du kommer på skolen, skal du vælge de fag, du har flest timer om ugen, mens du er på skolen. Resten af fagene vælger du, når du ankommer.</p>
 
-<p class="notice"><strong>Husk:</strong> Du skal kun vælge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for få tilmeldte til faget. Dette før du besked om inden ankomst.</p>
+<p class="notice"><strong>Husk:</strong> Du skal kun vælge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for få tilmeldte til faget. Dette får du besked om inden ankomst.</p>
 
 <form action="<?php e(url()); ?>" method="post" id="fag">
 <?php $i = 0; foreach ($periods as $p): ?>

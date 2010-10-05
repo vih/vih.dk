@@ -342,7 +342,8 @@ class VIH_Model_LangtKursus_Tilmelding
         $bind['kommune'] = $var['kommune'];
         if (!empty($var['sex'])) $bind['sex'] = $var['sex'];
 
-        Doctrine_Manager::connection(DB_DSN);
+        $conn = Doctrine_Manager::connection(DB_DSN);
+        $conn->setCharset('utf8');
         $table = Doctrine::getTable('VIH_Model_Course_Registration');
         $tilmelding = $table->findOneById($this->id);
 
@@ -404,7 +405,8 @@ class VIH_Model_LangtKursus_Tilmelding
         $bind['dato_slut'] = $var['dato_slut'];
         $bind['pris_afbrudt_ophold'] = $var['pris_afbrudt_ophold'];
 
-        Doctrine_Manager::connection(DB_DSN);
+        $conn = Doctrine_Manager::connection(DB_DSN);
+        $conn->setCharset('utf8');
         $tilmelding = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->id);
         $tilmelding->fromArray($bind);
         $tilmelding->save();
@@ -580,7 +582,8 @@ class VIH_Model_LangtKursus_Tilmelding
         }
         return $fag;
         */
-        Doctrine_Manager::connection(DB_DSN);
+        $conn = Doctrine_Manager::connection(DB_DSN);
+        $conn->setCharset('utf8');
         $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->id);
 
         $chosen = array();
@@ -608,7 +611,8 @@ class VIH_Model_LangtKursus_Tilmelding
             return false;
         }
 
-        Doctrine_Manager::connection(DB_DSN);
+        $conn = Doctrine_Manager::connection(DB_DSN);
+        $conn->setCharset('utf8');
         $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($this->id);
         $registration->status_key = $status_key;
         $registration->save();

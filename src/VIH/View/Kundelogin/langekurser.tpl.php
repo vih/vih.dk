@@ -16,13 +16,6 @@
 
     <h2>Fag</h2>
     <p><a href="<?php e(url('fag')); ?>">Rediger fag</a></p>
-    <?php
-        Doctrine_Manager::connection(DB_DSN);
-        $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($tilmelding->getId());
-        foreach ($registration->Subjects as $subject) {
-            // e($subject->getName());
-        }
-    ?>
 
 </div>
 

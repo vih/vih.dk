@@ -24,7 +24,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
         return new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
     }
 
-    function GET()
+    function renderHtml()
     {
         $this->document->setTitle('Tilmelding: Vælg fag');
 

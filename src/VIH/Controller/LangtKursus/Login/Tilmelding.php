@@ -17,13 +17,18 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
         return $this->map[$name];
     }
 
-    function renderHtml()
+    function dispatch()
     {
         $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->name());
         if (!is_object($tilmelding) OR !$tilmelding->get('id')) {
-            // @todo might be better to throw 404
-            throw new Exception('Der findes ikke nogen tilmelding');
+            throw new k_PageNotFound();
         }
+        return parent::dispatch();
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->name());
 
         if (strtolower($tilmelding->get('status')) == 'undervejs') {
             if (!$tilmelding->get('session_id')) {
@@ -36,7 +41,6 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
 
         $tilmelding->loadBetaling();
 
-
         $opl_data = array('tilmelding' => $tilmelding,
                       'caption' => 'Tilmeldingsoplysninger');
 
@@ -48,7 +52,7 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
                                'betalinger' => '');
 
         if ($tilmelding->antalRater() > 0) {
-            $tpl = $this->template->create('/LangtKursus/Tilmelding/prisoversigt');
+            $tpl = $this->template->create('LangtKursus/Tilmelding/prisoversigt');
             $oversigt_data['prisoversigt']  = $tpl->render($this, $pris_data);
         } else {
             $oversigt_data['prisoversigt'] = '<p class="notice"><strong>Priser</strong><br />Foreløbig skylder du '.$tilmelding->get('pris_tilmeldingsgebyr').' kroner. Den resterende pris kan du se, når vi har oprettet dine betalingsrater.</p>';
@@ -58,5 +62,4 @@ class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
         $tpl = $this->template->create('Kundelogin/langekurser');
         return $tpl->render($this, $oversigt_data);
     }
-
 }
