@@ -49,7 +49,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
 
     }
 
-    public function POST()
+    public function postForm()
     {
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
 

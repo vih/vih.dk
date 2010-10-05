@@ -1210,3 +1210,7 @@ ul#pakker a:hover strong{text-decoration:underline}
 form table {
 	font-size: 1em;
 }
+
+form#fag {
+    width: 95%;
+}

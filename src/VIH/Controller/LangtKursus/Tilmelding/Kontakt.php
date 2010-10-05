@@ -3,13 +3,64 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Component
 {
     protected $form;
 
+    function __construct(Doctrine_Connection_Common $doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
+
+    function map($name)
+    {
+        if ($name == 'confirm') {
+            return 'VIH_Controller_LangtKursus_Tilmelding_Confirm';
+        } elseif ($name == 'kvittering') {
+            return 'VIH_Controller_LangtKursus_Tilmelding_Kvittering';
+        } elseif ($name == 'fag') {
+            return 'VIH_Controller_LangtKursus_Tilmelding_Fag';
+        } elseif ($name == 'close') {
+            return 'VIH_Controller_LangtKursus_Tilmelding_Close';
+        } elseif ($name == 'afbryd') {
+            return 'VIH_Controller_LangtKursus_Tilmelding_Afbryd';
+        }
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->name());
+
+        if (!$tilmelding->start($this->context->getLangtKursusId())) {// denne kommando starter tilmeldingen
+            throw new Exception('Tilmeldingen kan ikke startes');
+        }
+
+        $this->document->setTitle('Tilmelding til lange kurser');
+        return '
+            <h1>Ansøgning om optagelse</h2>
+            <p>Du kan tilmelde dig via denne formular. Ved udfyldelse af denne formular accepterer du også vores <a href="'.$this->url('/langekurser/betalingsbetingelser').'">betalingsregler</a>. Din tilmelding er først gældende, når vi modtager tilmeldingsgebyr på 1000 kroner.</p>
+        ' . $this->getForm()->toHTML();
+    }
+
+    function postForm()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->name());
+
+        if ($this->getForm()->validate()) {
+            if ($tilmelding->save($this->body())) {
+                if (!$tilmelding->setCode()) {
+                    throw new Exception('Koden kunne ikke sættes');
+                }
+                return new k_SeeOther($this->url('fag'));
+            }
+        }
+
+        return '<h1>Ansøgning om optagelse</h1><p>Der var fejl i formularen.</p>' . $this->getForm()->toHTML();
+    }
+
     protected function getForm()
     {
         if ($this->form) {
             return $this->form;
         }
 
-        $kurser = VIH_Model_LangtKursus::getList('ï¿½bne');
+        $kurser = VIH_Model_LangtKursus::getList('åbne');
 
         $list = array();
         if ($this->query('kursus_id')) {
@@ -113,52 +164,6 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Component
         $this->form->addGroupRule('uddannelse', 'Du skal vælge din uddannelsesmæssige baggrund', 'required', null);
         $this->form->addGroupRule('betaling', 'Du skal vælge, hvordan du betaler', 'required', null);
         return $this->form;
-    }
-
-    function renderHtml()
-    {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->name());
-
-        if (!$tilmelding->start($this->context->getLangtKursusId())) {// denne kommando starter tilmeldingen
-            throw new Exception('Tilmeldingen kan ikke startes');
-        }
-
-        $this->document->setTitle('Tilmelding til lange kurser');
-        return '
-            <h1>Ansøgning om optagelse</h2>
-            <p>Du kan tilmelde dig via denne formular. Ved udfyldelse af denne formular accepterer du også vores <a href="'.$this->url('/langekurser/betalingsbetingelser').'">betalingsregler</a>. Din tilmelding er først gældende, når vi modtager tilmeldingsgebyr på 1000 kroner.</p>
-        ' . $this->getForm()->toHTML();
-    }
-
-    function postForm()
-    {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->name());
-
-        if ($this->getForm()->validate()) {
-            if ($tilmelding->save($this->body())) {
-                if (!$tilmelding->setCode()) {
-                    throw new Exception('Koden kunne ikke sættes');
-                }
-                return new k_SeeOther($this->url('fag'));
-            }
-        }
-
-        return '<h1>Ansøgning om optagelse</h1><p>Der var fejl i formulaeren.</p>' . $this->getForm()->toHTML();
-    }
-
-    function map($name)
-    {
-        if ($name == 'confirm') {
-            return 'VIH_Controller_LangtKursus_Tilmelding_Confirm';
-        } elseif ($name == 'kvittering') {
-            return 'VIH_Controller_LangtKursus_Tilmelding_Kvittering';
-        } elseif ($name == 'fag') {
-            return 'VIH_Controller_LangtKursus_Tilmelding_Fag';
-        } elseif ($name == 'close') {
-            return 'VIH_Controller_LangtKursus_Tilmelding_Close';
-        } elseif ($name == 'afbryd') {
-            return 'VIH_Controller_LangtKursus_Tilmelding_Afbryd';
-        }
     }
 
     function getSubjects()

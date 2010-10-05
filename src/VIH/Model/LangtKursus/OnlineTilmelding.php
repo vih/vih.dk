@@ -62,7 +62,6 @@ class VIH_Model_LangtKursus_OnlineTilmelding extends VIH_Model_LangtKursus_Tilme
 
     public function start($kursus_id)
     {
-        Doctrine_Manager::connection(DB_DSN);
         $tilmelding = Doctrine::getTable('VIH_Model_Course_Registration')->findOneBySessionId($this->session_id);
         if ($tilmelding === false) {
             $tilmelding = new VIH_Model_Course_Registration;

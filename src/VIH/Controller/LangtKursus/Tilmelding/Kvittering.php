@@ -10,7 +10,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Kvittering extends k_Component
         $this->doctrine = $doctrine;
     }
 
-    function GET()
+    function renderHtml()
     {
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
 
@@ -39,7 +39,6 @@ class VIH_Controller_LangtKursus_Tilmelding_Kvittering extends k_Component
                       'caption' => 'Vi har registreret følgende oplysninger');
         $tpl = $this->template->create('LangtKursus/Tilmelding/oplysninger');
         return $tpl->render($this, $data);
-
     }
 
     function getKvittering($tilmelding)

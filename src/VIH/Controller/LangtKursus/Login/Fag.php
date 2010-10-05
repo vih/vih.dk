@@ -5,7 +5,7 @@ class VIH_Controller_LangtKursus_Login_Fag extends VIH_Controller_LangtKursus_Ti
     {
         $this->document->setTitle('Vælg fag');
 
-        return parent::renderHtml() .  '<p><a href="'.$this->context->url().'">Tilbage</a></p>';
+        return parent::renderHtml() . '<p><a href="'.$this->context->url().'">Tilbage</a></p>';
     }
 
     function getRegistration()

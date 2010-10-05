@@ -8,6 +8,6 @@ class VIH_Controller_LangtKursus_Login_Index extends k_Component
 
     function renderHtml()
     {
-        return 'her';
+        throw new k_PageNotFound();
     }
 }
