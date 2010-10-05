@@ -16,6 +16,7 @@ class VIH_Email {
         $this->mail = new Phpmailer;
         $this->mail->From = 'kontor@vih.dk';
         $this->mail->FromName = 'Vejle Idrætshøjskole';
+        $this->mail->CharSet = 'UTF-8';
         //$this->mail->Host = 'mail.vih.dk';
     }
 
@@ -50,7 +51,7 @@ class VIH_Email {
                     die('IKKE IMPLEMENTERET');
                 break;
             default:
-                    trigger_error('Du skal vælge en måde at sende e-mails på', E_USER_ERROR);
+                    throw new Exception('Du skal vælge en måde at sende e-mails på');
                 break;
         }
     }
