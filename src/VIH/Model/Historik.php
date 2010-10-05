@@ -46,16 +46,16 @@ class VIH_Model_Historik
         } elseif (count($arg) == 2) {
             $belong_to_key = array_search($arg[0], $this->allowed_belong_to);
             if ($belong_to_key === false) {
-                trigger_error('Historik::historik - Ulovlig belong_to', E_USER_ERROR);
+                throw new Exception('Historik::historik - Ulovlig belong_to');
             }
             $this->belong_to_key = (int)$belong_to_key;
             $this->belong_to = $arg[0];
             $this->belong_to_id = (int)$arg[1];
         } else {
-            trigger_error('Historik::historik - Et forkert antal argumenter', E_USER_ERROR);
+            throw new Exception('Historik::historik - Et forkert antal argumenter');
         }
 
-        if($this->id != 0) {
+        if ($this->id != 0) {
             $this->load();
         }
 
@@ -63,13 +63,13 @@ class VIH_Model_Historik
 
     function load()
     {
-        if($this->id == 0) {
+        if ($this->id == 0) {
             return 0;
         }
 
         $db = new DB_Sql;
         $db->query("SELECT *,DATE_FORMAT(date_created, '%d-%m-%Y') AS date_created_dk FROM historik WHERE id = ".$this->id);
-        if(!$db->nextRecord()) {
+        if (!$db->nextRecord()) {
             $this->id = 0;
             return 0;
         }
@@ -95,10 +95,10 @@ class VIH_Model_Historik
     {
         $error = array();
 
-        if(!Validate::number($input['type'], array('min' => 1))) $error[] = "type";
-        if(!Validate::string($input['comment'], array('format' => VALIDATE_NUM . VALIDATE_ALPHA . VALIDATE_PUNCTUATION . 'æøåâäüéèÆØÅ-'))) $error[] = "comment";
+        if (!Validate::number($input['type'], array('min' => 1))) $error[] = "type";
+        if (!Validate::string($input['comment'], array('format' => VALIDATE_NUM . VALIDATE_ALPHA . VALIDATE_PUNCTUATION . 'æøåâäüéèÆØÅ-'))) $error[] = "comment";
 
-        if(count($error) > 0) {
+        if (count($error) > 0) {
             print_r($error);
             return false;
         } else {
@@ -125,7 +125,7 @@ class VIH_Model_Historik
         }
 
         $db = new DB_Sql;
-        if($this->id == 0) {
+        if ($this->id == 0) {
             $sql_type = "INSERT INTO historik ";
             $sql_end = ", date_created = NOW()";
         } else {
@@ -142,7 +142,7 @@ class VIH_Model_Historik
             betaling_id = ".intval($input['betaling_id'])." "
             .$sql_end);
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             $this->id = $db->insertedId();
         }
 
@@ -157,7 +157,7 @@ class VIH_Model_Historik
         }
         $db = new DB_Sql;
 
-        if($this->get('betaling_id') != 0) {
+        if ($this->get('betaling_id') != 0) {
             $betaling = new VIH_Model_Betaling($this->get('betaling_id'));
             $betaling->delete(); // der kontrolleres i betaling at det ikke er en dankortbetaling.
         }
@@ -182,12 +182,12 @@ class VIH_Model_Historik
     {
         $type_key = array_search($type, $this->allowed_type);
         if ($type_key === false) {
-            trigger_error('Ulovlig type i Historik->findType', E_USER_ERROR);
+            throw new Exception('Ulovlig type i Historik->findType');
         }
 
         $db = new DB_Sql;
         $db->query("SELECT id FROM historik WHERE type = ".$type_key." AND belong_to = ".$this->belong_to_key." AND belong_to_id = ".$this->belong_to_id." AND active = 1");
-        if($db->nextRecord()) {
+        if ($db->nextRecord()) {
             return $db->f('id');
         } else {
             return 0;

@@ -3,19 +3,19 @@
  * Class VIH_PdfBrochure
  * Description: Danner pdf-brochure.
  *
- * Benyttes sålede:
+ * Benyttes sï¿½lede:
  * $pdf = new VIH_PdfBrochure();
- * $pdf->SetTitle($fag->get('navn')); // Dette kommer også til at stå på forsiden af brochuren
+ * $pdf->SetTitle($fag->get('navn')); // Dette kommer ogsï¿½ til at stï¿½ pï¿½ forsiden af brochuren
  * $pdf->SetSubject('Fagbeskrivelse: ' . $fag->get('navn'));
- * $pdf->SetAuthor('Lars Olesen, Vejle Idrætshøjskole');
- * $pdf->SetCreator('Lars Olesen, Vejle Idrætshøjskole');
+ * $pdf->SetAuthor('Lars Olesen, Vejle Idrï¿½tshï¿½jskole');
+ * $pdf->SetCreator('Lars Olesen, Vejle Idrï¿½tshï¿½jskole');
  * $pdf->SetDisplayMode('fullpage', 'two');
  * $pdf->SetKeywords('keyword');
  * $pdf->VIHContent($fag->get('beskrivelse'));
  * $pdf->Output();
  *
- * Indstillinger sættes i funktionen VIH_PdfBrochure. Se også
- * Desuden kan formatering af html-tags ændres i funktionen htmlParserOpen
+ * Indstillinger sï¿½ttes i funktionen VIH_PdfBrochure. Se ogsï¿½
+ * Desuden kan formatering af html-tags ï¿½ndres i funktionen htmlParserOpen
  *
  * Author: Sune Jensen sj@sunet.dk
  * Date: 20/2 2006
@@ -55,7 +55,7 @@ class VIH_PdfBrochure extends FPDF
         $this->vih_line_spacing = 4;
 
         $this->vih_frontpage_font_size = 25;
-        $this->vih_frontpage_top_margin = 100; // afstand ned til titlen på forsiden
+        $this->vih_frontpage_top_margin = 100; // afstand ned til titlen pï¿½ forsiden
 
     }
 
@@ -68,14 +68,14 @@ class VIH_PdfBrochure extends FPDF
         $this->SetFont($this->vih_font_family,'',$this->vih_font_size);
         $this->setColumn(1);
 
-        // Indsæt fagbeskrivelse i html-format. Se HTMLParseOpen for mulige tags.
+        // Indsï¿½t fagbeskrivelse i html-format. Se HTMLParseOpen for mulige tags.
         $this->parseHTML($fagbeskrivelse);
 
-        // Sørger for vi kommer til forsiden.
-        if($this->column == 1 || $this->column == 2) {
+        // Sï¿½rger for vi kommer til forsiden.
+        if ($this->column == 1 || $this->column == 2) {
             $this->addPage();
             $this->setColumn(0);
-        } elseif($this->column == 3) {
+        } elseif ($this->column == 3) {
             $this->setColumn(0);
         }
 
@@ -83,7 +83,7 @@ class VIH_PdfBrochure extends FPDF
         $this->SetFont($this->vih_font_family,'B',$this->vih_frontpage_font_size);
         $this->MultiCell(0, 10, $this->title, 0, 'C');
 
-        // Til sidst skal siderne byttes rundt, så forsiden kommer på den første af de to sider
+        // Til sidst skal siderne byttes rundt, sï¿½ forsiden kommer pï¿½ den fï¿½rste af de to sider
         $old_pages = $this->pages;
         $this->pages[1] = $old_pages[2];
         $this->pages[2] = $old_pages[1];
@@ -99,7 +99,7 @@ class VIH_PdfBrochure extends FPDF
             case 1:
             case 3:
                 $left = $this->vih_outer_margin;
-                // $this->fh: dokument bredde (betyder format height, men da papiret lægges ned, vendes skiftes variablerne ikke).
+                // $this->fh: dokument bredde (betyder format height, men da papiret lï¿½gges ned, vendes skiftes variablerne ikke).
                 $right = $this->vih_outer_margin + ($this->fh - $this->vih_outer_margin * 2 - $this->vih_inner_margin * 2)/2 + $this->vih_inner_margin * 2;
                 break;
             case 0:
@@ -108,7 +108,7 @@ class VIH_PdfBrochure extends FPDF
                 $right = $this->vih_outer_margin;
                 break;
             default:
-                die("Der kan kun være kolonne 0 til 3");
+                die("Der kan kun vï¿½re kolonne 0 til 3");
             break;
         }
 
@@ -133,7 +133,7 @@ class VIH_PdfBrochure extends FPDF
                 $return = false;
                 break;
             case 0:
-                die("Der er for meget tekst til, at det kan være i brochuren");
+                die("Der er for meget tekst til, at det kan vï¿½re i brochuren");
                 break;
             case 2:
                 $this->SetColumn(3);

@@ -9,7 +9,7 @@ class VIH_Date
     }
 
     /**
-     * HUSK AT RETTE I BÅDE VALIDATOR OG DATE
+     * HUSK AT RETTE I Bï¿½DE VALIDATOR OG DATE
      */
     function convert2db($default_year = "")
     {
@@ -18,7 +18,7 @@ class VIH_Date
         $y = "([0-9][0-9][0-9][0-9]|[0-9]?[0-9])";
         $s = "(-|\.|/| )";
 
-        if($default_year == "") {
+        if ($default_year == "") {
             $default_year = date("Y");
         }
 

@@ -65,7 +65,7 @@ class VIH_ExceptionHandler implements SplSubject
      */
     public function notify()
     {
-        foreach($this->observers as $obs)
+        foreach ($this->observers as $obs)
         {
             $obs->update($this);
         }

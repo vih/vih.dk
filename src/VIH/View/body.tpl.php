@@ -9,7 +9,7 @@
             <div class="sidepic clearfix"<?php echo $context->getSidePicture(); ?>>
                 <div id="col1">
                     <ul id="navigation">
-                        <?php foreach($navigation as $item): ?>
+                        <?php foreach ($navigation as $item): ?>
                             <li<?php if ($context->subspace() AND strstr($item['url'], $context->subspace())) echo ' id="current"'; ?>><a href="<?php e($item['url']); ?>"><?php e($item['navigation_name']); ?></a></li>
                         <?php endforeach; ?>
                     </ul>

@@ -17,7 +17,7 @@ class VIH_Controller_LangtKursus_Tilmelding_Kontakt extends k_Component
         } else {
             $kursus_id = 0;
         }
-        foreach($kurser AS $kursus) {
+        foreach ($kurser AS $kursus) {
             $list[$kursus->getId()] = $kursus->getKursusNavn() . ' som starter ' .$kursus->getDateStart()->format('%d-%m-%Y');
         }
 

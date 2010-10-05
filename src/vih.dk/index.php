@@ -60,7 +60,7 @@ class MyLanguageLoader implements k_LanguageLoader
     {
         if ($context->query('lang') == 'sv') {
             return new SwedishLanguage();
-        } else if($context->query('lang') == 'en') {
+        } else if ($context->query('lang') == 'en') {
             return new EnglishLanguage();
         }
         return new EnglishLanguage();

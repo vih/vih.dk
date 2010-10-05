@@ -46,7 +46,7 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
         $return = true;
 
         $validate = new Validate;
-        if(!$validate->string($var['navn'], array('min_length' => 1))) $return = false;
+        if (!$validate->string($var['navn'], array('min_length' => 1))) $return = false;
 
         return $return;
     }

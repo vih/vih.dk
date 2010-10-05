@@ -11,7 +11,7 @@ require_once 'Ilib/ClassLoader.php';
 
 // file should stop if no querystring
 if (empty($_SERVER["QUERY_STRING"])) {
-    trigger_error('no querystring is given!', E_USER_WARNING);
+    throw new Exception('no querystring is given!', E_USER_WARNING);
     exit;
 }
 $query_parts = explode('/', $_SERVER["QUERY_STRING"]);
@@ -19,8 +19,8 @@ $kernel = new VIH_Intraface_Kernel;
 $kernel->intranet = new VIH_Intraface_Intranet(0);
 
 $filehandler = Ilib_Filehandler::factory($kernel, $query_parts[2]);
-if(!is_object($filehandler) || $filehandler->getId() == 0) {
-    trigger_error('Invalid image: '.$_SERVER['QUERY_STRING'], E_USER_WARNING);
+if (!is_object($filehandler) || $filehandler->getId() == 0) {
+    throw new Exception('Invalid image: '.$_SERVER['QUERY_STRING'], E_USER_WARNING);
     exit;
 }
 

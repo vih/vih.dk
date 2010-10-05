@@ -12,7 +12,7 @@ class VIH_Model_MaterialeBestilling
     function __construct($id = 0)
     {
         if (!is_numeric($id)) {
-            trigger_error('MaterialeBestilling::MaterialeBestilling $id skal være numerisk', E_USER_ERROR);
+            throw new Exception('MaterialeBestilling::MaterialeBestilling $id skal vï¿½re numerisk');
         }
         $this->id = (int)$id;
     }
@@ -22,16 +22,16 @@ class VIH_Model_MaterialeBestilling
         $return = true;
 
         $validate = new Validate;
-        if(!$validate->string($values['navn'], array('min_length' => 1))) $return = false;
-        if(!$validate->string($values['adresse'], array('min_length' => 1))) $return = false;
-        if(!$validate->number($values['postnr'], array('min' => 100))) $return = false;
-        if(!$validate->string($values['postby'], array('min_length' => 1))) $return = false;
-        if(!empty($values['email']) AND !$validate->email($values['email'])) $return = false;
+        if (!$validate->string($values['navn'], array('min_length' => 1))) $return = false;
+        if (!$validate->string($values['adresse'], array('min_length' => 1))) $return = false;
+        if (!$validate->number($values['postnr'], array('min' => 100))) $return = false;
+        if (!$validate->string($values['postby'], array('min_length' => 1))) $return = false;
+        if (!empty($values['email']) AND !$validate->email($values['email'])) $return = false;
         /*
-        if(isset($values['langekurser']) != "" && $values['langekurser'] != "1") $return = false;
-        if(isset($values['kortekurser']) != "" && $values['kortekurser'] != "1") $return = false;
-        if(isset($values['efterskole']) != "" && $values['efterskole'] != "1") $return = false;
-        if(isset($values['kursuscenter']) != "" && $values['kursuscenter'] != "1") $return = false;
+        if (isset($values['langekurser']) != "" && $values['langekurser'] != "1") $return = false;
+        if (isset($values['kortekurser']) != "" && $values['kortekurser'] != "1") $return = false;
+        if (isset($values['efterskole']) != "" && $values['efterskole'] != "1") $return = false;
+        if (isset($values['kursuscenter']) != "" && $values['kursuscenter'] != "1") $return = false;
         */
         return $return;
 

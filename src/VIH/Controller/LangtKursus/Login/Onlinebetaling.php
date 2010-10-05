@@ -71,7 +71,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 
             $betaling_amount = $total_amount / 100;
             $betaling_id = $betaling->save(array('type' => 'quickpay', 'amount' => $betaling_amount));
-            if($betaling_id == 0) {
+            if ($betaling_id == 0) {
                 throw new Exception("Kunne ikke oprette betaling");
             }
 
