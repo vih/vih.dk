@@ -815,7 +815,6 @@ class VIH_Model_LangtKursus_Tilmelding
 
     function rateDifference()
     {
-
         $db = new DB_Sql;
         $rate_samlet = $this->get("pris_tilmeldingsgebyr");
 
@@ -825,73 +824,12 @@ class VIH_Model_LangtKursus_Tilmelding
         }
         return $rate_samlet - $this->get("pris_total");
     }
-    /*
-    function getBetalt($calculate = false) {
-        die('skal skrives om');
-        if ($calcutate == true || $this->betalt === false) {
-
-            $betalt = 0;
-            $historik = new TilmeldingHistorik($this);
-            foreach ($historik->getList() AS $b) {
-                $betalt += $b['betaling'];
-            }
-            return $betalt;
-        }
-        else {
-            return $this->betalt;
-        }
-    }
-
-    function getForfalden() {
-        die('skal skrives om');
-        $betalt = $this->getBetalt();
-        $forfalden = 0;
-        $rater_samlet = $this->kursus->get("depositum");
-
-        if ($this->get("date_created") < date("Y-m-d", time() - (60 * 60 * 24 * 14))) { // 14 dage
-            if ($rater_samlet > $betalt) {
-                $forfalden += $rater_samlet - $betalt;
-            }
-        }
-
-        $rater = $this->getRater();
-        for ($i = 0, $max = count($rater); $i < $max; $i++) {
-            $rater_samlet += $rater[$i]["beloeb"];
-            if ($rater[$i]["betalingsdato"] < date("Y-m-d")) {
-                if ($rater_samlet > $betalt) {
-                    $forfalden += $rater_samlet - $betalt;
-                }
-            }
-        }
-
-        return $forfalden;
-    }
-    */
-
-    /*
-    function afbrydOphold($uger_deltaget, $beloeb_afskrevet) {
-
-        $sql = "afbrudt_uger_deltaget = ".(int)$uger_deltaget.",
-            ugeantal = ".(int)$uger_deltaget.",
-            afbrudt_beloeb_afskrevet = ".(int)$beloeb_afskrevet.",
-            status_key = -2";
-
-        $db = new DB_sql;
-        $db->query("UPDATE langtkursus_tilmelding SET ".$sql." WHERE id = ".$this->id);
-        $this->load();
-
-        return 1;
-    }
-    */
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Email
-    ///////////////////////////////////////////////////////////////////////////////
 
     function sendEmail()
     {
-        if (!$this->get('email')) return 0;
+        if (!$this->get('email')) {
+            return 0;
+        }
         $mail = new VIH_Email;
         $mail->setSubject('Tilmelding #' . $this->id);
         $mail->setBody('
@@ -914,16 +852,13 @@ Vejle Idrætshøjskole
     }
 
     /**
-     * Bruges til at s�tte et session_id, hvis ordren ikke har noget, og brugeren
-     * skal forts�tte sin bestilling.
+     * Used to set the session id if the order does not have one, and the user needs to
+     * continue the submission
      *
-     * B�r meget sj�ldent bruges
+     * @deprecated Should only be used rarely
+     *
+     * @return boolean
      */
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Saerlige metoder
-    ///////////////////////////////////////////////////////////////////////////////
-
     function setSessionId()
     {
         $db = new DB_Sql;

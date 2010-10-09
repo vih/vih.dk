@@ -420,7 +420,7 @@ class VIH_Model_LangtKursus
         $db = new DB_Sql;
         $db->query("SELECT id FROM langtkursus_tilmelding
             WHERE kursus_id = " . $this->id . "
-            AND active = 1");
+            AND active = 1 AND status_key > 1");
         $list = array();
         while($db->nextRecord()) {
             $list[$db->f('id')] = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
@@ -434,7 +434,7 @@ class VIH_Model_LangtKursus
         $db = new DB_Sql;
         $db->query("SELECT id FROM langtkursus_tilmelding
             WHERE kursus_id = " . $this->id . "
-            AND active = 1");
+            AND active = 1 AND status_key > 1");
         $list = array();
         while($db->nextRecord()) {
             $list[$db->f('id')] = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
@@ -516,8 +516,9 @@ class VIH_Model_LangtKursus
 
             $db->query("SELECT DATE_FORMAT(betalingsdato, '%d') AS d, DATE_FORMAT(betalingsdato, '%m') AS m, DATE_FORMAT(betalingsdato, '%Y') AS y
                 FROM langtkursus_rate WHERE langtkursus_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT 1");
-            $db->nextRecord() OR throw new Exception("Kan ikke tilføje er rate, hvis der ikke eksistere nogen", FATAL);
-
+            if (!$db->nextRecord()) {
+                throw new Exception("Kan ikke tilføje er rate, hvis der ikke eksistere nogen");
+            }
 
             for ($i = 0; $i < $number; $i++) {
                 $betalingsdato = date("Y-m-d", mktime(0, 0, 0, $db->f("m")+$i+1, $db->f("d"), $db->f("y")));
