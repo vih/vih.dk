@@ -283,13 +283,13 @@ class VIH_Model_LangtKursus_Tilmelding
     {
         $return = true;
         /*
-        if(!Validate::number($var['uddannelse'])) $return = false;
-        if(!Validate::number($var['kursus_id'], array('min' => 1))) $return = false;
-        if(!Validate::number($var['betaling'])) $return = false;
-        if(!Validate::string($var['cpr'], array('min_length' => 10))) $return = false;
-        if(!Validate::string($var['nationalitet'], array('min_length' => 1))) $return = false;
-        if(!Validate::string($var['kommune'], array('min_length' => 1))) $return = false;
-        if(!Validate::number($var['fag_id'], array('min' => 1))) $return = false;
+        if (!Validate::number($var['uddannelse'])) $return = false;
+        if (!Validate::number($var['kursus_id'], array('min' => 1))) $return = false;
+        if (!Validate::number($var['betaling'])) $return = false;
+        if (!Validate::string($var['cpr'], array('min_length' => 10))) $return = false;
+        if (!Validate::string($var['nationalitet'], array('min_length' => 1))) $return = false;
+        if (!Validate::string($var['kommune'], array('min_length' => 1))) $return = false;
+        if (!Validate::number($var['fag_id'], array('min' => 1))) $return = false;
         */
         return $return;
 
@@ -480,7 +480,7 @@ class VIH_Model_LangtKursus_Tilmelding
                 break;
         }
 
-        if($kursus_id != NULL) {
+        if ($kursus_id != NULL) {
             $sql .= " kursus_id = ".(int)$kursus_id." AND";
         }
 
@@ -603,11 +603,11 @@ class VIH_Model_LangtKursus_Tilmelding
             return false;
         }
         $status_key = array_search($status, $this->status);
-        if($status_key === false) {
+        if ($status_key === false) {
             throw new Exception('Ugyldig status');
         }
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             return false;
         }
 
@@ -640,9 +640,9 @@ class VIH_Model_LangtKursus_Tilmelding
             return true;
         }
 
-        if($this->get("skyldig") <= 0  && $this->rateDifference() == 0) {
+        if ($this->get("skyldig") <= 0  && $this->rateDifference() == 0) {
             $status_key = $this->getStatusKey('afsluttet');
-        } elseif($this->get("skyldig_tilmeldingsgebyr") <= 0) {
+        } elseif ($this->get("skyldig_tilmeldingsgebyr") <= 0) {
             $status_key = $this->getStatusKey('tilmeldt');
         } else {
             $status_key = $this->getStatusKey('reserveret');
@@ -659,7 +659,7 @@ class VIH_Model_LangtKursus_Tilmelding
 
     function loadBetaling() {
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             return false;
         }
 
@@ -710,7 +710,7 @@ class VIH_Model_LangtKursus_Tilmelding
 
     function opretRater()
     {
-        if($this->antalRater() == 0) {
+        if ($this->antalRater() == 0) {
             $db = new DB_Sql;
             $db2 = new DB_Sql;
 
@@ -759,11 +759,11 @@ class VIH_Model_LangtKursus_Tilmelding
     function updateRater($rater)
     {
 
-        if(is_array($rater)) {
+        if (is_array($rater)) {
             $db = new DB_Sql;
             for ($i = 0, $max = count($rater); $i < $max; $i++) {
                 $dato = new VIH_Date($rater[$i]["betalingsdato"]);
-                if($dato->convert2db()) {
+                if ($dato->convert2db()) {
                     $db->query("UPDATE langtkursus_tilmelding_rate SET betalingsdato = \"".$dato->get()."\", beloeb = \"".intval($rater[$i]["beloeb"])."\" WHERE id = ".intval($rater[$i]["id"])." AND langtkursus_tilmelding_id = ".$this->get("id"));
                 }
             }
@@ -778,11 +778,11 @@ class VIH_Model_LangtKursus_Tilmelding
         settype($number, "integer");
         $db = new DB_Sql;
 
-        if($number > 0) {
+        if ($number > 0) {
 
             $db->query("SELECT DATE_FORMAT(betalingsdato, '%d') AS d, DATE_FORMAT(betalingsdato, '%m') AS m, DATE_FORMAT(betalingsdato, '%Y') AS y
                 FROM langtkursus_tilmelding_rate WHERE langtkursus_tilmelding_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT 1");
-            if($db->nextRecord()) {
+            if ($db->nextRecord()) {
                 $m = $db->f("m");
                 $d = $db->f("d");
                 $y = $db->f("y");
@@ -798,7 +798,7 @@ class VIH_Model_LangtKursus_Tilmelding
             }
         }
 
-        if($number < 0) {
+        if ($number < 0) {
             $number *= -1;
             $db->query("DELETE FROM langtkursus_tilmelding_rate WHERE langtkursus_tilmelding_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT ". $number);
         }
@@ -828,7 +828,7 @@ class VIH_Model_LangtKursus_Tilmelding
     /*
     function getBetalt($calculate = false) {
         die('skal skrives om');
-        if($calcutate == true || $this->betalt === false) {
+        if ($calcutate == true || $this->betalt === false) {
 
             $betalt = 0;
             $historik = new TilmeldingHistorik($this);
@@ -848,8 +848,8 @@ class VIH_Model_LangtKursus_Tilmelding
         $forfalden = 0;
         $rater_samlet = $this->kursus->get("depositum");
 
-        if($this->get("date_created") < date("Y-m-d", time() - (60 * 60 * 24 * 14))) { // 14 dage
-            if($rater_samlet > $betalt) {
+        if ($this->get("date_created") < date("Y-m-d", time() - (60 * 60 * 24 * 14))) { // 14 dage
+            if ($rater_samlet > $betalt) {
                 $forfalden += $rater_samlet - $betalt;
             }
         }
@@ -857,8 +857,8 @@ class VIH_Model_LangtKursus_Tilmelding
         $rater = $this->getRater();
         for ($i = 0, $max = count($rater); $i < $max; $i++) {
             $rater_samlet += $rater[$i]["beloeb"];
-            if($rater[$i]["betalingsdato"] < date("Y-m-d")) {
-                if($rater_samlet > $betalt) {
+            if ($rater[$i]["betalingsdato"] < date("Y-m-d")) {
+                if ($rater_samlet > $betalt) {
                     $forfalden += $rater_samlet - $betalt;
                 }
             }

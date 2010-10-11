@@ -19,7 +19,7 @@ $kernel = new VIH_Intraface_Kernel;
 $kernel->intranet = new VIH_Intraface_Intranet(0);
 
 $filehandler = Ilib_Filehandler::factory($kernel, $query_parts[2]);
-if(!is_object($filehandler) || $filehandler->getId() == 0) {
+if (!is_object($filehandler) || $filehandler->getId() == 0) {
     trigger_error('Invalid image: '.$_SERVER['QUERY_STRING'], E_USER_WARNING);
     exit;
 }

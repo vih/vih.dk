@@ -185,7 +185,7 @@ class VIH_Model_KortKursus
             $save[] = $key . " = '".$value."'";
         }
 
-        if($this->id > 0) {
+        if ($this->id > 0) {
             $sql_type = "UPDATE ";
             $sql_end = " WHERE id = ". $this->id;
         } else {

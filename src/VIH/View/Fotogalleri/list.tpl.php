@@ -4,9 +4,9 @@ $i = 0;
 <div class="fotogalleri">
 <?php foreach($photos AS $photo): ?>
     <?php
-    if($i >= 15) break;
+    if ($i >= 15) break;
     /*
-    if($i == 5) {
+    if ($i == 5) {
         echo '<span style="width:'.$photo['instance']['width'].'; height:'.$photo['instance']['height'].'">Tekst</span>';
     }
     */

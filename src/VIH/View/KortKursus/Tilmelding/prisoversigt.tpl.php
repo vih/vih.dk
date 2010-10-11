@@ -5,13 +5,13 @@
 		<th>Samlet kursuspris</th>
 		<td><?php e((float)$tilmelding->get('pris_kursuspris')); ?></td>
 	</tr>
-	<?php if($tilmelding->get('pris_forsikring') > 0): ?>
+	<?php if ($tilmelding->get('pris_forsikring') > 0): ?>
 		<tr>
 			<th>Afbestillingsforsikring</th>
 			<td>+ <?php e($tilmelding->get('pris_forsikring')); ?></td>
 		</tr>
 	<?php endif; ?>
-	<?php if($tilmelding->get('rabat') > 0): ?>
+	<?php if ($tilmelding->get('rabat') > 0): ?>
 		<tr>
 			<th>Rabat</th>
 			<td>- <?php e($tilmelding->get('rabat')); ?></td>

@@ -43,12 +43,12 @@ class VIH_Controller_MaterialeBestilling_Index extends k_Component
             if (!$bestilling->save($this->body())) {
                 throw new Exception('Det gik ikke ret godt. Vores webmaster skammer sig sikkert.');
             }
-            if(defined('EMAIL_STATUS') && EMAIL_STATUS == 'online') {
+            if (defined('EMAIL_STATUS') && EMAIL_STATUS == 'online') {
                 if (Validate::email($this->body('email')) AND trim($this->body('email')) != '') {
                     $error = '';
-                    if(!defined('VIH_KONTAKTANSVARLIG_EMAIL') || VIH_KONTAKTANSVARLIG_EMAIL == '') {
+                    if (!defined('VIH_KONTAKTANSVARLIG_EMAIL') || VIH_KONTAKTANSVARLIG_EMAIL == '') {
                         throw new Exception('Konstanten VIH_KONTAKTANSVARLIG_EMAIL er ikke sat eller udfyldt');
-                    } elseif(trim($this->body('besked')) != '') {
+                    } elseif (trim($this->body('besked')) != '') {
                         $body = "Besked sendt i forbindelse med bestilling af materiale:\n\n".$this->body('besked')."\n\n Sendt af ".$this->body('navn')."\n\nSend gerne videre til fagansvarlig lærer.";
                         $mailer = new VIH_Email;
                         $mailer->setSubject('Fra hjemmesiden');

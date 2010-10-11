@@ -11,7 +11,7 @@ class VIH_AppendFile extends Ilib_Filehandler_AppendFile
         $this->registerBelongTo(5, 'langtkursus_fag');
         $this->registerBelongTo(6, 'fotogalleri');
 
-        if(!in_array($belong_to, $this->belong_to_types)) {
+        if (!in_array($belong_to, $this->belong_to_types)) {
             throw new Exception("AppendFile->__construct unknown type");
         }
 

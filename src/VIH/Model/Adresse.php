@@ -1,6 +1,6 @@
 <?php
 /**
- * Denne klasse bruges til navne og adresser på alle tilmeldinger.
+ * Denne klasse bruges til navne og adresser pï¿½ alle tilmeldinger.
  *
  * @package Tilmelding
  * @author Lars Olesen <lars@legestue.net>
@@ -59,31 +59,31 @@ class VIH_Model_Adresse
         $error = array();
         /*
         $validate = new Validate;
-        if(!$validate->string($input['navn'], array('min_length' => 1))) $error[] = "navn";
-        if(isset($input['adresse']) && $input['adresse'] != "") {
-            if(!$validate->string($input['adresse'], array('min_length' => 1))) $error[] = "adresse";
+        if (!$validate->string($input['navn'], array('min_length' => 1))) $error[] = "navn";
+        if (isset($input['adresse']) && $input['adresse'] != "") {
+            if (!$validate->string($input['adresse'], array('min_length' => 1))) $error[] = "adresse";
         }
-        if(isset($input['postnr']) && $input['postnr'] != "") {
-            if(!$validate->number($input['postnr'], array('min' => 100))) $error[] = "postnr";
+        if (isset($input['postnr']) && $input['postnr'] != "") {
+            if (!$validate->number($input['postnr'], array('min' => 100))) $error[] = "postnr";
         }
-        if(isset($input['postby']) && $input['postby'] != "") {
-            if(!$validate->string($input['postby'], array('min_length' => 1))) $error[] = "postby";
+        if (isset($input['postby']) && $input['postby'] != "") {
+            if (!$validate->string($input['postby'], array('min_length' => 1))) $error[] = "postby";
         }
 
-        if(isset($input['email']) && $input['email'] != "") {
-            if(!$validate->email($input['email'])) $error[] = "email";
+        if (isset($input['email']) && $input['email'] != "") {
+            if (!$validate->email($input['email'])) $error[] = "email";
         }
-        if(isset($input['arbejdstelefon']) && $input['arbejdstelefon'] != "") {
-            if(!$validate->string($input['arbejdstelefon'], array('min_length' => 8))) $error[] = "arbejdstelefon";
+        if (isset($input['arbejdstelefon']) && $input['arbejdstelefon'] != "") {
+            if (!$validate->string($input['arbejdstelefon'], array('min_length' => 8))) $error[] = "arbejdstelefon";
         }
-        if(isset($input['telefonnummer']) && $input['telefonnummer'] != "") {
-            if(!$validate->string($input['telefonnummer'], array('min_length' => 8))) $error[] = "telefon";
+        if (isset($input['telefonnummer']) && $input['telefonnummer'] != "") {
+            if (!$validate->string($input['telefonnummer'], array('min_length' => 8))) $error[] = "telefon";
         }
-        if(isset($input['mobil']) && $input['mobil'] != "") {
-            if(!$validate->string($input['mobil'], array('min_length' => 8))) $error[] = "mobil";
+        if (isset($input['mobil']) && $input['mobil'] != "") {
+            if (!$validate->string($input['mobil'], array('min_length' => 8))) $error[] = "mobil";
         }
         */
-        if(count($error) > 0) {
+        if (count($error) > 0) {
             //print_r($error);
             return false;
         } else {
@@ -93,8 +93,8 @@ class VIH_Model_Adresse
 
     /**
      *
-     * Der må i denne funktion ikke bruges array_map() til at gennemløbe
-     * værdierne, da den ødelægger arrayet til andet brug.
+     * Der mï¿½ i denne funktion ikke bruges array_map() til at gennemlï¿½be
+     * vï¿½rdierne, da den ï¿½delï¿½gger arrayet til andet brug.
      * Sune: Nu har jeg alligevel benyttet array_map, for jeg kan ikke se hvor man ikke kan det.
      */
     function save($input)

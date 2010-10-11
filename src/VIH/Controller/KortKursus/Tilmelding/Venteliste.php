@@ -60,7 +60,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
 
         $venteliste = new VIH_Model_Venteliste(1, $this->context->name());
 
-        if(intval($venteliste->get("kursus_id")) == 0) {
+        if (intval($venteliste->get("kursus_id")) == 0) {
             throw new Exception("Ugyldigt kursus");
         }
 
@@ -78,7 +78,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
         if ($this->getForm()->validate()) {
 
             $venteliste = new VIH_Model_Venteliste(1, $this->context->name());
-            if(intval($venteliste->get("kursus_id")) == 0) {
+            if (intval($venteliste->get("kursus_id")) == 0) {
                 die("Ugyldigt kursus");
             }
 
@@ -86,10 +86,10 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
 
                 $number = $venteliste->getNumber();
 
-                if(defined('EMAIL_STATUS') && EMAIL_STATUS == "online") {
+                if (defined('EMAIL_STATUS') && EMAIL_STATUS == "online") {
 
                     $antal_personer = $venteliste->get("antal")." person";
-                    if($venteliste->get("antal") > 1) {
+                    if ($venteliste->get("antal") > 1) {
                         $antal_personer .= "er";
                     }
 

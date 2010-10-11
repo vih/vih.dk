@@ -73,18 +73,18 @@ class VIH_Model_Betaling
 
     function load()
     {
-        if($this->id == 0) {
+        if ($this->id == 0) {
             return 0;
         }
 
         $db = new DB_Sql;
         $db->query("SELECT *, DATE_FORMAT(date_created, '%d-%m-%Y') AS date_created_dk FROM betaling WHERE id = ".$this->id);
-        if(!$db->nextRecord()) {
+        if (!$db->nextRecord()) {
             $this->id = 0;
             return 0;
         }
 
-        if($this->id < 1000) {
+        if ($this->id < 1000) {
             throw new Exception("Id (".$this->id.") på betaling er mindre end 1000. Det må det ikke være da betaling id på quickpay skal være på mindst 4 tegn.");
         }
 
@@ -114,10 +114,10 @@ class VIH_Model_Betaling
         $error = array();
         $validate = new Validate;
 
-        if(!$validate->number($input['type'], array('min' => 1 ))) $error[] = "type";
-        //if(!$validate->number($input['amount'])) $error[] = "amount";
+        if (!$validate->number($input['type'], array('min' => 1 ))) $error[] = "type";
+        //if (!$validate->number($input['amount'])) $error[] = "amount";
 
-        if(count($error) > 0) {
+        if (count($error) > 0) {
             //print_r($error);
             return false;
         } else {
@@ -146,7 +146,7 @@ class VIH_Model_Betaling
         $db->query("SELECT id FROM betaling ORDER BY id DESC LIMIT 1");
         $db->nextRecord();
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             $sql_type = "INSERT INTO betaling ";
             $sql_end = ", date_created = NOW()";
             if ($db->f('id') < 1000) {
@@ -166,7 +166,7 @@ class VIH_Model_Betaling
             amount = '".$input['amount']."'"
             .$sql_end);
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             $this->id = $db->insertedId();
         }
 
@@ -182,15 +182,15 @@ class VIH_Model_Betaling
             trigger_error('Ulovlig status', E_USER_ERROR);
         }
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             return false;
         }
 
-        if($status <= $this->get("status") AND $status != -1) { // -1 er ved  invalid, det m� den gerne s�ttes til :D
+        if ($status <= $this->get("status") AND $status != -1) { // -1 er ved  invalid, det m� den gerne s�ttes til :D
             throw new Exception("Du kan ikke sætte status lavere eller samme som den allerede er"); // Hvis man kan det, kan man fors�ge at godkende dankortbetaling 2 gange ved quickpay.
         }
 
-        if($status == 2) { // dankort og approved
+        if ($status == 2) { // dankort og approved
 
             switch($this->get('type')) {
                 case 1: // quickpay
@@ -205,14 +205,14 @@ class VIH_Model_Betaling
                     $betaling_id = $this->id;
                     break;
             }
-            if(!isset($historik_type)) {
+            if (!isset($historik_type)) {
                 trigger_error("Ugyldig type i Betaling->setStatus", E_USER_ERROR);
             }
 
 
 
             $historik = new VIH_Model_Historik($this->belong_to, $this->belong_to_id);
-            if(!$historik->save(array('type' => $historik_type, 'comment' => $historik_comment, 'betaling_id' => $betaling_id))) {
+            if (!$historik->save(array('type' => $historik_type, 'comment' => $historik_comment, 'betaling_id' => $betaling_id))) {
                 trigger_error("Det lykkedes ikke at gemme en historik ved approval af betaling i Betaling->setStatus", E_USER_ERROR);
             }
 
@@ -226,11 +226,11 @@ class VIH_Model_Betaling
     function setTransactionnumber($number)
     {
 
-        if($this->id == 0) {
+        if ($this->id == 0) {
             return false;
         }
 
-        if((int)$number == 0) {
+        if ((int)$number == 0) {
             trigger_error("Transactionsnummer er ikke et gyldigt nummer.", E_USER_ERROR);
         }
 
@@ -245,7 +245,7 @@ class VIH_Model_Betaling
             return 0;
         }
 
-        if($this->get('type') == 1) { // quickpay kan ikke slette! Hvis dette laves om skal der i stedet laves tjek i Historik->delete
+        if ($this->get('type') == 1) { // quickpay kan ikke slette! Hvis dette laves om skal der i stedet laves tjek i Historik->delete
             return 0;
         }
         $db = new DB_Sql;
@@ -279,9 +279,9 @@ class VIH_Model_Betaling
         $this->value['total_approved'] = 0;
         $this->value['total_completed'] = 0;
 
-        if($show == "not_approved") {
+        if ($show == "not_approved") {
             $sql = "AND status = 1 AND belong_to <> 3";
-        } elseif($show == "elevforeningen") {
+        } elseif ($show == "elevforeningen") {
             $sql = "AND belong_to = 3";
         } else {
             $sql = "AND belong_to <> 3";
@@ -298,9 +298,9 @@ class VIH_Model_Betaling
         $db->query("SELECT *  FROM betaling WHERE ".$howmany_sql ." status > 0 AND status < 4 AND active = 1 ".$sql." ORDER BY date_created");
         while($db->nextRecord()) {
 
-            if($db->f('status') == 1) { // completed
+            if ($db->f('status') == 1) { // completed
                 $this->value['total_completed'] += $db->f('amount');
-            } elseif($db->f('status') == 2) { // approved
+            } elseif ($db->f('status') == 2) { // approved
                 $this->value['total_approved'] += $db->f('amount');
             }
             $betalinger[] = new VIH_Model_Betaling($db->f('id'));
