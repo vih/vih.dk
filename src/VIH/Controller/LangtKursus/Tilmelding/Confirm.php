@@ -11,19 +11,6 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
         $this->doctrine = $doctrine;
     }
 
-    private function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-        $this->form = new HTML_QuickForm('confirm', 'POST', $this->url());
-        $this->form->addElement('checkbox', 'confirm', 'Accepterer du betingelserne?', 'Ja, jeg accepterer betingelserne', 'id="confirm_conditions"');
-        $this->form->addElement('submit', null, 'Send');
-
-        $this->form->addRule('confirm', 'Du skal acceptere betingelserne', 'required');
-        return $this->form;
-    }
-
     public function renderHtml()
     {
         $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
@@ -82,5 +69,18 @@ class VIH_Controller_LangtKursus_Tilmelding_Confirm extends k_Component
         }
 
         return $this->render();
+    }
+
+    private function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+        $this->form = new HTML_QuickForm('confirm', 'POST', $this->url());
+        $this->form->addElement('checkbox', 'confirm', 'Accepterer du betalingsbetingelserne?', 'Ja, jeg accepterer betingelserne', 'id="confirm_conditions"');
+        $this->form->addElement('submit', null, 'Send');
+
+        $this->form->addRule('confirm', 'Du skal acceptere betingelserne', 'required');
+        return $this->form;
     }
 }
