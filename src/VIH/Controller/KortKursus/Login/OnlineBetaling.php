@@ -8,7 +8,7 @@
  */
 class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
 {
-    private $form;
+    protected $form;
     protected $extra_text;
     protected $template;
 

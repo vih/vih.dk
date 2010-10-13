@@ -10,8 +10,9 @@
  */
 class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 {
-    private $form;
+    protected $form;
     protected $template;
+    protected $extra_text = '';
 
     function __construct(k_TemplateFactory $template)
     {
@@ -23,19 +24,16 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         $tilmelding = VIH_Model_LangtKursus_Tilmelding::factory($this->context->name());
         $tilmelding->loadBetaling();
 
-        $extra_text = '';
         if (is_object($tilmelding->betalingsobject) AND count($tilmelding->betalingsobject->getList('not_approved')) > 0) {
-            $extra_text = '<p id="notice"><strong>Advarsel</strong>: Vær opmærksom på, at du har afventende betalinger på '.$tilmelding->get('betalt_not_approved').' kroner. Du skal kun bruge formularen, hvis du er helt sikker på, at du skal betale beløbene nedenunder.</p>';
+            $this->extra_text .= '<p id="notice"><strong>Advarsel</strong>: Vær opmærksom på, at du har afventende betalinger på '.$tilmelding->get('betalt_not_approved').' kroner. Du skal kun bruge formularen, hvis du er helt sikker på, at du skal betale beløbene nedenunder.</p>';
         }
-
-        $error = "";
 
         $this->document->setTitle('Betaling med dankort');
 
         $data = array(
             'tilmelding' => $tilmelding,
             'course_type' => 'lange',
-            'extra_text' => $extra_text
+            'extra_text' => $this->extra_text
         );
 
         $tpl = $this->template->create('Kundelogin/onlinebetaling');
@@ -112,7 +110,7 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 
                 } else {
                     // An error occured with the authorize
-                    $error = "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan prøve igen.</strong></p>";
+                    $this->extra_text .= "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan prøve igen.</strong></p>";
                     /*
                     echo 'Authorization: ' . $qpstatText["" . $eval['qpstat'] . ""] . '<br />';
                     echo "<pre>";
