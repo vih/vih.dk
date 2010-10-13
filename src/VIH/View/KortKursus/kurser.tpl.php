@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-    <?php $aarskrevet = ''; foreach($kurser AS $kursus): ?>
+    <?php $aarskrevet = ''; foreach ($kurser AS $kursus): ?>
 
         <?php
         if ($kursus->get('aar') != $aarskrevet) {

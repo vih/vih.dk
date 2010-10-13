@@ -93,7 +93,7 @@ class VIH_FileHandler
 
     private function getInstanceType($type)
     {
-        for($i = 0, $max = count($this->instance_type); $i < $max; $i++) {
+        for ($i = 0, $max = count($this->instance_type); $i < $max; $i++) {
             if (isset($this->instance_type[$i]['name']) && $this->instance_type[$i]['name'] == $type) {
                 return $this->instance_type[$i];
                 exit;
@@ -112,7 +112,7 @@ class VIH_FileHandler
         $type_prop = $this->getInstanceType($type);
         if ($type_prop === false) {
             return 0;
-            trigger_error("Ugyldig type i FileHandler->loadInstance", E_USER_ERROR);
+            throw new Exception("Ugyldig type i FileHandler->loadInstance");
         }
 
         $db = new DB_Sql;
@@ -122,7 +122,7 @@ class VIH_FileHandler
 
             $db->query("SELECT * FROM file_handler_instance WHERE active = 1 AND id = ".$id);
             if (!$db->nextRecord()) {
-                return 0; //trigger_error("Kunne ikke hente instance i FileHandler->loadInstance", E_USER_ERROR);
+                return 0; //throw new Exception("Kunne ikke hente instance i FileHandler->loadInstance");
             }
         }
 
@@ -149,7 +149,7 @@ class VIH_FileHandler
         $type_prop = $this->getInstanceType($type);
         if ($type_prop === false) {
             return 0;
-            trigger_error("Ugyldig type i FileHandler->createInstance", E_USER_ERROR);
+            throw new Exception("Ugyldig type i FileHandler->createInstance");
         }
 
         $mime_type = $this->get('file_type');
@@ -157,7 +157,7 @@ class VIH_FileHandler
 
         if (!in_array($extension, $this->allowed_transform_image)) {
             return 0;
-            trigger_error("Den type fil kan ikke manipuleres i FileHandler->createInstance", E_USER_ERROR);
+            throw new Exception("Den type fil kan ikke manipuleres i FileHandler->createInstance");
         }
         $original_file_path = $this->get('original_file_path');
         if (!file_exists($original_file_path)) {
@@ -170,7 +170,7 @@ class VIH_FileHandler
 
         if ($error !== true) {
             return 0;
-            trigger_error("Kunne ikke åbne fil i FileHandler->createInstance. ".$error->getMessage(), E_USER_ERROR);
+            throw new Exception("Kunne ikke åbne fil i FileHandler->createInstance. ".$error->getMessage());
         }
 
         // print('filehandler type_key'.$type.$type_prop['type_key']);
@@ -184,12 +184,12 @@ class VIH_FileHandler
                 $image->scaleByX($type_prop['max_width']);
             }
             if ($image->crop($type_prop['max_width'], $type_prop['max_height']) !== true){
-                trigger_error("Der opstod en fejl under formatering (crop) af billedet i FileHandler->createInstance", E_USER_ERROR);
+                throw new Exception("Der opstod en fejl under formatering (crop) af billedet i FileHandler->createInstance");
             }
         } else {
 
             if ($image->fit($type_prop['max_width'], $type_prop['max_height']) !== true) {
-                trigger_error("Der opstod en fejl under formatering (fit) af billedet i FileHandler->createInstance", E_USER_ERROR);
+                throw new Exception("Der opstod en fejl under formatering (fit) af billedet i FileHandler->createInstance");
             }
 
             // skal tage h�jde for b�de h�jde og bredde max
@@ -203,7 +203,7 @@ class VIH_FileHandler
             }
 
             if ($image->crop($type_prop['max_width'], $type_prop['max_height']) !== true){
-                trigger_error("Der opstod en fejl under formatering (crop) af billedet i FileHandler->createInstance", E_USER_ERROR);
+                throw new Exception("Der opstod en fejl under formatering (crop) af billedet i FileHandler->createInstance");
             }
             */
 
@@ -213,7 +213,7 @@ class VIH_FileHandler
         $server_file_name = $instance_id.'.'.$extension;
 
         if ($image->save($this->instance_path.$server_file_name) !== true) {
-            trigger_error("Kunne ikke gemme billedet i FileHandler->createInstance", E_USER_ERROR);
+            throw new Exception("Kunne ikke gemme billedet i FileHandler->createInstance");
         }
 
         $size = filesize($this->instance_path.$server_file_name);
@@ -231,7 +231,7 @@ class VIH_FileHandler
     function updateInstance($input, $id = 0)
     {
         if (!is_array($input)) {
-            trigger_error("Input skal være et array i FileHandler->updateInstance", E_USER_ERROR);
+            throw new Exception("Input skal være et array i FileHandler->updateInstance");
         }
 
         $input = array_map("mysql_escape_string", $input);
@@ -247,7 +247,7 @@ class VIH_FileHandler
         if (isset($input['type'])) {
             $type_prop = $this->getInstanceType($input['type']);
             if ($type_prop === false) {
-                trigger_error("Ugyldig type i FileHandler->updateInstance", E_USER_ERROR);
+                throw new Exception("Ugyldig type i FileHandler->updateInstance");
             }
             $sql[] = 'type_key = '.$type_prop['type_key'];
         }
@@ -344,7 +344,7 @@ class VIH_FileHandler
         $db = new DB_Sql;
 
         if (!is_array($input)) {
-            trigger_error("Input skal være et array i FileHandler->updateInstance", E_USER_ERROR);
+            throw new Exception("Input skal være et array i FileHandler->updateInstance");
         }
 
         $input = array_map("mysql_escape_string", $input);
@@ -374,7 +374,7 @@ class VIH_FileHandler
             $mime_type = $this->_getMimeType($input['file_type'], 'mime_type');
             $sql[] = 'file_type_key = "'.$mime_type['key'].'"';
         } elseif ($this->id == 0) {
-            trigger_error('you need to provide a file type the first time you save an image', E_USER_ERROR);
+            throw new Exception('you need to provide a file type the first time you save an image');
             exit;
         }
 
@@ -444,7 +444,7 @@ class VIH_FileHandler
 
         if ($from == 'key') {
             if (!is_integer($key)) {
-                trigger_error("Når der skal findes mimetype fra key (default), skal første parameter til FileHandler->_getMimeType være en integer", E_USER_ERROR);
+                throw new Exception("Når der skal findes mimetype fra key (default), skal første parameter til FileHandler->_getMimeType være en integer");
             }
             return $this->file_types[$key];
         }

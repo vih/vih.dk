@@ -13,17 +13,6 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
         $this->doctrine = $doctrine;
     }
 
-    function getPeriods()
-    {
-        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
-        return Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($tilmelding->getKursus()->getId());
-    }
-
-    function getRegistration()
-    {
-        return new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
-    }
-
     function renderHtml()
     {
         $this->document->setTitle('Tilmelding: Vælg fag');
@@ -81,6 +70,17 @@ class VIH_Controller_LangtKursus_Tilmelding_Fag extends k_Component
         //$registration->save();
 
         return new k_SeeOther($this->getRedirectUrl());
+    }
+
+    function getPeriods()
+    {
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
+        return Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($tilmelding->getKursus()->getId());
+    }
+
+    function getRegistration()
+    {
+        return new VIH_Model_LangtKursus_OnlineTilmelding($this->context->name());
     }
 
     function getRedirectUrl()

@@ -69,7 +69,7 @@ class VIH_News
         $this->db = MDB2::singleton(DB_DSN);
         // $this->db->loadModule('Extended');
         if (PEAR::isError($this->db)) {
-            trigger_error($db->getMessage(), E_USER_ERROR);
+            throw new Exception($db->getMessage());
         }
         if ($this->id > 0) {
             $this->load();
@@ -192,7 +192,7 @@ class VIH_News
         $res = $this->db->query($sql);
 
         if (PEAR::isError($res)) {
-            trigger_error($res->getMessage(), E_USER_WARNING);
+            throw new Exception($res->getMessage(), E_USER_WARNING);
         }
 
         if ($this->id == 0) {

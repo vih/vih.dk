@@ -30,7 +30,7 @@
         <?php endif; ?>
     </tr>
 
-    <?php foreach($deltagere AS $deltager): ?>
+    <?php foreach ($deltagere AS $deltager): ?>
         <tr>
             <?php if (!empty($vis_tilmelding) AND $vis_tilmelding == 'ja'): ?>
             <td><a href="tilmelding.php?id=<?php echo $deltager->tilmelding->get('id'); ?>"><?php echo $deltager->tilmelding->get('id'); ?></a></td>

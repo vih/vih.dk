@@ -2,7 +2,7 @@
 $i = 0;
 ?>
 <div class="fotogalleri">
-<?php foreach($photos AS $photo): ?>
+<?php foreach ($photos AS $photo): ?>
     <?php
     if ($i >= 15) break;
     /*

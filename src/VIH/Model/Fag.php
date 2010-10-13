@@ -204,7 +204,7 @@ class VIH_Model_Fag
             die('Fagene kunne ikke fjernes');
         }
         $db = new DB_Sql;
-        foreach($underviserlist AS $key => $value) {
+        foreach ($underviserlist AS $key => $value) {
             $sql = "INSERT INTO ansat_x_fag (fag_id, ansat_id) VALUES (".$this->id.", " . $key . ")";
             $db->query($sql);
         }

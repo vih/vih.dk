@@ -6,7 +6,9 @@ class VIH_Model_LangtKursus_OnlineTilmelding extends VIH_Model_LangtKursus_Tilme
     /**
      * Constructor
      *
-     * @param string $session_id Et unikt genkendelsesid.
+     * @param string $session_id A unique id
+     *
+     * @return void
      */
     public function __construct($session_id)
     {

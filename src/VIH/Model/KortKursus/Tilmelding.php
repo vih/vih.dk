@@ -288,7 +288,7 @@ class VIH_Model_KortKursus_Tilmelding
     {
         $status_key = array_search($status, $this->status);
         if ($status_key === false) {
-            trigger_error("Ugyldig status");
+            throw new Exception("Ugyldig status");
         }
 
         if ($this->id == 0) {
@@ -327,7 +327,7 @@ class VIH_Model_KortKursus_Tilmelding
     {
         // b�r s�rge for at der er en ordre loadet
         if (!$this->id) {
-            trigger_error('Tilmelding::getDeltagere(): Der er ikke loadet noget ordre');
+            throw new Exception('Tilmelding::getDeltagere(): Der er ikke loadet noget ordre');
         }
 
         $db = new DB_Sql;
@@ -415,7 +415,7 @@ class VIH_Model_KortKursus_Tilmelding
 
         // opdaterer status for tilmeldingen
         if (!$this->_updateStatus()) {
-            trigger_error('Kunne ikke opdatere status for tilmeldingen', E_USER_ERROR);
+            throw new Exception('Kunne ikke opdatere status for tilmeldingen');
         }
 
         return true;

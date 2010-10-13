@@ -4,7 +4,7 @@ $list = '';
 $test = '';
 if (!empty($fag) AND is_array($fag)):
 
-foreach($fag as $f):
+foreach ($fag as $f):
 
     if (!$f->get('published')) {
         continue;

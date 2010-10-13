@@ -89,7 +89,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
                     $deltagere = $tilmelding->getDeltagere();
 
                     if (count($deltagere) == 0) {
-                        for($i = 1; $i <= $this->body('antal_deltagere'); $i++) {
+                        for ($i = 1; $i <= $this->body('antal_deltagere'); $i++) {
                             $deltager = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding);
                             $deltager->add();
                         }

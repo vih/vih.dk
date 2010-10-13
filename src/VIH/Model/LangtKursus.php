@@ -420,7 +420,7 @@ class VIH_Model_LangtKursus
         $db = new DB_Sql;
         $db->query("SELECT id FROM langtkursus_tilmelding
             WHERE kursus_id = " . $this->id . "
-            AND active = 1");
+            AND active = 1 AND status_key > 1");
         $list = array();
         while($db->nextRecord()) {
             $list[$db->f('id')] = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
@@ -434,7 +434,7 @@ class VIH_Model_LangtKursus
         $db = new DB_Sql;
         $db->query("SELECT id FROM langtkursus_tilmelding
             WHERE kursus_id = " . $this->id . "
-            AND active = 1");
+            AND active = 1 AND status_key > 1");
         $list = array();
         while($db->nextRecord()) {
             $list[$db->f('id')] = new VIH_Model_LangtKursus_Tilmelding($db->f('id'));
@@ -459,12 +459,12 @@ class VIH_Model_LangtKursus
             $db = new DB_Sql;
             $dato = new VIH_Date($foerste_rate_dato);
             if ($dato->convert2db() == false) {
-                trigger_error("Ugydlig datoformat", E_USER_ERROR);
+                throw new Exception("Ugydlig datoformat");
             }
 
             $dato_parts = explode("-", $dato->get());
 
-            for($i = 0; $i < $antal; $i++) {
+            for ($i = 0; $i < $antal; $i++) {
                 $betalingsdato = date("Y-m-d", mktime(0, 0, 0, intval($dato_parts[1])+$i, $dato_parts[2], $dato_parts[0]));
                 $db->query("INSERT INTO langtkursus_rate SET langtkursus_id = ".$this->id.", betalingsdato = \"".$betalingsdato."\"");
             }
@@ -496,7 +496,7 @@ class VIH_Model_LangtKursus
         if (is_array($rater)) {
             $db = new DB_Sql;
 
-            for($i = 0, $max = count($rater); $i < $max; $i++) {
+            for ($i = 0, $max = count($rater); $i < $max; $i++) {
                 $dato = new VIH_Date($rater[$i]["betalingsdato"]);
                 if ($dato->convert2db()) {
                     $db->query("UPDATE langtkursus_rate SET betalingsdato = \"".$dato->get()."\", beloeb = \"".intval($rater[$i]["beloeb"])."\" WHERE id = ".intval($rater[$i]["id"])." AND langtkursus_id = ".$this->get("id"));
@@ -516,10 +516,11 @@ class VIH_Model_LangtKursus
 
             $db->query("SELECT DATE_FORMAT(betalingsdato, '%d') AS d, DATE_FORMAT(betalingsdato, '%m') AS m, DATE_FORMAT(betalingsdato, '%Y') AS y
                 FROM langtkursus_rate WHERE langtkursus_id = ".$this->id." ORDER BY betalingsdato DESC LIMIT 1");
-            $db->nextRecord() OR trigger_error("Kan ikke tilføje er rate, hvis der ikke eksistere nogen", FATAL);
+            if (!$db->nextRecord()) {
+                throw new Exception("Kan ikke tilføje er rate, hvis der ikke eksistere nogen");
+            }
 
-
-            for($i = 0; $i < $number; $i++) {
+            for ($i = 0; $i < $number; $i++) {
                 $betalingsdato = date("Y-m-d", mktime(0, 0, 0, $db->f("m")+$i+1, $db->f("d"), $db->f("y")));
                 $db->query("INSERT INTO langtkursus_rate SET langtkursus_id = ".$this->id.", betalingsdato = \"".$betalingsdato."\"");
             }

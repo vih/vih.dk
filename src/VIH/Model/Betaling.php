@@ -46,13 +46,13 @@ class VIH_Model_Betaling
         } elseif (count($arg) == 2) {
             $belong_to_key = array_search($arg[0], $this->allowed_belong_to);
             if ($belong_to_key === false) {
-                trigger_error('Betaling::Betaling - Ulovlig belong_to', E_USER_ERROR);
+                throw new Exception('Betaling::Betaling - Ulovlig belong_to');
             }
             $this->belong_to_key = (int)$belong_to_key;
             $this->belong_to = $arg[0];
             $this->belong_to_id = (int)$arg[1];
         } else {
-            trigger_error('Betaling::Betaling - Et forkert antal argumenter', E_USER_ERROR);
+            throw new Exception('Betaling::Betaling - Et forkert antal argumenter');
         }
 
         if ($this->id > 0) {
@@ -133,7 +133,7 @@ class VIH_Model_Betaling
 
         $type = array_search($input['type'], $this->allowed_type);
         if ($type === false) {
-            trigger_error('Ulovlig type', E_USER_ERROR);
+            throw new Exception('Ulovlig type');
         }
         $input['type'] = $type;
 
@@ -179,7 +179,7 @@ class VIH_Model_Betaling
     {
         $status = array_search($status, $this->allowed_status);
         if ($status === false) {
-            trigger_error('Ulovlig status', E_USER_ERROR);
+            throw new Exception('Ulovlig status');
         }
 
         if ($this->id == 0) {
@@ -206,14 +206,22 @@ class VIH_Model_Betaling
                     break;
             }
             if (!isset($historik_type)) {
+<<<<<<< HEAD:src/VIH/Model/Betaling.php
                 trigger_error("Ugyldig type i Betaling->setStatus", E_USER_ERROR);
+=======
+                throw new Exception("Ugyldig type i Betaling->setStatus");
+>>>>>>> a0950209ddcb07df2c8624e904cc61a9513f61ba:src/VIH/Model/Betaling.php
             }
 
 
 
             $historik = new VIH_Model_Historik($this->belong_to, $this->belong_to_id);
             if (!$historik->save(array('type' => $historik_type, 'comment' => $historik_comment, 'betaling_id' => $betaling_id))) {
+<<<<<<< HEAD:src/VIH/Model/Betaling.php
                 trigger_error("Det lykkedes ikke at gemme en historik ved approval af betaling i Betaling->setStatus", E_USER_ERROR);
+=======
+                throw new Exception("Det lykkedes ikke at gemme en historik ved approval af betaling i Betaling->setStatus");
+>>>>>>> a0950209ddcb07df2c8624e904cc61a9513f61ba:src/VIH/Model/Betaling.php
             }
 
         }
@@ -231,7 +239,11 @@ class VIH_Model_Betaling
         }
 
         if ((int)$number == 0) {
+<<<<<<< HEAD:src/VIH/Model/Betaling.php
             trigger_error("Transactionsnummer er ikke et gyldigt nummer.", E_USER_ERROR);
+=======
+            throw new Exception("Transactionsnummer er ikke et gyldigt nummer.");
+>>>>>>> a0950209ddcb07df2c8624e904cc61a9513f61ba:src/VIH/Model/Betaling.php
         }
 
         $db = new DB_Sql;
