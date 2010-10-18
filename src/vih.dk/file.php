@@ -20,12 +20,7 @@ $kernel->intranet = new VIH_Intraface_Intranet(0);
 
 $filehandler = Ilib_Filehandler::factory($kernel, $query_parts[2]);
 if (!is_object($filehandler) || $filehandler->getId() == 0) {
-<<<<<<< HEAD:src/vih.dk/file.php
-    trigger_error('Invalid image: '.$_SERVER['QUERY_STRING'], E_USER_WARNING);
-=======
     throw new Exception('Invalid image: '.$_SERVER['QUERY_STRING'], E_USER_WARNING);
->>>>>>> a0950209ddcb07df2c8624e904cc61a9513f61ba:src/vih.dk/file.php
-    exit;
 }
 
 settype($query_parts[3], 'string');

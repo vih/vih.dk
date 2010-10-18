@@ -6,17 +6,12 @@
  */
 class VIH_Model_MaterialeBestilling
 {
-
     private $id;
 
     function __construct($id = 0)
     {
         if (!is_numeric($id)) {
-<<<<<<< HEAD:src/VIH/Model/MaterialeBestilling.php
-            trigger_error('MaterialeBestilling::MaterialeBestilling $id skal v�re numerisk', E_USER_ERROR);
-=======
             throw new Exception('MaterialeBestilling::MaterialeBestilling $id skal v�re numerisk');
->>>>>>> a0950209ddcb07df2c8624e904cc61a9513f61ba:src/VIH/Model/MaterialeBestilling.php
         }
         $this->id = (int)$id;
     }

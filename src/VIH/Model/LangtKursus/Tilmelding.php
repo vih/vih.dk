@@ -21,10 +21,10 @@ class VIH_Model_LangtKursus_Tilmelding
         -2 => 'afbrudt ophold', // hvis opholdet afbrydes
         -1 => 'annulleret',     // annulleret under tilmeldingsproceduren
         0 => 'ikke tilmeldt',   // standardindstillingen
-        1 => 'undervejs',       // n�r man er ved at tilmelde sig
-        2 => 'reserveret',      // n�r man har bekr�ftet at man vil tilmelde sig
-        3 => 'tilmeldt',        // f�rst n�r man har betalt indmeldelsesgebyret
-        4 => 'afsluttet'        // n�r alt er blevet betalt
+        1 => 'undervejs',       // nï¿½r man er ved at tilmelde sig
+        2 => 'reserveret',      // nï¿½r man har bekrï¿½ftet at man vil tilmelde sig
+        3 => 'tilmeldt',        // fï¿½rst nï¿½r man har betalt indmeldelsesgebyret
+        4 => 'afsluttet'        // nï¿½r alt er blevet betalt
     );
 
     public $uddannelse = array(
@@ -36,9 +36,9 @@ class VIH_Model_LangtKursus_Tilmelding
     );
 
     public $betaling = array(
-        1 => 'Egne midler / forældres',
-        2 => 'Arbejdsløshedskasse',
-        3 => 'Kontanthjælp',
+        1 => 'Egne midler / forÃ¦ldres',
+        2 => 'ArbejdslÃ¸shedskasse',
+        3 => 'KontanthjÃ¦lp',
         4 => 'andet'
     );
 
@@ -82,7 +82,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Returnerer v�rdier
+     * Returnerer vï¿½rdier
      *
      * @param string $key Key to return
      *
@@ -107,7 +107,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Loader v�rdier
+     * Loader vï¿½rdier
      *
      * @return integer
      */
@@ -147,7 +147,7 @@ class VIH_Model_LangtKursus_Tilmelding
 
         if ($db->f('adresse_id') > 0) {
             $adresse = new VIH_Model_Adresse($db->f('adresse_id'));
-            // skal lige overskrives, s� den ikke t�mmer arrayet
+            // skal lige overskrives, sï¿½ den ikke tï¿½mmer arrayet
             $this->value['navn'] = $adresse->get('navn');
             $this->value['adresse'] = $adresse->get('adresse');
             $this->value['postnr'] = $adresse->get('postnr');
@@ -265,7 +265,7 @@ class VIH_Model_LangtKursus_Tilmelding
     /**
      * Bruges til at slette tilmeldinger
      *
-     * Tilmeldinger m� aldrig slettes helt fra databasen.
+     * Tilmeldinger mï¿½ aldrig slettes helt fra databasen.
      *
      * @return boolean
      */
@@ -623,7 +623,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Marker tilmelding som f�rdigbetalt hvis der ikke er noget skyldigt bel�b
+     * Marker tilmelding som fï¿½rdigbetalt hvis der ikke er noget skyldigt belï¿½b
      */
     public function _updateStatus()
     {
@@ -671,7 +671,7 @@ class VIH_Model_LangtKursus_Tilmelding
         $this->value['skyldig_tilmeldingsgebyr'] = $this->get('pris_tilmeldingsgebyr') - $this->value['betalt'];
         $this->value['skyldig'] = $this->get('pris_total') - $this->get('betalt');
 
-        $this->value['forfalden'] = 0; // denne b�r lige regnes ud
+        $this->value['forfalden'] = 0; // denne bï¿½r lige regnes ud
 
         $this->betaling_loaded = true;
 
@@ -824,72 +824,6 @@ class VIH_Model_LangtKursus_Tilmelding
         }
         return $rate_samlet - $this->get("pris_total");
     }
-<<<<<<< HEAD:src/VIH/Model/LangtKursus/Tilmelding.php
-    /*
-    function getBetalt($calculate = false) {
-        die('skal skrives om');
-        if ($calcutate == true || $this->betalt === false) {
-
-            $betalt = 0;
-            $historik = new TilmeldingHistorik($this);
-            foreach ($historik->getList() AS $b) {
-                $betalt += $b['betaling'];
-            }
-            return $betalt;
-        }
-        else {
-            return $this->betalt;
-        }
-    }
-
-    function getForfalden() {
-        die('skal skrives om');
-        $betalt = $this->getBetalt();
-        $forfalden = 0;
-        $rater_samlet = $this->kursus->get("depositum");
-
-        if ($this->get("date_created") < date("Y-m-d", time() - (60 * 60 * 24 * 14))) { // 14 dage
-            if ($rater_samlet > $betalt) {
-                $forfalden += $rater_samlet - $betalt;
-            }
-        }
-
-        $rater = $this->getRater();
-        for ($i = 0, $max = count($rater); $i < $max; $i++) {
-            $rater_samlet += $rater[$i]["beloeb"];
-            if ($rater[$i]["betalingsdato"] < date("Y-m-d")) {
-                if ($rater_samlet > $betalt) {
-                    $forfalden += $rater_samlet - $betalt;
-                }
-            }
-        }
-
-        return $forfalden;
-    }
-    */
-
-    /*
-    function afbrydOphold($uger_deltaget, $beloeb_afskrevet) {
-
-        $sql = "afbrudt_uger_deltaget = ".(int)$uger_deltaget.",
-            ugeantal = ".(int)$uger_deltaget.",
-            afbrudt_beloeb_afskrevet = ".(int)$beloeb_afskrevet.",
-            status_key = -2";
-
-        $db = new DB_sql;
-        $db->query("UPDATE langtkursus_tilmelding SET ".$sql." WHERE id = ".$this->id);
-        $this->load();
-
-        return 1;
-    }
-    */
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Email
-    ///////////////////////////////////////////////////////////////////////////////
-=======
->>>>>>> a0950209ddcb07df2c8624e904cc61a9513f61ba:src/VIH/Model/LangtKursus/Tilmelding.php
 
     function sendEmail()
     {
