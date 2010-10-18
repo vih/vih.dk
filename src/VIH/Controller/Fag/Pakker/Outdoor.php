@@ -26,7 +26,7 @@ class VIH_Controller_Fag_Pakker_Outdoor extends k_Component
 
         $data = array(
             'pakke' => 'Outdoor',
-            'beskrivelse' => 'Med udgangspunkt i områdets fantatiske natur udbyder vi flere fag indenfor outdoor, med mulighed bl.a. for fysisk træning, tekniske færdigheder, oplevelser, teamtræning m.m. Har du mod på udfordringer indenfor Outdoor, tilbyder vi fire fag, læs yderligere under linje og specialer. Fagene er Outdoor Energy, Adventure, Mental Challenge og Teambuilder.');
+            'beskrivelse' => 'Med Vejle Idrætshøjskoles unikke placering lige ud til Nørreskoven og tæt ved Vejle Fjord har vi selvfølgelig en lang række spændende og udfordrende fag på programmet inden for Outdoor-området. Er du til fysisk træning med naturen som træningsrum kan du vælge mellem træningsfagene Outdoor Energy, Adventure Race og Cykling, Marathon og Triathlon. Er du til frisk luft og oplevelser i naturen kan du endvidere vælge mellem fagene Adventure Forest, Adventure Maritim og Friluftsliv. Læs om fagene under Idrætsfag og Kompetencelinjer i menuen til højre på siden.');
 
         $tpl = $this->template->create('Fag/pakke');
         return $tpl->render($this, $data);
