@@ -49,7 +49,7 @@ class VIH_Controller_Root extends k_Component
                 array('url' => $this->url('/faciliteter'), 'navigation_name' => 'Rundvisning'),
                 array('url' => $this->url('/fotogalleri'), 'navigation_name' => 'Højdepunkter'),
                 array('url' => $this->url('/nyheder'), 'navigation_name' => 'Nyheder'),
-                array('url' => $this->url('/fag'), 'navigation_name' => 'Linjer og specialer'),
+                array('url' => $this->url('/fag'), 'navigation_name' => 'Fag'),
                 array('url' => $this->url('/langekurser'), 'navigation_name' => 'Lange kurser'),
                 array('url' => $this->url('/langekurser/rejser'), 'navigation_name' => 'Rejser'),
                 array('url' => $this->url('/kortekurser'), 'navigation_name' => 'Korte kurser'),
