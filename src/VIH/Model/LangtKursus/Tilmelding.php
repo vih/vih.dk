@@ -21,10 +21,10 @@ class VIH_Model_LangtKursus_Tilmelding
         -2 => 'afbrudt ophold', // hvis opholdet afbrydes
         -1 => 'annulleret',     // annulleret under tilmeldingsproceduren
         0 => 'ikke tilmeldt',   // standardindstillingen
-        1 => 'undervejs',       // nï¿½r man er ved at tilmelde sig
-        2 => 'reserveret',      // nï¿½r man har bekrï¿½ftet at man vil tilmelde sig
-        3 => 'tilmeldt',        // fï¿½rst nï¿½r man har betalt indmeldelsesgebyret
-        4 => 'afsluttet'        // nï¿½r alt er blevet betalt
+        1 => 'undervejs',       // når man er ved at tilmelde sig
+        2 => 'reserveret',      // når man har bekræftet at man vil tilmelde sig
+        3 => 'tilmeldt',        // først når man har betalt indmeldelsesgebyret
+        4 => 'afsluttet'        // når alt er blevet betalt
     );
 
     public $uddannelse = array(
@@ -36,9 +36,9 @@ class VIH_Model_LangtKursus_Tilmelding
     );
 
     public $betaling = array(
-        1 => 'Egne midler / forÃ¦ldres',
-        2 => 'ArbejdslÃ¸shedskasse',
-        3 => 'KontanthjÃ¦lp',
+        1 => 'Egne midler / forældres',
+        2 => 'Arbejdsløshedskasse',
+        3 => 'Kontanthjælp',
         4 => 'andet'
     );
 
