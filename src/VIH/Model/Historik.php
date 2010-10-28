@@ -96,7 +96,11 @@ class VIH_Model_Historik
         $error = array();
 
         if (!Validate::number($input['type'], array('min' => 1))) $error[] = "type";
-        if (!Validate::string($input['comment'], array('format' => VALIDATE_NUM . VALIDATE_ALPHA . VALIDATE_PUNCTUATION . 'æøåâäüéèÆØÅ-'))) $error[] = "comment";
+        /*
+        if (!Validate::string($input['comment'], array('format' => VALIDATE_NUM . VALIDATE_ALPHA . VALIDATE_PUNCTUATION . 'æøåâäüéèÆØÅ-#'))) {
+            $error[] = "comment";
+        }
+        */
 
         if (count($error) > 0) {
             print_r($error);
