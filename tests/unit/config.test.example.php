@@ -17,3 +17,5 @@ require_once 'Ilib/ClassLoader.php';
 require_once 'VIH/configuration.php';
 require_once 'Doctrine/lib/Doctrine.php';
 spl_autoload_register(array('Doctrine', 'autoload'));
+
+Doctrine_Manager::connection(DB_DSN);

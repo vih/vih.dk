@@ -40,7 +40,7 @@ class VIH_Controller_Fag_Show extends k_Component
         $this->document->setTitle($title);
         $this->document->meta  = $meta;
         $this->document->theme = $fag->get('identifier');
-        if ($this->query('show')) {
+        if ($this->query('show') == 'udvidet') {
             $this->document->body_class  = 'widepicture';
             $this->document->sidepicture = $this->getPictureHTML($fag->get('identifier'));
         } else {
@@ -138,6 +138,10 @@ class VIH_Controller_Fag_Show extends k_Component
 
     function getPictureHTML($identifier)
     {
+        if ($this->query('show')) {
+            return;
+        }
+
         $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         try {
