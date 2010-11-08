@@ -11,10 +11,10 @@ class VIH_Controller_LangtKursus_Index extends k_Component
                         'faq'                  => 'VIH_Controller_LangtKursus_Faq',
                         'praktiskeoplysninger' => 'VIH_Controller_LangtKursus_PraktiskeOplysninger',
                         'okonomi'              => 'VIH_Controller_LangtKursus_Okonomi',
-                        'statsstøtte'          => 'VIH_Controller_LangtKursus_Statsstøtte',
-                        'elevstøtte'           => 'VIH_Controller_LangtKursus_Elev',
+                        'statsstotte'          => 'VIH_Controller_LangtKursus_Statsstotte',
+                        'elevstotte'           => 'VIH_Controller_LangtKursus_Elevstotte',
                         'betalingsbetingelser' => 'VIH_Controller_LangtKursus_Betalingsbetingelser',
-                        'højskoleliv'          => 'VIH_Controller_LangtKursus_Højskole',
+                        'hojskoleliv'          => 'VIH_Controller_LangtKursus_Hojskole',
                         'rejser'               => 'VIH_Controller_LangtKursus_Rejser',
                         'login'                => 'VIH_Controller_LangtKursus_Login_Index'
     );

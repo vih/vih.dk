@@ -1,14 +1,22 @@
 <?php
 class VIH_Controller_LangtKursus_Okonomi extends k_Component
 {
-    public $map = array('elevstøtte' =>  'vih_langekurser_controller_elevstøtte',
-                          'statsstøtte' => 'vih_langekurser_controller_statsstøtte');
+    public $map = array('statsstotte' => 'VIH_Controller_LangtKursus_Statsstotte',
+                        'elevstotte'  => 'VIH_Controller_LangtKursus_Elevstotte'
+    );
 
     protected $template;
 
     function __construct(k_TemplateFactory $template)
     {
         $this->template = $template;
+    }
+
+    function map($name)
+    {
+        if (!empty($this->map[$name])) {
+            return $this->map[$name];
+        }
     }
 
     function renderHtml()
@@ -32,7 +40,7 @@ class VIH_Controller_LangtKursus_Okonomi extends k_Component
         <p>Ugeprisen betaler du hver uge. De øvrige beløb er engangsbeløb.</p>
         '.$tpl->render($this, $data).'
         <h2>Individuel elevstøtte</h2>
-        <p>Vejle Idrætshøjskole tilbyder gode støttemuligheder. Se mere om <a href="' . $this->url('elevstøtte') . '">kriterierne for at modtage støtte</a>. </p>
+        <p>Vejle Idrætshøjskole tilbyder gode støttemuligheder. Se mere om <a href="' . $this->url('elevstotte') . '">kriterierne for at modtage støtte</a>. </p>
         <h2>Statsstøtte</h2>
         <p>Hvis du er indvandrer eller maksimalt har 10. klasse som uddannelse, kan du læse om <a href="'.$this->url('statsstøtte').'">flere støttemuligheder her</a>.</p>
         <h2>Kommunestøtte</h2>

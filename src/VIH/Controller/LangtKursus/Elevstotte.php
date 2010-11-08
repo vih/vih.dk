@@ -19,7 +19,7 @@ class VIH_Controller_LangtKursus_Elevstotte extends k_Component
 
         return '
         <h1>Individuel elevstøtte</h1>
-        <p>Vejle Idrætshøjskole rï¿½der over et beløb, som kan søges som elevstøtte. Den individuelle elevstøtte kan maksimalt blive 400,- kr. pr. uge. Vi vurderer ansøgningerne inden 14 dage. Dog skal vi have din tilmelding, inden vi tager stilling til din ansøgning.</p>
+        <p>Vejle Idrætshøjskole råder over et beløb, som kan søges som elevstøtte. Den individuelle elevstøtte kan maksimalt blive 400,- kr. pr. uge. Vi vurderer ansøgningerne inden 14 dage. Dog skal vi have din tilmelding, inden vi tager stilling til din ansøgning.</p>
         <h2 id="hvemtabel">Hvem kan søge støtte?</h2>
         <table summary="Tabel over den individuelle elevstøtte, tilskud, økonomi">
             <caption>Individuel elevstøtte</caption>
