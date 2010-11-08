@@ -25,7 +25,7 @@ class VIH_Controller_LangtKursus_Betalingsbetingelser extends k_Component
         $this_year = date("Y");
         $next_year = $this_year + 1;
 
-        $tpl = $this->template->create('LangtKursus/økonomi');
+        $tpl = $this->template->create('LangtKursus/okonomi');
 
         return '
 

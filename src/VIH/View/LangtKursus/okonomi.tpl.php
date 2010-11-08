@@ -5,8 +5,7 @@
             <th scope="col" id="kursusth">Kursus</th>
             <th scope="col" id="ugepristh">Ugepris</th>
             <th scope="col" id="gebyrth">Materialegebyr</th>
-            <th scope="col" id="rejseth">Rejsedepositum</th>
-            <th scope="col" id="noegleth">Nøgledepositum</th>
+            <th scope="col" id="rejseth">Rejsepris</th>
         </tr>
     </thead>
     <tfoot>
@@ -21,7 +20,6 @@
             <td headers="ugepristh"><?php e(number_format($kursus->get("pris_uge"), 0, ',', '.')); ?></td>
             <td headers="gebyrth"><?php e(number_format($kursus->get("pris_materiale"), 0, ',', '.')); ?></td>
             <td scope="row" headers="rejseth"><?php e(number_format($kursus->get("pris_rejsedepositum"), 0, ',', '.')); ?></td>
-            <td scope="row" headers="noegleth"><?php e(number_format($kursus->get("pris_noegledepositum"), 0, ',', '.')); ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

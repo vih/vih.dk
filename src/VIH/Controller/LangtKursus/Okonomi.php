@@ -21,11 +21,11 @@ class VIH_Controller_LangtKursus_Okonomi extends k_Component
         $this->document->meta = $meta;
 
         $data = array('kurser' => VIH_Model_LangtKursus::getList('åbne'));
-        $tpl = $this->template->create('LangtKursus/økonomi');
+        $tpl = $this->template->create('LangtKursus/okonomi');
 
         return '
         <h1>Økonomi</h1>
-        <p>Hvis du har yderligere spørgsmål om økonomien i et langt højskoleophold, er du velkommen til at <a href="'.url('/kontakt').'">ringe og snakke med kontoret</a>.</p>
+        <p>Hvis du har yderligere spørgsmål om økonomien i et langt højskoleophold, er du velkommen til at <a href="'.$this->url('/kontakt').'">ringe og snakke med kontoret</a>.</p>
         <h2>Elevbetaling</h2>
         <p>Du betaler et indmeldelsesgebyr på 1000 kroner for alle kursusperioder. Din betaling for opholdet omfatter kost, logi og undervisning. Der opkræves et yderligere beløb til udlandsrejse og materialer. Du kan se de præcise beløb under de kurser, du er interesseret i.</p>
         <p>Du kan finde det generelle prisniveau for højskolerne på <a href="http://www.hojskolerne.dk/">www.hojskolerne.dk</a>.</p>
@@ -36,7 +36,7 @@ class VIH_Controller_LangtKursus_Okonomi extends k_Component
         <h2>Statsstøtte</h2>
         <p>Hvis du er indvandrer eller maksimalt har 10. klasse som uddannelse, kan du læse om <a href="'.$this->url('statsstøtte').'">flere støttemuligheder her</a>.</p>
         <h2>Kommunestøtte</h2>
-        <p>Nogle kommuner støtter et højskoleophold, men reglerne er ikke ens i alle kommuner. Du kan tjekke om din kommune giver støtte på <a href="http://www.ffd.dk/da/main/main.php?menu=104#82">www.hojskolerne.dk</a> eller ved at <a href="'.htmlspecialchars('http://www.danmark.dk/kommuner.asp?page=gruppe&objno=350128').'">ringe til din kommune</a>. Du kan få tilsendt et ansøgningsskema af os ved at <a href="'.url('/kontakt').'">ringe til kontoret eller skrive en e-mail</a>.</p>
+        <p>Nogle kommuner støtter et højskoleophold, men reglerne er ikke ens i alle kommuner. Du kan tjekke om din kommune giver støtte på <a href="http://www.ffd.dk/da/main/main.php?menu=104#82">www.hojskolerne.dk</a> eller ved at <a href="'.htmlspecialchars('http://www.danmark.dk/kommuner.asp?page=gruppe&objno=350128').'">ringe til din kommune</a>. Du kan få tilsendt et ansøgningsskema af os ved at <a href="'.$this->url('/kontakt').'">ringe til kontoret eller skrive en e-mail</a>.</p>
         <h2>Støttemuligheder</h2>
         <p>Læs mere om dine muligheder for støtte på <a href="http://www.hojskolerne.dk/">www.hojskolerne.dk</a>.</p>
         ';

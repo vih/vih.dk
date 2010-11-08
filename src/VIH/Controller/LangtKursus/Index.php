@@ -10,7 +10,7 @@ class VIH_Controller_LangtKursus_Index extends k_Component
                         'elevchat'             => 'VIH_Controller_Kontakt_Elevchat',
                         'faq'                  => 'VIH_Controller_LangtKursus_Faq',
                         'praktiskeoplysninger' => 'VIH_Controller_LangtKursus_PraktiskeOplysninger',
-                        'økonomi'              => 'VIH_Controller_LangtKursus_Økonomi',
+                        'okonomi'              => 'VIH_Controller_LangtKursus_Okonomi',
                         'statsstøtte'          => 'VIH_Controller_LangtKursus_Statsstøtte',
                         'elevstøtte'           => 'VIH_Controller_LangtKursus_Elev',
                         'betalingsbetingelser' => 'VIH_Controller_LangtKursus_Betalingsbetingelser',
