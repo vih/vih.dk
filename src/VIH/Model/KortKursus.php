@@ -298,6 +298,9 @@ class VIH_Model_KortKursus
             case "bridge":
                 $sql .= " AND gruppe_id=3";
                 break;
+            case "kajak":
+                $sql .= " AND gruppe_id=9";
+                break;
             case "others":
                 $sql .= " AND (gruppe_id <> 1 AND gruppe_id <> 3)";
                 break;
