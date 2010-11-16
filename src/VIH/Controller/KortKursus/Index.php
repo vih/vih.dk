@@ -97,15 +97,27 @@ class VIH_Controller_KortKursus_Index extends k_Component
                 break;
              case 'cykel':
                 $title = 'Cykel & Højskole - tag på højskole til sommer';
-                $meta['description'] = 'Sommerhøjskole og sommerkurser: Tag på Idrætscamp på højskole i løbet af sommeren. Vi har både kurser til familier eller voksne.';
+                $meta['description'] = 'Sommerhøjskole og sommerkurser: Tag på Idrætscamp på højskole i løbet af sommeren.';
                 $meta['keywords'] = 'sommerhøjskole, kurser, sommerkursus, sommerkurser, sommer, højskole';
                 $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser på Vejle Idrætshøjskole - højskole til sommer, sommerhøjskole, idrætscamp',
-                                    'caption' => 'Sommerhøjskole - sommerkurser',
+                                    'caption' => 'Cykelkurser',
                                     'kurser' => $kurser);
                 $content_data = array('headline' => 'Cykel & Højskole på Vejle Idrætshøjskole',
                                      'text' => 'Tag på højskole til sommer og få en stor oplevelse. At tage på sommerhøjskole giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart på, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges på højskole - og vi har en masse sommerkurser at vælge mellem:');
                 $news_data = array('nyheder' => VIH_News::getList(8));
                 $this->document->theme = 'cykel';
+                break;
+             case 'kajak':
+                $title = 'Kajak & Højskole - tag på højskole til sommer';
+                $meta['description'] = 'Sommerhøjskole og sommerkurser: Tag på Idrætscamp på højskole i løbet af sommeren.';
+                $meta['keywords'] = 'sommerhøjskole, kurser, sommerkursus, kajak, sommerkurser, sommer, højskole';
+                $table_data = array('summary' => 'Oversigt over aktuelle sommerkurser på Vejle Idrætshøjskole - højskole til sommer, sommerhøjskole, idrætscamp',
+                                    'caption' => 'Kajakkurser',
+                                    'kurser' => $kurser);
+                $content_data = array('headline' => 'Kajak & Højskole på Vejle Idrætshøjskole',
+                                     'text' => 'Tag på højskole til sommer og få en stor oplevelse. At tage på sommerhøjskole giver et <em>boost</em> til hverdagen - enten du er en familie med fuld fart på, eller du er voksen og interesserer dig for noget af det samme, som vi interesserer os for. Sommeren skal bruges på højskole - og vi har en masse sommerkurser at vælge mellem:');
+                $news_data = array('nyheder' => VIH_News::getList());
+                $this->document->theme = 'kajak';
                 break;
             default:
                 $title = 'Korte kurser og sommerkurser på højskole - højskolekurser';
