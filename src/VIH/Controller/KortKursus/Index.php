@@ -29,6 +29,28 @@ class VIH_Controller_KortKursus_Index extends k_Component
         $this->kernel = $kernel;
     }
 
+    function map($name)
+    {
+        if ($name == 'golf') {
+            return 'VIH_Controller_KortKursus_Group';
+        } elseif ($name == 'kajak') {
+            return 'VIH_Controller_KortKursus_Group';
+        } elseif ($name == 'camp') {
+            return 'VIH_Controller_KortKursus_Group';
+        } elseif ($name == 'cykel') {
+            return 'VIH_Controller_KortKursus_Group';
+        } elseif ($name == 'familiekursus') {
+            return 'VIH_Controller_KortKursus_Group';
+        } elseif ($name == 'sommerhøjskole') {
+            return 'VIH_Controller_KortKursus_Group';
+        } elseif ($name == 'login') {
+            return 'VIH_Controller_KortKursus_Login_Index';
+        } elseif ($name == 'praktiskeoplysninger') {
+            return 'VIH_Controller_KortKursus_Praktiskeoplysninger';
+        } else {
+            return 'VIH_Controller_KortKursus_Show';
+        }
+    }
     function getTable($data)
     {
         $tpl = $this->template->create('KortKursus/kurser');
@@ -163,27 +185,6 @@ class VIH_Controller_KortKursus_Index extends k_Component
         $content .= $tpl->render($this, $data);
 
         return $content;
-    }
-
-    function map($name)
-    {
-        if ($name == 'golf') {
-            return 'VIH_Controller_KortKursus_Group';
-        } elseif ($name == 'camp') {
-            return 'VIH_Controller_KortKursus_Group';
-        } elseif ($name == 'cykel') {
-            return 'VIH_Controller_KortKursus_Group';
-        } elseif ($name == 'familiekursus') {
-            return 'VIH_Controller_KortKursus_Group';
-        } elseif ($name == 'sommerhøjskole') {
-            return 'VIH_Controller_KortKursus_Group';
-        } elseif ($name == 'login') {
-            return 'VIH_Controller_KortKursus_Login_Index';
-        } elseif ($name == 'praktiskeoplysninger') {
-            return 'VIH_Controller_KortKursus_Praktiskeoplysninger';
-        } else {
-            return 'VIH_Controller_KortKursus_Show';
-        }
     }
 
     function getWidePictureUrl($identifier)
