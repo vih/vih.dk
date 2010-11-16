@@ -11,8 +11,9 @@ class VIH_Model_KortKursus
         'depositum' => KORTEKURSER_STANDARDPRISER_DEPOSITUM,
         'afbestillingsforsikring' => KORTEKURSER_STANDARDPRISER_AFBESTILLINGSFORSIKRING);
 
-    private $status = array('udsolgt' => 0,
-                            'faa_ledige_pladser' => 6);
+    private $status = array(
+        'udsolgt' => 0,
+        'faa_ledige_pladser' => 6);
 
     private $golf = array(
     	'begynderpladser' => 10,
@@ -21,22 +22,23 @@ class VIH_Model_KortKursus
     private $id;
     private $value = array();
     public $indkvartering = array(
-    1 => 'efterskolen',
-    2 => 'kursuscenteret',
-    3 => 'hojskolen',
-    4 => 'hojskole og kursuscenter'
+        1 => 'efterskolen',
+        2 => 'kursuscenteret',
+        3 => 'hojskolen',
+        4 => 'hojskole og kursuscenter'
     );
     public $venteliste;
 
     public $gruppe = array(
-    1 => 'golf',
-    2 => 'sommerhojskole',
-    3 => 'bridge',
-    4 => 'familiekursus',
-    7 => 'senior',
-    6 => 'fitness',
-    5 => 'camp',
-    8 => 'cykel'
+        1 => 'golf',
+        2 => 'sommerhojskole',
+        3 => 'bridge',
+        4 => 'familiekursus',
+        7 => 'senior',
+        6 => 'fitness',
+        5 => 'camp',
+        8 => 'cykel',
+        9 => 'kajak'
     );
 
     function isFamilyCourse()
