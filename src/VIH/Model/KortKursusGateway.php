@@ -83,7 +83,6 @@ class VIH_Model_KortKursusGateway
         }
 
         $sql .= " ORDER BY dato_start, gruppe_id ASC";
-        $this->db = new DB_Sql;
         $this->db->query($sql);
         $i = 0;
         $kursus = array();
