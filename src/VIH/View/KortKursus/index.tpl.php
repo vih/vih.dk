@@ -7,6 +7,7 @@
     <li><a class="familiekursus" href="<?php e(url('familiekursus')); ?>">Familiekursus</a></li>
     <li><a class="cykel" href="<?php e(url('cykel')); ?>">Cykel &amp; Højskole</a></li>
     <li><a class="sommerhojskole" href="<?php e(url('sommerhojskole')); ?>">Sommerhøjskole</a></li>
+    <li><a class="kajak" href="<?php e(url('kajak')); ?>">Kajak &amp; Højskole</a></li>
 </ul>
 
 <p style="clear: both;" class="manchet"><?php echo $text; ?></p>
