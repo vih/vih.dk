@@ -1,8 +1,7 @@
 <?php
 /**
- * Deltagere
+ * Participants
  *
- * @package Tilmelding (korte kurser)
  * @author Lars Olesen <lars@legestue.net>
  */
 class VIH_Model_KortKursus_Tilmelding_Deltager
@@ -95,9 +94,9 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
 
         $this->load();
 
-        // vi skal have gemt nogle deltageroplysninger
+        // save information about the participant
 
-        //Fælles oplysninger
+        // common information
         $oplysning = new VIH_Model_KortKursus_Tilmelding_DeltagerOplysning($this);
         $oplysning->save('sambo', $var['sambo']);
 
@@ -112,7 +111,7 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
                 $oplysning->save('dgu', $var['dgu']);
                 break;
 
-            case '2': // andre
+            case '2': // other
                 break;
 
             case '3': // bridge
@@ -126,9 +125,8 @@ class VIH_Model_KortKursus_Tilmelding_Deltager
                 $oplysning->save('niveau', $var['niveau']);
                 break;
 
-            case 5:
+            case 5: // idrætscamp
                 $oplysning->save('speciale', $var['speciale']);
-
 
             default:
                 break;

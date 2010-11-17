@@ -1,6 +1,5 @@
 <?php
 /**
- * @package Tilmelding (korte kurser)
  * @author Lars Olesen <lars@legestue.net>
  */
 class VIH_Model_KortKursus_Tilmelding_DeltagerOplysning

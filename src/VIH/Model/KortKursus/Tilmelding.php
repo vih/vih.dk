@@ -17,13 +17,13 @@ class VIH_Model_KortKursus_Tilmelding
     protected $value = array();
     public $status = array(
         -3 => 'venteliste',
-        -2 => 'slettet', // hvis ordren slettes inde fra systemet
-        -1 => 'annulleret', // hvis man annullerer under tilmeldingsproceduren eller fra systemet
-        0  => 'ikke tilmeldt', // standardinstillingen
-        1  => 'undervejs', // n�r man er i gang med selv tilmeldingen
-        2  => 'reserveret', // n�r man har trykket confirm under tilmeldingen
-        3  => 'tilmeldt', // n�r man har betalt tilmeldingsgbyret
-        4  => 'afsluttet' // n�r man har betalt hele bel�bet
+        -2 => 'slettet', // if deleted from the system
+        -1 => 'annulleret', // if cancelled from the registration process or from the system
+        0  => 'ikke tilmeldt', // default setting
+        1  => 'undervejs', // when in the registration process
+        2  => 'reserveret', // when confirmed under the registration process
+        3  => 'tilmeldt', // when deposit has been paid
+        4  => 'afsluttet' // when everything has been paid
     );
 
     function __construct($id = 0)
@@ -42,7 +42,7 @@ class VIH_Model_KortKursus_Tilmelding
     }
 
     /**
-     * Returnerer v�rdier
+     * Returns values
      */
     function get($key = '')
     {
@@ -56,7 +56,7 @@ class VIH_Model_KortKursus_Tilmelding
     }
 
     /**
-     * Loader v�rdier
+     * Loads values
      */
     function load()
     {
@@ -145,14 +145,10 @@ class VIH_Model_KortKursus_Tilmelding
         return $this->id = $db->f('id');
     }
 
-
     /**
-     * Bruges til at slette tilmeldinger
+     * Deletes registration
      *
-     * Tilmeldinger m� aldrig slettes helt fra databasen, men skal bare deaktiveres.
-     *
-     * @todo 22. maj: Der har v�ret et enkelt tilf�lde, hvor en masse poster er kommet tilbage
-     *                - det er mystisk.
+     * Notic: Only deactivate registrations, never delete entirely
      *
      * @return 1 on success
      */
@@ -178,7 +174,7 @@ class VIH_Model_KortKursus_Tilmelding
     }
 
     /**
-     * Bruges til at opdatere ordren
+     * Update the registration
      *
      * @return inserted id on success
      */
@@ -234,7 +230,6 @@ class VIH_Model_KortKursus_Tilmelding
 
     function setCode()
     {
-        // @todo b�r tjekkes endnu en gang
         $db = new DB_Sql;
         $random_code = vih_random_code(12);
         $db->query("SELECT * FROM kortkursus_tilmelding WHERE code = '".$random_code."'");
@@ -248,16 +243,16 @@ class VIH_Model_KortKursus_Tilmelding
     }
 
     /**
-     * Denne metode skal opdatere status alt efter hvor meget der er betalt
-     * K�res fra loadBetaling(). M� ikke k�res andre steder fra.
+     * Updates status after payment status
+     * @see loadBetaling() - do not run from other places
      *
-     * @private but is kept public for testing purposes
+     * @access private but is kept public for testing purposes
      */
     public function _updateStatus()
     {
         $db = new DB_Sql;
         if (!$this->get('antal_deltagere') && $this->get('skyldig') <= 0 && $this->get('status') == 'afsluttet') {
-            return true; // vi lader som om at alt gik godt
+            return true; // pretend everything went smoothly
         }
 
         if ($this->get('active') == 0) {
@@ -271,7 +266,7 @@ class VIH_Model_KortKursus_Tilmelding
         } elseif ($this->get('skyldig') > 0) {
             $status = $this->getStatusKey('tilmeldt');
         } else {
-            // skal ikke opdatere status, hvis den ikke er under.
+            // do not update status
             return true;
         }
 
@@ -321,11 +316,10 @@ class VIH_Model_KortKursus_Tilmelding
     }
 
     /**
-     * Funktion til at hente alle deltagerne
+     * Gets all participants for the registration
      */
     public function getDeltagere()
     {
-        // b�r s�rge for at der er en ordre loadet
         if (!$this->id) {
             throw new Exception('Tilmelding::getDeltagere(): Der er ikke loadet noget ordre');
         }
@@ -345,17 +339,17 @@ class VIH_Model_KortKursus_Tilmelding
         return $deltagere;
     }
 
-    // ANG�ENDE PRISER OG BETALING
-
     /**
-     * skal finde ud af om, der er bestilt afbestillingsforsikring?
-     * skal s� loope gennem deltagerne og l�gge deres priser sammen!
+     * Loads prices
      *
-     * @return	$pris['total']	(float)	pris inklusiv det hele
-     * 					$pris['kursuspris']	(float)	pris kun for selve kurset
-     * 					$pris['depositum']	(float)	pris kun for depositum
-     * 					$pris['forudbetaling']	(float)	pris som skal betales forud
-     * 					$pris['forsikring']	(float)	pris for forsikring
+     * - loops through all participants and adds their prices
+     * - adds cancellation fee
+     *
+     * @return  $pris['total']	       (float) everything
+     *          $pris['kursuspris']    (float) course price
+     *          $pris['depositum']     (float) deposit price
+     *          $pris['forudbetaling'] (float) prepay this
+     * 			$pris['forsikring']    (float) insurance fee
      */
     function loadPris()
     {
@@ -379,10 +373,9 @@ class VIH_Model_KortKursus_Tilmelding
     }
 
     /**
-     * Denne funktion skal loade kundens betalinger.
+     * Loads payments
      *
-     * Funktionen skelner mellem godkendte betalinger hos PBS, men som stadig
-     * afventer at blive trukket og betalinger, som er godkendte (captured).
+     * Takes approved and captured payments into account at the online provider
      */
     function loadBetaling()
     {
@@ -395,7 +388,7 @@ class VIH_Model_KortKursus_Tilmelding
         }
 
         $this->betaling = new VIH_Model_Betaling('kortekurser', $this->id);
-        $tmp = $this->betaling->getList(); // loader total
+        $tmp = $this->betaling->getList(); // loads total
 
         $this->value['betalt'] = (float)$this->betaling->get('total_approved');
         $this->value['betalt_not_approved'] = (float)$this->betaling->get('total_completed');
@@ -421,13 +414,10 @@ class VIH_Model_KortKursus_Tilmelding
         return true;
     }
 
-    /**
-     *
-     */
     function getForfaldenDato($key = '', $sprog = '')
     {
         if (!in_array($key, array('depositum', ''))) {
-            die("Tilmelding->getForfaldenDato");
+            throw new Exception("Tilmelding->getForfaldenDato");
         }
         if (!empty($sprog)) {
             $sprog = '_'. $sprog;
@@ -458,15 +448,11 @@ class VIH_Model_KortKursus_Tilmelding
         return $db->f('forfald'. $sprog);
     }
 
-    /**
-     *
-     */
     function getForfalden($key = '')
     {
         if (!in_array($key, array('depositum', ''))) {
-            die("Tilmelding->getForfalden");
+            throw new Exception("Tilmelding->getForfalden");
         }
-        // date('Y-m-d')
 
         if ($key == "depositum") {
             $skyldig = "skyldig_depositum";
@@ -480,13 +466,7 @@ class VIH_Model_KortKursus_Tilmelding
         return 0;
     }
 
-    // DIVERSE METODER
-
     /**
-     * Regler:
-     * - Personer over 2 �r udl�ser en seng
-     * - Flere end tre personer p� en tilmelding udl�ser en seng
-     * @see	Kortkursus
      * @deprecated
      */
     function getVaerelser()
@@ -494,13 +474,11 @@ class VIH_Model_KortKursus_Tilmelding
         return $this->getRoomsNeeded();
     }
 
-
     /**
-     * Regler:
-     * - Personer over 2 �r udl�ser en seng
-     * - Flere end tre personer p� en tilmelding udl�ser en seng
+     * Rules:
+     * - People older than 2 takes a bed
+     * - More than three persons takes another room
      * @see	Kortkursus
-     * @deprecated
      */
     function getRoomsNeeded()
     {
@@ -515,26 +493,11 @@ class VIH_Model_KortKursus_Tilmelding
         return ceil($person / 2);
     }
 
-
-    /**
-     * Bruges til at konfirmere e-mail-adressen efter der er sendt e-mail til dem
-     */
-    function setKontaktMedEmail($kode)
-    {
-        die('Bruges ikke');
-        if (is_object($this->kursus)) {
-            if ($kode == $this->kursus->get('id')) {
-                $db = new DB_Sql;
-                $db->query("UPDATE kortkursus_tilmelding SET emailkontakt = 'Ja' WHERE id = " . $this->id);
-            }
-        } else {
-            throw new Exception("Det er ikke pænt, at du forsøger at snyde med vores e-mail-bekræftelse.");
-        }
-    }
-
     function sendEmail()
     {
-        if (!$this->get('email')) return 0;
+        if (!$this->get('email')) {
+            return 0;
+        }
         $mail = new VIH_Email;
         $mail->setSubject('Tilmelding #' . $this->id);
         $mail->setBody('
@@ -551,10 +514,9 @@ En email-robot
 Vejle Idrætshøjskole
 ');
 
-
         $mail->addAddress($this->get('email'), $this->get('navn'));
 
-        return $return = $mail->send();
+        return ($return = $mail->send());
     }
 
 
@@ -564,8 +526,7 @@ Vejle Idrætshøjskole
     }
 
     /**
-     *
-     * status_key 2 = reserveret; 3 = tilmeldt
+     * @deprecated
      */
     function getList($type = '', $limit = 5)
     {
@@ -575,80 +536,23 @@ Vejle Idrætshøjskole
         } else {
             return $gateway->findAll($limit);
         }
-        /*
-        switch ($type) {
-            case 'restance': // fall through
-                $type = 'forfaldne';
-            case 'forfaldne':
-                $sql = "SELECT distinct tilmelding.id FROM kortkursus_tilmelding tilmelding
-                    WHERE (status_key = 2
-                        OR status_key = 3) AND active = 1
-                    ORDER BY date_created ASC LIMIT " . $limit;
-                break;
-            default:
-                $sql = "SELECT distinct tilmelding.id FROM kortkursus_tilmelding tilmelding
-                    WHERE (status_key >= 2
-                        AND status_key <= 4) AND active = 1
-                    ORDER BY id DESC LIMIT " . $limit;
-                break;
-        }
-
-        $db = new DB_Sql;
-        $db->query($sql);
-
-        $tilmeldinger = array();
-
-        $i = 0;
-        while ($db->nextRecord()) {
-            $tilmeldinger[$i] = new VIH_Model_KortKursus_Tilmelding($db->f('id'));
-            $tilmeldinger[$i]->loadBetaling();
-            $i++;
-        }
-
-        return $tilmeldinger;
-        */
     }
 
+    /**
+     * @deprecated
+     */
     function search($string)
     {
         $gateway = new VIH_Model_KortKursus_TilmeldingGateway;
         return $gateway->findByString($string);
-        /*
-        $db = new DB_Sql;
-        $db->query("SELECT DISTINCT(tilmelding.id) FROM kortkursus_tilmelding tilmelding
-            INNER JOIN adresse ON adresse.id = tilmelding.adresse_id
-            WHERE tilmelding.id='".$string."' OR adresse.fornavn LIKE '%".$string."%' OR adresse.efternavn LIKE '%".$string."%'");
-        $list = array();
-        $i = 0;
-        while ($db->nextRecord()) {
-            $list[$i] = new VIH_Model_KortKursus_Tilmelding($db->f('id'));
-            $list[$i]->loadBetaling();
-            $i++;
-        }
-        return $list;
-    	*/
     }
 
-
+    /**
+     * @deprecated
+     */
     public static function factory($handle)
     {
         $gateway = new VIH_Model_KortKursus_TilmeldingGateway();
         return $gateway->findByHandle($handle);
-        /*
-        $handle = mysql_escape_string($handle);
-        $handle = strip_tags($handle);
-        $handle = trim($handle);
-
-        if (empty($handle)) {
-            return false;
-        }
-
-        $db = new DB_Sql;
-        $db->query("SELECT id FROM kortkursus_tilmelding WHERE code='".$handle."'");
-        if ($db->numRows() == 1 AND $db->nextRecord()) {
-            return new VIH_Model_KortKursus_Tilmelding($db->f('id'));
-        }
-        return false;
-        */
     }
 }
