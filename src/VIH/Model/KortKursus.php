@@ -479,16 +479,6 @@ class VIH_Model_KortKursus
 
     }
 
-    function getLastModified()
-    {
-        $db = new DB_Sql;
-        $db->query("SELECT date_updated FROM kortkursus ORDER BY date_updated DESC LIMIT 1");
-        if (!$db->nextRecord()) {
-            return 0;
-        }
-        return $db->f("date_updated");
-    }
-
     function getId()
     {
         return $this->id;

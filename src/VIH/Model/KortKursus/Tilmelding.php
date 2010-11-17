@@ -532,16 +532,6 @@ class VIH_Model_KortKursus_Tilmelding
         }
     }
 
-    function getLastModified()
-    {
-        $db = new DB_Sql;
-        $db->query("SELECT dato AS date_updated FROM kortkursus_tilmelding WHERE active = 1 AND status_key = 0 ORDER BY date_updated DESC LIMIT 1");
-        if (!$db->nextRecord()) {
-            return 0;
-        }
-        return $db->f("date_updated");
-    }
-
     function sendEmail()
     {
         if (!$this->get('email')) return 0;
