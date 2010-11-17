@@ -76,6 +76,9 @@ class VIH_Model_KortKursusGateway
             case 'cykel':
                 $sql .= " AND gruppe_id = 8";
                 break;
+            case 'kajak':
+                $sql .= " AND gruppe_id = 9";
+                break;
 
         }
 
