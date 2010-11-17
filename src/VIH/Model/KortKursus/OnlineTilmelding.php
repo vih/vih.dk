@@ -1,13 +1,12 @@
 <?php
 /**
- * Denne klasse bruges under onlinetilmeldingen
+ * Used for online registration
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-
 class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmelding
 {
-    private $session_id;
+    protected $session_id;
 
     function __construct($session_id)
     {
