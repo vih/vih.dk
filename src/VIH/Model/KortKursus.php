@@ -1,6 +1,6 @@
 <?php
 /**
- * Korte kurser
+ * Short courses
  *
  * @package VIH
  * @author  Lars Olesen <lars@legestue.net>
@@ -41,18 +41,12 @@ class VIH_Model_KortKursus
         9 => 'kajak'
     );
 
-    function isFamilyCourse()
-    {
-        if ($this->get('gruppe_id') == 2 OR $this->get('gruppe_id') == 4) {
-            return true;
-        }
-        return false;
-    }
-
     /**
      * Constructor
      *
      * @param integer $id Id
+     *
+     * @return void
      */
     function __construct($id = 0)
     {
@@ -62,23 +56,6 @@ class VIH_Model_KortKursus
         if ($this->id > 0) {
             $this->load();
         }
-    }
-
-    function ventelisteFactory($id = 0)
-    {
-        if ($this->id == 0) {
-            return false;
-        }
-        // 1 = kortekurser
-        return $this->venteliste = new VIH_Model_Venteliste(1, $this->id, $id);
-    }
-
-    /**
-     * Load
-     */
-    function getKursusNavn()
-    {
-        return $this->get('navn') . ' uge ' . $this->get('uge') . ', ' . $this->get('aar');
     }
 
     function load()
@@ -160,11 +137,6 @@ class VIH_Model_KortKursus
         $this->value['published'] = $db->f('published');
 
         return true;
-    }
-
-    function getGruppe()
-    {
-        return $this->gruppe[$this->get('gruppe_id')];
     }
 
     function get($key = '')
@@ -251,9 +223,11 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Henter alle de �bne kurser
+     * Gets courses
      *
-     * Skal g�res mere dynamisk
+     * @deprecated
+     *
+     * @return array
      */
     function getList($type = 'open', $gruppe = '')
     {
@@ -261,14 +235,37 @@ class VIH_Model_KortKursus
         return $gateway->getList($type, $gruppe);
     }
 
-    ################################################################################
-    # SPECIELLE METODER                                                            #
-    ################################################################################
+    function isFamilyCourse()
+    {
+        if ($this->get('gruppe_id') == 2 OR $this->get('gruppe_id') == 4) {
+            return true;
+        }
+        return false;
+    }
+
+    function ventelisteFactory($id = 0)
+    {
+        if ($this->id == 0) {
+            return false;
+        }
+        // 1 = kortekurser
+        return $this->venteliste = new VIH_Model_Venteliste(1, $this->id, $id);
+    }
+
+    function getKursusNavn()
+    {
+        return $this->get('navn') . ' uge ' . $this->get('uge') . ', ' . $this->get('aar');
+    }
+
+    function getGruppe()
+    {
+        return $this->gruppe[$this->get('gruppe_id')];
+    }
 
     /**
-     * Henter alle tilmeldinger p� et kursus
+     * Gets registrations for a course
      *
-     * @return array med id'er over deltagere p� et kursus
+     * @return array with objects
      */
     function getTilmeldinger()
     {
@@ -288,17 +285,13 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Henter alle deltagerne p� et kursus
+     * Gets participants for a course
      *
-     * @todo Kunne lige s� godt returnere et array over alle deltagerne?
-     *
-     * @return array med id'er over deltagere p� et kursus
+     * @return array with objects
      */
     function getDeltagere()
     {
         $db = new DB_Sql;
-
-        // v�lger alle tilmeldte kursister
         $sql = "SELECT deltager.id AS id,
                 tilmelding.id AS tilmelding_id
             FROM kortkursus_deltager_ny deltager
@@ -321,15 +314,18 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * T�ller antallet af optagne pladser
-     * Funktionen skal ogs� tage h�jde for dem, der er ved at tilmelde sig.
-     * Derfor bruger vi status >= 1
+     * Counts spots for a course
+     *
+     * Also counts people in the registration process,
+     * therefore status >= 1
      *
      * $status[1] = 'undervejs'
      * $status[2] = 'reserveret'
-     * $status[3] = 'tilmeldt' // n�r man har betalt depositum
+     * $status[3] = 'tilmeldt' // when deposit has been paid
      *
-     * @todo Kan denne funktion optimeres?
+     * @todo Optimize?
+     *
+     * @param string $key
      */
     function getPladser($key = '')
     {
@@ -369,19 +365,13 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Bruges s�rligt til golfkurserne
-     * T�ller med baggrund i handicap
+     * Counts beginners for golf courses
      *
-     * @todo Denne funktion skal optimeres, s� den ikke f�rst genneml�ber alle tilmeldingerne,
-     *       og derefter genneml�ber alle deltagerne, inden den kan finde antallet af begyndere.
+     * @todo Optimize
      *
-     * Denne funktion skal skrives helt om for at kunne finde begynderne. Enten skal statuskoderne
-     * hardkodes ind, eller ogs� skal status g�res tilg�ngeligt uden om Tilmelding - evt ved at status
-     * arrayet er tilg�ngelig p� anden m�de
-     *
-     * Regler:
-     * - man er begynder, hvis man har et handicap st�rre end eller lig med 54
-     * - man er begynder, hvis man ikke har dgu-medlemskab
+     * Rules, beginner when:
+     * - handicap > 54
+     * - if not dgu membership
      */
     function getBegyndere()
     {
@@ -414,12 +404,15 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Specielt til familiekurserne
-     * Bruges til at udregne om der er nok ledige v�relser:
-     * Regler:
-     * - Personer over 2 �r udl�ser en seng
-     * - Flere end tre personer p� en tilmelding udl�ser en seng
+     * Gets vacant rooms for family courses
+     *
+     * Rules, a bed is needed when:
+     * - older than two years
+     * - more than three persons = another room
+     *
      * @see	Tilmelding
+     *
+     * @return integer
      */
     function getVaerelser()
     {
@@ -435,13 +428,13 @@ class VIH_Model_KortKursus
     }
 
     /**
-     * Tilmeldingsstatistik
+     * Statistics
      *
-     * Denne skal g�res dynamisk, s� vi kan tage perioder - knyttes evt. sammen med getList()
+     * @todo Optimize
      */
     function statistik($filter = '')
     {
-        // t�l antallet af pladser p� korte kurser
+        // count number of spots on each course
         $countPladser = 0;
         $countOptagne = 0;
 
@@ -476,7 +469,6 @@ class VIH_Model_KortKursus
             'percent' => $percent,
             'optagne' => $countOptagne
         );
-
     }
 
     function getId()
