@@ -29,7 +29,7 @@ class VIH_Controller_KortKursus_Tilmelding_Betingelser extends k_Component
 
         <h4>Vejle Idrætshøjskoles afbestillingsforsikring</h4>
 
-        <p>En afbestillingsforsikring koster ' . KORTEKURSER_STANDARDPRISER_AFBESTILLINGSFORSIKRING . ' kr pr. person og skal bestilles og betales i forbindelse med tilmeldingen (husk at sætte kryds for forsikring på tilmeldingsblanketten).</p>
+        <p>Afbestillingsforsikringen skal bestilles og betales i forbindelse med tilmeldingen (husk at sætte kryds for forsikring på tilmeldingsblanketten).</p>
 
         <ul>
             <li>Forsikringen skal tegnes og betales ved tilmelding (kan ikke efterbestilles).</li>
