@@ -22,7 +22,7 @@ class VIH_Controller_KortKursus_Show extends k_Component
 
     function dispatch()
     {
-        $kursus = new VIH_Model_KortKursus($this->name());
+        $kursus = $this->context->getGateway()->findById($this->name());
         if (!$kursus->get('kursusnavn') OR $kursus->get('dato_slut') < date('Y-m-d') OR $kursus->get('published') == 0) {
             throw new k_PageNotFound();
         }
@@ -32,7 +32,7 @@ class VIH_Controller_KortKursus_Show extends k_Component
 
     function renderHtml()
     {
-        $kursus = new VIH_Model_KortKursus($this->name());
+        $kursus = $this->context->getGateway()->findById($this->name());
         $kursus->getPladser();
         $kursus->getBegyndere();
 

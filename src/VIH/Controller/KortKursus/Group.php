@@ -27,20 +27,10 @@ class VIH_Controller_KortKursus_Group extends k_Component
 
     function renderHtml()
     {
-        return $this->getContent($this->name());
-    }
-
-    function getTable($data)
-    {
-        return $this->context->getTable($data);
-    }
-
-    function getContent($name = '')
-    {
         $this->document->theme   = 'kortekurser';
         $this->document->body_class = 'widepicture';
 
-        $kurser = VIH_Model_KortKursus::getList('open', $name); // array with the courses
+        $kurser = $this->context->getGateway()->getList('open', $this->name()); // array with the courses
         switch ($name) {
             case 'golf':
                 $title = 'Højskole og golf - tag på golfhøjskole på Vejle Idrætshøjskole';
@@ -142,7 +132,11 @@ class VIH_Controller_KortKursus_Group extends k_Component
 
         $tpl = $this->template->create('sidebar-wrapper');
         return $tpl->render($this, $content);
+    }
 
+    function getTable($data)
+    {
+        return $this->context->getTable($data);
     }
 
     function getSubContent()
