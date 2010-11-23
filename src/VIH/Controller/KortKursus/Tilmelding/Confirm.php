@@ -9,26 +9,6 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
         $this->template = $template;
     }
 
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-        $form = new HTML_QuickForm('confirm', 'POST', $this->url());
-        $form->addElement('header', null, 'Accepterer du betingelserne?');
-        $form->addElement('checkbox', 'confirm', null, 'Ja, jeg accepterer betingelserne', 'id="confirm"');
-        $form->addElement('submit', null, 'Send');
-
-        $form->addRule('confirm', 'Du skal acceptere betingelserne', 'required');
-
-        return ($this->form = $form);
-    }
-
-    function getTilmelding()
-    {
-        return new VIH_Model_KortKursus_OnlineTilmelding($this->context->name());
-    }
-
     function dispatch()
     {
         $tilmelding = $this->getTilmelding();
@@ -72,7 +52,6 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
         $tpl = $this->template->create('KortKursus/Tilmelding/tilmelding');
 
         return $tpl->render($this, $tilmelding_data);
-
     }
 
     function postForm()
@@ -103,5 +82,25 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
             }
         }
         return $this->render();
+    }
+
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+        $form = new HTML_QuickForm('confirm', 'POST', $this->url());
+        $form->addElement('header', null, 'Accepterer du betingelserne?');
+        $form->addElement('checkbox', 'confirm', null, 'Ja, jeg accepterer betingelserne', 'id="confirm"');
+        $form->addElement('submit', null, 'Send');
+
+        $form->addRule('confirm', 'Du skal acceptere betingelserne', 'required');
+
+        return ($this->form = $form);
+    }
+
+    function getTilmelding()
+    {
+        return new VIH_Model_KortKursus_OnlineTilmelding($this->context->name());
     }
 }
