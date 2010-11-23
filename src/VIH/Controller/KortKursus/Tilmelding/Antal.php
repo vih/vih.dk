@@ -12,14 +12,9 @@
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-
 class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
 {
-    private $form;
-
-    public $map = array('kontakt'    => 'VIH_Controller_KortKursus_Tilmelding_Kontakt',
-                        'confirm'    => 'VIH_Controller_KortKursus_Tilmelding_Confirm',
-                        'kvittering' => 'VIH_Controller_KortKursus_Tilmelding_Kvittering');
+    protected $form;
     protected $template;
 
     function __construct(k_TemplateFactory $template)
