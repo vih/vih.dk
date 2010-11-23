@@ -56,7 +56,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
 
         $data = array('headline' => 'Tilmelding til korte kurser',
                       'explanation' => $extra_text. '
-            <p>Du kan tilmelde dig de korte kurser ved at udfylde tilmeldingsformularen nedenunder. Du kan se de trin, du skal igennem oppe i øverste højre hjørne. Du kan også ringe til højskolen og få en formular tilsendt med posten.</p>
+            <p>Du kan tilmelde dig de korte kurser ved at udfylde tilmeldingsformularen nedenunder.</p>
             <p class="notice"><strong>Vigtigt:</strong> Du angiver en kontaktperson pr. tilmelding. Det er kun kontaktpersonen, der får bekræftelser og program. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>
         ',
                       'content' => $this->getForm()->toHTML());
