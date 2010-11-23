@@ -67,7 +67,7 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
     /**
      * Confirms a subscription to reserve a spot on the course
      *
-     * @return 1 on success
+     * @return boolean
      */
     function confirm()
     {
@@ -82,9 +82,9 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
     }
 
     /**
-     * Metoden bruges under tilmeldingen til at annullere en tilmelding.
+     * Cancels a registration during the registration process
      *
-     * @return 1 on success
+     * @return boolean
      */
     function cancel()
     {
@@ -97,7 +97,6 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
         //session_destroy();
         return true;
     }
-
 
     /**
      * Cleans up old subscriptions
@@ -119,10 +118,4 @@ class VIH_Model_KortKursus_OnlineTilmelding extends VIH_Model_KortKursus_Tilmeld
         }
         return true;
     }
-
-    function addDeltager()
-    {
-        // void
-    }
-
 }
