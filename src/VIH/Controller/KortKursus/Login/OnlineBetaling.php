@@ -22,7 +22,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->context->name());
         $tilmelding->loadBetaling();
 
-        // der skal lige laves noget i Tilmelding.php, så vi har styr over hvor meget der mangler at blive betalt med de afventendede betalinger
+        // @todo add method to Tilmelding.php to make it easy to get missing payments
         if (count($tilmelding->betaling->getList('not_approved')) > 0) {
             $this->extra_text = '<p id="notice"><strong>Advarsel</strong>: Vær opmærksom på, at du har afventende betalinger på '.$tilmelding->get('betalt_not_approved').' kroner. Du skal altså kun bruge formularen, hvis du er helt sikker på, at du skal betale beløbene nedenunder.</p>';
         }
@@ -41,15 +41,15 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         return $tpl->render($this, $data);
     }
 
+    /**
+     * NOTICE: First we need to make a local payment, so we have a
+     * local id to use for capture at quickpay.
+     * When the payment has been captured we set status = 000
+     */
     function postForm()
     {
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->context->name());
         if ($this->getForm()->validate()) {
-            // først skal vi oprette en betaling - som kan fungere som id hos qp
-            // betalingen skal kobles til den aktuelle tilmelding
-            // når vi så har haft den omkring pbs skal betalingen opdateres med status for betalingen
-            // status sættes til 000, hvis den er godkendt hos pbs.
-
             $eval = false;
 
             $betaling = new VIH_Model_Betaling("kortekurser", $tilmelding->get("id"));
@@ -75,11 +75,6 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
             if ($eval) {
                 if ($eval['qpstat'] === '000') {
                     // The authorization was completed
-                    /*
-                    echo "<pre>";
-                    var_dump($eval);
-                    echo "</pre>";
-                    */
                     $betaling->setTransactionnumber($eval['transaction']);
                     $betaling->setStatus('completed');
 
@@ -91,13 +86,7 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
                     return new k_SeeOther($this->context->url());
                 } else {
                     // An error occured with the authorize
-
                     $this->extra_text = '<p class="warning">Der opstod en fejl under transaktionen. '.$onlinebetaling->statuskoder[$eval['qpstat']].'. Du kan prøve igen.</p>';
-                    /*
-                    echo "<pre>";
-                    var_dump($eval);
-                    echo "</pre>";
-					*/
                 }
             } else {
                 $this->extra_text = 'Kommunikationsfejl med PBS eller QuickPay';
@@ -118,7 +107,6 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         if ($tilmelding->get('pris_forsikring') > 0) {
             $forsikringstekst = ' og afbestillingsforsikring';
         }
-
 
         $form = new HTML_QuickForm('onlinebetaling', 'POST', $this->url());
 
@@ -161,6 +149,9 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         return ($this->form = $form);
     }
 
+    /**
+     * @todo Make sure that https is used
+     */
     function _execute()
     {
         $protocol = substr($this->url(), 0, 5);
