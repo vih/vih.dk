@@ -1,12 +1,6 @@
 <?php
 /**
-<<<<<<< HEAD:src/VIH/Controller/KortKursus/Tilmelding/Kvittering.php
- * Denne side skal skrive en kvittering til kunden og sende en e-mailbekræftelse
- * på alt kunden har lavet i tilmeldingssystemet.
-=======
- * Denne side skal skrive en kvittering til kunden og sende en e-mailbekrï¿½ftelse
- * pï¿½ alt kunden har lavet i tilmeldingssystemet.
->>>>>>> 54af2462c4ab4a6214a910b01bc71651384c34aa:src/VIH/Controller/KortKursus/Tilmelding/Kvittering.php
+ * Reciept to print and by e-mail to the customer
  *
  * @author Lars Olesen <lars@legestue.net>
  */
@@ -31,7 +25,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kvittering extends k_Component
         return parent::dispatch();
     }
 
-    function GET()
+    function renderHtml()
     {
         $tilmelding = new VIH_Model_KortKursus_OnlineTilmelding($this->context->name());
 
