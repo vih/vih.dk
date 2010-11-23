@@ -3,9 +3,9 @@ class VIH_Model_KortKursus_TilmeldingGateway
 {
     protected $db;
 
-    function __construct()
+    function __construct(DB_Sql $db_sql)
     {
-        $this->db = new DB_Sql;
+        $this->db = $db_sql;
     }
 
     function findById($id)

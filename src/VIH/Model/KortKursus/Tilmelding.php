@@ -530,7 +530,7 @@ Vejle Idrætshøjskole
      */
     function getList($type = '', $limit = 5)
     {
-        $gateway = new VIH_Model_KortKursus_TilmeldingGateway;
+        $gateway = new VIH_Model_KortKursus_TilmeldingGateway(new DB_Sql);
         if (!empty($type)) {
             return $gateway->findByType($type, $limit);
         } else {
@@ -543,7 +543,7 @@ Vejle Idrætshøjskole
      */
     function search($string)
     {
-        $gateway = new VIH_Model_KortKursus_TilmeldingGateway;
+        $gateway = new VIH_Model_KortKursus_TilmeldingGateway(new DB_Sql);
         return $gateway->findByString($string);
     }
 
@@ -552,7 +552,7 @@ Vejle Idrætshøjskole
      */
     public static function factory($handle)
     {
-        $gateway = new VIH_Model_KortKursus_TilmeldingGateway();
+        $gateway = new VIH_Model_KortKursus_TilmeldingGateway(new DB_Sql);
         return $gateway->findByHandle($handle);
     }
 }
