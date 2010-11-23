@@ -8,6 +8,13 @@ class VIH_Controller_KortKursus_Login_Tilmelding extends k_Component
         $this->template = $template;
     }
 
+    function map($name)
+    {
+        if ($name == 'onlinebetaling') {
+            return 'VIH_Controller_KortKursus_Login_OnlineBetaling';
+        }
+    }
+
     function renderHtml()
     {
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->name());
@@ -44,12 +51,5 @@ class VIH_Controller_KortKursus_Login_Tilmelding extends k_Component
         $this->document->setTitle('Tilmelding #' . $tilmelding->get('id'));
         $tpl = $this->template->create('Kundelogin/kortekurser');
         return $tpl->render($this, $oversigt_data);
-    }
-
-    function map($name)
-    {
-        if ($name == 'onlinebetaling') {
-            return 'VIH_Controller_KortKursus_Login_OnlineBetaling';
-        }
     }
 }
