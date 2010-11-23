@@ -1,46 +1,12 @@
 <?php
 class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
 {
-    private $form;
+    protected $form;
     protected $template;
 
     function __construct(k_TemplateFactory $template)
     {
         $this->template = $template;
-    }
-
-    function getForm()
-    {
-        if ($this->form) {
-            return $this->form;
-        }
-        $form = new HTML_QuickForm('venteliste', 'POST', $this->url());
-        $form->addElement('header', 'null', 'Hvor mange personer vil du sætte på venteliste?');
-        $form->addElement('select', 'antal', 'Antal deltagere', array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10));
-        $form->addElement('header', null, 'Din personlige oplysninger');
-        $form->addElement('text', 'navn', 'Navn');
-        /*
-        $form->addElement('text', 'adresse', 'Adresse');
-        $form->addElement('text', 'postnr', 'Postnr');
-        $form->addElement('text', 'postby', 'By');
-        */
-        $form->addElement('text', 'email', 'E-mail');
-        $form->addElement('text', 'arbejdstelefon', 'Telefon (ml. 8 og 16)');
-        $form->addElement('text', 'telefonnummer', 'Alternativt telefonnummer');
-        $form->addElement('textarea', 'besked', 'Besked');
-        $form->addElement('submit', null, 'Send');
-
-        $form->addRule("navn", "Du skal udfylde Navn", "required");
-        //$form->addRule("adresse", "Du skal udfylde Adresse", "required");
-        //$form->addRule("postnr", "Du skal udfylde Postnr", "required");
-        //$form->addRule("postby", "Du skal udfylde By", "required");
-        $form->addRule("arbejdstelefon", "Du skal udfylde telefon", "required");
-
-        if (is_numeric($this->query('antal'))) {
-            $form->setDefaults(array('antal'=>$this->query('antal')));
-        }
-
-        return ($this->form = $form);
     }
 
     function dispatch()
@@ -121,5 +87,39 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
 
         $tpl = $this->template->create('wrapper');
         return $tpl->render($this, $data);
+    }
+
+    function getForm()
+    {
+        if ($this->form) {
+            return $this->form;
+        }
+        $form = new HTML_QuickForm('venteliste', 'POST', $this->url());
+        $form->addElement('header', 'null', 'Hvor mange personer vil du sætte på venteliste?');
+        $form->addElement('select', 'antal', 'Antal deltagere', array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10));
+        $form->addElement('header', null, 'Din personlige oplysninger');
+        $form->addElement('text', 'navn', 'Navn');
+        /*
+        $form->addElement('text', 'adresse', 'Adresse');
+        $form->addElement('text', 'postnr', 'Postnr');
+        $form->addElement('text', 'postby', 'By');
+        */
+        $form->addElement('text', 'email', 'E-mail');
+        $form->addElement('text', 'arbejdstelefon', 'Telefon (ml. 8 og 16)');
+        $form->addElement('text', 'telefonnummer', 'Alternativt telefonnummer');
+        $form->addElement('textarea', 'besked', 'Besked');
+        $form->addElement('submit', null, 'Send');
+
+        $form->addRule("navn", "Du skal udfylde Navn", "required");
+        //$form->addRule("adresse", "Du skal udfylde Adresse", "required");
+        //$form->addRule("postnr", "Du skal udfylde Postnr", "required");
+        //$form->addRule("postby", "Du skal udfylde By", "required");
+        $form->addRule("arbejdstelefon", "Du skal udfylde telefon", "required");
+
+        if (is_numeric($this->query('antal'))) {
+            $form->setDefaults(array('antal'=>$this->query('antal')));
+        }
+
+        return ($this->form = $form);
     }
 }
