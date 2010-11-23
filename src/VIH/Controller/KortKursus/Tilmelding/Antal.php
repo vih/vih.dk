@@ -1,14 +1,13 @@
 <?php
 /**
- * Tilmeldingssystem til Korte Kurser
+ * Registration for short courses
  *
- * Denne side starter tilmeldingen op. Til det har vi brug for at vide fÃ¸lgende:
+ * To start the registration we need to know:
  *
- * - kursus vedkommende vil deltage pï¿½
- * - antallet af deltagere vedkommende vil tilmelde
+ * - what course
+ * - number of participants
  *
- * Man kan bï¿½de tilmelde sig kurser med og uden ledige pladser. Hvis man tilmelder
- * sig et kursus uden ledige pladser skal man kunne komme pï¿½ venteliste.
+ * If booking a fully booked course, you will be put on waiting list
  *
  * @author Lars Olesen <lars@legestue.net>
  */
