@@ -141,10 +141,13 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
         //$this->form->addElement('text', 'arbejdstelefon', 'Telefon (ml. 8 og 16)', 'Telefonnummer hvor du kan træffes mellem 8 og 16');
         //$this->form->addElement('text', 'mobil', 'Mobil');
         $this->form->addElement('text', 'email', 'E-mail'); // 'Bekræftelse sendes til denne e-mail-adresse. Hvis den udelades bruger vi Post Danmark.'
-        $this->form->addElement('header', null, 'Vil du tegne afbestillingsforsikring');
-        $this->form->addElement('radio', 'afbestillingsforsikring', 'Afbestillingsforsikring', 'Ja ('.$tilmelding->getKursus()->get('pris_afbestillingsforsikring').' kr ekstra)', 'Ja', 'id="forsikring_ja"');
-        $this->form->addElement('radio', 'afbestillingsforsikring', '', 'Nej', 'Nej', 'id="forsikring_nej"');
 
+        if ($tilmelding->kursus->hasCancellationFee()) {
+            $this->form->addElement('header', null, 'Vil du tegne afbestillingsforsikring');
+            $this->form->addElement('radio', 'afbestillingsforsikring', 'Afbestillingsforsikring', 'Ja ('.$tilmelding->getKursus()->get('pris_afbestillingsforsikring').' kr ekstra)', 'Ja', 'id="forsikring_ja"');
+            $this->form->addElement('radio', 'afbestillingsforsikring', '', 'Nej', 'Nej', 'id="forsikring_nej"');
+            $this->form->addRule('afbestillingsforsikring', 'Du skal vælge, om du vil have en afbestillingsforsikring', 'required');
+        }
         $this->form->addRule('kontaktnavn', 'Skriv venligst dit navn', 'required');
         $this->form->addRule('adresse', 'Skriv venligst din adresse', 'required');
         $this->form->addRule('postnr', 'Skriv venligst din postnummer', 'required');
@@ -152,7 +155,6 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
         $this->form->addRule('telefonnummer', 'Skriv venligst dit telefonnummer', 'required');
         $this->form->addRule('arbejdstelefon', 'Skriv venligst din arbejdstelefon', 'required');
         $this->form->addRule('email', 'Den e-mail du har indtastet er ikke gyldig', 'email');
-        $this->form->addRule('afbestillingsforsikring', 'Du skal vælge, om du vil have en afbestillingsforsikring', 'required');
 
         $defaults = array(
             'kontaktnavn' => $tilmelding->get('navn'),

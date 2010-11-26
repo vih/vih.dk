@@ -7,20 +7,19 @@
  */
 class VIH_Model_KortKursus
 {
-    private $standardpriser = array(
-        'depositum' => KORTEKURSER_STANDARDPRISER_DEPOSITUM,
-        'afbestillingsforsikring' => KORTEKURSER_STANDARDPRISER_AFBESTILLINGSFORSIKRING);
+    protected $standardpriser = array(
+        'depositum' => KORTEKURSER_STANDARDPRISER_DEPOSITUM);
 
-    private $status = array(
+    protected $status = array(
         'udsolgt' => 0,
         'faa_ledige_pladser' => 6);
 
-    private $golf = array(
+    protected $golf = array(
     	'begynderpladser' => 10,
    		'begynderhandicap' => 50);
 
-    private $id;
-    private $value = array();
+    protected $id;
+    protected $value = array();
     public $indkvartering = array(
         1 => 'efterskolen',
         2 => 'kursuscenteret',
@@ -110,10 +109,6 @@ class VIH_Model_KortKursus
         }
 
         $this->value['pris_afbestillingsforsikring'] = $db->f('pris_afbestillingsforsikring');
-        if (!isset($this->value['afbestillingsforsikring'])) {
-            $this->value['pris_afbestillingsforsikring'] = $this->standardpriser['afbestillingsforsikring'];
-        }
-
         $this->value['beskrivelse'] = $db->f('beskrivelse');
         if (empty($this->value['beskrivelse'])) {
             $this->value['beskrivelse'] = $db->f('tekst');
@@ -209,7 +204,7 @@ class VIH_Model_KortKursus
         $var['pic_id'] = $kursus->get('pic_id');
         $var['status'] = $kursus->get('status');
         $var['tilmeldingsmulighed'] = $kursus->get('status');
-        $var['published'] = 0; // aldrig udgive dem f�r de er blevet kigget igennem
+        $var['published'] = 0; // never publish before checked out
 
         $new_kursus = new VIH_Model_KortKursus();
         if ($id = $new_kursus->save($var)) {
@@ -492,5 +487,10 @@ class VIH_Model_KortKursus
             );
         }
         return $out;
+    }
+
+    function hasCancellationFee()
+    {
+        return ($this->value['pris_afbestillingsforsikring'] > 0);
     }
 }

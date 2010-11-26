@@ -1,8 +1,6 @@
 <?php
 /**
- * Dankortbetaling
- *
- * Her kan man betale med Dankort for et kort kursus.
+ * Onlinepayment for short courses
  *
  * @see /betaling/Betaling.php
  */
