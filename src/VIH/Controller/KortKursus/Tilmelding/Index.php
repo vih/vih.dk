@@ -17,10 +17,12 @@
 class VIH_Controller_KortKursus_Tilmelding_Index extends k_Component
 {
     protected $template;
+    protected $db_sql;
 
-    function __construct(k_TemplateFactory $template)
+    function __construct(k_TemplateFactory $template, DB_Sql $db_sql)
     {
         $this->template = $template;
+        $this->db_sql = $db_sql;
     }
 
     function map($name)
@@ -40,6 +42,11 @@ class VIH_Controller_KortKursus_Tilmelding_Index extends k_Component
         $data = array('content' => $content);
         $tpl = $this->template->create('wrapper');
         return $tpl->render($this, $data);
+    }
+
+    function getRegistrationGateway()
+    {
+        return new VIH_Model_KortKursus_TilmeldingGateway($this->db_sql);
     }
 
     function getKursusId()

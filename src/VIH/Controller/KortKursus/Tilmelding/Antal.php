@@ -109,7 +109,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
 
     function getTilmelding()
     {
-        return new VIH_Model_KortKursus_OnlineTilmelding($this->name());
+        return $this->context->getRegistrationGateway()->findBySessionId($this->name());
     }
 
     function getForm()

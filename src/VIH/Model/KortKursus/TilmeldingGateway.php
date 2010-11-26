@@ -2,6 +2,16 @@
 class VIH_Model_KortKursus_TilmeldingGateway
 {
     protected $db;
+    protected $status = array(
+        -3 => 'venteliste',
+        -2 => 'slettet', // if deleted from the system
+        -1 => 'annulleret', // if cancelled from the registration process or from the system
+        0  => 'ikke tilmeldt', // default setting
+        1  => 'undervejs', // when in the registration process
+        2  => 'reserveret', // when confirmed under the registration process
+        3  => 'tilmeldt', // when deposit has been paid
+        4  => 'afsluttet' // when everything has been paid
+    );
 
     function __construct(DB_Sql $db_sql)
     {
@@ -79,19 +89,31 @@ class VIH_Model_KortKursus_TilmeldingGateway
                 break;
         }
 
-        $db = new DB_Sql;
-        $db->query($sql);
+        $this->db->query($sql);
 
         $tilmeldinger = array();
 
         $i = 0;
-        while ($db->nextRecord()) {
-            $tilmeldinger[$i] = new VIH_Model_KortKursus_Tilmelding($db->f('id'));
+        while ($this->db->nextRecord()) {
+            $tilmeldinger[$i] = $this->findById($db->f('id'));
             $tilmeldinger[$i]->loadBetaling();
             $i++;
         }
 
         return $tilmeldinger;
+    }
 
+    function findBySessionId($session_id)
+    {
+        $this->db->query("SELECT id FROM kortkursus_tilmelding WHERE session_id = '" . $session_id . "' AND active = 1 AND (status_key = ".$this->getStatusKey('undervejs')." OR ".$this->getStatusKey('reserveret').")");
+        if ($this->db->nextRecord()) {
+            return $this->findById($this->db->f('id'));
+        }
+        return new VIH_Model_KortKursus_OnlineTilmelding($session_id);
+    }
+
+    function getStatusKey($string)
+    {
+        return array_search($string, $this->status);
     }
 }

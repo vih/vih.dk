@@ -519,7 +519,6 @@ Vejle Idrætshøjskole
         return ($return = $mail->send());
     }
 
-
     function getId()
     {
         return $this->id;

@@ -33,9 +33,9 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
 
         $extra_text = '';
         $tilmelding->kursus->getBegyndere();
-        if ($tilmelding->kursus->get('pladser_begyndere_ledige') <= 0 AND $tilmelding->kursus->get('gruppe_id') == 1): // golf
-        $extra_text = '<p class="alert"><strong>Der er ikke flere ledige begynderpladser på dette kursus.</strong></p>';
-        endif;
+        if ($tilmelding->kursus->get('pladser_begyndere_ledige') <= 0 AND $tilmelding->kursus->get('gruppe_id') == 1) { // golf
+            $extra_text = '<p class="alert"><strong>Der er ikke flere ledige begynderpladser på dette kursus.</strong></p>';
+        };
 
         $this->document->setTitle('Indtast oplysninger');
 
