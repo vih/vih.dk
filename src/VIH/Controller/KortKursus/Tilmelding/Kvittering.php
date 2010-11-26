@@ -19,7 +19,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kvittering extends k_Component
         $tilmelding = new VIH_Model_KortKursus_OnlineTilmelding($this->context->name());
 
         if (!$tilmelding->get('id') OR !$tilmelding->get('navn')) {
-            throw new Exception('Du har ikke ret til at være her');
+            throw new k_Forbidden();
         }
 
         return parent::dispatch();

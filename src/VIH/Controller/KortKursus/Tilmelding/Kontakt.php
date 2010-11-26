@@ -21,7 +21,7 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
         $tilmelding = $this->getTilmelding();
 
         if (!$tilmelding->get('id')) {
-            throw new Exception('Du har ikke ret til at være her');
+            throw new k_Forbidden();
         }
 
         return parent::dispatch();

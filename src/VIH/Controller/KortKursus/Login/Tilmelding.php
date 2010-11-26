@@ -15,12 +15,19 @@ class VIH_Controller_KortKursus_Login_Tilmelding extends k_Component
         }
     }
 
-    function renderHtml()
+    function dispatch()
     {
         $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->name());
         if (!is_object($tilmelding) OR !$tilmelding->get('id')) {
-            throw new Exception('Der findes ikke nogen tilmelding');
+            throw new k_PageNotFound();
         }
+
+        return parent::dispatch();
+    }
+
+    function renderHtml()
+    {
+        $tilmelding = VIH_Model_KortKursus_Tilmelding::factory($this->name());
 
         if (!$tilmelding->loadBetaling()) {
             throw new Exception('Kunne ikke loade betaling');

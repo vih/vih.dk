@@ -14,7 +14,7 @@ class VIH_Controller_KortKursus_Tilmelding_Confirm extends k_Component
         $tilmelding = $this->getTilmelding();
 
         if (!$tilmelding->get('id') OR !$tilmelding->get('navn')) {
-            throw new k_PageNotFound;
+            throw new k_Forbidden();
         }
         return parent::dispatch();
     }

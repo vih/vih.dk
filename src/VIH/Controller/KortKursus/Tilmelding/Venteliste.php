@@ -14,7 +14,7 @@ class VIH_Controller_KortKursus_Tilmelding_Venteliste extends k_Component
         $kursus = new VIH_Model_KortKursus($this->context->name());
 
         if ($kursus->getId() <= 0) {
-            throw new Exception('Ikke gyldigt kursus_id');
+            throw new k_Forbidden();
         }
         return parent::dispatch();
     }
