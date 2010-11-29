@@ -95,7 +95,7 @@ class VIH_Model_KortKursus_TilmeldingGateway
 
         $i = 0;
         while ($this->db->nextRecord()) {
-            $tilmeldinger[$i] = $this->findById($db->f('id'));
+            $tilmeldinger[$i] = $this->findById($this->db->f('id'));
             $tilmeldinger[$i]->loadBetaling();
             $i++;
         }
