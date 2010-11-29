@@ -1,5 +1,5 @@
 <?php
-class VIH_Controller_KortKursus_Tilmelding_Betingelser extends k_Component
+class VIH_Controller_KortKursus_Tilmelding_Conditions extends k_Component
 {
     function renderHtml()
     {

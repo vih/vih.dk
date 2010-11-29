@@ -32,7 +32,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
         } elseif ($name == 'close') {
             return 'VIH_Controller_KortKursus_Tilmelding_Close';
         } elseif ($name == 'betingelser') {
-            return 'VIH_Controller_KortKursus_Tilmelding_Betingelser';
+            return 'VIH_Controller_KortKursus_Tilmelding_Conditions';
         }
     }
 
