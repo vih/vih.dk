@@ -1,8 +1,6 @@
 <?php
 /**
- * Indtaste kontaktoplysninger om kunden
- *
- * Hvis ordren skal afbrydes henvises til siden afbryd.php
+ * Contact information about the customer
  *
  * @author Lars Olesen <lars@legestue.net>
  */
@@ -128,6 +126,17 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
         $tilmelding = $this->getTilmelding();
         $deltagere = $tilmelding->getDeltagere();
 
+        $defaults = array(
+            'kontaktnavn' => $tilmelding->get('navn'),
+            'adresse' => $tilmelding->get('adresse'),
+            'postnr' => $tilmelding->get('postnr'),
+            'postby' => $tilmelding->get('postby'),
+            'telefonnummer' => $tilmelding->get('telefonnummer'),
+            'arbejdstelefon' => $tilmelding->get('arbejdstelefon'),
+            'mobil' => $tilmelding->get('mobil'),
+            'email' => $tilmelding->get('email'),
+            'besked' => $tilmelding->get('besked'));
+
         $this->form = new HTML_QuickForm(null, 'post', $this->url(), '', null, true);
         $this->form->removeAttribute('name');
         $renderer = new HTML_QuickForm_Renderer_Tableless();
@@ -147,7 +156,9 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
             $this->form->addElement('radio', 'afbestillingsforsikring', 'Afbestillingsforsikring', 'Ja ('.$tilmelding->getKursus()->get('pris_afbestillingsforsikring').' kr ekstra)', 'Ja', 'id="forsikring_ja"');
             $this->form->addElement('radio', 'afbestillingsforsikring', '', 'Nej', 'Nej', 'id="forsikring_nej"');
             $this->form->addRule('afbestillingsforsikring', 'Du skal vælge, om du vil have en afbestillingsforsikring', 'required');
+            $defaults['afbestillingsforsikring'] = $tilmelding->get('afbestillingsforsikring');
         }
+
         $this->form->addRule('kontaktnavn', 'Skriv venligst dit navn', 'required');
         $this->form->addRule('adresse', 'Skriv venligst din adresse', 'required');
         $this->form->addRule('postnr', 'Skriv venligst din postnummer', 'required');
@@ -155,18 +166,6 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
         $this->form->addRule('telefonnummer', 'Skriv venligst dit telefonnummer', 'required');
         $this->form->addRule('arbejdstelefon', 'Skriv venligst din arbejdstelefon', 'required');
         $this->form->addRule('email', 'Den e-mail du har indtastet er ikke gyldig', 'email');
-
-        $defaults = array(
-            'kontaktnavn' => $tilmelding->get('navn'),
-            'adresse' => $tilmelding->get('adresse'),
-            'postnr' => $tilmelding->get('postnr'),
-            'postby' => $tilmelding->get('postby'),
-            'telefonnummer' => $tilmelding->get('telefonnummer'),
-            'arbejdstelefon' => $tilmelding->get('arbejdstelefon'),
-            'mobil' => $tilmelding->get('mobil'),
-            'email' => $tilmelding->get('email'),
-            'afbestillingsforsikring' => $tilmelding->get('afbestillingsforsikring'),
-            'besked' => $tilmelding->get('besked'));
 
         $this->form->setDefaults($defaults);
 
@@ -187,30 +186,6 @@ class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
                                      'cpr['.$i.']' => $deltager->get('cpr')));
             $radio = array();
 
-            /*
-            switch ($tilmelding->kursus->get('indkvartering')) {
-                case 'kursuscenteret':
-                    $this->form->addElement('radio', 'eneværelse['.$i.']', 'Der er indkvartering på eneværelser', '', 'ja', 'id="værelse_ja"');
-                    $this->form->addElement('text', 'sambo['.$i.']', 'Jeg ønsker at dele toilet og bad med?');
-                    $this->form->addRule('enevaerelse['.$i.']', 'Der er kun indkvartering på eneværelser', 'required');
-                    // $this->form->addRule('sambo['.$i.']', 'Hvem vil du dele toilet og bad med?', 'required');
-                    $this->form->setDefaults(array(
-                        'enevaerelse['.$i.']' => true,
-                        'sambo['.$i.']' => $deltager->get('sambo')));
-                    break;
-                case 'hojskole og kursuscenter':
-                    $this->form->addElement('radio', 'værelse['.$i.']', 'Indkvartering', 'Enkeltværelse (bad og toilet deles med en anden)', 'enkelt', 'id="værelse_1"');
-                    $this->form->addElement('radio', 'værelse['.$i.']', '', 'Dobbeltværelse', 'dobbelt', 'id="værelse_2"');
-                    $this->form->addElement('radio', 'værelse['.$i.']', '', 'Plads i rum til 3 personer', '3-personers', 'id="værelse_3"');
-                    $this->form->addElement('text', 'sambo['.$i.']', 'Jeg ønsker at dele toilet og bad med?');
-                    $this->form->addRule('værelse['.$i.']', 'Du skal vælge værelsestype', 'required');
-                    // $this->form->addRule('sambo['.$i.']', 'Hvem vil du dele toilet og bad med?', 'required');
-                    $this->form->setDefaults(array(
-                        'værelse['.$i.']' => $deltager->get('værelse'),
-                        'sambo['.$i.']' => $deltager->get('sambo')));
-                    break;
-            }
-            */
             if (!$tilmelding->kursus->isFamilyCourse()) {
                 $indkvartering_headline = 'Indkvartering';
                 foreach ($tilmelding->kursus->getIndkvartering() as $key => $indkvartering) {
