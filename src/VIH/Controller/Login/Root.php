@@ -26,6 +26,6 @@ class VIH_Controller_Login_Root extends k_Component
             $this->url('/logout') => 'Logout'
         );
         $tpl = $this->template->create('Kundelogin/main');
-        return $tpl->render($this, array('navigation' => $navigation, 'content' => $content));
+        return $tpl->render($this, array('navigation' => $navigation, 'content' => $content, 'title' => $this->document->title()));
     }
 }
