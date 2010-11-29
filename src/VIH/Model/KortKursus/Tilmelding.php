@@ -181,7 +181,12 @@ class VIH_Model_KortKursus_Tilmelding
     function save($var)
     {
         $var['navn'] =	$var['kontaktnavn'];
-        settype($var['rabat'], 'string');
+        if (!isset($var['afbestillingsforsikring'])) {
+            $var['afbestillingsforsikring'] = 0;
+        }
+        if (!isset($var['rabat'])) {
+            $var['rabat'] = 0;
+        }
 
         if (!$this->validate($var)) {
             return 0;
