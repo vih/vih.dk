@@ -1,7 +1,4 @@
 <?php
-/**
- * Controller for the intranet
- */
 class VIH_Controller_KortKursus_Show extends k_Component
 {
     protected $template;
