@@ -1,19 +1,9 @@
 <?php
 /**
- * Tilmeldingssystem til Korte Kurser
- *
- * Denne side starter tilmeldingen op. Til det har vi brug for at vide fï¿½lgende:
- *
- * - kursus vedkommende vil deltage pï¿½
- * - antallet af deltagere vedkommende vil tilmelde
- *
- * Man kan bï¿½de tilmelde sig kurser med og uden ledige pladser. Hvis man tilmelder
- * sig et kursus uden ledige pladser skal man kunne komme pï¿½ venteliste.
+ * Registration system for short courses
  *
  * @author Lars Olesen <lars@legestue.net>
- * @version 22. januar 2006
  */
-
 class VIH_Controller_KortKursus_Tilmelding_Index extends k_Component
 {
     protected $template;
