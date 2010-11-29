@@ -4,7 +4,7 @@
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-class VIH_Controller_KortKursus_Tilmelding_Kontakt extends k_Component
+class VIH_Controller_KortKursus_Tilmelding_Contact extends k_Component
 {
     protected $form;
     protected $template;

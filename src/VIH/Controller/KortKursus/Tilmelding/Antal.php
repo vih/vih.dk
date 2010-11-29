@@ -24,7 +24,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
     function map($name)
     {
         if ($name == 'kontakt') {
-            return 'VIH_Controller_KortKursus_Tilmelding_Kontakt';
+            return 'VIH_Controller_KortKursus_Tilmelding_Contact';
         } elseif ($name == 'confirm') {
             return 'VIH_Controller_KortKursus_Tilmelding_Confirm';
         } elseif ($name == 'kvittering') {
