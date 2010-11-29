@@ -1,23 +1,24 @@
 <?php
 /**
- * Denne skabelon skal v�re m�rket op som microformatet hcalender, vevent
+ * Must be marked up as the microformat hcalender, vevent
  *
  * @author Lars Olesen <lars@legestue.net>
  */
 ?>
 <div class="vevent">
     <h1 class="summary"><?php e($kursus->get('kursusnavn')); ?></h1>
+
     <?php if ($kursus->get('pladser_ledige') <= 0): ?>
-          <p class="notice">Der er ikke flere ledige pladser på dette kursus.</p>
+        <p class="notice">Der er ikke flere ledige pladser på dette kursus.</p>
     <?php elseif ($kursus->get('pladser_begyndere_ledige') <= 0 AND $kursus->get('gruppe_id') == 1): // golf ?>
-          <p class="notice">Der er ikke flere ledige begynderpladser på dette kursus.</p>
-      <?php endif; ?>
+        <p class="notice">Der er ikke flere ledige begynderpladser på dette kursus.</p>
+    <?php endif; ?>
 
     <div class="description">
         <?php echo autoop($kursus->get("beskrivelse")); ?>
     </div>
 
-     <hr />
+    <hr />
 
     <div>
         <?php if ($kursusleder->get("navn")): ?>
@@ -25,8 +26,8 @@
         <?php endif; ?>
         <p>
             <strong>Tidspunkt</strong>
-                <abbr class="dtstart" title="<?php e($kursus->get('dato_start')); ?>"><?php e($kursus->get('dato_start_dk')); ?></abbr> til
-                <abbr class="dtstart" title="<?php e($kursus->get('dato_slut')); ?>"><?php e($kursus->get('dato_slut_dk')); ?></abbr>
+            <abbr class="dtstart" title="<?php e($kursus->get('dato_start')); ?>"><?php e($kursus->get('dato_start_dk')); ?></abbr> til
+            <abbr class="dtstart" title="<?php e($kursus->get('dato_slut')); ?>"><?php e($kursus->get('dato_slut_dk')); ?></abbr>
         </p>
         <p>
             <strong>Pris</strong> <?php echo $kursus->get('pris'); ?> kroner
@@ -42,6 +43,8 @@
             </ul>
 
         </div>
-        <p><a href="<?php e(url('tilmelding')); ?>">Jeg vil gerne tilmelde mig &rarr;</a></p>
+        <form action="<?php e(url('tilmelding')); ?>" method="get">
+            <input type="submit" value="Jeg vil gerne tilmelde mig &rarr;" />
+        </form>
     </div>
 </div>
