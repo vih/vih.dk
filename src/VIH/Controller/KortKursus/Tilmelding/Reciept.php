@@ -85,9 +85,6 @@ class VIH_Controller_KortKursus_Tilmelding_Reciept extends k_Component
 
             <h2>Program og yderligere oplysninger</h2>
             <p>Kursusprogrammet sendes cirka to uger før kursusstart. Hvis du har nogen spørgsmål, er du meget velkommen enten til at ringe til os eller skrive en e-mail.</p>
-            <ul class="options">
-                <li><a href="'.$this->url('../close').'">Luk tilmeldingen og gå tilbage til forsiden</a></li>
-            </ul>
         ';
 
     }
