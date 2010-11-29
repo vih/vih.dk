@@ -4,8 +4,7 @@
  *
  * @author Lars Olesen <lars@legestue.net>
  */
-
-class VIH_Controller_KortKursus_Tilmelding_Kvittering extends k_Component
+class VIH_Controller_KortKursus_Tilmelding_Reciept extends k_Component
 {
     protected $template;
 

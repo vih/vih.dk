@@ -28,7 +28,7 @@ class VIH_Controller_KortKursus_Tilmelding_Antal extends k_Component
         } elseif ($name == 'confirm') {
             return 'VIH_Controller_KortKursus_Tilmelding_Confirm';
         } elseif ($name == 'kvittering') {
-            return 'VIH_Controller_KortKursus_Tilmelding_Kvittering';
+            return 'VIH_Controller_KortKursus_Tilmelding_Reciept';
         } elseif ($name == 'close') {
             return 'VIH_Controller_KortKursus_Tilmelding_Close';
         } elseif ($name == 'betingelser') {
