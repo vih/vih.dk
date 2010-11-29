@@ -1,7 +1,7 @@
 <?php
 class VIH_Controller_Login_Root extends k_Component
 {
-    public $map = array(
+    protected $map = array(
         'langekurser' => 'VIH_Controller_LangtKursus_Login_Index',
         'kortekurser' => 'VIH_Controller_KortKursus_Login_Index'
     );
