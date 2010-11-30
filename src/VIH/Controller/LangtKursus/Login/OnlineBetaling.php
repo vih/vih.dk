@@ -1,8 +1,6 @@
 <?php
 /**
- * Dankortbetaling
- *
- * Her kan man betale med Dankort for et kort kursus.
+ * Onlinepayment for long courses
  *
  * @see /betaling/Betaling.php
  *
@@ -46,10 +44,10 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         $tilmelding->loadBetaling();
 
         if ($this->getForm()->validate()) {
-            // først skal vi oprette en betaling - som kan fungere som id hos qp
-            // betalingen skal kobles til den aktuelle tilmelding
-            // når vi så har haft den omkring pbs skal betalingen opdateres med status for betalingen
-            // status sættes til 000, hvis den er godkendt hos pbs.
+            // create a payment which functions as an third party id at quickpay
+            // payment is coupled with the current registration
+            // after pbs update the status of the payment
+            // set status to 000 if captured at PBS
 
             $eval = false;
 
@@ -89,15 +87,6 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
 
             if ($eval) {
                 if ($eval['qpstat'] === '000') {
-                    // The authorization was completed
-
-                    /*
-                    echo 'Authorization: ' . $qpstatText["" . $eval['qpstat'] . ""] . '<br />';
-                    echo "<pre>";
-                    var_dump($eval);
-                    echo "</pre>";
-                    */
-
                     $betaling->setTransactionnumber($eval['transaction']);
                     $betaling->setStatus('completed');
 
@@ -111,12 +100,6 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
                 } else {
                     // An error occured with the authorize
                     $this->extra_text .= "<p><strong>Der opstod en fejl under transaktionen. ".$onlinebetaling->statuskoder[$eval['qpstat']].". Du kan prøve igen.</strong></p>";
-                    /*
-                    echo 'Authorization: ' . $qpstatText["" . $eval['qpstat'] . ""] . '<br />';
-                    echo "<pre>";
-                    var_dump($eval);
-                    echo "</pre>";
-                    */
                 }
             } else {
                 throw new Exception('Kommunikationsfejl med PBS og QuickPay');
