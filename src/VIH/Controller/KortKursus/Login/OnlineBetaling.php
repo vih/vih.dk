@@ -147,16 +147,32 @@ class VIH_Controller_KortKursus_Login_OnlineBetaling extends k_Component
         return ($this->form = $form);
     }
 
-    /**
-     * @todo Make sure that https is used
-     */
-    function _execute()
+    function dispatch()
     {
-        $protocol = substr($this->url(), 0, 5);
+        $url = $this->self_url();
+        $protocol = substr($url, 0, 5);
         if ($protocol != 'https') {
-            $link = 'https' . substr($this->url(), 4);
+            $link = 'https' . substr($url, 4);
             return new k_SeeOther($link);
         }
-        return parent::execute();
+        return parent::dispatch();
+    }
+
+    function self_url()
+    {
+        if (!isset($_SERVER['REQUEST_URI'])) {
+            $serverrequri = $_SERVER['PHP_SELF'];
+        } else {
+            $serverrequri = $_SERVER['REQUEST_URI'];
+        }
+        $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+        $protocol = $this->strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
+        $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+        return $protocol."://".$_SERVER['SERVER_NAME'].$port.$serverrequri;
+    }
+
+    function strleft($s1, $s2)
+    {
+        return substr($s1, 0, strpos($s1, $s2));
     }
 }

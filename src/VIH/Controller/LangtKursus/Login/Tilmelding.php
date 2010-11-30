@@ -2,7 +2,7 @@
 class VIH_Controller_LangtKursus_Login_Tilmelding extends k_Component
 {
     public $map = array(
-        'onlinebetaling' => 'VIH_Controller_LangtKursus_Login_Onlinebetaling',
+        'onlinebetaling' => 'VIH_Controller_LangtKursus_Login_OnlineBetaling',
         'fag'            => 'VIH_Controller_LangtKursus_Login_Fag'
     );
     protected $template;
