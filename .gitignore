@@ -1,0 +1,4 @@
+.project
+.buildpath
+.settings/*
+src/vih.dk/config.local.php
