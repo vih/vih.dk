@@ -21,7 +21,7 @@
     </target>
 
     <target name="checkout">
-        <echo msg="Checking out git repository" />
+        <echo msg="Cloning git repository" />
         <exec command="git clone git://github.com/vih/vih.dk.git ${build.dir}" />
 
         <mkdir dir="${build.dir}/package/${package-name}-${version}" />
