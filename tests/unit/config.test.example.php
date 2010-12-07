@@ -15,7 +15,7 @@ set_include_path(dirname(__FILE__) . '/../../src/' . PATH_SEPARATOR . get_includ
 
 require_once 'Ilib/ClassLoader.php';
 require_once 'VIH/configuration.php';
-require_once 'Doctrine/lib/Doctrine.php';
+require_once 'Doctrine.php';
 spl_autoload_register(array('Doctrine', 'autoload'));
 
 Doctrine_Manager::connection(DB_DSN);
