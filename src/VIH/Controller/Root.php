@@ -113,9 +113,9 @@ class VIH_Controller_Root extends k_Component
         $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         if (!empty($this->document->theme)) {
-            $keywords = array('maritim');
+            $keywords = array('worthshowing', $this->document->theme);
         } else {
-            $keywords = array('maritim');
+            $keywords = array('worthshowing');
         }
 
         try {
@@ -158,7 +158,6 @@ class VIH_Controller_Root extends k_Component
 
         if (empty($news)) {
             return '<p>Spørgsmål til højskoleophold eller rundvisning<span>Kontakt Peter Sebastian på 2929 6387 eller ps@vih.dk.</span></p>';
-
         } else {
             return '<p>'.$news[0]->get('title').'<span>'.$news[0]->get('tekst').'</span></p>';
         }
