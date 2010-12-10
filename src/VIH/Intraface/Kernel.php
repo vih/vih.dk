@@ -28,6 +28,8 @@ class VIH_Intraface_Kernel {
      */
     public function module($module) {}
 
+    public function useModule($module) {}
+
     public function useShared($shared) {}
 
     public function getTranslation($page_id)

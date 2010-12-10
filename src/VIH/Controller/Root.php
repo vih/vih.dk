@@ -113,13 +113,14 @@ class VIH_Controller_Root extends k_Component
         $filemanager = new Ilib_Filehandler_Manager($this->kernel);
 
         if (!empty($this->document->theme)) {
-            $keywords = array('worthshowing', $this->document->theme);
+            $keywords = array('maritim');
         } else {
-            $keywords = array('worthshowing');
+            $keywords = array('maritim');
         }
 
         try {
-            $img = new Ilib_Filehandler_ImageRandomizer($filemanager, $keywords);
+            require_once 'Intraface/modules/filemanager/ImageRandomizer.php';
+            $img = new ImageRandomizer($filemanager, $keywords);
             $file = $img->getRandomImage();
             $instance = $file->getInstance($size);
             $editor_img_uri = $this->url('/file.php') . $instance->get('file_uri_parameters');

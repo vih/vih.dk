@@ -105,10 +105,6 @@ class VIH_Model_KortKursus_TilmeldingGateway
 
     function findBySessionId($session_id)
     {
-        $this->db->query("SELECT id FROM kortkursus_tilmelding WHERE session_id = '" . $session_id . "' AND active = 1 AND (status_key = ".$this->getStatusKey('undervejs')." OR ".$this->getStatusKey('reserveret').")");
-        if ($this->db->nextRecord()) {
-            return $this->findById($this->db->f('id'));
-        }
         return new VIH_Model_KortKursus_OnlineTilmelding($session_id);
     }
 
