@@ -1,17 +1,24 @@
 [vih.dk](http://vih.dk)
-==
+=======================
 
-PHP code for [Vejle Idrætshøjskole's](http://vih.dk). You are more than welcome to suggest improvements. It is based on [konstrukt](http://konstrukt.dk), version 1, but we are hoping to refactor to use the newest version of konstrukt soon.
+Requirements
+------------
 
-Create PEAR package
---
+* PHP > 5.2
+* MySQL
+* PEAR
 
-If you like to do a local installation, it best way right now is to do the following:
+PHP code for [Vejle Idrætshøjskole](http://vih.dk). You are more than welcome to suggest improvements. It is based on [konstrukt](http://konstrukt.dk).
+
+Install vih.dk
+--------------
+
+To do a local installation, do the following:
 
     pear channel-discover pear.phing.info
     pear install phing/phing
     
-After installing phing, you should be able to just run:
+After installing phing, you can run:
 
     phing make
     
@@ -20,6 +27,6 @@ That will create a pear package, which will take care of installing all the depe
     pear install VIH_Hojskole-x.x.x.tgz
     
 Install database schema
---
+-----------------------
 
 The database schema can be found in the sql-directory. Just run them in phpmyadmin or from the command line.
