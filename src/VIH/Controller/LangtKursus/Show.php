@@ -109,6 +109,7 @@ class VIH_Controller_LangtKursus_Show extends k_Component
         $table = new HTML_Table($attr);
 
         $col[] = '';
+        $row = array();
 
         foreach ($periods as $p) {
             $col[] = $p->getName();
