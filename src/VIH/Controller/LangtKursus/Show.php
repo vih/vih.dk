@@ -104,17 +104,14 @@ class VIH_Controller_LangtKursus_Show extends k_Component
         $subjects = VIH_Model_Fag::getPublishedWithDescription();
         $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name());
 
-        $attr = array('class' => 'skema');
-
-        $table = new HTML_Table($attr);
-
+        // columns for the table
         $col[] = '';
-        $row = array();
-
         foreach ($periods as $p) {
             $col[] = $p->getName();
         }
 
+        // subject rows for the table
+        $row = array();
         foreach ($subjects as $subject) {
             if (!$subject->get('published')) {
                 continue;
@@ -126,9 +123,11 @@ class VIH_Controller_LangtKursus_Show extends k_Component
                 $test = $subject->get('faggruppe');
             }
             $row[$i]['fag'][$subject->getId()] = $subject;
-
         }
 
+        // build table
+        $attr = array('class' => 'skema');
+        $table = new HTML_Table($attr);
         $table->addRow($col, null, 'th');
 
         foreach ($row as $r) {
