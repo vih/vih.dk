@@ -8,8 +8,9 @@ class VIH_Factory
 
     function new_IntrafacePublic_Newsletter_XMLRPC_Client()
     {
-        $credentials = array("private_key" => INTRAFACE_PRIVATE_KEY,
-                            "session_id"  => uniqid());
+        $credentials = array(
+            "private_key" => INTRAFACE_PRIVATE_KEY,
+            "session_id"  => uniqid());
         XML_RPC2_Backend::setBackend("php");
         return new IntrafacePublic_Newsletter_XMLRPC_Client($credentials);
     }
@@ -36,7 +37,6 @@ class VIH_Factory
     function new_Doctrine_Connection_Common()
     {
         $conn = Doctrine_Manager::connection(DB_DSN);
-        $conn->setAttribute("model_loading", "conservative");
         $conn->setCharset('utf8');
         return $conn;
     }
