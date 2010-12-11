@@ -1,17 +1,5 @@
 <h1>Vælg fag på <?php e($tilmelding->getKursus()->getKursusNavn()); ?></h1>
 
-<?php
-    $chosen = array();
-    $conn = Doctrine_Manager::connection(DB_DSN);
-    $conn->setCharset('utf8');
-    $registration = Doctrine::getTable('VIH_Model_Course_Registration')->findOneById($tilmelding->getId());
-    $ch_subj = Doctrine::getTable('VIH_Model_Course_Registration_Subject')->findByRegistrationId($tilmelding->getId());
-
-    foreach ($ch_subj as $subj) {
-    	$chosen[$subj->period_id . $subj->subject_id . $subj->subjectgroup_id] = $subj->subject_id;
-    }
-?>
-
 <p>Inden du kommer på skolen, skal du vælge de fag, du har flest timer om ugen, mens du er på skolen. Resten af fagene vælger du, når du ankommer.</p>
 
 <p class="notice"><strong>Husk:</strong> Du skal kun vælge <strong>et</strong> fag i hver blok. Der tages forbehold for at fag ikke oprettes pga. for få tilmeldte til faget. Dette får du besked om inden ankomst.</p>
