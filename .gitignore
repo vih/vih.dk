@@ -3,3 +3,4 @@
 .settings/*
 src/vih.dk/config.local.php
 *.tgz
+tests/unit/config.test.php
