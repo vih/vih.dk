@@ -75,13 +75,18 @@ class VIH_Controller_Fag_Show extends k_Component
         }
 
         $this->getDBQuery()->setKeyword((array)$keyword_ids);
-
+        $this->getDBQuery()->setSorting('nyhed.date_publish DESC');
         $db = $this->getDBQuery()->getRecordset("nyhed.id", "", false);
 
         $news = array();
 
+        $i = 0;
         while ($db->nextRecord()) {
+            if ($i > 5) {
+                break;
+            }
             $news[] = new VIH_News($db->f('id'));
+            $i++;
         }
 
         $data = array('nyheder' => $news);

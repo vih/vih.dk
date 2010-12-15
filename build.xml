@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />	
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="3.1.0" />
+    <property name="version" value="3.2.0" />
     <property name="stability" value="stable" />
     <property name="package-filename" value="${package-name}-${version}.tgz" />
 
@@ -161,7 +161,7 @@
                              minimum_version="1.6.0" />
                 </dependencies>
                 <notes>
-                    * Added new police description and changed to konstrukt2
+                    * Changed implementation of filehandler
                 </notes>
             </d51pearpkg2>
     </target>
