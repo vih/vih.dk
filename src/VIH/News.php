@@ -85,6 +85,11 @@ class VIH_News
     	return $this->kernel;
     }
 
+    function identify()
+    {
+        return 'vih_news';
+    }
+
     function getCategory()
     {
         return $this->kategori[$this->get('kategori_id')];
