@@ -106,7 +106,7 @@ class VIH_Controller_Root extends k_Component
             $size = 'sidepicture';
             $standard = $this->url('/gfx/images2/sidepic3.jpg');
         } else {
-            return ;
+            return '';
         }
 
         $module = $this->kernel->module('filemanager');
@@ -124,8 +124,6 @@ class VIH_Controller_Root extends k_Component
             $file = $img->getRandomImage();
             $instance = $file->getInstance($size);
             $editor_img_uri = $this->url('/file.php') . $instance->get('file_uri_parameters');
-            $editor_img_height = $instance->get('height');
-            $editor_img_width = $instance->get('width');
             return ' style="background-image: url('.$editor_img_uri.')"';
         } catch (Exception $e) {
             return ' style="background-image: url('.$standard.')"';
