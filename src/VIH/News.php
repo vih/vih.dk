@@ -145,32 +145,7 @@ class VIH_News
     function save($input)
     {
         $input = array_map('mysql_escape_string', $input);
-        /*
-        $fields = array(
-            'date_publish',
-            'date_expire',
-            'overskrift',
-            'tekst',
-            'kategori_id',
-            'prioritet',
-            'title',
-            'keywords',
-            'description',
-            'type_id'
-        );
-        $values = array(
-            ,
-            $input["date_expire"],
-            $input["overskrift"],
-            $input["tekst"],
-            $input["kategori_id"],
-            $input["prioritet_id"],
-            $input["title"],
-            $input["keywords"],
-            $input["description"],
-            $input["type_id"]
-        );
-        */
+
         if ($this->id > 0) {
             $sql = 'UPDATE ';
             $sql_where = ' WHERE id = ' . $this->id;
@@ -178,11 +153,6 @@ class VIH_News
             $sql = 'INSERT INTO ';
             $sql_where = ', date_created = NOW()';
         }
-
-            //kategori_id =  '" . $input["kategori_id"] . "',
-            //prioritet =  '" . $input["prioritet_id"] . "',
-            // type_id =  '" . $input["type_id"] . "'"
-
 
         $sql = $sql . "nyhed SET
             date_updated = NOW(),
@@ -220,23 +190,24 @@ class VIH_News
     {
         // HACK category is not used anymore after the introduction of keywords
         $cat = '';
+        // HACK END
         if (empty($cat)) {
             $sql = "SELECT id
-                FROM nyhed
-                WHERE  (date_expire > NOW()
-                    OR date_expire = '0000-00-00 00:00:00')
-                    AND active = 1 AND date_publish < NOW()
-                ORDER BY date_publish DESC LIMIT " . $limit;
+                    FROM nyhed
+                    WHERE  (date_expire > NOW()
+                        OR date_expire = '0000-00-00 00:00:00')
+                        AND active = 1 AND date_publish < NOW()
+                    ORDER BY date_publish DESC LIMIT " . $limit;
         } else {
             $sql = "SELECT id
-                FROM nyhed nyhed
-                WHERE (date_expire > NOW()
-                    OR date_expire = '0000-00-00 00:00:00') AND date_publish < NOW()";
-                if ($prioritet == 1) {
-                    $sql .= " AND prioritet_id=1 ";
-                }
-                $sql .= " AND kategori_id= " . $cat . " AND active = 1
-                    ORDER BY date_publish DESC  LIMIT " . $limit;
+                    FROM nyhed nyhed
+                    WHERE (date_expire > NOW()
+                        OR date_expire = '0000-00-00 00:00:00') AND date_publish < NOW()";
+            if ($prioritet == 1) {
+                $sql .= " AND prioritet_id=1 ";
+            }
+            $sql .= "   AND kategori_id= " . $cat . " AND active = 1
+                     ORDER BY date_publish DESC  LIMIT " . $limit;
         }
         $db = MDB2::factory(DB_DSN);
         if (PEAR::isError($db)) die($db->getMessage() . $db->getUserInfo());
@@ -258,7 +229,7 @@ class VIH_News
                     AND nyhed.active = 1
                     AND nyhed.published = 1
                 ORDER BY nyhed.date_publish DESC, x.id ASC LIMIT 5';
-        $db = & MDB2::singleton(DB_DSN);
+        $db = MDB2::singleton(DB_DSN);
         $db->setFetchMode(MDB2_FETCHMODE_ASSOC);
         return ($result = $db->queryAll($sql));
     }
@@ -280,13 +251,6 @@ class VIH_News
         $sql = "SELECT x.file_id FROM nyhed_x_file x WHERE x.file_id > 0 AND x.nyhed_id = " .  $this->id . " ORDER BY x.id ASC";
         $this->db->setFetchMode(MDB2_FETCHMODE_ASSOC);
         return ($result = $this->db->queryAll($sql));
-        /*
-        $pics = array();
-        forea ($row = $result->fetchRow(MDB2_FETCHMODE_ASSOC)) {
-            $pics[] = $row['file_id'];
-        }
-        return $pics;
-        */
     }
 
     function deletePicture($picture_id)
