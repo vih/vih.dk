@@ -113,7 +113,8 @@ class VIH_NotFoundComponent extends k_Component
     function dispatch()
     {
         $tpl = $this->template->create('404');
-        $response = new k_HttpResponse(404, $tpl->render($this));
+        $response = new k_HtmlResponse($tpl->render($this));
+        $response->setStatus(404);
         return $response;
     }
 }
