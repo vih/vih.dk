@@ -130,8 +130,8 @@ class VIH_Controller_LangtKursus_Login_OnlineBetaling extends k_Component
         if ($tilmelding->antalRater() > 0) {
             foreach ($tilmelding->getRater() AS $rate) {
 
-                $options[$i] = HTML_QuickForm::createElement('checkbox', $i, null, number_format($rate['beløb'], 0, ',','.') . ' kroner (DKK) - forfalder ' . $rate['dk_betalingsdato']);
-                $options[$i]->updateAttributes(array('value'=>$rate['beløb'] * 100));
+                $options[$i] = HTML_QuickForm::createElement('checkbox', $i, null, number_format($rate['beloeb'], 0, ',','.') . ' kroner (DKK) - forfalder ' . $rate['dk_betalingsdato']);
+                $options[$i]->updateAttributes(array('value'=>$rate['beloeb'] * 100));
                 $i++;
             }
         } elseif ($tilmelding->get('skyldig_tilmeldingsgebyr') == 0) {
