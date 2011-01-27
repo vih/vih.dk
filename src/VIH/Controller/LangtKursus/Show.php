@@ -82,6 +82,15 @@ class VIH_Controller_LangtKursus_Show extends k_Component
 
     private function isSubjectAvailable($period, $subject)
     {
+        $subjectgroups = Doctrine::getTable('VIH_Model_Course_SubjectGroup')->findByPeriodId($period->getId());
+        foreach ($subjectgroups as $grp) {
+            foreach ($grp->Subjects as $subj) {
+                if ($subj->getId() == $subject->getId()) return true;
+            }
+        }
+        return false;
+        
+        /*
         $periods = Doctrine::getTable('VIH_Model_Course_Period')->findByCourseId($this->name());
 
         foreach ($periods as $p) {
@@ -93,6 +102,7 @@ class VIH_Controller_LangtKursus_Show extends k_Component
                 }
             }
         }
+        */
 
     }
 
