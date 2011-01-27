@@ -93,7 +93,7 @@ class VIH_Model_KortKursus
         if ($db->f('indkvartering_key')) {
             $this->value['indkvartering'] = $this->indkvartering[$db->f('indkvartering_key')];
         } else {
-            $this->value['indkvartering'] = 'kursuscenter';
+            $this->value['indkvartering'] = 'kursuscenteret';
         }
 
         $this->value['pris'] = $db->f('pris');
