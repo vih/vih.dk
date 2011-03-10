@@ -1,13 +1,13 @@
 <?php
 class VIH_Controller_Info_Index extends k_Component
 {
-    public $map = array('organisation'   => 'VIH_Controller_Info_Organisation',
-                        'værdigrundlag' => 'VIH_Controller_Info_Værdigrundlag',
-                        'om'             => 'VIH_Controller_Info_Om',
-                        'historie'       => 'VIH_Controller_Info_Historie',
-                        'vejledning'     => 'VIH_Controller_Info_Vejledning',
-                        'uden-ungdomsuddannelse' => 'VIH_Controller_Info_UdenUngdomsUddannelse',
-
+    public $map = array(
+        'organisation'           => 'VIH_Controller_Info_Organisation',
+        'vaerdigrundlag'         => 'VIH_Controller_Info_Vaerdigrundlag',
+        'om'                     => 'VIH_Controller_Info_Om',
+        'historie'               => 'VIH_Controller_Info_Historie',
+        'vejledning'             => 'VIH_Controller_Info_Vejledning',
+        'uden-ungdomsuddannelse' => 'VIH_Controller_Info_UdenUngdomsUddannelse',
     );
 
     protected $template;
@@ -61,8 +61,8 @@ class VIH_Controller_Info_Index extends k_Component
                 </blockquote>
 
                 <ul>
-                	<li><a href="'.$this->url('værdigrundlag').'">Værdigrundlag</a></li>
-                	<li><a href="'.$this->url('vejledning').'">Vejledning</a></li>
+                    <li><a href="'.$this->url('vaerdigrundlag').'">Værdigrundlag</a></li>
+                    <li><a href="'.$this->url('vejledning').'">Vejledning</a></li>
                     <li><a href="'.$this->url('uden-ungdomsuddannelse').'">Indsats for elever uden ungdomsuddannelse</a></li>
                     <li><a href="'.$this->url('/gfx/pdf/årsplan2010.pdf').'">Årsplan (pdf)</a></li>
                 </ul>
