@@ -37,13 +37,10 @@ class VIH_Controller_KortKursus_Tilmelding_Contact extends k_Component
 
         $this->document->setTitle('Indtast oplysninger');
 
-        $data = array('headline' => 'Indtast oplysninger',
-                      'explanation' => $extra_text . '
-            <p>Du er ved at reservere en plads på ' . $tilmelding->kursus->get('kursusnavn') . '.</p>
-        ',
-                      'content' =>
-            '<p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angående tilmeldingen, og det er også kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>'
-            . $this->getForm()->toHTML());
+        $data = array(
+            'headline' => 'Indtast oplysninger',
+            'explanation' => $extra_text . '<p>Du er ved at reservere en plads på ' . $tilmelding->kursus->get('kursusnavn') . '.</p>',
+            'content' => '<p class="notice" style="clear: both;"><strong>Vigtigt:</strong> Kontaktpersonen modtager al post angående tilmeldingen, og det er også kun kontaktpersonen, der modtager programmet. Hvis I er flere, der ønsker at få post, beder vi jer lave flere tilmeldinger.</p>' . $this->getForm()->toHTML());
 
         $tpl = $this->template->create('KortKursus/Tilmelding/tilmelding');
         return $tpl->render($this, $data);
