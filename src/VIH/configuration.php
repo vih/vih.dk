@@ -56,8 +56,3 @@ define('QUICKPAY_MD5_SECRET', 'FSfTW75Ghgl8MKprD5c9zewv92L86jU916Y53XRaQ1qnV7821
 // filehandler
 if (!defined('IMAGE_POPUP_SIZE')) { define('IMAGE_POPUP_SIZE', 'medium'); }
 define('IMAGE_LIBRARY', 'GD');
-
-ini_set('session.use_trans_sid', '0');
-
-putenv('TZ=Europe/Copenhagen');
-setlocale(LC_ALL, 'da_DK.ISO8859-1');

@@ -19,3 +19,8 @@ define('FILE_VIEWER', '/hojskole/src/vih.dk/file.php');
 set_include_path('.' . PATH_SEPARATOR . PATH_ROOT . PATH_SEPARATOR . get_include_path());
 
 $GLOBALS['error_log_file'] = '/home/lsolesen/tmp/vih.error.log';
+
+ini_set('session.use_trans_sid', '0');
+
+putenv('TZ=Europe/Copenhagen');
+setlocale(LC_ALL, 'da_DK.ISO8859-1');
