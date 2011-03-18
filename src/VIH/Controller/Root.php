@@ -31,6 +31,9 @@ class VIH_Controller_Root extends k_Component
 
     function map($name)
     {
+        if (!isset($this->map[$name])) {
+            throw new Exception('Not qualified mapping');
+        }
         return $this->map[$name];
     }
 
