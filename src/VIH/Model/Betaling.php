@@ -1,7 +1,8 @@
 <?php
 /**
- * Holder styr p� alle betalinger p� h�jskolens side. Klassen er n�dvendig,
- * for at vi kan lave onlinebetaling fra flere steder p� h�jskolens side.
+ * Keeps track on payments
+ *
+ * Used to make online payments in several places to keep track on internal reference numbers
  *
  * @author Lars Olesen <lars@legestue.net>
  * @author Sune Jensen <sj@sunet.dk>
@@ -17,7 +18,11 @@ class VIH_Model_Betaling
     public $belong_to_key; // number: key i array
     public $belong_to; // string: value i array
     public $belong_to_id;
-    public $allowed_type = array(0=> '_fejl_', 1 => 'quickpay', 2 => 'giro', 3 => 'kontant');
+    public $allowed_type = array(
+        0 => '_fejl_',
+        1 => 'quickpay',
+        2 => 'giro',
+        3 => 'kontant');
     public $value;
     public $allowed_status = array(
         -1 => 'invalid',
@@ -78,7 +83,7 @@ class VIH_Model_Betaling
         }
 
         $db = new DB_Sql;
-        $db->query("SELECT *, DATE_FORMAT(date_created, '%d-%m-%Y') AS date_created_dk FROM betaling WHERE id = ".$this->id);
+        $db->query("SELECT *, DATE_FORMAT(date_created, '%d-%m-%Y') AS date_created_dk FROM betaling WHERE id = " . $this->id);
         if (!$db->nextRecord()) {
             $this->id = 0;
             return 0;
@@ -88,17 +93,17 @@ class VIH_Model_Betaling
             throw new Exception("Id (".$this->id.") på betaling er mindre end 1000. Det må det ikke være da betaling id på quickpay skal være på mindst 4 tegn.");
         }
 
+        $this->id = $db->f('id');
         $this->belong_to_key = $db->f('belong_to');
         $this->belong_to = $this->allowed_belong_to[$db->f('belong_to')];
         $this->belong_to_id = $db->f('belong_to_id');
-
         $this->value['id'] = $db->f('id');
         $this->value['belong_to'] = $this->allowed_belong_to[$db->f('belong_to')];
         $this->value['belong_to_key'] = $db->f('belong_to');
         $this->value['belong_to_id'] = $db->f('belong_to_id');
         $this->value['type'] = $db->f('type');
         $this->value['transactionnumber'] = $db->f('transactionnumber');
-        # f�lgende b�r lige laves s� status er string og status key er integer - og den s� gemmer i det rigtige felt i datbasen under save() ogs�
+        // @todo following should be made so status is string and status key is integer - and saves in the correct field in the database
         $this->value['status'] = $db->f('status');
         $this->value['status_key'] = $db->f('status');
         $this->value['status_string'] = $this->allowed_status[$db->f('status')];
@@ -114,11 +119,12 @@ class VIH_Model_Betaling
         $error = array();
         $validate = new Validate;
 
-        if (!$validate->number($input['type'], array('min' => 1 ))) $error[] = "type";
+        if (!$validate->number($input['type'], array('min' => 1 ))) {
+            $error[] = "type";
+        }
         //if (!$validate->number($input['amount'])) $error[] = "amount";
 
         if (count($error) > 0) {
-            //print_r($error);
             return false;
         } else {
             return true;
@@ -136,7 +142,6 @@ class VIH_Model_Betaling
             throw new Exception('Ulovlig type');
         }
         $input['type'] = $type;
-
         if (!$this->validate($input)) {
             return 0;
         }
@@ -151,6 +156,7 @@ class VIH_Model_Betaling
             $sql_end = ", date_created = NOW()";
             if ($db->f('id') < 1000) {
                 $sql_end .= ", id = 1000";
+                $this->id = 1000;
             }
 
         } else {
@@ -158,13 +164,14 @@ class VIH_Model_Betaling
             $sql_end = " WHERE id = ".$this->id;
         }
 
-        $db->query($sql_type . " SET
+        $sql = $sql_type . " SET
             date_updated = NOW(),
             type = ".$input['type'].",
             belong_to = ".$this->belong_to_key.",
             belong_to_id = ".$this->belong_to_id . ",
             amount = '".$input['amount']."'"
-            .$sql_end);
+            .$sql_end;
+        $db->query($sql);
 
         if ($this->id == 0) {
             $this->id = $db->insertedId();
@@ -186,12 +193,11 @@ class VIH_Model_Betaling
             return false;
         }
 
-        if ($status <= $this->get("status") AND $status != -1) { // -1 er ved  invalid, det m� den gerne s�ttes til :D
-            throw new Exception("Du kan ikke sætte status lavere eller samme som den allerede er"); // Hvis man kan det, kan man fors�ge at godkende dankortbetaling 2 gange ved quickpay.
+        if ($status <= $this->get("status") AND $status != -1) { // -1 is invalid
+            throw new Exception("Du kan ikke sætte status lavere eller samme som den allerede er"); // to avoid online payment is approved twice with quickpay
         }
 
         if ($status == 2) { // dankort og approved
-
             switch($this->get('type')) {
                 case 1: // quickpay
                     $historik_type = 'dankort';
@@ -209,8 +215,6 @@ class VIH_Model_Betaling
                 throw new Exception("Ugyldig type i Betaling->setStatus");
             }
 
-
-
             $historik = new VIH_Model_Historik($this->belong_to, $this->belong_to_id);
             if (!$historik->save(array('type' => $historik_type, 'comment' => $historik_comment, 'betaling_id' => $betaling_id))) {
                 throw new Exception("Det lykkedes ikke at gemme en historik ved approval af betaling i Betaling->setStatus");
@@ -225,7 +229,6 @@ class VIH_Model_Betaling
 
     function setTransactionnumber($number)
     {
-
         if ($this->id == 0) {
             return false;
         }
@@ -289,8 +292,7 @@ class VIH_Model_Betaling
 
         $howmany_sql = '';
 
-        // denne er sat ind, n�r vi vil have alle betalingerne.
-        // der er vist ikke noget i vejen for at g�re det p� den m�de?
+        // make sure to get all payments
         if (!empty($this->belong_to_key) AND !empty($this->belong_to_id)) {
            $howmany_sql = "belong_to = ".$this->belong_to_key." AND belong_to_id = " . $this->belong_to_id." AND";
         }
@@ -307,6 +309,5 @@ class VIH_Model_Betaling
         }
 
         return $betalinger;
-
     }
 }
