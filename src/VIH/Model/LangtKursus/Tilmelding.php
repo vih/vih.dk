@@ -82,7 +82,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Returnerer vï¿½rdier
+     * Return values
      *
      * @param string $key Key to return
      *

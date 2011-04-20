@@ -27,6 +27,12 @@ class LangtKursusTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_object($kursus));
     }
 
+    function tearDown()
+    {
+        $db = MDB2::factory(DB_DSN);
+        $db->exec('TRUNCATE langtkursus');
+    }
+
     function testSaveReturnsTrueOnValidData()
     {
         $data = array('navn' => 'tests');
@@ -41,15 +47,4 @@ class LangtKursusTest extends PHPUnit_Framework_TestCase
         $kursus = new VIH_Model_LangtKursus();
         $this->assertTrue($kursus->save($data) > 0);
     }
-
-    /*
-    function testAddFag()
-    {
-        $data = array('navn' => 'tests');
-        $kursus = new VIH_Model_LangtKursus();
-        $this->assertTrue($kursus->save($data) > 0);
-        $fagperiode = new VIH_Model_LangtKursus_FagPeriode(new FakeLangtKursusFag, new FakeLangtKursusPeriode);
-        $this->assertTrue($kursus->addFag($fagperiode));
-    }
-    */
 }

@@ -19,7 +19,7 @@ class FakeTilmeldingFag
 class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
 {
     protected $backupGlobals = false;
-    /*
+
     function tearDown()
     {
         $db = MDB2::factory(DB_DSN);
@@ -27,7 +27,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
         $db->query('TRUNCATE langtkursus_rate');
         $db->query('TRUNCATE langtkursus_tilmelding_rate');
         $db->query('TRUNCATE betaling');
-    }*/
+    }
 
     function testSessionIdStaysTheSameOnTwoOnlineTilmelding()
     {
@@ -100,7 +100,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
                         'pris_rejserest' => 0,
                         'pris_rejselinje' => 0,
                         'pris_noegledepositum' => 0,
-                        'dato_start' => date('Y-m-d'),
+                        'dato_start' => '2008-06-10',
                         'dato_slut' => '2008-10-10',
                         'pris_afbrudt_ophold' => 0
         );
@@ -122,7 +122,6 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
         $betaling->setStatus('approved');
         $tilmelding->loadBetaling();
         $this->assertEquals('afsluttet', $tilmelding->get('status'));
-
     }
 
     function testAddFag()
@@ -243,23 +242,24 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
         $tilmelding->start(1);
         $tilmelding->save($data);
 
-        $data = array('dato_start' => '2007-10-10',
-                            'dato_slut' => '2007-12-12',
-                                      'elevstotte' => 200,
-                                      'ugeantal_elevstotte' => 200,
-                                      'statsstotte' => 200,
-                                      'kommunestotte' => 200,
-                                      'aktiveret_tillaeg' => 200,
-                                      'kompetencestotte' => 200,
-                                      'pris_uge' => 200,
-                                      'ugeantal' => 200,
-                                      'pris_tilmeldingsgebyr' => 200,
-                                      'pris_materiale' => 200,
-                                      'pris_rejsedepositum' => 200,
-                                      'pris_rejserest' => 200,
-                                      'pris_rejselinje' => 300,
-                                      'pris_noegledepositum' => 200,
-                                      'pris_afbrudt_ophold' => 200);
+        $data = array(
+        	'dato_start' => '2007-10-10',
+            'dato_slut' => '2007-12-12',
+            'elevstotte' => 200,
+            'ugeantal_elevstotte' => 200,
+            'statsstotte' => 200,
+            'kommunestotte' => 200,
+            'aktiveret_tillaeg' => 200,
+            'kompetencestotte' => 200,
+            'pris_uge' => 200,
+            'ugeantal' => 200,
+            'pris_tilmeldingsgebyr' => 200,
+            'pris_materiale' => 200,
+            'pris_rejsedepositum' => 200,
+            'pris_rejserest' => 200,
+            'pris_rejselinje' => 300,
+            'pris_noegledepositum' => 200,
+            'pris_afbrudt_ophold' => 200);
         $tilmelding->savePriser($data);
         $tilmelding->setStatus('reserveret');
         return $tilmelding;
