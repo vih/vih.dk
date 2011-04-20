@@ -27,8 +27,7 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
         $db->query('TRUNCATE langtkursus_rate');
         $db->query('TRUNCATE langtkursus_tilmelding_rate');
         $db->query('TRUNCATE betaling');
-    }
-    */
+    }*/
 
     function testSessionIdStaysTheSameOnTwoOnlineTilmelding()
     {
@@ -131,21 +130,6 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
         $tilmelding = new VIH_Model_LangtKursus_Tilmelding(1);
         $periode = new FakeTilmeldingFag;
         $this->assertTrue($tilmelding->addFag(new FakeTilmeldingFag, $periode));
-    }
-
-    function testGetFag()
-    {
-
-        $this->markTestIncomplete('Has been changed');
-        $tilmelding = new VIH_Model_LangtKursus_Tilmelding(1);
-        $periode = new FakeTilmeldingFag;
-        $tilmelding->addFag(new FakeTilmeldingFag, $periode);
-        $db = new pdoext_Connection("mysql:dbname=" . DB_NAME . ";host=" . DB_HOST, DB_USER, DB_PASSWORD);
-        $fag = $tilmelding->getFag($db);
-        $this->assertTrue(is_array($fag));
-        foreach ($fag as $f) {
-            $this->assertTrue(is_object($f));
-        }
     }
 
     function testHasSelectedFagReturnsTrueIfUserHasSelectedTheSubjectInThePeriod()
