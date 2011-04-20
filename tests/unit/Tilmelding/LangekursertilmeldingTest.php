@@ -78,6 +78,48 @@ class LangekurserTilmeldingTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('undervejs', $tilmelding->get('status'));
     }
 
+    function testResavingDoesNotAlterStatus()
+    {
+        $data = array(
+            'kursus_id' => 1,
+            'navn' => 'Test',
+            'adresse' => 'Test',
+            'postnr' => 'Test',
+            'postby' => 'Test',
+            'email' => 'Test',
+            'mobil' => 'Test',
+            'telefonnummer' => 'Test',
+            'mobil' => 'Test',
+            'arbejdstelefon' => 'Test',
+            'kontakt_navn' => 'Test',
+            'kontakt_adresse' => 'Test',
+            'kontakt_postnr' => 'Test',
+            'kontakt_postby' => 'Test',
+            'kontakt_email' => 'Test',
+            'kontakt_mobil' => 'Test',
+            'kontakt_telefon' => 'Test',
+            'kontakt_arbejdstelefon' => 'Test',
+            'uddannelse' => 'Test',
+            'betaling' => 'Test',
+            'besked' => 'test',
+            'nationalitet' => 'DK',
+            'kommune' => 'Test',
+            'ryger' => 'Nej',
+            'sex' => 'M',
+            'fag_id' => 1,
+            'tekst_diplom' => 'test'
+        );
+
+        $session_id = rand(1, 1000000000);
+        $tilmelding = new VIH_Model_LangtKursus_OnlineTilmelding($session_id);
+        $tilmelding->start(1);
+        $this->assertTrue($tilmelding->save($data) > 0);
+        $this->assertEquals('undervejs', $tilmelding->get('status'));
+        $tilmelding->setStatus('tilmeldt');
+        $this->assertTrue($tilmelding->save($data) > 0);
+        $this->assertEquals('tilmeldt', $tilmelding->get('status'));
+    }
+
     function testUpdateRater()
     {
         $tilmelding = $this->createTilmelding();

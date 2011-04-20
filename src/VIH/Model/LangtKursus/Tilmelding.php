@@ -107,7 +107,7 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Loader vï¿½rdier
+     * Loads values
      *
      * @return integer
      */
@@ -330,7 +330,9 @@ class VIH_Model_LangtKursus_Tilmelding
             )
         );
 
-        $bind['status_key'] = $this->getStatusKey('undervejs');
+        if ($this->get('status_key') < $this->getStatusKey('undervejs')) {
+            $bind['status_key'] = $this->getStatusKey('undervejs');
+        }
         $bind['adresse_id'] = $adresse_id;
         $bind['kontakt_adresse_id'] = $kontakt_adresse_id;
         $bind['besked'] = $var['besked'];
@@ -340,7 +342,9 @@ class VIH_Model_LangtKursus_Tilmelding
         $bind['cpr'] = $var['cpr'];
         $bind['nationalitet'] = $var['nationalitet'];
         $bind['kommune'] = $var['kommune'];
-        if (!empty($var['sex'])) $bind['sex'] = $var['sex'];
+        if (!empty($var['sex'])) {
+            $bind['sex'] = $var['sex'];
+        }
 
         $conn = Doctrine_Manager::connection(DB_DSN);
         $conn->setCharset('utf8');
@@ -623,18 +627,18 @@ class VIH_Model_LangtKursus_Tilmelding
     }
 
     /**
-     * Marker tilmelding som fï¿½rdigbetalt hvis der ikke er noget skyldigt belï¿½b
+     * Marks as closed if no due rates
      */
     public function _updateStatus()
     {
         $db = new DB_Sql;
-        // hack hack hack hack
-        if ($this->get('pris_total') > 0
-                AND count($this->getRater()) > 0) {
+        // @todo hack starts
+        if ($this->get('pris_total') > 0 AND count($this->getRater()) > 0) {
             if (!$this->betaling_loaded) {
                 $this->loadBetaling();
             }
         }
+        // @todo hack ends
 
         if (count($this->getRater()) == 0) {
             return true;
@@ -648,8 +652,7 @@ class VIH_Model_LangtKursus_Tilmelding
             $status_key = $this->getStatusKey('reserveret');
         }
 
-        $db->query("UPDATE langtkursus_tilmelding SET status_key=".$status_key." WHERE id = ".$this->id);
-
+        $db->query("UPDATE langtkursus_tilmelding SET status_key=" . $status_key . " WHERE id = " . $this->id);
 
         $this->load();
 
