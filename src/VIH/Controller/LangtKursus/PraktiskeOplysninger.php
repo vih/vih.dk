@@ -20,10 +20,10 @@ class VIH_Controller_LangtKursus_PraktiskeOplysninger extends k_Component
         return '
         <h1>Praktiske oplysninger</h1>
         <h3>Bestil materiale</h3>
-        <p>Du kan bestille vores brochurer på vores <a href="'.url('/bestilling').'">onlinebestillingsformular</a>.</p>
+        <p>Du kan bestille vores brochurer på vores <a href="'.$this->url('/bestilling').'">onlinebestillingsformular</a>.</p>
         <h2>Indmelding</h2>
         <p>Du skal være 17 ½år, år du indmelder dig på Vejle Idrætshøjskole. Du er indmeldt, når du har sendt ansøgningskort samt tilmeldingsgebyr til os. Du får skriftlig besked, når du er optaget.</p>
-        <p>Hvis du vil tilmelde dig et af de lange kurser på Vejle Idrætshøjskole, kan du <a href="'.url('/langekurser').'">finde det kursus</a>, du gerne vil tilmeldes og derfra bruge vores onlinetilmeldingsformular.</p>
+        <p>Hvis du vil tilmelde dig et af de lange kurser på Vejle Idrætshøjskole, kan du <a href="'.$this->url('/langekurser').'">finde det kursus</a>, du gerne vil tilmeldes og derfra bruge vores onlinetilmeldingsformular.</p>
         <h2>Skrevet op</h2>
         <p>Du kan også blive skrevet op, hvis du gerne vil reservere en plads.</p>
         <h2>Indkvartering</h2>

@@ -172,8 +172,8 @@ class VIH_Controller_LangtKursus_Show extends k_Component
             </ul>
             <h2>Støttemuligheder</h2>
             <ul>
-                <li><a href="'.$this->url('../elevstøtte') . '">Individuel elevstøtte</a></li>
-                <li><a href="'.$this->url('../statsstøtte') . '">Statsstøtte til særlige grupper</a></li>
+                <li><a href="'.$this->url('../elevstotte') . '">Individuel elevstøtte</a></li>
+                <li><a href="'.$this->url('../statsstotte') . '">Statsstøtte til særlige grupper</a></li>
             </ul>';
     }
 
@@ -201,10 +201,6 @@ class VIH_Controller_LangtKursus_Show extends k_Component
                 <tr>
                     <th>Rejsedepositum</th>
                     <td>' . number_format($kursus->get('pris_rejsedepositum'), 0, ',', '.').' kroner</td>
-                </tr>
-                <tr>
-                    <th>Nøgledepositum</th>
-                    <td>' . number_format((float)$kursus->get('pris_nøgledepositum'), 0, ',', '.').' kroner</td>
                 </tr>
             </table>
 

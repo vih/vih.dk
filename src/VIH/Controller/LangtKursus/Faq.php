@@ -21,7 +21,7 @@ class VIH_Controller_LangtKursus_Faq extends k_Component
         <h1>Spørgsmål og svar</h1>
         <p>Her har vi forsøgt at samle svarene på nogle af de spørgsmål, vi ofte bliver stillet.</p>
         <h3>1. Hvad koster et ophold?</h3>
-        <p>Ugeprisen kan variere fra år til år. <a href="'.$this->url('/langekurser/økonomi').'">Læs mere om økonomien</a> i forbindelse med et ophold på Vejle Idrætshøjskole. Du kan søge <a href="'.$this->url('/langekurser/elevstøtte.php').'">elevstøtte</a> som hjælp til at gøre dit ophold billigere.</p>
+        <p>Ugeprisen kan variere fra år til år. <a href="'.$this->url('/langekurser/okonomi').'">Læs mere om økonomien</a> i forbindelse med et ophold på Vejle Idrætshøjskole. Du kan søge <a href="'.$this->url('/langekurser/elevstotte').'">elevstøtte</a> som hjælp til at gøre dit ophold billigere.</p>
         <h3>2. Er Vejle Idrætshøjskole for elitefolk?</h3>
         <p>Nej. Vejle Idrætshøjskole er for alle, der kan lide at dyrke idræt og bruge sin krop, men som samtidig gerne vil lære noget om livet.</p>
         <h3>3. Hvordan er jeres alkoholpolitik?</h3>
