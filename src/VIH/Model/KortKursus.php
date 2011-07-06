@@ -302,7 +302,11 @@ class VIH_Model_KortKursus
         $deltager = array();
         $i = 0;
         while ($db->nextRecord()) {
-            $deltager[$i] = new VIH_Model_KortKursus_Tilmelding_Deltager(new VIH_Model_KortKursus_Tilmelding($db->f('tilmelding_id')), $db->f('id'));
+            if (!isset($tilmelding)) {
+                $tilmelding = new VIH_Model_KortKursus_Tilmelding($db->f('tilmelding_id'));
+            }
+            $deltager[$i] = new VIH_Model_KortKursus_Tilmelding_Deltager($tilmelding, $db->f('id'));
+            unset($tilmelding);
             $i++;
         }
         return $deltager;

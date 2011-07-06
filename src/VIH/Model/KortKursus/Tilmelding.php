@@ -63,16 +63,19 @@ class VIH_Model_KortKursus_Tilmelding
         if ($this->id == 0) {
             return 0;
         }
+        
+        $due_date_days = 70;
 
-        $sql = "SELECT code, tilmelding.id, tilmelding.active, adresse_id, besked, kortkursus_id, session_id, antal_deltagere, status_key, afbestillingsforsikring, rabat, DATE_FORMAT(tilmelding.date_created, '%d-%m-%Y') AS date_created_dk,
-            date_add(tilmelding.date_created, interval 10 day) AS dato_forfalden_depositum,
-           DATE_FORMAT(date_add(tilmelding.date_created, interval 10 day), '%d-%m-%Y') AS dato_forfalden_depositum_dk,
-            date_sub(kortkursus.dato_start, interval 42 day) AS dato_forfalden,
-              DATE_FORMAT(date_sub(kortkursus.dato_start, interval 42 day), '%d-%m-%Y') AS dato_forfalden_dk
-            FROM kortkursus_tilmelding tilmelding
-            INNER JOIN kortkursus
-                ON kortkursus.id = tilmelding.kortkursus_id
-            WHERE tilmelding.id = " . $this->id;
+        $sql = "SELECT code, tilmelding.id, tilmelding.active, adresse_id, besked, kortkursus_id, session_id, antal_deltagere, 
+                    status_key, afbestillingsforsikring, rabat, DATE_FORMAT(tilmelding.date_created, '%d-%m-%Y') AS date_created_dk, 
+                    date_add(tilmelding.date_created, interval 10 day) AS dato_forfalden_depositum, 
+                    DATE_FORMAT(date_add(tilmelding.date_created, interval 10 day), '%d-%m-%Y') AS dato_forfalden_depositum_dk,
+                    date_sub(kortkursus.dato_start, interval " . $due_date_days . " day) AS dato_forfalden,
+                    DATE_FORMAT(date_sub(kortkursus.dato_start, interval " . $due_date_days . " day), '%d-%m-%Y') AS dato_forfalden_dk
+                FROM kortkursus_tilmelding tilmelding
+                    INNER JOIN kortkursus
+                        ON kortkursus.id = tilmelding.kortkursus_id
+                WHERE tilmelding.id = " . $this->id;
         $db = new DB_Sql;
         $db->query($sql);
 
