@@ -48,7 +48,7 @@ function vih_split_name($name)
 }
 
 /**
- * Udregner deltagerens alder. Alderens skal udregnes p� kursusstartdatoen.
+ * Calculates age on a certain date
  *
  * @param date $birthday ISO-format
  * @param date $date ISO-format
@@ -99,20 +99,34 @@ function vih_random_code($length)
     return $rndstring;
 }
 
+/**
+ * Gets a persons birthday based on the SSN number
+ *
+ * @param string $cpr Danish Social Security Number (CPR)
+ *
+ * @return ISO date
+ */
 function getBirthday($cpr)
 {
-    $month = substr($cpr,2,2);
-    $day = substr($cpr,0,2);
-    $year_last_two_digits = substr($cpr,4,2); // to sidste i �rstallet taget fra cprnummeret
-    $testyear = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits; // tr�kker en fra aktuelle �r
+    $month = substr($cpr, 2, 2);
+    $day = substr($cpr, 0, 2);
+    $year_last_two_digits = substr($cpr, 4, 2); // two last in the year is taken from the ssn-number
+    $testyear = (substr(date('Y'), 0, 2) - 1) . $year_last_two_digits; // withdraws one from actual year
     if ($testyear < date('Y') AND (date('Y') - $testyear) < 100) {
-        $year = (substr(date('Y'), 0,2) - 1) . $year_last_two_digits;
+        $year = (substr(date('Y'), 0, 2) - 1) . $year_last_two_digits;
     } else {
-        $year = substr(date('Y'), 0 , 2) . $year_last_two_digits;
+        $year = substr(date('Y'), 0, 2) . $year_last_two_digits;
     }
     return $year . '-' . $month . '-' . $day;
 }
 
+/**
+ * Validate Danish Social Security Number
+ *
+ * @param string $cpr Danish Social Security Number (CPR)
+ *
+ * @return boolean
+ */
 function vih_validate_cpr($cpr)
 {
     if (substr($cpr, -4) == '9999') return true;
